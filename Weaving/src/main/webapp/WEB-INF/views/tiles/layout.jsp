@@ -45,18 +45,12 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./emplist">
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
             <a class="nav-link" href="./user.html">
               <i class="material-icons">email</i>
               <p>메일</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="/WEB_INF/spring/views/emp/emplist.jsp">
-              <i class="material-icons">content_paste</i>
-              <p>Table List</p>
             <a class="nav-link" href="./tables.html">
               <i class="material-icons">library_books</i>
               <p>게시판  </p>
