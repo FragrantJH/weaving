@@ -32,14 +32,14 @@
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo">
-        <a href="/biz" class="simple-text logo-normal">
+        <a class="simple-text logo-normal">
           WEAVING 관리자
         </a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" href="./test">
+            <a class="nav-link">
               <i class="material-icons">account_circle</i>
               <p>회사관리</p>
             </a>

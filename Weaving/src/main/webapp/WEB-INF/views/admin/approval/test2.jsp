@@ -8,5 +8,6 @@
 </head>
 <body>
 test file
+<img src="./images/sampleImage.jpg" style="width: 100px">
 </body>
 </html>
