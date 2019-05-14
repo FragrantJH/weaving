@@ -13,7 +13,7 @@
 	</definition>
 	
 	<definition name="admin/*/*" template="/WEB-INF/views/tiles/admin_layout.jsp">
-		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/admin/{1}/{2}.jsp" />
 	</definition>
 	
 	<definition name="*/*" extends="mainTemplate">
