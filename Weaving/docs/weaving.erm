@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
-	<x>149</x>
-	<y>0</y>
+	<x>191</x>
+	<y>58</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2019-04-25 10:13:34</creation_date>
-			<updated_date>2019-05-13 16:38:07</updated_date>
+			<updated_date>2019-05-14 13:50:36</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1380,7 +1380,7 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>approvalform</physical_name>
+			<physical_name>documentForm</physical_name>
 			<logical_name>결재폼</logical_name>
 			<description></description>
 			<constraint></constraint>
@@ -2081,6 +2081,28 @@
 			<connections>
 				<relation>
 					<id>6</id>
+					<source>11</source>
+					<target>8</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>CASCADE</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+				<relation>
+					<id>7</id>
 					<source>9</source>
 					<target>8</target>
 						<source_xp>74</source_xp>
@@ -2106,28 +2128,6 @@
 					<referenced_column>null</referenced_column>
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
-				<relation>
-					<id>7</id>
-					<source>11</source>
-					<target>8</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
-						<target_xp>-1</target_xp>
-						<target_yp>-1</target_yp>
-						<color>
-							<r>0</r>
-							<g>0</g>
-							<b>0</b>
-						</color>
-					<child_cardinality>1..n</child_cardinality>
-					<parent_cardinality>1</parent_cardinality>
-					<reference_for_pk>true</reference_for_pk>
-					<name></name>
-					<on_delete_action>CASCADE</on_delete_action>
-					<on_update_action>RESTRICT</on_update_action>
-					<referenced_column>null</referenced_column>
-					<referenced_complex_unique_key>null</referenced_complex_unique_key>
-				</relation>
 			</connections>
 			<physical_name>DocumentDetail</physical_name>
 			<logical_name>결재상세정보</logical_name>
@@ -2139,7 +2139,7 @@
 				<normal_column>
 					<id>25</id>
 					<referenced_column>47</referenced_column>
-					<relation>7</relation>
+					<relation>6</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2173,7 +2173,7 @@
 				<normal_column>
 					<id>26</id>
 					<referenced_column>31</referenced_column>
-					<relation>6</relation>
+					<relation>7</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>결재자ID</logical_name>
@@ -2792,12 +2792,12 @@
 						<bendpoint>
 							<relative>false</relative>
 							<x>385</x>
-							<y>371</y>
+							<y>400</y>
 						</bendpoint>
 						<bendpoint>
 							<relative>false</relative>
 							<x>385</x>
-							<y>590</y>
+							<y>575</y>
 						</bendpoint>
 						<color>
 							<r>0</r>

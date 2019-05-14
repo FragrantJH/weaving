@@ -8,8 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DocumentFormController {
 
 	@RequestMapping("/test")
-	public String approvalFormList()
+	public String test()
 	{
-		return "admin/approval/test2";
+		return "admin/documentForm/test2";
 	}
+	
+	@RequestMapping("/docFormInsert")
+	public String documentFormInsert()
+	{
+		return "admin/documentForm/documentFormInsert";
+	}
+	
+	@RequestMapping("/docFormList")
+	public String documentFormList()
+	{
+		return "admin/documentForm/documentFormList";
+	}
+	
 }

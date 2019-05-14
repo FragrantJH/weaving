@@ -38,19 +38,36 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active  ">
-            <a class="nav-link">
+          <!-- 회사 관리 메뉴 -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="collapse" data-target="#company" role="button" aria-haspopup="true" aria-expanded="false">
               <i class="material-icons">account_circle</i>
               <p>회사관리</p>
             </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
-              <i class="material-icons">assignment</i>
-              <p>결재 관리</p>
-            </a>
+            <div id=company class="collapse in">
+			      <a class="dropdown-item" href="#0">
+			      	<i class="material-icons">group</i>
+              		<p>조직/직원관리</p>
+			      </a>
+			</div>
           </li>
           
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="collapse" data-target="#document" role="button">
+              <i class="material-icons">description</i>
+              <p>결재관리</p>
+            </a>
+            <div id=document class="collapse in">
+			      <a class="dropdown-item" href="#0">
+			      	<i class="material-icons">list</i>
+              		<p>결재폼 목록</p>
+			      </a>
+			      <a class="dropdown-item" href="#0">
+			      	<i class="material-icons">create</i>
+              		<p>결재폼 등록</p>
+			      </a>
+			</div>
+          </li>
         </ul>
       </div>
     </div>
@@ -273,13 +290,6 @@
 
         });
       });
-    });
-  </script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-
     });
   </script>
 </body>
