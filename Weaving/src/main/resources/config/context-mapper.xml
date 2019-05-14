@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- SqlSession setup for MyBatis Database Layer -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		
+		<!-- mapping 상세 정보 -->
+		<property name="configLocation" value="classpath:sql-mapper-config.xml" />
+		<!-- sql mapper .xml 파일을 모아두는 경로를 아래와 같이 지정해주면
+			 mappings 폴더 내 전체를 자동으로 읽어 생성해줌 -->
+		<property name="mapperLocations" value="classpath:/mappings/*.xml" />
+	</bean>
+	
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"></constructor-arg>
+	</bean>
+
+	<!-- MapperConfigurer setup for MyBatis Database Layer with @Mapper("deptMapper") in DeptMapper Interface -->
+ <!-- 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com" />
+	</bean> -->
+    
+</beans>

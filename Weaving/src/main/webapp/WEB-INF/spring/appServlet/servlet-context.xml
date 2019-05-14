@@ -29,18 +29,14 @@
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver" 
 		p:order="1"
 		p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView" />
+	
 	<!--Don't add suffix or prefix like you do with .jsp files-->
-	<beans:bean id="tilesConfigurer" 
-		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" >
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" >
 		<beans:property name="definitions">
 		<beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
 		</beans:property>
 	</beans:bean>
 	
-	
-	<context:component-scan
-		base-package="com.weaving.biz" />
-
-
+	<context:component-scan base-package="com.weaving.biz" />
 
 </beans:beans>
