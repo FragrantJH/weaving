@@ -41,4 +41,9 @@ public class HomeController {
 		return "admin/emp/emplist";
 	}
 	
+	@RequestMapping("/empinsert")
+	public String board1() {
+		return "admin/emp/empinsert";
+	}
+	
 }
