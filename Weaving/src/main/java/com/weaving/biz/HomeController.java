@@ -38,12 +38,7 @@ public class HomeController {
 
 	@RequestMapping("/emplist")
 	public String board() {
-		return "/emp/emplist";
-	}
-	
-	@RequestMapping("/empinsert")
-	public String board1() {
-		return "/emp/empinsert";
+		return "admin/emp/emplist";
 	}
 	
 }
