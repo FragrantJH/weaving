@@ -65,6 +65,7 @@ div.right {
 		 <button>삭제</button>
 		 <button onclick="location.href='./empinsert'">등록</button>
 	 </div>
+	 
  </div>
 </body>
 </html>
