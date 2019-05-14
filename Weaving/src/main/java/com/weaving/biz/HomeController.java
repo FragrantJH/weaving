@@ -36,4 +36,14 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/emplist")
+	public String board() {
+		return "/emp/emplist";
+	}
+	
+	@RequestMapping("/empinsert")
+	public String board1() {
+		return "/emp/empinsert";
+	}
+	
 }
