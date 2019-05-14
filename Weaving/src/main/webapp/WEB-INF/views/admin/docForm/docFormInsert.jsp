@@ -18,11 +18,11 @@
 			<br>
 			<br>
 			<div class="card-body">
-				<form>
+				<form action="docFormInsert" method="get">
 					<!-- 결재폼 이름/설명 -->
 					<div class="form-group">
 						<label for="usr">제목</label> 
-						<input type="text" class="form-control" id="title" name="title">
+						<input type="text" class="form-control" id="title" name="form_name">
 					</div>
 					<div class="form-group">
 						<label for="usr">설명</label> 
@@ -30,7 +30,7 @@
 					</div>
 					<br>
 					<!-- 결재폼 내용 -->
-					<textarea name="editor" id="editor" rows="100" cols="80">
+					<textarea name="form_contents" id="editor" rows="100" cols="80">
         			</textarea>
 					<script>
 						CKEDITOR.replace('editor');

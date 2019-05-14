@@ -4,14 +4,14 @@
 <configuration>
 	<settings>
 		<!-- 오라클 컬럼이 first_name 를 VO firstName 처럼 카멜케이스로 변환 -->
-		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="mapUnderscoreToCamelCase" value="false" />
 	</settings>
 
 
 	<!-- mapper에서 사용할 mapper 별칭 지정 -->
 	<typeAliases>
 		<typeAlias alias="board" type="com.weaving.biz.board.BoardVO" />
-		<typeAlias alias="documentForm" type="com.weaving.biz.documentForm.DocumentFormVO"/>
+		<typeAlias alias="docForm" type="com.weaving.biz.docForm.DocFormVO"/>
 	</typeAliases>
 
 </configuration>

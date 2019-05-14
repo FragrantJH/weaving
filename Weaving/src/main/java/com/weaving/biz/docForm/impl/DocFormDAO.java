@@ -1,19 +1,20 @@
-package com.weaving.biz.documentForm.impl;
+package com.weaving.biz.docForm.impl;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.weaving.biz.documentForm.DocumentFormVO;
+import com.weaving.biz.docForm.DocFormVO;
 
 @Repository
-public class DocumentFormDAO {
+public class DocFormDAO {
 
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
-	public void insert(DocumentFormVO vo) {
-		
+	public void insert(DocFormVO vo) {
+		System.out.println(vo);
+		mybatis.insert("DocFormDAO.insertDocForm", vo);
 	}
 	
 }

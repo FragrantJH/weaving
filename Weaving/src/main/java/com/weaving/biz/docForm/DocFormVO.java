@@ -1,6 +1,6 @@
-package com.weaving.biz.documentForm;
+package com.weaving.biz.docForm;
 
-public class DocumentFormVO {
+public class DocFormVO {
 
 	private int form_id;
 	private String form_name;
@@ -30,5 +30,10 @@ public class DocumentFormVO {
 	}
 	public void setForm_contents(String form_contents) {
 		this.form_contents = form_contents;
+	}
+	@Override
+	public String toString() {
+		return "DocFormVO [form_id=" + form_id + ", form_name=" + form_name + ", description=" + description
+				+ ", form_contents=" + form_contents + "]";
 	}
 }
