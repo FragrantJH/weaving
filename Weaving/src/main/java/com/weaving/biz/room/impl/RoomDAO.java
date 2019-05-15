@@ -10,9 +10,9 @@ import com.weaving.biz.room.RoomVO;
 public class RoomDAO {
 	
 	@Autowired
-	public SqlSessionTemplate Ss;
+	public SqlSessionTemplate ss;
 	
 	public void insert(RoomVO vo) {
-		Ss.insert("RoomDAO.insertRoom", vo);
+		ss.insert("RoomDAO.insertRoom", vo);
 	}	
 }

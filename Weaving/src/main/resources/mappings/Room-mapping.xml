@@ -1,3 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappings.Room-mapping"></mapper>
+<mapper namespace="RoomDAO">
+
+	<insert id="insertRoom" parameterType="room">
+		INSERT INTO RESERVATION (
+							  RESERV_ID,
+							  ROOM_NAME,
+							  EMP_NO
+							  START_TIME,
+							  USE_HOUR,
+							  DESCRIPTION
+							  
+							)
+				    VALUES ( 
+				             #{reservId},
+				             #{roomName},
+				             #{empNo},
+				             #{startTime},
+				             #{useHour},
+				             #{description}
+				    )			    
+	</insert>
+
+</mapper>

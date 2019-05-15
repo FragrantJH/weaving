@@ -1,50 +1,49 @@
 package com.weaving.biz.room;
 
 public class RoomVO {
-	private int room_id;
-	private String room_name;
-	private int reserv_id;
-	private int emp_no;
-	private String start_time;
-	private int use_hour;
+	private int roomId;
+	private String roomName;
+	private int reservId;
+	private int empNo;
+	private String startTime;
+	private int useHour;
 	private String description;
 	
-	
-	public int getRoom_id() {
-		return room_id;
+	public int getRoomId() {
+		return roomId;
 	}
-	public void setRoom_id(int room_id) {
-		this.room_id = room_id;
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
 	}
-	public String getRoom_name() {
-		return room_name;
+	public String getRoomName() {
+		return roomName;
 	}
-	public void setRoom_name(String room_name) {
-		this.room_name = room_name;
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
-	public int getReserv_id() {
-		return reserv_id;
+	public int getReservId() {
+		return reservId;
 	}
-	public void setReserv_id(int reserv_id) {
-		this.reserv_id = reserv_id;
+	public void setReservId(int reservId) {
+		this.reservId = reservId;
 	}
-	public int getEmp_no() {
-		return emp_no;
+	public int getEmpNo() {
+		return empNo;
 	}
-	public void setEmp_no(int emp_no) {
-		this.emp_no = emp_no;
+	public void setEmpNo(int empNo) {
+		this.empNo = empNo;
 	}
-	public String getStart_time() {
-		return start_time;
+	public String getStartTime() {
+		return startTime;
 	}
-	public void setStart_time(String start_time) {
-		this.start_time = start_time;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
-	public int getUse_hour() {
-		return use_hour;
+	public int getUseHour() {
+		return useHour;
 	}
-	public void setUse_hour(int use_hour) {
-		this.use_hour = use_hour;
+	public void setUseHour(int useHour) {
+		this.useHour = useHour;
 	}
 	public String getDescription() {
 		return description;
@@ -52,4 +51,5 @@ public class RoomVO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 }

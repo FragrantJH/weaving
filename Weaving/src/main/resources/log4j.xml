@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.weaving.biz">
+	<logger name="com.dbal.insa">
 		<level value="info" />
 	</logger>
 	
@@ -32,7 +32,20 @@
 		<level value="info" />
 	</logger>
 
-	<!-- Root Logger -->
+    <logger name="jdbc.sqltiming" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="console"/>
+    </logger>
+     <logger name="jdbc.sqlonly" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="jdbc.resultsettable" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="console"/>
+    </logger> 
+    
+	<!-- Root Logger warn-->
 	<root>
 		<priority value="warn" />
 		<appender-ref ref="console" />

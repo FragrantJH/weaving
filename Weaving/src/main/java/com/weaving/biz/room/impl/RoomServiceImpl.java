@@ -3,14 +3,16 @@ package com.weaving.biz.room.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.weaving.biz.room.RoomService;
 import com.weaving.biz.room.RoomVO;
 
+@Service("roomService")
 public class RoomServiceImpl implements RoomService {
 	
 	@Autowired
-	RoomDAO SS;
+	RoomDAO ss;
 
 	@Override
 	public void insertRoom(RoomVO vo) {
