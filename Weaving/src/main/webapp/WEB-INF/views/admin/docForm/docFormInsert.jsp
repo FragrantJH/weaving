@@ -18,7 +18,7 @@
 			<br>
 			<br>
 			<div class="card-body">
-				<form action="docFormInsert" method="get">
+				<form action="docFormInsert" method="post">
 					<!-- 결재폼 이름/설명 -->
 					<div class="form-group">
 						<label for="usr">제목</label> 

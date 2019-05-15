@@ -2,11 +2,18 @@ package com.weaving.biz.docForm;
 
 public class DocFormVO {
 
+	private int rowNum;
 	private int formId;
 	private String formName;
 	private String description;
 	private String formContents;
 	
+	public int getRowNum() {
+		return rowNum;
+	}
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
 	public int getFormId() {
 		return formId;
 	}
@@ -37,6 +44,4 @@ public class DocFormVO {
 		return "DocFormVO [formId=" + formId + ", formName=" + formName + ", description=" + description
 				+ ", formContents=" + formContents + "]";
 	}
-	
-	
 }
