@@ -22,7 +22,7 @@
 					<!-- 결재폼 이름/설명 -->
 					<div class="form-group">
 						<label for="usr">제목</label> 
-						<input type="text" class="form-control" id="title" name="form_name">
+						<input type="text" class="form-control" id="title" name="formName">
 					</div>
 					<div class="form-group">
 						<label for="usr">설명</label> 
@@ -30,7 +30,7 @@
 					</div>
 					<br>
 					<!-- 결재폼 내용 -->
-					<textarea name="form_contents" id="editor" rows="100" cols="80">
+					<textarea name="formContents" id="editor" rows="100" cols="80">
         			</textarea>
 					<script>
 						CKEDITOR.replace('editor');

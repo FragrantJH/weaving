@@ -2,38 +2,41 @@ package com.weaving.biz.docForm;
 
 public class DocFormVO {
 
-	private int form_id;
-	private String form_name;
+	private int formId;
+	private String formName;
 	private String description;
-	private String form_contents;
+	private String formContents;
 	
-	public int getForm_id() {
-		return form_id;
+	public int getFormId() {
+		return formId;
 	}
-	public String getForm_name() {
-		return form_name;
+	public String getFormName() {
+		return formName;
 	}
 	public String getDescription() {
 		return description;
 	}
-	public String getForm_contents() {
-		return form_contents;
+	public String getFormContents() {
+		return formContents;
 	}
-	public void setForm_id(int form_id) {
-		this.form_id = form_id;
+	public void setFormId(int formId) {
+		this.formId = formId;
 	}
-	public void setForm_name(String form_name) {
-		this.form_name = form_name;
+	public void setFormName(String formName) {
+		this.formName = formName;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public void setForm_contents(String form_contents) {
-		this.form_contents = form_contents;
+	public void setFormContents(String formContents) {
+		this.formContents = formContents;
 	}
+	
 	@Override
 	public String toString() {
-		return "DocFormVO [form_id=" + form_id + ", form_name=" + form_name + ", description=" + description
-				+ ", form_contents=" + form_contents + "]";
+		return "DocFormVO [formId=" + formId + ", formName=" + formName + ", description=" + description
+				+ ", formContents=" + formContents + "]";
 	}
+	
+	
 }

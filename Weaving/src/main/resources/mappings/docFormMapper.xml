@@ -10,9 +10,9 @@
 							  FORM_CONTENTS
 							)
 				    VALUES ( (SELECT NVL(MAX(FORM_ID), 0) + 1 FROM DOCUMENTFORM ),
-				             #{form_name},
+				             #{formName},
 				             #{description},
-				             #{form_contents}
+				             #{formContents}
 				    )
 			    
 	</insert>
