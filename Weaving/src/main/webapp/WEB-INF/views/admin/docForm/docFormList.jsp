@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 </head>
 <body>
-
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
