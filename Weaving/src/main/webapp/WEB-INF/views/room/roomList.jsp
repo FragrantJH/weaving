@@ -15,7 +15,7 @@
             </div>
           </div>
           <div class="card-body">
-              	하단부 내용 삽입.
+              	
           </div>
       </div>
   </div>
