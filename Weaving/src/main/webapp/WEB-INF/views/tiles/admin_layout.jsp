@@ -58,11 +58,11 @@
               <p>결재관리</p>
             </a>
             <div id=document class="collapse in">
-			      <a class="dropdown-item" href="#0">
+			      <a class="dropdown-item" href="./docFormList">
 			      	<i class="material-icons">list</i>
               		<p>결재폼 목록</p>
 			      </a>
-			      <a class="dropdown-item" href="#0">
+			      <a class="dropdown-item" href="./docFormInsertForm">
 			      	<i class="material-icons">create</i>
               		<p>결재폼 등록</p>
 			      </a>

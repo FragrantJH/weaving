@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.weaving.biz.docForm.DocFormSearchVO;
 import com.weaving.biz.docForm.DocFormService;
 import com.weaving.biz.docForm.DocFormVO;
 
@@ -16,7 +17,7 @@ public class DocFormServiceImpl implements DocFormService {
 	
 	@Override
 	public void insertDocForm(DocFormVO vo) {
-		mybatis.insert(vo);
+		mybatis.insertDocForm(vo);
 	}
 
 	@Override
@@ -38,9 +39,14 @@ public class DocFormServiceImpl implements DocFormService {
 	}
 
 	@Override
-	public List<DocFormVO> getDocFormList(DocFormVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<DocFormVO> getDocFormList(DocFormSearchVO vo) {
+		
+		return mybatis.getDocFormList(vo);
+	}
+
+	@Override
+	public int getDocFormTotalCount() {
+		return mybatis.getDocFormTotalCount();
 	}
 
 }

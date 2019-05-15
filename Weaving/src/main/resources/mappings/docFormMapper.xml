@@ -16,4 +16,22 @@
 				    )
 			    
 	</insert>
+	
+	<select id="selectDocFormList" parameterType="com.weaving.biz.docForm.DocFormSearchVO" resultType="docForm">
+		SELECT ROW_NUM,
+		       FORM_ID,
+			   FORM_NAME,
+			   DESCRIPTION,
+			   FORM_CONTENTS
+		  FROM (SELECT ROWNUM ROW_NUM ,
+		  		A.* FROM (SELECT * 
+		  		            FROM DOCUMENTFORM 
+		  		          ORDER BY FORM_ID) A ) B 
+		  WHERE ROW_NUM BETWEEN #{first} AND #{last}
+	</select>
+	
+	<select id="selectDocFormTotalCnt" resultType="int">
+		SELECT COUNT(*)
+		  FROM DOCUMENTFORM
+	</select>
 </mapper>
