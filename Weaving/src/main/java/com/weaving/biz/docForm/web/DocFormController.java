@@ -24,11 +24,6 @@ public class DocFormController {
 	@Autowired
 	DocFormService service;
 
-	@RequestMapping("/test")
-	public String test() {
-		return "admin/documentForm/test2";
-	}
-
 	// 등록폼 페이지로 이동
 	@RequestMapping("/docFormInsertForm")
 	public String docFormInsertForm() {

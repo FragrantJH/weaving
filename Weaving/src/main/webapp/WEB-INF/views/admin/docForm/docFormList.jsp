@@ -43,7 +43,7 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<my:paging paging="${paging}" />
+						<my:paging paging="${paging}" jsFunc="docFormList" />
 					</div>
 				</div>
 			</div>

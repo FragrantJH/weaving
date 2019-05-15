@@ -143,10 +143,12 @@
           </div>
         </div>
       </nav>
+      
       <!-- End Navbar -->
       <div class="content">
     		<tiles:insertAttribute name="content" />
       </div>
+      
     </div>
   </div>
   
