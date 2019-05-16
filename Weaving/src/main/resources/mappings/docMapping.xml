@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DocDAO">
+	<select id="getDocList" parameterType="com.weaving.biz.doc.DocVO"
+		resultType="com.weaving.biz.doc.DocVO">
+		SELECT 
+			D.DOC_ID,
+			E.EMP_NAME,
+			D.DOC_NO,
+			D.DOC_TITLE,
+			D.REG_DATE,
+			D.DONE_DATE,
+			D.SECURE_LEVEL
+		  FROM DOCUMENTS D JOIN EMPLOYEES E ON D.EMP_NO = E.EMP_NO
+		    <where> 
+		    		DONE_DATE IS NOT NULL AND SECURE_LEVEL BETWEEN #{secureLevel} AND 'C'
+	    	</where>
+	</select>
+</mapper>
