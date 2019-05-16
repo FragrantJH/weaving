@@ -21,5 +21,49 @@
 				             #{description}
 				    )			    
 	</insert>
-
+	<update id="updateRoom" parameterType="room">
+		UPDATE RESERVATION
+		   SET ROOM_NAME = #{roomName},
+		   	   EMP_NO = #{empNO},
+		   	   START_TIME = #{startTime}
+		   	   USE_HOUR = #{useHour}
+		   	   DESCRIPTION = #{description}
+		 WHERE RESERV_ID = #{reservId}
+	</update>
+	
+	<delete id="deleteRoom" parameterType="room">
+		DELETE FROM RESERVATION
+		 WHERE RESERV_ID = #{reservId}
+	</delete>
+	
+	<select id="selectRoomList" parameterType="room" resultType="room">
+		SELECT ROW_NUM,
+		       RESERV_ID,
+			   ROOM_NAME,
+			   EMP_NO,
+			   START_TIME,
+			   USE_HOUR,
+			   DESCRIPTION
+		  FROM (SELECT ROWNUM ROW_NUM ,
+		  		A.* FROM (SELECT * 
+		  		            FROM RESERVATION 
+		  		          ORDER BY RESERV_ID) A ) B 
+		  WHERE ROW_NUM BETWEEN #{first} AND #{last}
+	</select>
+	
+	<select id="selectRoom" parameterType="room" resultType="room">
+		SELECT RESERV_ID,
+			   ROOM_NAME,
+			   EMP_NO,
+			   START_TIME,
+			   USE_HOUR,
+			   DESCRIPTION
+		  FROM RESERVATION 
+		 WHERE RESERV_ID = #{reservId}
+	</select>
+	
+	<select id="selectRoomTotalCnt" resultType="int">
+		SELECT COUNT(*)
+		  FROM RESERVATION
+	</select>
 </mapper>
