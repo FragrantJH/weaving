@@ -10,15 +10,23 @@ public class RoomController {
 	@Autowired
 	RoomService service;
 	
+	//회의실인포
 	@RequestMapping("/roomlist")
 	public String list() {
 	
 		return "room/roomList";
 	}
+	//회의실예약
 	@RequestMapping("/roomreserv")
 	public String reserv() {
 		
 		return "room/roomReserv";
+	}
+	//회의실예약현황
+	@RequestMapping("/roomstatus")
+	public String status() {
+		
+		return "room/roomStatus";
 	}
     
 }

@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>회의실예약</title>
 <style>
-	#btn_group1 button{
+	#btn_group button{
 		border: 1px solid skyblue;
 		background-color: rgba(0,0,0,0);
 		color:skyblue;
@@ -73,7 +73,7 @@
 	사용용도 <textarea name="사용용도" rows="8" cols="40"></textarea><p>
 	
 	
-	<div id="btn_group1">
+	<div id="btn_group">
 		<button id="reserv">예약</button>
 		<butotn id="cancel">취소</butotn>
 	</div>
