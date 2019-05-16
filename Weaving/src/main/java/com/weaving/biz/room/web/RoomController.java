@@ -11,7 +11,14 @@ public class RoomController {
 	RoomService service;
 	
 	@RequestMapping("/roomlist")
-	public String test() {
+	public String list() {
+	
 		return "room/roomList";
 	}
+	@RequestMapping("/roomreserv")
+	public String reserv() {
+		
+		return "room/roomReserv";
+	}
+    
 }
