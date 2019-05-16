@@ -26,32 +26,32 @@ public class DocFormController {
 
 	// 등록폼 페이지로 이동
 	@RequestMapping("/docFormInsertForm")
-	public String docFormInsertForm() {
+	public String docFormInsertForm(@ModelAttribute("docForm") DocFormVO vo, Model model) {
 		return "admin/docForm/docFormInsert";
 	}
-
-	// 등록처리
-	@RequestMapping("/docFormInsert")
-	public String docFormInsert(DocFormVO vo) {
-		service.insertDocForm(vo);
-		return "redirect:docFormList";
-	}
-
-	// 수정처리
-	@RequestMapping(value = "/docFormUpdate/{formID}", method = RequestMethod.GET)
+	
+	// 수정처리폼 페이지 이동
+	@RequestMapping(value = "/docFormUpdate/{formId}", method = RequestMethod.GET)
 	public String docFormUpdateForm(DocFormVO vo, @PathVariable Integer formId, Model model) {
 		vo.setFormId(formId);
 		model.addAttribute("docForm", service.getDocForm(vo));
-		return "docFormUpdate";
+		return "admin/docForm/docFormInsert";
+	}
+	
+	// 등록/수정 처리
+	@RequestMapping(value = "/docFormInsert", method = RequestMethod.POST)
+	public String docFormInsert(DocFormVO vo) {
+		if (vo.getFormId() == null)
+			service.insertDocForm(vo);
+		else
+			service.updateDocForm(vo);
+		return "redirect:docFormList";
 	}
 
-	@RequestMapping(value = "/docFormUpdate", method = RequestMethod.POST)
-	public String docFormUpdate(@ModelAttribute("docForm") DocFormVO vo, SessionStatus st) {
-		System.out.println("===========확인: " + vo);
-		service.updateDocForm(vo);
-		// cleanup: invalidate 하면 파일을 다 지우는 거고,
-		// cleanup하면 이 페이지에서 설정한 @SessionAttributes("board") 정보만 삭제 됨
-		st.setComplete();
+	@RequestMapping("/docFormDelete")
+	public String deleteDocForm(DocFormVO vo) {
+		System.out.println("delete: "  + vo);
+		service.deleteDocForm(vo);
 		return "redirect:docFormList";
 	}
 

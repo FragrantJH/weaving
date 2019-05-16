@@ -49,7 +49,7 @@
 			   DESCRIPTION,
 			   FORM_CONTENTS
 		  FROM DOCUMENTFORM 
-		 WHERE FORM_ID = #{fromID}
+		 WHERE FORM_ID = #{formId}
 	</select>
 	
 	<select id="selectDocFormTotalCnt" resultType="int">

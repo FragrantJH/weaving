@@ -3,7 +3,7 @@ package com.weaving.biz.docForm;
 public class DocFormVO {
 
 	private int rowNum;
-	private int formId;
+	private Integer formId;
 	private String formName;
 	private String description;
 	private String formContents;
@@ -18,7 +18,7 @@ public class DocFormVO {
 		this.rowNum = rowNum;
 	}
 
-	public int getFormId() {
+	public Integer getFormId() {
 		return formId;
 	}
 

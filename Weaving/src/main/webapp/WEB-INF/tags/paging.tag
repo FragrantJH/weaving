@@ -26,7 +26,7 @@
 </style>
 
 <c:set var="pre" value="${paging.page-1}"/>
-<c:set var="pre2" value="${paging.page+1}"/>
+<c:set var="next" value="${paging.page+1}"/>
 
 <div class="pagination">
 	<c:if test="${pre == 0 }">
@@ -43,8 +43,8 @@
 		</c:if>
 	</c:forEach>
 	
-	<c:if test="${pre2 > paging.endPage}">
-		<c:set var="pre2" value="${paging.endPage}" />
+	<c:if test="${next > paging.endPage}">
+		<c:set var="next" value="${paging.endPage}" />
 	</c:if>
-	<a href="${jsFunc}?page=${pre2}">다음</a>
+	<a href="${jsFunc}?page=${next}">다음</a>
 </div>

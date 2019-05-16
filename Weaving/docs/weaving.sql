@@ -1,7 +1,6 @@
 
 /* Drop Tables */
 
-DROP TABLE approvalform CASCADE CONSTRAINTS;
 DROP TABLE reply CASCADE CONSTRAINTS;
 DROP TABLE board CASCADE CONSTRAINTS;
 DROP TABLE DocumentDetail CASCADE CONSTRAINTS;
@@ -10,27 +9,13 @@ DROP TABLE reservation CASCADE CONSTRAINTS;
 DROP TABLE todolist CASCADE CONSTRAINTS;
 DROP TABLE employees CASCADE CONSTRAINTS;
 DROP TABLE department CASCADE CONSTRAINTS;
+DROP TABLE documentForm CASCADE CONSTRAINTS;
 DROP TABLE room CASCADE CONSTRAINTS;
 
 
 
 
 /* Create Tables */
-
--- 결재폼
-CREATE TABLE approvalform
-(
-	-- 결재폼ID
-	form_id number NOT NULL,
-	-- 이름
-	form_name varchar2(200) NOT NULL,
-	-- 설명
-	description varchar2(500),
-	-- 폼내용
-	form_contents varchar2(4000) NOT NULL,
-	PRIMARY KEY (form_id)
-);
-
 
 -- 게시판
 CREATE TABLE board
@@ -76,14 +61,28 @@ CREATE TABLE DocumentDetail
 	approval_order number NOT NULL,
 	-- 결재날짜
 	approval_date date,
-	-- status : 대기 :WAIT
-	-- 완료 :DONE
-	-- 반려 :RETU
-	-- 취하 :DROP
+	-- 상태 : 대기 : WAIT
+	-- 완료 : DONE
+	-- 반려 : RETU
 	status char(4) DEFAULT 'WAIT' NOT NULL,
-	-- approval_comments
+	-- 코멘트
 	approval_comments varchar2(100),
 	PRIMARY KEY (doc_id, emp_no)
+);
+
+
+-- 결재폼
+CREATE TABLE documentForm
+(
+	-- 결재폼ID
+	form_id number NOT NULL,
+	-- 이름
+	form_name varchar2(200) NOT NULL,
+	-- 설명
+	description varchar2(500),
+	-- 폼내용
+	form_contents varchar2(4000) NOT NULL,
+	PRIMARY KEY (form_id)
 );
 
 
@@ -120,7 +119,9 @@ CREATE TABLE employees
 	-- 비밀번호
 	password varchar2(100) NOT NULL,
 	-- 직위
-	position varchar2(50),
+	position number DEFAULT 1,
+	-- 직위명
+	position_title varchar2(50) DEFAULT '사원',
 	-- 입사일
 	joindate date DEFAULT sysdate NOT NULL,
 	-- 이메일
@@ -129,6 +130,11 @@ CREATE TABLE employees
 	phone varchar2(50),
 	-- 주소
 	address varchar2(200),
+	-- 삭제유무 : Y : 삭제
+	-- N : Default
+	deleted_yn char DEFAULT 'N',
+	-- 삭제날짜
+	delete_date date,
 	-- 부서ID
 	dept_id number,
 	PRIMARY KEY (emp_no)
@@ -280,11 +286,6 @@ ALTER TABLE reservation
 
 /* Comments */
 
-COMMENT ON TABLE approvalform IS '결재폼';
-COMMENT ON COLUMN approvalform.form_id IS '결재폼ID';
-COMMENT ON COLUMN approvalform.form_name IS '이름';
-COMMENT ON COLUMN approvalform.description IS '설명';
-COMMENT ON COLUMN approvalform.form_contents IS '폼내용';
 COMMENT ON TABLE board IS '게시판';
 COMMENT ON COLUMN board.board_id IS '게시글ID';
 COMMENT ON COLUMN board.emp_no IS '작성자ID';
@@ -302,11 +303,15 @@ COMMENT ON COLUMN DocumentDetail.doc_id IS '결재문서ID';
 COMMENT ON COLUMN DocumentDetail.emp_no IS '결재자ID';
 COMMENT ON COLUMN DocumentDetail.approval_order IS '결재순서';
 COMMENT ON COLUMN DocumentDetail.approval_date IS '결재날짜';
-COMMENT ON COLUMN DocumentDetail.status IS 'status : 대기 :WAIT
-완료 :DONE
-반려 :RETU
-취하 :DROP';
-COMMENT ON COLUMN DocumentDetail.approval_comments IS 'approval_comments';
+COMMENT ON COLUMN DocumentDetail.status IS '상태 : 대기 : WAIT
+완료 : DONE
+반려 : RETU';
+COMMENT ON COLUMN DocumentDetail.approval_comments IS '코멘트';
+COMMENT ON TABLE documentForm IS '결재폼';
+COMMENT ON COLUMN documentForm.form_id IS '결재폼ID';
+COMMENT ON COLUMN documentForm.form_name IS '이름';
+COMMENT ON COLUMN documentForm.description IS '설명';
+COMMENT ON COLUMN documentForm.form_contents IS '폼내용';
 COMMENT ON TABLE Documents IS '결재문서';
 COMMENT ON COLUMN Documents.doc_id IS '결재문서ID';
 COMMENT ON COLUMN Documents.emp_no IS '기안자ID';
@@ -321,10 +326,14 @@ COMMENT ON COLUMN employees.emp_no IS '사번';
 COMMENT ON COLUMN employees.emp_name IS '이름';
 COMMENT ON COLUMN employees.password IS '비밀번호';
 COMMENT ON COLUMN employees.position IS '직위';
+COMMENT ON COLUMN employees.position_title IS '직위명';
 COMMENT ON COLUMN employees.joindate IS '입사일';
 COMMENT ON COLUMN employees.email IS '이메일';
 COMMENT ON COLUMN employees.phone IS '휴대전화';
 COMMENT ON COLUMN employees.address IS '주소';
+COMMENT ON COLUMN employees.deleted_yn IS '삭제유무 : Y : 삭제
+N : Default';
+COMMENT ON COLUMN employees.delete_date IS '삭제날짜';
 COMMENT ON COLUMN employees.dept_id IS '부서ID';
 COMMENT ON TABLE reply IS '댓글';
 COMMENT ON COLUMN reply.reply_id IS '댓글ID';
