@@ -63,6 +63,7 @@ public class EmpController {
 			}else {
 				session.setAttribute("empName", emp.getEmpName());
 				session.setAttribute("positionTitle", emp.getPositionTitle());
+				session.setAttribute("position", emp.getPosition());
 				session.setAttribute("emp", emp);
 				
 			}
