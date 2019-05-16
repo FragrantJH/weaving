@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.weaving.biz.docForm.DocFormSearchVO;
 import com.weaving.biz.docForm.DocFormVO;
 
 @Repository
@@ -20,16 +19,18 @@ public class DocFormDAO {
 	}
 
 	public void updateDocForm(DocFormVO vo) {
+		mybatis.update("DocFormDAO.updateDocForm", vo);
 	}
 
 	public void deleteDocForm(DocFormVO vo) {
+		mybatis.delete("DocFormDAO.deleteDocForm", vo);
 	}
 
 	public DocFormVO getDocForm(DocFormVO vo) {
 		return null;
 	}
 
-	public List<DocFormVO> getDocFormList(DocFormSearchVO vo) {
+	public List<DocFormVO> getDocFormList(DocFormVO vo) {
 		return mybatis.selectList("DocFormDAO.selectDocFormList", vo);
 	}
 

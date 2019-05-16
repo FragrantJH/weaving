@@ -1,23 +1,13 @@
 package com.weaving.biz.docForm.web;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weaving.biz.common.Paging;
-import com.weaving.biz.docForm.DocFormSearchVO;
 import com.weaving.biz.docForm.DocFormService;
 import com.weaving.biz.docForm.DocFormVO;
 
@@ -37,6 +27,7 @@ public class DocFormController {
 	@RequestMapping("/docFormInsert")
 	public String docFormInsert(DocFormVO vo) {
 		service.insertDocForm(vo);
+		System.out.println("result: " + vo);
 		return "redirect:docFormList";
 	}
 
@@ -47,9 +38,10 @@ public class DocFormController {
 			paging.setPage(1);
 		}
 
-		DocFormSearchVO vo = new DocFormSearchVO();
+		DocFormVO vo = new DocFormVO();
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());
+		
 		// 전체 건수
 		paging.setTotalRecord(service.getDocFormTotalCount());
 

@@ -17,7 +17,20 @@
 			    
 	</insert>
 	
-	<select id="selectDocFormList" parameterType="com.weaving.biz.docForm.DocFormSearchVO" resultType="docForm">
+	<update id="updateDocForm" parameterType="docForm">
+		UPDATE DOCUMENTFORM
+		   SET FORM_NAME = #{formName},
+		   	   DESCRIPTION = #{description},
+		   	   FORM_CONTENTS = #{formContents}
+		 WHERE FORM_ID = #{formId}
+	</update>
+	
+	<delete id="deleteDocForm" parameterType="docForm">
+		DELETE FROM DOCUMENTFORM
+		 WHERE FORM_ID = #{formId}
+	</delete>
+	
+	<select id="selectDocFormList" parameterType="docForm" resultType="docForm">
 		SELECT ROW_NUM,
 		       FORM_ID,
 			   FORM_NAME,
@@ -28,6 +41,15 @@
 		  		            FROM DOCUMENTFORM 
 		  		          ORDER BY FORM_ID) A ) B 
 		  WHERE ROW_NUM BETWEEN #{first} AND #{last}
+	</select>
+	
+	<select id="selectDocForm" parameterType="docForm" resultType="docForm">
+		SELECT FORM_ID,
+			   FORM_NAME,
+			   DESCRIPTION,
+			   FORM_CONTENTS
+		  FROM DOCUMENTFORM 
+		 WHERE FORM_ID = #{fromID}
 	</select>
 	
 	<select id="selectDocFormTotalCnt" resultType="int">
