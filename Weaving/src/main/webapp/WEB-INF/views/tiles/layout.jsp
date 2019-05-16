@@ -38,6 +38,12 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
+        <li class="nav-item ">
+            <a class="nav-link" href="./user.html">
+              <i class="material-icons">face</i>
+              <p>login</p>
+            </a>
+          </li>
           <li class="nav-item active  ">
             <a class="nav-link" href="./test">
               <i class="material-icons">dashboard</i>
