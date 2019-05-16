@@ -62,7 +62,7 @@ public class EmpController {
 				return "admin/emp/login";
 			}else {
 				session.setAttribute("empName", emp.getEmpName());
-				session.setAttribute("position", emp.getPosition());
+				session.setAttribute("positionTitle", emp.getPositionTitle());
 				session.setAttribute("emp", emp);
 				
 			}

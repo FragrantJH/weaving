@@ -23,7 +23,7 @@
 								</if><if test="deletedDate != null">
 								,DELETED_DATE
 								</if><if test="positionTitle != null">
-								,POSTITION_TITLE
+								,POSITION_TITLE
 								</if>
 								)
 		VALUES ( (SELECT NVL(MAX(EMP_NO), 0) + 1 FROM EMPLOYEES )
