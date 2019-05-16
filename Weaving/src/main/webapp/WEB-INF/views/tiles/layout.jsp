@@ -38,12 +38,22 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
+        <c:if test="${not empty sessionScope.empName }">
         <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
+            <a class="nav-link">
+              ${empName} 님 환영합니다.<br><br>
+			<input type="button" onclick="location='logout'" value="로그아웃">
+            </a>
+          </li>
+		</c:if>
+		<c:if test="${empty sessionScope.empName }">
+		<li class="nav-item ">
+            <a class="nav-link" href="login">
               <i class="material-icons">face</i>
               <p>login</p>
             </a>
           </li>
+		</c:if>
           <li class="nav-item active  ">
             <a class="nav-link" href="./test">
               <i class="material-icons">dashboard</i>

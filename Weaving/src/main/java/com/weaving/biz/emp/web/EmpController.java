@@ -66,7 +66,7 @@ public class EmpController {
 				session.setAttribute("emp", emp);
 				
 			}
-				return "redirect:emplist";
+				return "home";
 		}
 
 		@RequestMapping("/logout")
