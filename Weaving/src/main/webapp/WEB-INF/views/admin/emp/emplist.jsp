@@ -32,14 +32,6 @@ div.right {
 </style>
 </head>
 <body>
-
-<c:if test="${not empty sessionScope.empName }">
-	${empName} 님 환영합니다. 직위 ${positionTitle} !
-	<input type="button" onclick="location='logout'">로그아웃
-</c:if>
-<c:if test="${empty sessionScope.empName }">
-	<a href="login">로그인</a>
-</c:if>
  <div>
 	 <div class="left">
 		 <h2>조직도</h2>
