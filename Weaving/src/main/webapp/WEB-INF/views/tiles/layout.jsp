@@ -23,7 +23,17 @@
   <link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body class="">
+<style>
+	.avatar {
+	  vertical-align: middle;
+	  width: 50px;
+	  height: 50px;
+	  border-radius: 50%;
+	}
+</style>
+
+<body>
+
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-1.jpg">
       <!--
@@ -35,57 +45,59 @@
         <a href="/biz" class="simple-text logo-normal">
           WEAVING
         </a>
+        <div>
+	        <!-- <img src="./images/img_avatar2.png" alt="Avatar" class="avatar"> -->
+			<!-- 로그인 했을 때 -->
+	        <c:if test="${not empty sessionScope.empName }">
+	        	<img src="./images/img_avatar2.png" alt="Avatar" class="avatar"> <br>
+	            ${empName} 님 환영합니다.<br><br>
+				<button class="btn btn-default btn-primary" style="width: 90%" onclick="location='logout'">로그아웃</button>
+			</c:if>
+			
+			<!-- 로그인 안했을 때 -->
+			<c:if test="${empty sessionScope.empName }">
+	            <button class="btn btn-default btn-primary" style="width: 90%" onclick="location='login'">
+  					<i class="material-icons">face</i> 로그인
+				</button>
+			</c:if>        
+        </div>
       </div>
+      
+      <!-- 메뉴 -->
       <div class="sidebar-wrapper">
         <ul class="nav">
-        <c:if test="${not empty sessionScope.empName }">
-        <li class="nav-item ">
-            <a class="nav-link">
-              ${empName} 님 환영합니다.<br><br>
-			<input type="button" onclick="location='logout'" value="로그아웃">
-            </a>
-          </li>
-		</c:if>
-		<c:if test="${empty sessionScope.empName }">
-		<li class="nav-item ">
-            <a class="nav-link" href="login">
-              <i class="material-icons">face</i>
-              <p>login</p>
-            </a>
-          </li>
-		</c:if>
           <li class="nav-item active  ">
-            <a class="nav-link" href="./test">
+            <a class="nav-link" href="${pageContext.request.contextPath}/home">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
+            <a class="nav-link" href="#">
               <i class="material-icons">email</i>
               <p>메일</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./tables.html">
+            <a class="nav-link" href="#">
               <i class="material-icons">library_books</i>
               <p>게시판  </p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./typography.html">
+            <a class="nav-link" href="#">
               <i class="material-icons">meeting_room</i>
               <p>예약</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./icons.html">
+            <a class="nav-link" href="#">
               <i class="material-icons">bubble_chart</i>
               <p>전자결재</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./map.html">
+            <a class="nav-link" href="#">
               <i class="material-icons">today</i>
               <p>일정</p>
             </a>
@@ -93,6 +105,7 @@
         </ul>
       </div>
     </div>
+    
     <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">

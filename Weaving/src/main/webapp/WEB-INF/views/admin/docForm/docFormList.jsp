@@ -33,9 +33,6 @@
 										<td class="text-center">${docForm.rowNum}</td>
 										<td><a id="btnSelect" href="docFormUpdate/${docForm.formId}">${docForm.formName}</a></td>
 										<td>${docForm.description}</td>
-										<td class="td-actions text-right">
-											<button id="btnDelete" type="button" class="btn btn-danger">삭제</button>
-										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -46,7 +43,5 @@
 			</div>
 		</div>
 	</div>
-
-
 </body>
 </html>
