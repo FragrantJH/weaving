@@ -73,6 +73,6 @@ public class EmpController {
 		@RequestMapping("/logout")
 		public String logout(HttpSession session) {
 			session.invalidate();//세션 무효화
-			return "admin/emp/login";
+			return "home";
 		}
 }
