@@ -3,51 +3,65 @@ package com.weaving.biz.board;
 import java.sql.Date;
 
 public class BoardVO {
-	private int board_id;
-	private int emp_no;
+	private int boardId;
+	private int empNo;
 	private String title;
-	private String board_contents;
+	private String boardContents;
 	private Date time;
-	private char board_type;
-	
-	public int getBoard_id() {
-		return board_id;
+	private char boardType;
+
+	public int getBoardId() {
+		return boardId;
 	}
-	public void setBoard_id(int board_id) {
-		this.board_id = board_id;
+
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
 	}
-	public int getEmp_no() {
-		return emp_no;
+
+	public int getEmpNo() {
+		return empNo;
 	}
-	public void setEmp_no(int emp_no) {
-		this.emp_no = emp_no;
+
+	public void setEmpNo(int empNo) {
+		this.empNo = empNo;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getBoard_contents() {
-		return board_contents;
+
+	public String getBoardContents() {
+		return boardContents;
 	}
-	public void setBoard_contents(String board_contents) {
-		this.board_contents = board_contents;
+
+	public void setBoardContents(String boardContents) {
+		this.boardContents = boardContents;
 	}
+
 	public Date getTime() {
 		return time;
 	}
+
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	public char getBoard_type() {
-		return board_type;
+
+	public char getBoardType() {
+		return boardType;
 	}
-	public void setBoard_type(char board_type) {
-		this.board_type = board_type;
+
+	public void setBoardType(char boardType) {
+		this.boardType = boardType;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "BoardVO [boardId=" + boardId + ", empNo=" + empNo + ", title=" + title + ", boardContents="
+				+ boardContents + ", time=" + time + ", boardType=" + boardType + "]";
+	}
 	
 }
