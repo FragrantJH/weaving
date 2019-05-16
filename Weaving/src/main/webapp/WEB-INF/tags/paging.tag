@@ -25,14 +25,13 @@
 .pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
 
-<c:set var="pre" value="${paging.page-1}"></c:set>
-<c:set var="pre2" value="${paging.page+1}"></c:set>
+<c:set var="pre" value="${paging.page-1}"/>
+<c:set var="pre2" value="${paging.page+1}"/>
 
 <div class="pagination">
 	<c:if test="${pre == 0 }">
 		<c:set var="pre" value="${1}" />
 	</c:if>
-	
 	<a href="${jsFunc}?page=${pre}">이전</a>
 	
 	<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i">
@@ -44,8 +43,8 @@
 		</c:if>
 	</c:forEach>
 	
-	<c:if test="${pre2 > paging.totalRecord }">
-		<c:set var="pre2" value="${paging.totalRecord}" />
+	<c:if test="${pre2 > paging.endPage}">
+		<c:set var="pre2" value="${paging.endPage}" />
 	</c:if>
 	<a href="${jsFunc}?page=${pre2}">다음</a>
 </div>

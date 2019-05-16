@@ -27,7 +27,7 @@ public class DocFormDAO {
 	}
 
 	public DocFormVO getDocForm(DocFormVO vo) {
-		return null;
+		return mybatis.selectOne("DocFormDAO.selectDocForm", vo);
 	}
 
 	public List<DocFormVO> getDocFormList(DocFormVO vo) {

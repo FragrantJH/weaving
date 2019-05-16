@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
-	<x>191</x>
-	<y>58</y>
+	<x>477</x>
+	<y>0</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2019-04-25 10:13:34</creation_date>
-			<updated_date>2019-05-14 13:50:36</updated_date>
+			<updated_date>2019-05-16 11:23:08</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -878,7 +878,7 @@
 	<contents>
 		<note>
 			<id>0</id>
-			<height>121</height>
+			<height>126</height>
 			<width>286</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
@@ -2783,22 +2783,12 @@
 			<connections>
 				<relation>
 					<id>9</id>
-					<source>9</source>
+					<source>6</source>
 					<target>10</target>
-						<source_xp>0</source_xp>
-						<source_yp>79</source_yp>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
 						<target_xp>-1</target_xp>
 						<target_yp>-1</target_yp>
-						<bendpoint>
-							<relative>false</relative>
-							<x>385</x>
-							<y>400</y>
-						</bendpoint>
-						<bendpoint>
-							<relative>false</relative>
-							<x>385</x>
-							<y>575</y>
-						</bendpoint>
 						<color>
 							<r>0</r>
 							<g>0</g>
@@ -2815,12 +2805,22 @@
 				</relation>
 				<relation>
 					<id>10</id>
-					<source>6</source>
+					<source>9</source>
 					<target>10</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
+						<source_xp>0</source_xp>
+						<source_yp>79</source_yp>
 						<target_xp>-1</target_xp>
 						<target_yp>-1</target_yp>
+						<bendpoint>
+							<relative>false</relative>
+							<x>385</x>
+							<y>400</y>
+						</bendpoint>
+						<bendpoint>
+							<relative>false</relative>
+							<x>385</x>
+							<y>575</y>
+						</bendpoint>
 						<color>
 							<r>0</r>
 							<g>0</g>
@@ -2945,7 +2945,7 @@
 				<normal_column>
 					<id>45</id>
 					<referenced_column>31</referenced_column>
-					<relation>9</relation>
+					<relation>10</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>작성자ID</logical_name>
@@ -2979,7 +2979,7 @@
 				<normal_column>
 					<id>46</id>
 					<referenced_column>13</referenced_column>
-					<relation>10</relation>
+					<relation>9</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>

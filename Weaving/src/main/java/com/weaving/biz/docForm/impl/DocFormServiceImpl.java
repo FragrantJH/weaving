@@ -21,25 +21,21 @@ public class DocFormServiceImpl implements DocFormService {
 
 	@Override
 	public void updateDocForm(DocFormVO vo) {
-		// TODO Auto-generated method stub
-		
+		mybatis.updateDocForm(vo);
 	}
 
 	@Override
 	public void deleteDocForm(DocFormVO vo) {
-		// TODO Auto-generated method stub
-		
+		mybatis.deleteDocForm(vo);
 	}
 
 	@Override
 	public DocFormVO getDocForm(DocFormVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return mybatis.getDocForm(vo);
 	}
 
 	@Override
 	public List<DocFormVO> getDocFormList(DocFormVO vo) {
-		
 		return mybatis.getDocFormList(vo);
 	}
 
