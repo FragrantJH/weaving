@@ -36,11 +36,12 @@
 	<label for="deptId"><b>소속조직</b></label>
 	<input type="text" name="deptId" id="deptId"><br><br>
 	
-	<label for="position"><b>직위</b></label>
-	<select name = "position" size ="1" id="position">
+	<label for="positionTitle"><b>직위</b></label>
+	<select name = "positionTitle" size ="1" id="positionTitle">
 	    <option value="1">선택</option>
-		<option value="2">1</option>
-		<option value="3">2</option>
+		<option value="2">사원</option>
+		<option value="3">대리</option>
+		<option value="3">이사</option>
     </select><br><br>
     
     <label for="email"><b>이메일</b></label>

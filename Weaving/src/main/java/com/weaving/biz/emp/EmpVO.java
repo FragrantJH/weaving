@@ -14,9 +14,17 @@ public class EmpVO {
 	private String deptId;
 	private String deletedYn;
 	private String deletedDate;
+	private String positionTitle;
 	private int seq;
 	private String[] seqs;
 	private int cnt;
+	
+	public String getPositionTitle() {
+		return positionTitle;
+	}
+	public void setPositionTitle(String positionTitle) {
+		this.positionTitle = positionTitle;
+	}
 	public int getEmpNo() {
 		return empNo;
 	}
@@ -105,9 +113,10 @@ public class EmpVO {
 	@Override
 	public String toString() {
 		return "EmpVO [empNo=" + empNo + ", empName=" + empName + ", password=" + password + ", position=" + position
-				+ ", joindate=" + joindate1 + ", email=" + email + ", phone=" + phone + ", address=" + address
-				+ ", deptId=" + deptId + ", deletedYn=" + deletedYn + ", deletedDate=" + deletedDate + ", seq=" + seq
-				+ ", seqs=" + Arrays.toString(seqs) + ", cnt=" + cnt + "]";
+				+ ", joindate1=" + joindate1 + ", email=" + email + ", phone=" + phone + ", address=" + address
+				+ ", deptId=" + deptId + ", deletedYn=" + deletedYn + ", deletedDate=" + deletedDate
+				+ ", position_title=" + positionTitle + ", seq=" + seq + ", seqs=" + Arrays.toString(seqs) + ", cnt="
+				+ cnt + "]";
 	}
 	
 	

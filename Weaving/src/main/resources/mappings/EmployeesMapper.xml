@@ -22,6 +22,8 @@
 								,DELETED_YN
 								</if><if test="deletedDate != null">
 								,DELETED_DATE
+								</if><if test="positionTitle != null">
+								,POSTITION_TITLE
 								</if>
 								)
 		VALUES ( (SELECT NVL(MAX(EMP_NO), 0) + 1 FROM EMPLOYEES )
@@ -43,6 +45,8 @@
 				,#{deletedYn}
 				</if><if test="deletedDate != null">
 				,#{deletedDate}
+				</if><if test="positionTitle != null">
+				,#{positionTitle}
 				</if>
 				)
 	</insert>
