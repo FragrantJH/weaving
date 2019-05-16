@@ -46,4 +46,8 @@
 				</if>
 				)
 	</insert>
+	
+	<select id ="getEmp" resultType="emp">
+        select * from employees where emp_no =#{empNo} and password=#{password}
+    </select>
 </mapper>

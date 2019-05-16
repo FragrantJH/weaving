@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,14 @@ div.right {
 </style>
 </head>
 <body>
+
+<c:if test="${not empty sessionScope.empName }">
+	${empName} 님 환영합니다. 직위 ${position} !
+	<input type="button" onclick="location='logout'">로그아웃
+</c:if>
+<c:if test="${empty sessionScope.empName }">
+	<a href="login">로그인</a>
+</c:if>
  <div>
 	 <div class="left">
 		 <h2>조직도</h2>

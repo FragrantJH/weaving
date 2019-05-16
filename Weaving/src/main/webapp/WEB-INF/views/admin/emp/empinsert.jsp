@@ -50,7 +50,7 @@
 	<input type="text" name="phone" id="phone"><br><br>
 
 	<label for="address"><b>자택주소</b></label>
-	<input type ="text" size="20" id="address">
+	<input type ="text" size="20" id="address" name="address">
 	<br><br>
 	<hr>
 	
