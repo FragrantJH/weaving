@@ -12,6 +12,11 @@
 		<put-attribute name="content" value="/WEB-INF/views/home.jsp" />
 	</definition>
 	
+	<!--empty -->
+	<definition name="admin/*/*.empty" template="/WEB-INF/views/tiles/layoutEmpty.jsp">
+	<put-attribute name="content" value="/WEB-INF/views/admin/{1}/{2}.jsp" />
+	</definition>
+	
 	<definition name="admin/*/*" template="/WEB-INF/views/tiles/admin_layout.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/admin/{1}/{2}.jsp" />
 	</definition>
@@ -22,11 +27,6 @@
 	
 	<definition name="*/*/*" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-	</definition>
-	
-	<!--empty -->
-	<definition name="*.empty" template="/WEB-INF/views/tiles/layoutEmpty.jsp">
-	<put-attribute name="content" value="/WEB-INF/views/{1}.jsp" />
 	</definition>
 	
 </tiles-definitions>

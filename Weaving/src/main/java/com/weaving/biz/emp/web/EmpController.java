@@ -42,7 +42,7 @@ public class EmpController {
 	//로그인폼
 		@RequestMapping(value= {"/loginForm","/login"}, method=RequestMethod.GET)
 		public String loginForm() {
-			return "admin/emp/login";
+			return "admin/emp/login.empty";
 		}
 		
 		//로그인 처리
