@@ -24,14 +24,13 @@
 									<th class="text-center">#</th>
 									<th>폼 이름</th>
 									<th>설명</th>
-									<th class="text-right">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${docFormList}" var="docForm">
 									<tr>
 										<td class="text-center">${docForm.rowNum}</td>
-										<td><a id="btnSelect" href="docFormUpdate/${docForm.formId}">${docForm.formName}</a></td>
+										<td><a id="btnSelect" href="${pageContext.request.contextPath}/showDocForm/${docForm.formId}">${docForm.formName}</a></td>
 										<td>${docForm.description}</td>
 									</tr>
 								</c:forEach>
@@ -40,8 +39,8 @@
 						<my:paging paging="${paging}" jsFunc="docFormList" />
 					</div>
 				</div>
+				<button class="btn btn-default btn btn-primary col-md-2" onclick="location='${pageContext.request.contextPath}/docFormInsertForm'"> 결재폼 등록 </button>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
