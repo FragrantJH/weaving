@@ -89,4 +89,13 @@ public class DocVO {
 	public void setSeqs(String[] seqs) {
 		this.seqs = seqs;
 	}
+	@Override
+	public String toString() {
+		return "DocVO [docId=" + docId + ", empNo=" + empNo + ", empName=" + empName + ", docNo=" + docNo
+				+ ", docTitle=" + docTitle + ", docContents=" + docContents + ", regDate=" + regDate + ", doneDate="
+				+ doneDate + ", secureLevel=" + secureLevel + ", searchCondition=" + searchCondition
+				+ ", searchKeyword=" + searchKeyword + ", seqs=" + Arrays.toString(seqs) + "]";
+	}
+	
+	
 }
