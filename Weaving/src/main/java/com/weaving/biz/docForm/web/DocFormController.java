@@ -18,7 +18,6 @@ import com.weaving.biz.docForm.DocFormService;
 import com.weaving.biz.docForm.DocFormVO;
 
 @Controller
-@SessionAttributes("docForm")
 public class DocFormController {
 
 	@Autowired
@@ -27,9 +26,17 @@ public class DocFormController {
 	// 등록폼 페이지로 이동
 	@RequestMapping("/docFormInsertForm")
 	public String docFormInsertForm(@ModelAttribute("docForm") DocFormVO vo, Model model) {
+		vo.setFormId(-1);
 		return "admin/docForm/docFormInsert";
 	}
-	
+
+	@RequestMapping("/showDocForm/{formId}")
+	public String docFormViewForm(@ModelAttribute("docForm") DocFormVO vo, @PathVariable Integer formId, Model model) {
+		vo.setFormId(formId);
+		model.addAttribute("docForm", service.getDocForm(vo));
+		return "admin/docForm/docFormView";
+	}
+
 	// 수정처리폼 페이지 이동
 	@RequestMapping(value = "/docFormUpdate/{formId}", method = RequestMethod.GET)
 	public String docFormUpdateForm(DocFormVO vo, @PathVariable Integer formId, Model model) {
@@ -37,11 +44,11 @@ public class DocFormController {
 		model.addAttribute("docForm", service.getDocForm(vo));
 		return "admin/docForm/docFormInsert";
 	}
-	
+
 	// 등록/수정 처리
 	@RequestMapping(value = "/docFormInsert", method = RequestMethod.POST)
 	public String docFormInsert(DocFormVO vo) {
-		if (vo.getFormId() == null)
+		if (vo.getFormId() == -1)
 			service.insertDocForm(vo);
 		else
 			service.updateDocForm(vo);
@@ -50,7 +57,6 @@ public class DocFormController {
 
 	@RequestMapping("/docFormDelete")
 	public String deleteDocForm(DocFormVO vo) {
-		System.out.println("delete: "  + vo);
 		service.deleteDocForm(vo);
 		return "redirect:docFormList";
 	}
@@ -68,9 +74,6 @@ public class DocFormController {
 
 		// 전체 건수
 		paging.setTotalRecord(service.getDocFormTotalCount());
-
-		System.out.println("Paging: " + paging);
-
 		List<DocFormVO> list = service.getDocFormList(vo);
 
 		mv.addObject("paging", paging);

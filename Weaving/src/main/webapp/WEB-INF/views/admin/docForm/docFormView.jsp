@@ -14,12 +14,7 @@
 			<div class="card-header card-header-text card-header-primary">
 				<div class="card-text">
 					<h4 class="card-title">
-						<c:if test="${docForm.formId == -1}">	
-							결재폼 등록
-						</c:if>
-						<c:if test="${docForm.formId > 0}">	
-							결재폼 수정
-						</c:if>
+							결재폼 내용
 					</h4>
 				</div>
 			</div>
@@ -32,28 +27,28 @@
 					<!-- 결재폼 이름/설명 -->
 					<div class="form-group">
 						<label for="usr">제목</label> 
-						<input type="text" class="form-control" id="title" name="formName" value="${docForm.formName}">
+						<input type="text" class="form-control" id="title" name="formName" readonly value="${docForm.formName}">
 					</div>
 					<div class="form-group">
 						<label for="usr">설명</label> 
-						<input type="text" class="form-control" id="description" name="description" value="${docForm.description}">
+						<input type="text" class="form-control" id="description" name="description" readonly value="${docForm.description}">
 					</div>
 					<br>
 					<!-- 결재폼 내용 -->
-					<textarea name="formContents" id="editor" rows="100" cols="80" >
+					<div>
 						${docForm.formContents}
-        			</textarea>
-					<script>
-						CKEDITOR.replace('editor');
-					</script>
+					</div>
 					<br>
 					<br>
-						<button type="submit" class="btn btn-default" formaction="${pageContext.request.contextPath}/docFormInsert" formmethod="post">
-							저장
+					
+					<div style="align-content: right">
+						<button type="submit" class="btn btn-default" formaction="${pageContext.request.contextPath}/docFormUpdate/${docForm.formId}">
+							수정
 						</button>
-						<c:if test="${docForm.formId > 0}">	
-							<button type="submit" class="btn btn-default" formaction="${pageContext.request.contextPath}/docFormDelete" formmethod="get">삭제</button>
-						</c:if>
+						<button type="submit" class="btn btn-default" formaction="${pageContext.request.contextPath}/docFormDelete">
+							삭제
+						</button>
+					</div>
 				</form>
 			</div>
 		</div>
