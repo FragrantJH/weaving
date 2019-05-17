@@ -94,7 +94,6 @@
                       ${position}|||
                       ${emp}
                       <c:forEach items="${list}" var="board">
-                      
                       	<tr>
                       		<td>${board.docNo}</td>
                       		<td>${board.empName}</td>

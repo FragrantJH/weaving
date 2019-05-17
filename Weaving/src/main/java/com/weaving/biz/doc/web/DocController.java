@@ -6,15 +6,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.weaving.biz.common.Paging;
 import com.weaving.biz.doc.DocService;
 import com.weaving.biz.doc.DocVO;
+import com.weaving.biz.docForm.DocFormService;
+import com.weaving.biz.docForm.DocFormVO;
+import com.weaving.biz.emp.EmpVO;
+import com.weaving.biz.emp.Empservice;
 
 @Controller
 public class DocController {
 	@Autowired
-	DocService service;
+	DocService docService;
 	
-	
+	@Autowired
+	DocFormService docFormService;
+
+	@Autowired
+	Empservice empService;
 	//검색메뉴를 위해서 BoardVO를 매개변수를 넣음
 	//@RequestParam에서 변수가 searchCondition이 아닐 경우 value로 searchCondition로 지정해줘야한다
 	//cond로 변수명을 변경할 경우 value로 value로 searchCondition로 지정해줘야한다
@@ -53,13 +62,16 @@ public class DocController {
 		//vo.setEmpNo(empNo);
 		vo.setSecureLevel(lv);
 
-		model.addAttribute("list", service.getDocList(vo));
+		model.addAttribute("list", docService.getDocList(vo));
 		return "approval/docList";
 
 	}
 	
 	@RequestMapping(value="/docInsert/{empName}/{position}")
 	public String docInsert(@PathVariable String empName, @PathVariable int position, Model model) {
+		EmpVO evo = new EmpVO(); 
+		model.addAttribute("empList", empService.getEmpList(evo));
+		model.addAttribute("list", docFormService.getDocFormList());
 		return "approval/docInsert";
 	}
 	/*
