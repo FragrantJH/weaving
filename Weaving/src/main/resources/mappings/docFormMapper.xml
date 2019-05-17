@@ -30,7 +30,16 @@
 		 WHERE FORM_ID = #{formId}
 	</delete>
 	
-	<select id="selectDocFormList" parameterType="docForm" resultType="docForm">
+	<select id="selectDocFormList" resultType = "docForm">
+		SELECT FORM_ID,
+		 	   FORM_NAME,
+		 	   DESCRIPTION,
+		 	   FORM_CONTENTS
+		  FROM DOCUMENTFORM
+	    ORDER BY FORM_ID
+	</select>
+	
+	<select id="selectDocFormListPaging" parameterType="docForm" resultType="docForm">
 		SELECT ROW_NUM,
 		       FORM_ID,
 			   FORM_NAME,

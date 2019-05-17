@@ -35,13 +35,18 @@ public class DocFormServiceImpl implements DocFormService {
 	}
 
 	@Override
-	public List<DocFormVO> getDocFormList(DocFormVO vo) {
-		return mybatis.getDocFormList(vo);
+	public List<DocFormVO> getDocFormListPaging(DocFormVO vo) {
+		return mybatis.getDocFormListPaging(vo);
 	}
 
 	@Override
 	public int getDocFormTotalCount() {
 		return mybatis.getDocFormTotalCount();
+	}
+
+	@Override
+	public List<DocFormVO> getDocFormList() {
+		return mybatis.getDocFormList();
 	}
 
 }

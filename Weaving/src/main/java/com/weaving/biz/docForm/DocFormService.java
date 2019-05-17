@@ -12,7 +12,9 @@ public interface DocFormService {
 	
 	DocFormVO getDocForm(DocFormVO vo);
 	
-	List<DocFormVO> getDocFormList(DocFormVO vo);
+	List<DocFormVO> getDocFormList();
+	
+	List<DocFormVO> getDocFormListPaging(DocFormVO vo);
 	
 	int getDocFormTotalCount();
 }

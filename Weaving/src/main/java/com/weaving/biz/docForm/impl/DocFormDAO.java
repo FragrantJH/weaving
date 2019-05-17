@@ -30,8 +30,12 @@ public class DocFormDAO {
 		return mybatis.selectOne("DocFormDAO.selectDocForm", vo);
 	}
 
-	public List<DocFormVO> getDocFormList(DocFormVO vo) {
-		return mybatis.selectList("DocFormDAO.selectDocFormList", vo);
+	public List<DocFormVO> getDocFormList() {
+		return mybatis.selectList("DocFormDAO.selectDocFormList");
+	}
+	
+	public List<DocFormVO> getDocFormListPaging(DocFormVO vo) {
+		return mybatis.selectList("DocFormDAO.selectDocFormListPaging", vo);
 	}
 
 	public int getDocFormTotalCount() {

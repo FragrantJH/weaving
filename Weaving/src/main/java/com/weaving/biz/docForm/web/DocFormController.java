@@ -66,7 +66,7 @@ public class DocFormController {
 	}
 
 	@RequestMapping("/docFormList")
-	public ModelAndView documentFormList(ModelAndView mv, Paging paging) {
+	public ModelAndView documentFormListPaging(ModelAndView mv, Paging paging) {
 		// 페이지번호 파라미터
 		if (paging.getPage() == 0) {
 			paging.setPage(1);
@@ -78,7 +78,7 @@ public class DocFormController {
 
 		// 전체 건수
 		paging.setTotalRecord(service.getDocFormTotalCount());
-		List<DocFormVO> list = service.getDocFormList(vo);
+		List<DocFormVO> list = service.getDocFormListPaging(vo);
 
 		mv.addObject("paging", paging);
 		mv.addObject("docFormList", list);
