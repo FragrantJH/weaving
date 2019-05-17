@@ -5,12 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.weaving.biz.doc.DocService;
 import com.weaving.biz.doc.DocVO;
-import com.weaving.biz.emp.EmpVO;
 
 @Controller
 public class DocController {
@@ -21,10 +18,11 @@ public class DocController {
 	//검색메뉴를 위해서 BoardVO를 매개변수를 넣음
 	//@RequestParam에서 변수가 searchCondition이 아닐 경우 value로 searchCondition로 지정해줘야한다
 	//cond로 변수명을 변경할 경우 value로 value로 searchCondition로 지정해줘야한다
-	//@RequestMapping(value="/docList/{empNo}/{position}", method=RequestMethod.GET)
-	@RequestMapping("/docList")
-	//public String docList(/*@PathVariable int empNo, @PathVariable int position,*/ Model model) {
-	public String docList(Model model) {
+	//@RequestMapping("/docList")
+	//public String docList(Model model) {
+	@RequestMapping(value="/docList/{empName}/{position}")
+	public String docList(@PathVariable String empName, @PathVariable int position, Model model) {
+	
 		/*
 		 * - C : ALL
 		   - B : 대리 이상
@@ -40,7 +38,6 @@ public class DocController {
 		//2이면 A
 		//1이면 B
 		//0이면 C
-		int position = 1;
 		String lv = "C";
 		if (position > 2 ) {
 			lv = "S";
@@ -60,6 +57,14 @@ public class DocController {
 		return "approval/docList";
 
 	}
+	
+	@RequestMapping(value="/docInsert/{empName}/{position}")
+	public String docInsert(@PathVariable String empName, @PathVariable int position, Model model) {
+		return "approval/docInsert";
+	}
+	/*
+	 * empName, positionTitle, position, emp
+	 */
 	/*
 	@RequestMapping("/documentInsert")
 	public String documentInsert() {

@@ -13,7 +13,7 @@
 			D.SECURE_LEVEL
 		  FROM DOCUMENTS D JOIN EMPLOYEES E ON D.EMP_NO = E.EMP_NO
 		    <where> 
-		    		DONE_DATE IS NOT NULL AND SECURE_LEVEL BETWEEN #{secureLevel} AND 'C'
+		    		DONE_DATE IS NOT NULL AND SECURE_LEVEL BETWEEN #{secureLevel} AND 'C' ORDER BY D.REG_DATE DESC
 	    	</where>
 	</select>
 </mapper>
