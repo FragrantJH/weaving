@@ -67,7 +67,7 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" href="${pageContext.request.contextPath}/home">
+            <a class="nav-link" href="home">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
@@ -85,7 +85,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="${pageContext.request.contextPath}/roomlist">
               <i class="material-icons">meeting_room</i>
               <p>예약</p>
             </a>
@@ -96,6 +96,36 @@
               <p>전자결재</p>
             </a>
           </li>
+           
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="collapse" data-target="#document" role="button">
+              <i class="material-icons">description</i>
+              <p>전자결재</p>
+            </a>
+            <div id=document class="collapse in">
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docInsert/${empName}/${position}">
+			      	<i class="material-icons">create</i>
+              		<p>문서 작성하기</p>
+			      </a>            
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
+			      	<i class="material-icons">list</i>
+              		<p>문서조회</p>
+			      </a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
+			      	<i class="material-icons">create</i>
+              		<p>진행 문서</p>
+			      </a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
+			      	<i class="material-icons">create</i>
+              		<p>대기 문서</p>
+			      </a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
+			      	<i class="material-icons">create</i>
+              		<p>반려 문서</p>
+			      </a>			      			      
+			</div>
+          </li>
+               
           <li class="nav-item ">
             <a class="nav-link" href="#">
               <i class="material-icons">today</i>
