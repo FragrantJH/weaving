@@ -6,6 +6,50 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" >
+
+	$(function(){
+		empList();
+	
+		//userSelect();
+		
+		//userDelete();
+		
+		//userInsert();
+	
+		//userUpdate();
+		
+		//init();
+	});
+
+	//사용자 목록 조회 요청
+	function empList() {
+		$.ajax({
+			url:'emplist1',
+			type:'GET',
+			contentType:'application/json;charset=utf-8',
+			dataType:'json',
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+			success:empListResult
+		});
+	}//userList
+	
+	//사용자 목록 조회 응답
+	function empListResult(data) {
+		$("tbody").empty();
+		$.each(data,function(idx,item){
+			$('<tr>')
+			.append($('<td>').html(item.empName))
+			.append($('<td>').html(item.positionTitle))
+			.append($('<td>').html(item.deptName))
+			.appendTo('tbody');
+		});//each
+	}//userListResult
+
+</script>
 <style type="text/css">
 .submenu {
     display:none;
@@ -53,18 +97,20 @@ div.right {
 	 <div class="right">
 		 <h2>직원목록</h2>
 		 <hr>
-		 <table border ="1">
-			 <tr>
-			 	<td>이름</td><td>직책</td><td>부서</td>
-			 </tr>
-			 <tr>
-			 	<td>이름</td><td>직책</td><td>부서</td>
-			 </tr>
-		 </table>
+		 <table class="table text-center">
+			<thead>
+			<tr>
+				<th class="text-center">이름</th>
+				<th class="text-center">직책</th>
+				<th class="text-center">부서</th>
+			</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
 		 <br>
 		 <button>직위관리</button>
 		 <button>삭제</button>
-		 <button onclick="location.href='./empinsert'">등록</button>
+		 <button onclick="location.href='./empinsertForm'">등록</button>
 	 </div>
 	 
  </div>

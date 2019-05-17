@@ -2,6 +2,7 @@ package com.weaving.biz.emp.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,9 +10,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
@@ -21,19 +25,36 @@ public class EmpController {
 
 	@Autowired
 	Empservice service;
-
+	//리스트 페이지 이동
 	@RequestMapping("/emplist")
 	public String emplist() {
 		return "admin/emp/emplist";
 	}
-
+	//Emp 전체 조회
+	@RequestMapping(value="/emplist1",method=RequestMethod.GET )
+	@ResponseBody
+	public List<EmpVO> getUserList(Model model, EmpVO vo){
+		return service.getEmpList(vo);
+	}
+	
+	//등록
 	@RequestMapping("/insertEmp")
 	public String insertEmp(EmpVO vo) {
 		System.out.println(vo);
 		service.insertEmp(vo);
 		return "admin/emp/empinsert";
 	}
-
+	//수정
+		@RequestMapping(value="/updateEmp"
+				,method=RequestMethod.PUT
+	            ,headers = {"Content-type=application/json" }
+		)
+		public EmpVO updateEmp(@RequestBody EmpVO vo, Model model) {
+			service.updateEmp(vo);
+			return  vo;
+		}	
+	
+	//등록폼으로 이동
 	@RequestMapping("/empinsertForm")
 	public String empinsertForm() {
 		return "admin/emp/empinsert";
@@ -42,7 +63,7 @@ public class EmpController {
 	// 로그인폼
 	@RequestMapping(value = { "/loginForm", "/login" }, method = RequestMethod.GET)
 	public String loginForm() {
-		return "admin/emp/login.empty";
+		return "empty/login";
 	}
 
 	// 로그인 처리
@@ -50,14 +71,22 @@ public class EmpController {
 	public String login(@ModelAttribute("Emp") EmpVO vo, HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) throws IOException {
 		// 커맨드 객체는 자동으로 model.addAttribute("emp"vo)
+		
+		// Admin 계정 체크
+		if(vo.getEmpNo() == 1234 && vo.getPassword().equals("admin")) {
+			session.setAttribute("adminMode", true);
+			return "admin/adminHome";
+		}
+
+		// 일반 사용자 계정 체크		
 		EmpVO emp = service.getEmp(vo);
 		if (emp == null) {
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
-			out.print("alert('id error');");
+			out.print("alert('등록된 사용자 정보가 없습니다');");
 			out.print("history.go(-1);");
 			out.print("</script>");
-			return "admin/emp/login";
+			return "empty/login";
 		} else {
 			session.setAttribute("empName", emp.getEmpName());
 			session.setAttribute("positionTitle", emp.getPositionTitle());
@@ -67,7 +96,7 @@ public class EmpController {
 		}
 		return "home";
 	}
-
+	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();// 세션 무효화

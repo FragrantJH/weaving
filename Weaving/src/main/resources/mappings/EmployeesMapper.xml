@@ -54,17 +54,25 @@
 	<select id ="getEmp" resultType="emp" parameterType="emp">
         select * from employees where emp_no =#{empNo} and password=#{password}
     </select>
-    
+    <!-- 사원 전체 조회 -->
     <select id="getEmpList" resultType="emp" parameterType="emp">
-		select id, password, name, role
-		from users
-		<where>
-			<if test="id != null and id != '' ">
-				id like '%' || #{id} || '%'
-			</if>
-			<if test="name != null and name != '' ">
-				and name like '%' || #{name} || '%'
-			</if>
-		</where>
+		select e.emp_name, e.position_title, d.dept_name
+		from employees e
+		join department d
+		on e.dept_id = d.dept_id
 	</select>
+	
+	<!-- 수정 -->
+	<update id="updateEmp" parameterType="emp">
+		update employees set
+		emp_name = #{password},
+		password = #{name},
+		position = #{role},
+		email = #{role},
+		phone = #{role},
+		address = #{role},
+		dept_id = #{role},
+		position_title = #{role}
+		where id = #{id}
+	</update>
 </mapper>

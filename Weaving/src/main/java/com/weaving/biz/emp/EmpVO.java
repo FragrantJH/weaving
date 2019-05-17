@@ -8,6 +8,7 @@ public class EmpVO {
 	private String password;
 	private String position;
 	private String joindate1;
+	private String deptName;
 	private String email;
 	private String phone;
 	private String address;
@@ -18,6 +19,13 @@ public class EmpVO {
 	private int seq;
 	private String[] seqs;
 	private int cnt;
+	
+	public String getDeptName() {
+		return deptName;
+	}
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
 	
 	public String getPositionTitle() {
 		return positionTitle;
