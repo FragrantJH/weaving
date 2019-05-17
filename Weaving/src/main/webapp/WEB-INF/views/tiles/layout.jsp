@@ -85,7 +85,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="${pageContext.request.contextPath}/roomlist">
               <i class="material-icons">meeting_room</i>
               <p>예약</p>
             </a>
