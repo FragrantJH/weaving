@@ -2,9 +2,16 @@ package com.weaving.biz.board.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weaving.biz.board.BoardService;
@@ -16,12 +23,6 @@ public class BoardController {
 	@Autowired
 	BoardService service;
 
-	// 게시판 조회
-//	@RequestMapping("/boardList")
-//	public String board() {
-//		return "board/boardList";
-//	}
-
 	// 등록폼
 	@RequestMapping("/boardInsertForm")
 	public String boardInsertForm() {
@@ -29,7 +30,7 @@ public class BoardController {
 
 	}
 
-	// 등록처리
+	// 등록 처리
 	@RequestMapping("/boardInsert")
 	public String boardInsert(BoardVO vo) {
 		service.insertBoard(vo);
@@ -48,14 +49,36 @@ public class BoardController {
 		return mav;
 	}
 	
-	
-	//글 상세 조회
-	
-	
-	
-	
-	// 수정폼
-	// @RequestMapping("/boardUpdate")
-	// public String boardUpdateForm()
+	// 글 상세 조회
+	@RequestMapping("/boardOne/{boardId}")
+	public String boardOne(@ModelAttribute("board") BoardVO vo, @PathVariable Integer boardId, Model model) {
+		vo.setBoardId(boardId);
+		model.addAttribute("board", service.getBoardOne(vo));
+		return "board/boardOne";
+	}
+		
+	// 수정폼 
+	@RequestMapping(value = "/boardUpdate/{boardId}")
+	public String boardUpdateForm(BoardVO vo, @PathVariable Integer boardId, Model model) { 
+		vo.setBoardId(boardId);
+		model.addAttribute("board", service.getBoardOne(vo));
+		return "board/boardUpdate"; 
+	}
 
+	// 수정 처리
+	@RequestMapping(value = "/boardUpdate", method = RequestMethod.POST)
+	public String boardUpdate(BoardVO vo) {
+		service.updateBoard(vo);
+		return "redirect:boardList";
+	}
+	
+	// 삭제
+	@RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
+	public String boardDelete(BoardVO vo, HttpServletRequest request) {
+		vo.setBoardId(Integer.parseInt(request.getParameter("boardId")));
+		service.deleteBoard(vo);
+		return "redirect:boardList";
+	}
+	
+	
 }

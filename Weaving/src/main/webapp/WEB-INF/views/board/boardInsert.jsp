@@ -31,7 +31,7 @@
 								CKEDITOR.replace('editor');
 							</script>
 							<br> <br>
-							<button type="submit">등록</button>
+							<button type="submit" class="btn btn-primary btn-sm">등록</button>
 						</form>
 					</div>
 				</div>

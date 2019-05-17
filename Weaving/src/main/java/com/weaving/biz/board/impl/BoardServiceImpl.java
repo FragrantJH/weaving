@@ -21,13 +21,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void updateBoard(BoardVO vo) {
-		
+		mybatis.update(vo);
 	}
 
 	@Override
 	public void deleteBoard(BoardVO vo) {
-		// TODO Auto-generated method stub
-		
+		mybatis.delete(vo);
 	}
 
 	@Override
