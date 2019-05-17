@@ -9,22 +9,23 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <meta charset="UTF-8">
 <title>회의실예약</title>
-<style>
-	#btn_group button{
-		border: 1px solid skyblue;
-		background-color: rgba(0,0,0,0);
-		color:skyblue;
-		padding:5px;
-	}
-</style>
 </head>
+
 <body>
-	회의실 <select name="room">
+ <div class="col-md-6">
+      <div class="card">
+          <div class="card-header card-header-text card-header-primary">
+            <div class="card-text">
+              <h4 class="card-title">회의실 예약</h4>
+            </div>
+          </div>
+          <div class="card-body">
+              	회의실 <select name="room">
 			<option value="">회의실선택</option>
 			<option value="1">1번회의실</option>
 			<option value="2">2번회의실</option>
 			<option value="3">3번회의실</option>
-		 </select><p>
+		 </select><p><p>
 	
 		 
 	날짜  <input type="text" id="datepicker" placeholder="예약일을 지정해주세요.">
@@ -71,12 +72,14 @@
 			<option value="16">오전17:30</option>
 		  </select><p>
 	사용용도 <textarea name="사용용도" rows="8" cols="40"></textarea><p>
-	
-	
-	<div id="btn_group">
-		<button id="reserv">예약</button>
-		<butotn id="cancel">취소</butotn>
-	</div>
+		<div id="btn_group">
+		<button id="reserv" class="btn btn-primary btn-sm">예약</button>
+		<button id="cancel" class="btn btn-primary btn-sm">취소</button>		
+		</div>
+          </div>
+      </div>
+  </div>
+</div>
 	
 	
 </body>
