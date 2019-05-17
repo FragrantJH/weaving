@@ -2,6 +2,8 @@ package com.weaving.biz.docForm.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +40,7 @@ public class DocFormController {
 	}
 
 	// 수정처리폼 페이지 이동
-	@RequestMapping(value = "/docFormUpdate/{formId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/docFormUpdate/{formId}", method = RequestMethod.POST)
 	public String docFormUpdateForm(DocFormVO vo, @PathVariable Integer formId, Model model) {
 		vo.setFormId(formId);
 		model.addAttribute("docForm", service.getDocForm(vo));
@@ -55,8 +57,10 @@ public class DocFormController {
 		return "redirect:docFormList";
 	}
 
-	@RequestMapping("/docFormDelete")
-	public String deleteDocForm(DocFormVO vo) {
+	// 삭제 처리
+	@RequestMapping(value = "/docFormDelete", method = RequestMethod.GET)
+	public String deleteDocForm(DocFormVO vo, HttpServletRequest request) {
+		vo.setFormId(Integer.parseInt(request.getParameter("formId")));
 		service.deleteDocForm(vo);
 		return "redirect:docFormList";
 	}

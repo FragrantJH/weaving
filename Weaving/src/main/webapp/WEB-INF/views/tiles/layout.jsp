@@ -42,7 +42,7 @@
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo">
-        <a href="/biz" class="simple-text logo-normal">
+        <a href="${pageContext.request.contextPath}/home" class="simple-text logo-normal">
           WEAVING
         </a>
         <div>
@@ -67,7 +67,7 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" href="home">
+            <a class="nav-link" href="${pageContext.request.contextPath}/home">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
@@ -90,13 +90,6 @@
               <p>예약</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">
-              <i class="material-icons">bubble_chart</i>
-              <p>전자결재</p>
-            </a>
-          </li>
-           
           <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="collapse" data-target="#document" role="button">
               <i class="material-icons">description</i>

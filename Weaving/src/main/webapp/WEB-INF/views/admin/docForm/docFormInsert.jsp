@@ -48,12 +48,13 @@
 					</script>
 					<br>
 					<br>
-						<button type="submit" class="btn btn-default" formaction="${pageContext.request.contextPath}/docFormInsert" formmethod="post">
+						<button type="submit" class="btn btn-default">
+							미리보기
+						</button>
+						<button class="btn btn-default" formaction="${pageContext.request.contextPath}/docFormInsert" formmethod="post">
 							저장
 						</button>
-						<c:if test="${docForm.formId > 0}">	
-							<button type="submit" class="btn btn-default" formaction="${pageContext.request.contextPath}/docFormDelete" formmethod="get">삭제</button>
-						</c:if>
+						
 				</form>
 			</div>
 		</div>
