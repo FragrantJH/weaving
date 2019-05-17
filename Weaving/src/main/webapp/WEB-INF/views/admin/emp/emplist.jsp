@@ -50,7 +50,7 @@ div.right {
 		 </ul>
 	 </div>
 	 
-	 <div class="left">
+	 <div class="right">
 		 <h2>직원목록</h2>
 		 <hr>
 		 <table border ="1">
