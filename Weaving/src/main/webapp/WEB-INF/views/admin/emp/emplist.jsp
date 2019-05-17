@@ -42,9 +42,11 @@
 		$("tbody").empty();
 		$.each(data,function(idx,item){
 			$('<tr>')
+			.append($('<td>').html(item.empNo))
 			.append($('<td>').html(item.empName))
 			.append($('<td>').html(item.positionTitle))
 			.append($('<td>').html(item.deptName))
+			.append($('<input type=\'hidden\' empNo=\'hidden_empNo\'>').val(item.empNo))
 			.appendTo('tbody');
 		});//each
 	}//userListResult
@@ -100,6 +102,7 @@ div.right {
 		 <table class="table text-center">
 			<thead>
 			<tr>
+				<th class="text-center">사번</th>
 				<th class="text-center">이름</th>
 				<th class="text-center">직책</th>
 				<th class="text-center">부서</th>

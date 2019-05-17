@@ -5,6 +5,58 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" >
+	$(function(){
+		userSelect();
+		
+		//userDelete();
+		
+		userInsert();
+	
+		//userUpdate();
+		
+		init();
+	});
+	
+	//초기화
+	function init() {
+		//초기화 버튼 클릭
+		$('#btnInit').on('click',function(){
+			$('#form1').each(function(){
+				this.reset();
+			});
+		});
+	}//init
+
+	//사용자 조회 요청
+	function userSelect() {
+		//조회 버튼 클릭
+		$('body').on('click','#btnSelect',function(){
+			var id = $(this).closest('tr').find('#hidden_id').val();
+			//특정 사용자 조회
+			$.ajax({
+				url:'users/'+id,
+				type:'GET',
+				contentType:'application/json;charset=utf-8',
+				dataType:'json',
+				error:function(xhr,status,msg){
+					alert("상태값 :" + status + " Http에러메시지 :"+msg);
+				},
+				success:userSelectResult
+			});
+		}); //조회 버튼 클릭
+	}//userSelect
+	
+	//사용자 조회 응답
+	function userSelectResult(data) {
+		var user = data;
+		$('input:text[name="id"]').val(user.id);
+		$('input:text[name="name"]').val(user.name);
+		$('input:radio[name="gender"][value="'+user.gender+'"]').prop('checked', true);
+		$('select[name="role"]').val(user.role).attr("selected", "selected");
+	}//userSelectResult
+</script>
 <style>
  #float1 { float: left; padding: 10px;}
  label {
