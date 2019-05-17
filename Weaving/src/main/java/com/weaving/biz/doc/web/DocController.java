@@ -59,7 +59,7 @@ public class DocController {
 	}
 	
 	@RequestMapping(value="/docInsert/{empName}/{position}")
-	public String docInsert() {
+	public String docInsert(@PathVariable String empName, @PathVariable int position, Model model) {
 		return "approval/docInsert";
 	}
 	/*
