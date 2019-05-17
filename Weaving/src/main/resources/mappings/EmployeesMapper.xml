@@ -51,7 +51,20 @@
 				)
 	</insert>
 	
-	<select id ="getEmp" resultType="emp">
+	<select id ="getEmp" resultType="emp" parameterType="emp">
         select * from employees where emp_no =#{empNo} and password=#{password}
     </select>
+    
+    <select id="getEmpList" resultType="emp" parameterType="emp">
+		select id, password, name, role
+		from users
+		<where>
+			<if test="id != null and id != '' ">
+				id like '%' || #{id} || '%'
+			</if>
+			<if test="name != null and name != '' ">
+				and name like '%' || #{name} || '%'
+			</if>
+		</where>
+	</select>
 </mapper>
