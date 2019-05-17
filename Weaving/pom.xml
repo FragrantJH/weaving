@@ -118,14 +118,14 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- spring-test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
+
 		<!-- spring-jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -153,7 +153,7 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
-		
+
 		<!-- fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -166,7 +166,7 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-email</artifactId>
 			<version>1.4</version>
-		</dependency>		
+		</dependency>
 
 		<!-- log jdbc -->
 		<dependency>
@@ -174,13 +174,13 @@
 			<artifactId>log4jdbc-remix</artifactId>
 			<version>0.2.7</version>
 		</dependency>
-		
+
 		<!-- aspectjweaver -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.13</version>
-		</dependency>		
+		</dependency>
 
 		<!--jackson-databind -->
 		<dependency>
@@ -205,7 +205,17 @@
 			<artifactId>tiles-extras</artifactId>
 			<version>${org.apache.tiles-version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>javax.websocket</groupId>
+			<artifactId>javax.websocket-api</artifactId>
+			<version>1.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-websocket</artifactId>
+			<version>8.0.20</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

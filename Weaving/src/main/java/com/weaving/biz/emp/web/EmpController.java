@@ -42,7 +42,7 @@ public class EmpController {
 	// 로그인폼
 	@RequestMapping(value = { "/loginForm", "/login" }, method = RequestMethod.GET)
 	public String loginForm() {
-		return "admin/emp/login.empty";
+		return "empty/login";
 	}
 
 	// 로그인 처리
@@ -50,14 +50,22 @@ public class EmpController {
 	public String login(@ModelAttribute("Emp") EmpVO vo, HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) throws IOException {
 		// 커맨드 객체는 자동으로 model.addAttribute("emp"vo)
+		
+		// Admin 계정 체크
+		if(vo.getEmpNo() == 1234 && vo.getPassword().equals("admin")) {
+			session.setAttribute("adminMode", true);
+			return "admin/adminHome";
+		}
+
+		// 일반 사용자 계정 체크		
 		EmpVO emp = service.getEmp(vo);
 		if (emp == null) {
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
-			out.print("alert('id error');");
+			out.print("alert('등록된 사용자 정보가 없습니다');");
 			out.print("history.go(-1);");
 			out.print("</script>");
-			return "admin/emp/login";
+			return "empty/login";
 		} else {
 			session.setAttribute("empName", emp.getEmpName());
 			session.setAttribute("positionTitle", emp.getPositionTitle());

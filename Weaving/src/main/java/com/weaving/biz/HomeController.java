@@ -1,8 +1,13 @@
 package com.weaving.biz;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,5 +40,19 @@ public class HomeController {
 		
 		return "home";
 	}
-
+	
+	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
+	public String adminHome(Locale locale, Model model, HttpServletResponse response, HttpSession session ) throws IOException {
+		
+		if(session.getAttribute("adminMode") != null) {
+			return "/admin/adminHome";
+		} else {
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('Admin 권한이 없습니다');");
+			out.print("history.go(-1);");
+			out.print("</script>");
+			return "empty/login";
+		}
+	}
 }
