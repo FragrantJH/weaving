@@ -5,10 +5,20 @@ import java.sql.Date;
 public class BoardVO {
 	private int boardId;
 	private int empNo;
+	private String empName;
 	private String title;
 	private String boardContents;
 	private Date time;
 	private char boardType;
+
+	
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
 
 	public int getBoardId() {
 		return boardId;

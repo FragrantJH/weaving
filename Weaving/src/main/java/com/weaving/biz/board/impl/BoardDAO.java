@@ -20,6 +20,14 @@ public class BoardDAO {
 		mybatis.insert("BoardDAO.insertBoard", vo);
 	}
 		
+	public void update(BoardVO vo) {
+		mybatis.update("BoardDAO.updateBoard", vo);
+	}
+	
+	public void delete(BoardVO vo) {
+		mybatis.delete("BoardDAO.deleteBoard", vo);
+	}
+	
     public BoardVO getBoardOne(BoardVO vo) {
     	return (BoardVO)mybatis.selectOne("BoardDAO.selectBoardOne",vo);
     }
