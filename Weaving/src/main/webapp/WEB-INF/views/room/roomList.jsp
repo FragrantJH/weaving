@@ -16,8 +16,7 @@
               <th class="th-description">위치</th>
               <th class="th-description">크기</th>
               <th class="text-right">수용인원</th>
-              <th class="text-center">예약가능여부</th>
-              <th>액션</th>
+              <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;액션</th>
               <th></th>
           </tr>
       </thead>
@@ -41,10 +40,7 @@
               <td class="td-number">
                   <small>MAX30</small>
               </td>
-              <td class="td-number">
-                  <center><small>O</small></center>
-                 
-              </td>            
+           
 	             <td class="td-actions">
 	                <button type="button" rel="tooltip" class="btn btn-info">
 	                    <i class="material-icons">person</i>
@@ -78,10 +74,7 @@
               <td class="td-number">
                   <small>MAX7</small>
               </td>
-              <td class="td-number">
-                  <center><small>O</small></center>
-                 
-              </td>            
+            
 	             <td class="td-actions">
 	                <button type="button" rel="tooltip" class="btn btn-info">
 	                    <i class="material-icons">person</i>
@@ -114,11 +107,7 @@
               </td>
               <td class="td-number">
                   <small>MAX8</small>
-              </td>
-              <td class="td-number">
-                  <center><small>O</small></center>
-                 
-              </td>            
+              </td>          
 	             <td class="td-actions">
 	                <button type="button" rel="tooltip" class="btn btn-info">
 	                    <i class="material-icons">person</i>
