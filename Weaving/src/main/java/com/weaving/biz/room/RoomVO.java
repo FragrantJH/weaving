@@ -3,11 +3,9 @@ package com.weaving.biz.room;
 public class RoomVO {
 	private int roomId;
 	private String roomName;
-	private int reservId;
-	private int empNo;
-	private String startTime;
-	private int useHour;
-	private String description;
+	private String roomLoc;
+	private String roomSize;
+	private String roomMax;
 	
 	public int getRoomId() {
 		return roomId;
@@ -21,35 +19,22 @@ public class RoomVO {
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
-	public int getReservId() {
-		return reservId;
+	public String getRoomLoc() {
+		return roomLoc;
 	}
-	public void setReservId(int reservId) {
-		this.reservId = reservId;
+	public void setRoomLoc(String roomLoc) {
+		this.roomLoc = roomLoc;
 	}
-	public int getEmpNo() {
-		return empNo;
+	public String getRoomSize() {
+		return roomSize;
 	}
-	public void setEmpNo(int empNo) {
-		this.empNo = empNo;
+	public void setRoomSize(String roomSize) {
+		this.roomSize = roomSize;
 	}
-	public String getStartTime() {
-		return startTime;
+	public String getRoomMax() {
+		return roomMax;
 	}
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
+	public void setRoomMax(String roomMax) {
+		this.roomMax = roomMax;
 	}
-	public int getUseHour() {
-		return useHour;
-	}
-	public void setUseHour(int useHour) {
-		this.useHour = useHour;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
 }

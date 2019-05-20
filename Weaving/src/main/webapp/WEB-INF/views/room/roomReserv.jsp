@@ -20,6 +20,7 @@
             </div>
           </div>
           <div class="card-body">
+          <form>
               	회의실 <select name="room">
 			<option value="">회의실선택</option>
 			<option value="1">1번회의실</option>
@@ -71,15 +72,19 @@
 			<option value="15">오전17:00</option>
 			<option value="16">오전17:30</option>
 		  </select><p>
-	사용용도 <textarea name="사용용도" rows="8" cols="40"></textarea><p>
+	사용용도 <textarea name="사용용도" rows="8" cols="40">
+	${roomReserv.description}
+	</textarea><p>
 		<div id="btn_group">
 		<button id="reserv" class="btn btn-primary btn-sm">예약</button>
 		<button id="cancel" class="btn btn-primary btn-sm">취소</button>		
 		</div>
+		</form>
           </div>
       </div>
+    
   </div>
-</div>
+
 
   <div class="col-md-6">
       <div class="card">

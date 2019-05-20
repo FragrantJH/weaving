@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="RoomDAO">
+<mapper namespace="ReservDAO">
 
-	<insert id="insertRoom" parameterType="room">
-		INSERT INTO ROOM (
+	<insert id="insertReserv" parameterType="reserv">
+		INSERT INTO RESERVATION (
+							  RESERV_ID,
 							  ROOM_ID,
-							  ROOM_NAME,
-							  ROOM_LOC
-							  ROOM_SIZE
-							  ROOM_MAX
+							  EMP_NO,
+							  START_TIME,
+							  END_TIME,
+							  DESCRIPTION
 							 
 							  
 							)
 				    VALUES ( 
+				             #{reservId},
 				             #{roomId},
-				             #{roomName},
-				             #{roomLoc},
-				             #{roomSize},
-				             #{roomMax},
+				             #{empNo},
+				             #{startTime},
+				             #{endTime},
+				             #{description}
 				        
 				    )			    
 	</insert>
-	<update id="updateRoom" parameterType="room">
-		UPDATE room
-		   SET ROOM_NAME = #{roomName},
+	<update id="updateReserv" parameterType="reserv">
+		UPDATE RESERVATION
+		   SET ROOM_ID = #{roomID},
 		   	   ROOM_LOC = #{roomLoc},
 		   	   ROOM_SIZE = #{roomSize}
 		   	   ROOM_MAX = #{roomMax}		   	   
-		 WHERE ROOM_ID = #{roomId}
+		 WHERE RESERV_ID = #{reservId}
 	</update>
 	
-	<delete id="deleteRoom" parameterType="room">
+	<delete id="deleteRoom" parameterType="reserv">
 		DELETE FROM ROOM
 		 WHERE ROOM_ID = #{roomId}
 	</delete>
 	
-	<select id="selectRoomList" parameterType="room" resultType="room">
+	<select id="selectRoomList" parameterType="reserv" resultType="reserv">
 		SELECT ROW_NUM,
 		       ROOM_ID,
 			   ROOM_NAME,
@@ -49,7 +51,7 @@
 		  WHERE ROW_NUM BETWEEN #{first} AND #{last}
 	</select>
 	
-	<select id="selectRoom" parameterType="room" resultType="room">
+	<select id="selectRoom" parameterType="reserv" resultType="reserv">
 		SELECT ROOM_ID,
 			   ROOM_NAME,
 			   ROOM_LOC,

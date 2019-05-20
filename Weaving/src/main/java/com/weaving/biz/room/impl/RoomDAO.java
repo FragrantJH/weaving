@@ -15,4 +15,8 @@ public class RoomDAO {
 	public void insert(RoomVO vo) {
 		ss.insert("RoomDAO.insertRoom", vo);
 	}	
+	
+	public void select(RoomVO vo) {
+		ss.selectList("RoomDAO.selectRoomList", vo);
+	}
 }
