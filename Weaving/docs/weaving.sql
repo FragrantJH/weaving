@@ -1,16 +1,17 @@
 
 /* Drop Tables */
 
-DROP TABLE reply CASCADE CONSTRAINTS;
-DROP TABLE board CASCADE CONSTRAINTS;
+DROP TABLE Reply CASCADE CONSTRAINTS;
+DROP TABLE Board CASCADE CONSTRAINTS;
+DROP TABLE Calendars CASCADE CONSTRAINTS;
 DROP TABLE DocumentDetail CASCADE CONSTRAINTS;
 DROP TABLE Documents CASCADE CONSTRAINTS;
-DROP TABLE reservation CASCADE CONSTRAINTS;
-DROP TABLE todolist CASCADE CONSTRAINTS;
-DROP TABLE employees CASCADE CONSTRAINTS;
-DROP TABLE department CASCADE CONSTRAINTS;
-DROP TABLE documentForm CASCADE CONSTRAINTS;
-DROP TABLE room CASCADE CONSTRAINTS;
+DROP TABLE Reservation CASCADE CONSTRAINTS;
+DROP TABLE TodoList CASCADE CONSTRAINTS;
+DROP TABLE Employees CASCADE CONSTRAINTS;
+DROP TABLE Department CASCADE CONSTRAINTS;
+DROP TABLE DocumentForm CASCADE CONSTRAINTS;
+DROP TABLE Room CASCADE CONSTRAINTS;
 
 
 
@@ -18,7 +19,7 @@ DROP TABLE room CASCADE CONSTRAINTS;
 /* Create Tables */
 
 -- 게시판
-CREATE TABLE board
+CREATE TABLE Board
 (
 	-- 게시글ID
 	board_id number NOT NULL,
@@ -37,8 +38,36 @@ CREATE TABLE board
 );
 
 
+-- 일정
+CREATE TABLE Calendars
+(
+	-- 캘린더ID
+	cal_id number NOT NULL,
+	-- 그룹ID
+	group_id number,
+	-- 직원ID
+	emp_no number,
+	-- 제목
+	title varchar2(100) NOT NULL,
+	-- 하루종일여부 : Y : 하루종일 (default)
+	-- N
+	-- 
+	allDay char DEFAULT 'Y',
+	-- 시작
+	start_date date DEFAULT sysdate NOT NULL,
+	-- 종료
+	end_date date DEFAULT sysdate NOT NULL,
+	-- 색상 : CSS색상 코드
+	-- #ff0000
+	back_color varchar2(10),
+	-- 작성날자
+	create_date date DEFAULT sysdate,
+	PRIMARY KEY (cal_id)
+);
+
+
 -- 부서
-CREATE TABLE department
+CREATE TABLE Department
 (
 	-- 부서ID
 	dept_id number NOT NULL,
@@ -72,7 +101,7 @@ CREATE TABLE DocumentDetail
 
 
 -- 결재폼
-CREATE TABLE documentForm
+CREATE TABLE DocumentForm
 (
 	-- 결재폼ID
 	form_id number NOT NULL,
@@ -82,6 +111,8 @@ CREATE TABLE documentForm
 	description varchar2(500),
 	-- 폼내용
 	form_contents varchar2(4000) NOT NULL,
+	-- 등록날짜
+	create_date date DEFAULT sysdate,
 	PRIMARY KEY (form_id)
 );
 
@@ -110,7 +141,7 @@ CREATE TABLE Documents
 
 
 -- 직원
-CREATE TABLE employees
+CREATE TABLE Employees
 (
 	-- 사번
 	emp_no number NOT NULL,
@@ -142,7 +173,7 @@ CREATE TABLE employees
 
 
 -- 댓글
-CREATE TABLE reply
+CREATE TABLE Reply
 (
 	-- 댓글ID
 	reply_id number NOT NULL,
@@ -159,7 +190,7 @@ CREATE TABLE reply
 
 
 -- 예약
-CREATE TABLE reservation
+CREATE TABLE Reservation
 (
 	-- 예약ID
 	reserv_id number NOT NULL,
@@ -170,7 +201,7 @@ CREATE TABLE reservation
 	-- 예약시작날짜
 	start_time date NOT NULL,
 	-- 사용시간
-	use_hour number DEFAULT 1,
+	end_time date DEFAULT sysdate,
 	-- 사용용도
 	description varchar2(500),
 	PRIMARY KEY (reserv_id)
@@ -178,18 +209,26 @@ CREATE TABLE reservation
 
 
 -- 회의실
-CREATE TABLE room
+CREATE TABLE Room
 (
 	-- 회의실ID
 	room_id number NOT NULL,
 	-- 회의실이름
 	room_name varchar2(200) NOT NULL,
+	-- room_loc
+	room_loc varchar2(20),
+	-- room_size : M
+	-- L
+	-- S
+	room_size char,
+	-- room_max
+	room_max varchar2(20),
 	PRIMARY KEY (room_id)
 );
 
 
 -- TODO리스트
-CREATE TABLE todolist
+CREATE TABLE TodoList
 (
 	-- 할일ID
 	todo_id number NOT NULL,
@@ -197,8 +236,11 @@ CREATE TABLE todolist
 	emp_no number NOT NULL,
 	-- 메모내용
 	content varchar2(500) NOT NULL,
-	-- 완료유무
-	done char DEFAULT 'F' NOT NULL,
+	-- 완료유무 : N : default
+	-- Y
+	done char DEFAULT 'N',
+	-- 등록날짜
+	create_date date DEFAULT sysdate,
 	PRIMARY KEY (todo_id)
 );
 
@@ -206,23 +248,23 @@ CREATE TABLE todolist
 
 /* Create Foreign Keys */
 
-ALTER TABLE reply
+ALTER TABLE Reply
 	ADD FOREIGN KEY (board_id)
-	REFERENCES board (board_id)
+	REFERENCES Board (board_id)
 	ON DELETE CASCADE
 ;
 
 
-ALTER TABLE department
+ALTER TABLE Department
 	ADD FOREIGN KEY (upper_dept_id)
-	REFERENCES department (dept_id)
+	REFERENCES Department (dept_id)
 	ON DELETE CASCADE
 ;
 
 
-ALTER TABLE employees
+ALTER TABLE Employees
 	ADD FOREIGN KEY (dept_id)
-	REFERENCES department (dept_id)
+	REFERENCES Department (dept_id)
 	ON DELETE CASCADE
 ;
 
@@ -234,51 +276,57 @@ ALTER TABLE DocumentDetail
 ;
 
 
-ALTER TABLE board
+ALTER TABLE Board
 	ADD FOREIGN KEY (emp_no)
-	REFERENCES employees (emp_no)
+	REFERENCES Employees (emp_no)
 	ON DELETE CASCADE
+;
+
+
+ALTER TABLE Calendars
+	ADD FOREIGN KEY (emp_no)
+	REFERENCES Employees (emp_no)
 ;
 
 
 ALTER TABLE DocumentDetail
 	ADD FOREIGN KEY (emp_no)
-	REFERENCES employees (emp_no)
+	REFERENCES Employees (emp_no)
 	ON DELETE CASCADE
 ;
 
 
 ALTER TABLE Documents
 	ADD FOREIGN KEY (emp_no)
-	REFERENCES employees (emp_no)
+	REFERENCES Employees (emp_no)
 	ON DELETE CASCADE
 ;
 
 
-ALTER TABLE reply
+ALTER TABLE Reply
 	ADD FOREIGN KEY (emp_no)
-	REFERENCES employees (emp_no)
+	REFERENCES Employees (emp_no)
 	ON DELETE CASCADE
 ;
 
 
-ALTER TABLE reservation
+ALTER TABLE Reservation
 	ADD FOREIGN KEY (emp_no)
-	REFERENCES employees (emp_no)
+	REFERENCES Employees (emp_no)
 	ON DELETE CASCADE
 ;
 
 
-ALTER TABLE todolist
+ALTER TABLE TodoList
 	ADD FOREIGN KEY (emp_no)
-	REFERENCES employees (emp_no)
+	REFERENCES Employees (emp_no)
 	ON DELETE CASCADE
 ;
 
 
-ALTER TABLE reservation
+ALTER TABLE Reservation
 	ADD FOREIGN KEY (room_id)
-	REFERENCES room (room_id)
+	REFERENCES Room (room_id)
 	ON DELETE CASCADE
 ;
 
@@ -286,18 +334,31 @@ ALTER TABLE reservation
 
 /* Comments */
 
-COMMENT ON TABLE board IS '게시판';
-COMMENT ON COLUMN board.board_id IS '게시글ID';
-COMMENT ON COLUMN board.emp_no IS '작성자ID';
-COMMENT ON COLUMN board.title IS '제목';
-COMMENT ON COLUMN board.board_contents IS '내용';
-COMMENT ON COLUMN board.time IS '작성시간';
-COMMENT ON COLUMN board.board_type IS '게시판타입 : 0: 공지사항
+COMMENT ON TABLE Board IS '게시판';
+COMMENT ON COLUMN Board.board_id IS '게시글ID';
+COMMENT ON COLUMN Board.emp_no IS '작성자ID';
+COMMENT ON COLUMN Board.title IS '제목';
+COMMENT ON COLUMN Board.board_contents IS '내용';
+COMMENT ON COLUMN Board.time IS '작성시간';
+COMMENT ON COLUMN Board.board_type IS '게시판타입 : 0: 공지사항
 1: 사내게시판';
-COMMENT ON TABLE department IS '부서';
-COMMENT ON COLUMN department.dept_id IS '부서ID';
-COMMENT ON COLUMN department.dept_name IS '부서명';
-COMMENT ON COLUMN department.upper_dept_id IS '부모부서ID';
+COMMENT ON TABLE Calendars IS '일정';
+COMMENT ON COLUMN Calendars.cal_id IS '캘린더ID';
+COMMENT ON COLUMN Calendars.group_id IS '그룹ID';
+COMMENT ON COLUMN Calendars.emp_no IS '직원ID';
+COMMENT ON COLUMN Calendars.title IS '제목';
+COMMENT ON COLUMN Calendars.allDay IS '하루종일여부 : Y : 하루종일 (default)
+N
+';
+COMMENT ON COLUMN Calendars.start_date IS '시작';
+COMMENT ON COLUMN Calendars.end_date IS '종료';
+COMMENT ON COLUMN Calendars.back_color IS '색상 : CSS색상 코드
+#ff0000';
+COMMENT ON COLUMN Calendars.create_date IS '작성날자';
+COMMENT ON TABLE Department IS '부서';
+COMMENT ON COLUMN Department.dept_id IS '부서ID';
+COMMENT ON COLUMN Department.dept_name IS '부서명';
+COMMENT ON COLUMN Department.upper_dept_id IS '부모부서ID';
 COMMENT ON TABLE DocumentDetail IS '결재상세정보';
 COMMENT ON COLUMN DocumentDetail.doc_id IS '결재문서ID';
 COMMENT ON COLUMN DocumentDetail.emp_no IS '결재자ID';
@@ -307,11 +368,12 @@ COMMENT ON COLUMN DocumentDetail.status IS '상태 : 대기 : WAIT
 완료 : DONE
 반려 : RETU';
 COMMENT ON COLUMN DocumentDetail.approval_comments IS '코멘트';
-COMMENT ON TABLE documentForm IS '결재폼';
-COMMENT ON COLUMN documentForm.form_id IS '결재폼ID';
-COMMENT ON COLUMN documentForm.form_name IS '이름';
-COMMENT ON COLUMN documentForm.description IS '설명';
-COMMENT ON COLUMN documentForm.form_contents IS '폼내용';
+COMMENT ON TABLE DocumentForm IS '결재폼';
+COMMENT ON COLUMN DocumentForm.form_id IS '결재폼ID';
+COMMENT ON COLUMN DocumentForm.form_name IS '이름';
+COMMENT ON COLUMN DocumentForm.description IS '설명';
+COMMENT ON COLUMN DocumentForm.form_contents IS '폼내용';
+COMMENT ON COLUMN DocumentForm.create_date IS '등록날짜';
 COMMENT ON TABLE Documents IS '결재문서';
 COMMENT ON COLUMN Documents.doc_id IS '결재문서ID';
 COMMENT ON COLUMN Documents.emp_no IS '기안자ID';
@@ -321,41 +383,48 @@ COMMENT ON COLUMN Documents.doc_contents IS '내용';
 COMMENT ON COLUMN Documents.reg_date IS '기안날짜';
 COMMENT ON COLUMN Documents.done_date IS '결재완료날짜';
 COMMENT ON COLUMN Documents.secure_level IS '보안등급';
-COMMENT ON TABLE employees IS '직원';
-COMMENT ON COLUMN employees.emp_no IS '사번';
-COMMENT ON COLUMN employees.emp_name IS '이름';
-COMMENT ON COLUMN employees.password IS '비밀번호';
-COMMENT ON COLUMN employees.position IS '직위';
-COMMENT ON COLUMN employees.position_title IS '직위명';
-COMMENT ON COLUMN employees.joindate IS '입사일';
-COMMENT ON COLUMN employees.email IS '이메일';
-COMMENT ON COLUMN employees.phone IS '휴대전화';
-COMMENT ON COLUMN employees.address IS '주소';
-COMMENT ON COLUMN employees.deleted_yn IS '삭제유무 : Y : 삭제
+COMMENT ON TABLE Employees IS '직원';
+COMMENT ON COLUMN Employees.emp_no IS '사번';
+COMMENT ON COLUMN Employees.emp_name IS '이름';
+COMMENT ON COLUMN Employees.password IS '비밀번호';
+COMMENT ON COLUMN Employees.position IS '직위';
+COMMENT ON COLUMN Employees.position_title IS '직위명';
+COMMENT ON COLUMN Employees.joindate IS '입사일';
+COMMENT ON COLUMN Employees.email IS '이메일';
+COMMENT ON COLUMN Employees.phone IS '휴대전화';
+COMMENT ON COLUMN Employees.address IS '주소';
+COMMENT ON COLUMN Employees.deleted_yn IS '삭제유무 : Y : 삭제
 N : Default';
-COMMENT ON COLUMN employees.delete_date IS '삭제날짜';
-COMMENT ON COLUMN employees.dept_id IS '부서ID';
-COMMENT ON TABLE reply IS '댓글';
-COMMENT ON COLUMN reply.reply_id IS '댓글ID';
-COMMENT ON COLUMN reply.rep_contents IS '댓글내용';
-COMMENT ON COLUMN reply.time IS '시간';
-COMMENT ON COLUMN reply.emp_no IS '작성자ID';
-COMMENT ON COLUMN reply.board_id IS '게시글ID';
-COMMENT ON TABLE reservation IS '예약';
-COMMENT ON COLUMN reservation.reserv_id IS '예약ID';
-COMMENT ON COLUMN reservation.room_id IS '회의실ID';
-COMMENT ON COLUMN reservation.emp_no IS '등록자ID';
-COMMENT ON COLUMN reservation.start_time IS '예약시작날짜';
-COMMENT ON COLUMN reservation.use_hour IS '사용시간';
-COMMENT ON COLUMN reservation.description IS '사용용도';
-COMMENT ON TABLE room IS '회의실';
-COMMENT ON COLUMN room.room_id IS '회의실ID';
-COMMENT ON COLUMN room.room_name IS '회의실이름';
-COMMENT ON TABLE todolist IS 'TODO리스트';
-COMMENT ON COLUMN todolist.todo_id IS '할일ID';
-COMMENT ON COLUMN todolist.emp_no IS '사번ID';
-COMMENT ON COLUMN todolist.content IS '메모내용';
-COMMENT ON COLUMN todolist.done IS '완료유무';
+COMMENT ON COLUMN Employees.delete_date IS '삭제날짜';
+COMMENT ON COLUMN Employees.dept_id IS '부서ID';
+COMMENT ON TABLE Reply IS '댓글';
+COMMENT ON COLUMN Reply.reply_id IS '댓글ID';
+COMMENT ON COLUMN Reply.rep_contents IS '댓글내용';
+COMMENT ON COLUMN Reply.time IS '시간';
+COMMENT ON COLUMN Reply.emp_no IS '작성자ID';
+COMMENT ON COLUMN Reply.board_id IS '게시글ID';
+COMMENT ON TABLE Reservation IS '예약';
+COMMENT ON COLUMN Reservation.reserv_id IS '예약ID';
+COMMENT ON COLUMN Reservation.room_id IS '회의실ID';
+COMMENT ON COLUMN Reservation.emp_no IS '등록자ID';
+COMMENT ON COLUMN Reservation.start_time IS '예약시작날짜';
+COMMENT ON COLUMN Reservation.end_time IS '사용시간';
+COMMENT ON COLUMN Reservation.description IS '사용용도';
+COMMENT ON TABLE Room IS '회의실';
+COMMENT ON COLUMN Room.room_id IS '회의실ID';
+COMMENT ON COLUMN Room.room_name IS '회의실이름';
+COMMENT ON COLUMN Room.room_loc IS 'room_loc';
+COMMENT ON COLUMN Room.room_size IS 'room_size : M
+L
+S';
+COMMENT ON COLUMN Room.room_max IS 'room_max';
+COMMENT ON TABLE TodoList IS 'TODO리스트';
+COMMENT ON COLUMN TodoList.todo_id IS '할일ID';
+COMMENT ON COLUMN TodoList.emp_no IS '사번ID';
+COMMENT ON COLUMN TodoList.content IS '메모내용';
+COMMENT ON COLUMN TodoList.done IS '완료유무 : N : default
+Y';
+COMMENT ON COLUMN TodoList.create_date IS '등록날짜';
 
 
 
