@@ -137,12 +137,11 @@
 						</div>
 						<div class="modal-body">
 							<form action="insertEmp" method="post">
-								<div class="btn-group">
-									<input type="button" class="btn btn-primary" value="등록"
-										id="btnInsert" /> <input type="button"
-										class="btn btn-primary" value="수정" id="btnUpdate" /> <input
-										type="button" class="btn btn-primary" value="초기화" id="btnInit" />
-								</div>
+								<!-- <div class="btn-group">
+									<input type="button" class="btn btn-primary" value="등록"id="btnInsert" />
+									<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 
+									<input type="button" class="btn btn-primary" value="초기화" id="btnInit" />
+								</div> -->
 								<br> <label for="empName"><b>이름</b></label> <input
 									type="text" name="empName" id="empName"><br>
 								<br> <label for="password"><b>비밀번호</b></label> <input
@@ -176,10 +175,11 @@
 							</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary"
-								onclick="location='${pageContext.request.contextPath}/docFormDelete?formId=${docForm.formId}'">삭제</button>
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">취소</button>
+							<button type="button" class="btn btn-primary" onclick="location='${pageContext.request.contextPath}/docFormDelete?formId=${docForm.formId}'">삭제</button>
+							<button type="button" class="btn btn-primary" value="등록" id="btnInsert" >등록</button>
+							<button type="button" class="btn btn-primary" value="수정" id="btnUpdate" >수정</button>
+							<button type="button" class="btn btn-primary" value="초기화" id="btnInit" >초기화</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 						</div>
 					</div>
 				</div>
