@@ -22,5 +22,11 @@ public class DeptController {
 	public List<DeptVO> getDeptList(Model model, DeptVO vo){
 		return service.getDeptList(vo);
 	}
+	
+	//리스트 페이지 이동
+			@RequestMapping("/deptListFrom")
+			public String deptListFrom() {
+				return "admin/dept/deptlist";
+	}
 
 }

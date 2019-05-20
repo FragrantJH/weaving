@@ -10,7 +10,8 @@
 <script type="text/javascript" >
 
 	$(function(){
-		empList();
+		
+		deptList();
 	
 		//userSelect();
 		
@@ -22,36 +23,35 @@
 		
 		//init();
 	});
-
-	//사용자 목록 조회 요청
-	function empList() {
+	
+	//부서 목록 조회 요청
+	function deptList() {
 		$.ajax({
-			url:'emplist1',
+			url:'deptlist',
 			type:'GET',
 			contentType:'application/json;charset=utf-8',
 			dataType:'json',
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " Http에러메시지 :"+msg);
 			},
-			success:empListResult
+			success:deptListResult
 		});
 	}//userList
 	
-	//사용자 목록 조회 응답
-	function empListResult(data) {
-		$("#user").empty();
+	//부서 목록 조회 응답
+	function deptListResult(data) {
+		console.log(data);
+		$("#dept").empty();
 		$.each(data,function(idx,item){
 			$('<tr>')
-			.append($('<td>').html(item.empNo))
-			.append($('<td>').html(item.empName))
-			.append($('<td>').html(item.positionTitle))
+			.append($('<td>').html(item.deptId))
 			.append($('<td>').html(item.deptName))
-			.append($('<td>').html('<a id=\'btnSelect\' href=\'${pageContext.request.contextPath}/showEmp/${EmpForm.empNo}\'>${EmpForm.empNo}</a>'))
-			.append($('<input type=\'hidden\' empNo=\'hidden_empNo\'>').val(item.empNo))
-			.appendTo('#user');
+			.append($('<td>').html(item.upperDeptId))
+			.append($('<input type=\'hidden\' deptId=\'hidden_deptId\'>').val(item.deptId))
+			.appendTo('#dept');
 		});//each
-	}//userListResult
-
+	}//deptListResult
+	
 </script>
 <style type="text/css">
 .submenu {
@@ -64,21 +64,19 @@
 </style>
 </head>
 <body>
-	 <div class="right">
-		 <h2>직원목록</h2><button onclick="location.href='./empinsertForm'">등록</button>
+<div class="left">
+		 <h2>조직도</h2><button onclick="location.href='./empinsertForm'">등록</button>
 		 <hr>
 		 <table class="table text-center">
 			<thead>
 			<tr>
-				<th class="text-center">사번</th>
-				<th class="text-center">이름</th>
-				<th class="text-center">직책</th>
+				<th class="text-center">부서번호</th>
+				<th class="text-center">부서명</th>
 				<th class="text-center">부서</th>
 			</tr>
 			</thead>
-			<tbody id="user"></tbody>
+			<tbody id="dept"></tbody>
 		</table>
 	 </div>
-
 </body>
 </html>
