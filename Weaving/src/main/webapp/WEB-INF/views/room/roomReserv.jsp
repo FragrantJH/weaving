@@ -112,7 +112,7 @@
             <td>${ReservList.reservNo}</td>
             <td>${ReservList.roomNo}</td>
             <td>${ReservList.startTime}</td>            
-            <td>${ReservList.startTime}~${ReservList.endTime}</td>
+            <td>${ReservList.startTime}</td>
             <td>${ReservList.description}</td>
         </tr>
 		</c:forEach>
