@@ -6,7 +6,7 @@ public class CalVO {
 
 	private int cal_id;
 	private int group_id;
-	private int emp_no;
+	private Integer emp_no;
 	private String title;
 	private char allday;
 	private Date start_date;
@@ -20,7 +20,7 @@ public class CalVO {
 	public int getGroup_id() {
 		return group_id;
 	}
-	public int getEmp_no() {
+	public Integer getEmp_no() {
 		return emp_no;
 	}
 	public String getTitle() {
@@ -47,7 +47,7 @@ public class CalVO {
 	public void setGroup_id(int group_id) {
 		this.group_id = group_id;
 	}
-	public void setEmp_no(int emp_no) {
+	public void setEmp_no(Integer emp_no) {
 		this.emp_no = emp_no;
 	}
 	public void setTitle(String title) {

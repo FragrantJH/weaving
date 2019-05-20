@@ -21,6 +21,8 @@
   <link href="${pageContext.request.contextPath}/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
+  <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/core/main.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
 </head>
 
 <style>
@@ -245,6 +247,12 @@
   <script src="${pageContext.request.contextPath}/assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath}/assets/demo/demo.js"></script>
+  
+  
+<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/core/main.js'></script>
+<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/interaction/main.js'></script>
+<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/daygrid/main.js'></script>
+  
   <script>
     $(document).ready(function() {
       $().ready(function() {
