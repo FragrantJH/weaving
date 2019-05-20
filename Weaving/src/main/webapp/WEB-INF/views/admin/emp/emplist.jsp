@@ -46,6 +46,7 @@
 			.append($('<td>').html(item.empName))
 			.append($('<td>').html(item.positionTitle))
 			.append($('<td>').html(item.deptName))
+			.append($('<td>').html('<a id=\'btnSelect\' href=\'${pageContext.request.contextPath}/showEmp/${EmpForm.empNo}\'>${EmpForm.empNo}</a>'))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<input type=\'hidden\' empNo=\'hidden_empNo\'>').val(item.empNo))
 			.appendTo('tbody');
@@ -98,7 +99,7 @@ div.right {
 	 </div>
 	 
 	 <div class="right">
-		 <h2>직원목록</h2>
+		 <h2>직원목록</h2><button onclick="location.href='./empinsertForm'">등록</button>
 		 <hr>
 		 <table class="table text-center">
 			<thead>
@@ -111,10 +112,6 @@ div.right {
 			</thead>
 			<tbody></tbody>
 		</table>
-		 <br>
-		 <button>직위관리</button>
-		 <button>삭제</button>
-		 <button onclick="location.href='./empinsertForm'">등록</button>
 	 </div>
 	 
  </div>

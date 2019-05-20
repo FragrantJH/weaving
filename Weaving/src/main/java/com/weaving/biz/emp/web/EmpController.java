@@ -53,18 +53,22 @@ public class EmpController {
 		return "admin/emp/empinsert";
 	}
 	//수정
-		@RequestMapping(value="/updateEmp"
-				,method=RequestMethod.PUT
-	            ,headers = {"Content-type=application/json" }
-		)
+		@RequestMapping("/updateEmp")
 		public EmpVO updateEmp(@RequestBody EmpVO vo, Model model) {
 			service.updateEmp(vo);
 			return  vo;
 		}	
+		
+	@RequestMapping("/showEmp/{empNo}")
+	public String empViewForm(@ModelAttribute("EmpForm") EmpVO vo, @PathVariable Integer empNo, Model model) {
+		vo.setEmpNo(empNo);
+		model.addAttribute("EmpForm",service.getEmp(vo));
+		return "admin/emp/empinsert";
+	}
 	
 	//등록폼으로 이동
 	@RequestMapping("/empinsertForm")
-	public String empinsertForm() {
+	public String empinsertForm(@ModelAttribute("EmpForm") EmpVO vo, Model model) {
 		return "admin/emp/empinsert";
 	}
 
