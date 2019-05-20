@@ -17,7 +17,23 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- ckeditor 스크립트 -->
 <script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
- 
+<style>
+#approval-table th{
+	background-color: #f9f9f9;
+	height: 40px;
+	width: 116px;
+	vertical-align: middle; 
+	text-align: center;
+}
+
+#approval-table .stamp{
+	display: table-cell;
+	height:80px;
+	width: 116px;
+	vertical-align: middle; 
+	text-align: center;	
+}
+</style>
 <script>
 //jquery작업
 $(function(){
@@ -44,6 +60,51 @@ $(function(){
 });
 
 function makeApprovalListTable() {
+	$('.modal-footer').on('click', '#rs-approval-list', function() {
+		var approvalEmp = $('#approvalList option');
+		var empCnt = approvalEmp.length;
+		var tb = "";
+
+		if (empCnt > 0) {
+
+			/*
+			<div style="height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;">
+				결재									<span class="spr-approval set" title="결재" onclick="ApprovalProcess.getApprovalUserInfoLayer('A', 'approval_first_line');"></span>
+								</div>
+			*/
+			$('.approval-line').empty();
+			var tb = "<table id='approval-table' border='1' bordercolor='#cdcdcd'>"+
+				//		"<thead>"+
+						"<tr>" +
+							"<th rowspan='2' scope='col'>"+
+								"<div style='height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;'>"+
+									"결재"+
+								"</div>"+
+							"</th>"+
+							"<th scope='col' class='team name' data-empNo='${position}'>${empName}</td>";
+			for (var i = 0; i < empCnt; i++) {
+				var str = approvalEmp[i].text.split('(');
+				tb +="<th scope='col' class='team name'  data-empNo='"+approvalEmp[0].value+"'>"+str[0]+"</th>";
+			}
+			
+			tb += "</tr>"+
+				  //"</thead>"+
+				 // "<tbody>"+
+				  "<tr>" +
+				  	"<td class='stamp'>승인</td>";
+			for (var i = 0; i < empCnt; i++) {
+				tb += "<td class='stamp'></td>";
+			}
+			tb +="</tr>"+
+				// "</tbody>"+
+				 "</table>";
+		}
+		$('.approval-line').append(tb);
+		
+    	//$('#myModal').modal('hide')
+    	$('#approvalLineModel').modal('hide');
+	});
+
 	
 }
 
@@ -121,7 +182,7 @@ $("#dropdownMenuButton")
 	*/
 </script> 
 </head>
-<body>
+<body>ㅇㄹ
 <div class="col-md-12">
 	<div class="card">
 	    <div class="card-header card-header-text card-header-primary">
@@ -201,9 +262,11 @@ $("#dropdownMenuButton")
 			        </tr>			        
 			    </tbody>
 			</table>
-			<h3><small class="text-muted">결제선</small></h3><span><a href="#0" class="card-link" data-toggle="modal" data-target="#approvalLineModel">결제선설정</a></span>
-			
-			<div class="approval-line">문서 종류 선택 시 결재선이 노출됩니다.
+			<div class="approval-line-title">
+				<h3 style="display:inline;"><small class="text-muted">결재선</small></h3>
+				<small><a href="#0" class="card-link" data-toggle="modal" data-target="#approvalLineModel">결제선설정</a></small>
+    		</div>
+			<div class="approval-line">결재선 설정되면 노출됩니다.
 			</div>	    
 			<!-- modal 페이지 -->
 			<div class="modal fade bd-example-modal-lg" id="approvalLineModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -250,10 +313,7 @@ $("#dropdownMenuButton")
 			    </div>
 			  </div>
 			</div>		
-
-
-
-			
+	
 			<h3><small class="text-muted">상세 입력</small></h3>
 			<div class="approval-form">
 				<textarea name="editor1" id="editor1" rows="10" cols="200">
