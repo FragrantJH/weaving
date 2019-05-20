@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DeptDAO">
 	<select id="getDeptList" resultType="dept" parameterType="dept">
-		select DEPT_ID,DEPT_NAME,UPPER_DEPT_ID
-		from department
+		SELECT LPAD(' ', 6*(LEVEL-1)) || dept_name dept_name, dept_id, UPPER_DEPT_ID
+		FROM department
+		START WITH dept_name='회사'
+		CONNECT BY PRIOR dept_id=UPPER_DEPT_ID
 	</select>
 </mapper>

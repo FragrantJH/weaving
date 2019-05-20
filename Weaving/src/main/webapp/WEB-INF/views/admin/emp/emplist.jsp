@@ -111,9 +111,9 @@ div.right {
 <body>
  <div>
 	 <div class="left">
-		 <h2>조직도</h2>
+		 <h2>조직도</h2><button onclick="location.href='./empinsertForm'">등록</button>
 		 <hr>
-		 <table class="table text-center">
+		 <table class="table">
 			<thead>
 			<tr>
 				<th class="text-center">부서번호</th>
