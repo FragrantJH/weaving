@@ -11,6 +11,8 @@
 
 	$(function(){
 		empList();
+		
+		deptList();
 	
 		//userSelect();
 		
@@ -22,6 +24,33 @@
 		
 		//init();
 	});
+	
+	//사용자 목록 조회 요청
+	function deptList() {
+		$.ajax({
+			url:'deptlist',
+			type:'GET',
+			contentType:'application/json;charset=utf-8',
+			dataType:'json',
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+			success:deptListResult
+		});
+	}//userList
+	
+	//사용자 목록 조회 응답
+	function deptListResult(data) {
+		$("#dept").empty();
+		$.each(data,function(idx,item){
+			$('<tr>')
+			.append($('<td>').html(item.deptId))
+			.append($('<td>').html(item.deptName))
+			.append($('<td>').html(item.upperDeptId))
+			.append($('<input type=\'hidden\' deptId=\'hidden_deptId\'>').val(item.deptId))
+			.appendTo('#dept');
+		});//each
+	}//deptListResult
 
 	//사용자 목록 조회 요청
 	function empList() {
@@ -39,7 +68,7 @@
 	
 	//사용자 목록 조회 응답
 	function empListResult(data) {
-		$("tbody").empty();
+		$("#user").empty();
 		$.each(data,function(idx,item){
 			$('<tr>')
 			.append($('<td>').html(item.empNo))
@@ -49,7 +78,7 @@
 			.append($('<td>').html('<a id=\'btnSelect\' href=\'${pageContext.request.contextPath}/showEmp/${EmpForm.empNo}\'>${EmpForm.empNo}</a>'))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<input type=\'hidden\' empNo=\'hidden_empNo\'>').val(item.empNo))
-			.appendTo('tbody');
+			.appendTo('#user');
 		});//each
 	}//userListResult
 
@@ -84,18 +113,16 @@ div.right {
 	 <div class="left">
 		 <h2>조직도</h2>
 		 <hr>
-		 <ul>
-			 <li>
-				 <input type="checkbox" id="menuBtn">
-				 <label for="menuBtn" class="labelBtn" onclick="">메뉴3</label>
-					 <ul class="submenu">
-						 <li><a href="#">소메뉴1</a></li>
-						 <li><a href="#">소메뉴2</a></li>
-						 <li><a href="#">소메뉴3</a></li>
-						 <li><a href="#">소메뉴4</a></li>
-					 </ul>
-			 </li>
-		 </ul>
+		 <table class="table text-center">
+			<thead>
+			<tr>
+				<th class="text-center">부서번호</th>
+				<th class="text-center">부서명</th>
+				<th class="text-center">부서</th>
+			</tr>
+			</thead>
+			<tbody id="dept"></tbody>
+		</table>
 	 </div>
 	 
 	 <div class="right">
@@ -110,7 +137,7 @@ div.right {
 				<th class="text-center">부서</th>
 			</tr>
 			</thead>
-			<tbody></tbody>
+			<tbody id="user"></tbody>
 		</table>
 	 </div>
 	 
