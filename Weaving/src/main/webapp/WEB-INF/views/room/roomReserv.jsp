@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,35 +98,24 @@
              <table class="table">
     <thead>
         <tr>
-            <th class="text-center">#</th>
-            <th>Name</th>
-            <th>Job Position</th>
-            <th>Since</th>
-            <th class="text-right">Salary</th>        
+            <th class="text-center">No</th>
+            <th>회의실</th>
+            <th>날짜</th>
+            <th>예약시간</th>
+            <th>사용용도</th>        
         </tr>
     </thead>
     <tbody>
+    ${list}
+    	<c:forEach items="${list}" var="ReservList" varStatus="s">
         <tr>
-            <td class="text-center">1</td>
-            <td>Andrew Mike</td>
-            <td>Develop</td>
-            <td>2013</td>
-            <td class="text-right">&euro; 99,225</td>
+            <td>${ReservList.reservNo}</td>
+            <td>${ReservList.roomNo}</td>
+            <td>${ReservList.startTime}</td>            
+            <td>${ReservList.startTime}~${ReservList.endTime}</td>
+            <td>${ReservList.description}</td>
         </tr>
-        <tr>
-            <td class="text-center">2</td>
-            <td>John Doe</td>
-            <td>Design</td>
-            <td>2012</td>
-            <td class="text-right">&euro; 89,241</td>
-        </tr>
-        <tr>
-            <td class="text-center">3</td>
-            <td>Alex Mike</td>
-            <td>Design</td>
-            <td>2010</td>
-            <td class="text-right">&euro; 92,144</td>
-        </tr>
+		</c:forEach>
     </tbody>
 </table>
           </div>
