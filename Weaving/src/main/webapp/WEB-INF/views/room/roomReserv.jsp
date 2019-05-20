@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+  
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <meta charset="UTF-8">
@@ -20,8 +20,8 @@
             </div>
           </div>
           <div class="card-body">
-          <form>
-              	회의실 <select name="room">
+          <form action="roomReservInsert" method="POST">
+              	회의실 <select name="roomId" >
 			<option value="">회의실선택</option>
 			<option value="1">1번회의실</option>
 			<option value="2">2번회의실</option>
@@ -33,6 +33,7 @@
 		<script>
 			$('#datepicker').datepicker();
 		</script><p>
+		
 	예약시간 <select name="time">
 			<option value="">선택</option>
 			<option value="1">오전10:00</option>
@@ -72,11 +73,11 @@
 			<option value="15">오전17:00</option>
 			<option value="16">오전17:30</option>
 		  </select><p>
-	사용용도 <textarea name="사용용도" rows="8" cols="40">
+	사용용도 <textarea name="description" rows="8" cols="40">
 	${roomReserv.description}
 	</textarea><p>
 		<div id="btn_group">
-		<button id="reserv" class="btn btn-primary btn-sm">예약</button>
+		<button type="submit" id="reserv" class="btn btn-primary btn-sm">예약</button>
 		<button id="cancel" class="btn btn-primary btn-sm">취소</button>		
 		</div>
 		</form>
@@ -130,9 +131,6 @@
 </table>
           </div>
       </div>
-  </div>
-</div>
-	
-	
+  </div>	
 </body>
 </html>

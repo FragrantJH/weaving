@@ -6,7 +6,15 @@ public class RoomVO {
 	private String roomLoc;
 	private String roomSize;
 	private String roomMax;
+	private String description;
+
 	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public int getRoomId() {
 		return roomId;
 	}
@@ -36,5 +44,10 @@ public class RoomVO {
 	}
 	public void setRoomMax(String roomMax) {
 		this.roomMax = roomMax;
+	}
+	@Override
+	public String toString() {
+		return "RoomVO [roomId=" + roomId + ", roomName=" + roomName + ", roomLoc=" + roomLoc + ", roomSize=" + roomSize
+				+ ", roomMax=" + roomMax + ", description=" + description + "]";
 	}
 }

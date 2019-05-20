@@ -19,8 +19,8 @@ public class RoomController {
 	
 	//회의실인포
 	@RequestMapping("/roomlist")
-	public String list() {
-	
+	public String list(Model model) {
+		model.addAttribute("list", service.getRoomList());
 		return "room/roomList";
 	}
 	
@@ -31,6 +31,7 @@ public class RoomController {
 	//회의실예약
 	@RequestMapping(value = "/roomReservInsert", method = RequestMethod.POST)
 	public String reserv(RoomVO vo) {
+		System.out.println(vo);
 		service.insertRoom(vo);
 		return "room/roomReserv";
 	}

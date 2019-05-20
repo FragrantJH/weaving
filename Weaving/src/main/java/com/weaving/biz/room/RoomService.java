@@ -12,5 +12,5 @@ public interface RoomService {
 	
 	RoomVO getRoom(RoomVO vo);
 	
-	List<RoomVO> getRoomList(RoomVO vo);
+	List<RoomVO> getRoomList();
 }

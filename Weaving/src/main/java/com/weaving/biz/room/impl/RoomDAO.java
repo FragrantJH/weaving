@@ -1,5 +1,9 @@
 package com.weaving.biz.room.impl;
 
+
+
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,7 +20,7 @@ public class RoomDAO {
 		ss.insert("RoomDAO.insertRoom", vo);
 	}	
 	
-	public void select(RoomVO vo) {
-		ss.selectList("RoomDAO.selectRoomList", vo);
+	public List<RoomVO> getRoomList() {
+		return ss.selectList("RoomDAO.selectRoomList");
 	}
 }

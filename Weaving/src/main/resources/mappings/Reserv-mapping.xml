@@ -37,18 +37,15 @@
 		 WHERE ROOM_ID = #{roomId}
 	</delete>
 	
-	<select id="selectRoomList" parameterType="reserv" resultType="reserv">
-		SELECT ROW_NUM,
+	<select id="selectRoomList" resultType="reserv">
+		SELECT 
 		       ROOM_ID,
 			   ROOM_NAME,
 			   ROOM_LOC
 			   ROOM_SIZE
 			   ROOM_MAX
-		  FROM (SELECT ROWNUM ROW_NUM ,
-		  		A.* FROM (SELECT * 
-		  		            FROM ROOM 
-		  		          ORDER BY ROOM_ID) A ) B 
-		  WHERE ROW_NUM BETWEEN #{first} AND #{last}
+		  FROM ROOM ORDER BY ROOM_ID
+		  		
 	</select>
 	
 	<select id="selectRoom" parameterType="reserv" resultType="reserv">

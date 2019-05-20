@@ -6,8 +6,8 @@
 		INSERT INTO ROOM (
 							  ROOM_ID,
 							  ROOM_NAME,
-							  ROOM_LOC
-							  ROOM_SIZE
+							  ROOM_LOC,
+							  ROOM_SIZE,
 							  ROOM_MAX
 							 
 							  
@@ -17,7 +17,7 @@
 				             #{roomName},
 				             #{roomLoc},
 				             #{roomSize},
-				             #{roomMax},
+				             #{roomMax}
 				        
 				    )			    
 	</insert>
@@ -25,7 +25,7 @@
 		UPDATE room
 		   SET ROOM_NAME = #{roomName},
 		   	   ROOM_LOC = #{roomLoc},
-		   	   ROOM_SIZE = #{roomSize}
+		   	   ROOM_SIZE = #{roomSize},
 		   	   ROOM_MAX = #{roomMax}		   	   
 		 WHERE ROOM_ID = #{roomId}
 	</update>
@@ -35,18 +35,13 @@
 		 WHERE ROOM_ID = #{roomId}
 	</delete>
 	
-	<select id="selectRoomList" parameterType="room" resultType="room">
-		SELECT ROW_NUM,
-		       ROOM_ID,
+	<select id="selectRoomList" resultType="room">
+		SELECT ROOM_ID,
 			   ROOM_NAME,
-			   ROOM_LOC
-			   ROOM_SIZE
+			   ROOM_LOC,
+			   ROOM_SIZE,
 			   ROOM_MAX
-		  FROM (SELECT ROWNUM ROW_NUM ,
-		  		A.* FROM (SELECT * 
-		  		            FROM ROOM 
-		  		          ORDER BY ROOM_ID) A ) B 
-		  WHERE ROW_NUM BETWEEN #{first} AND #{last}
+		  FROM ROOM ORDER BY ROOM_ID
 	</select>
 	
 	<select id="selectRoom" parameterType="room" resultType="room">

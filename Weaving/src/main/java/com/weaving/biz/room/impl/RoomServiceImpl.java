@@ -3,6 +3,7 @@ package com.weaving.biz.room.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 
 import com.weaving.biz.room.RoomService;
@@ -39,9 +40,9 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public List<RoomVO> getRoomList(RoomVO vo) {
+	public List<RoomVO> getRoomList() {
 		// TODO Auto-generated method stub
-		return null;
+		return ss.getRoomList();
 	}
 
 }
