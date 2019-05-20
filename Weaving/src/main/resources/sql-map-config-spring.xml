@@ -13,10 +13,10 @@
 		<typeAlias alias="board" type="com.weaving.biz.board.BoardVO" />
 		<typeAlias alias="docForm" type="com.weaving.biz.docForm.DocFormVO"/>
 		<typeAlias alias="room" type="com.weaving.biz.room.RoomVO"/>
-		<typeAlias alias="reserv" type="com.weaving.biz.room.ReservVO"/>
+		<typeAlias alias="reserv" type="com.weaving.biz.reserv.ReservVO"/>
 		<typeAlias alias="emp" type="com.weaving.biz.emp.EmpVO"/>
 		<typeAlias alias="dept" type="com.weaving.biz.dept.DeptVO"/>
-	
+		<typeAlias alias="cal" type="com.weaving.biz.cal.CalVO"/>
 	</typeAliases>
 
 </configuration>
