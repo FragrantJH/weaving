@@ -30,32 +30,35 @@
 	}//init
 
 	//사용자 조회 요청
-	function userSelect() {
+	function getEmp() {
 		//조회 버튼 클릭
 		$('body').on('click','#btnSelect',function(){
-			var id = $(this).closest('tr').find('#hidden_id').val();
+			var emp = $(this).closest('tr').find('#hidden_empNo').val();
 			//특정 사용자 조회
 			$.ajax({
-				url:'users/'+id,
+				url:'getEmpl/'+emp,
 				type:'GET',
 				contentType:'application/json;charset=utf-8',
 				dataType:'json',
 				error:function(xhr,status,msg){
 					alert("상태값 :" + status + " Http에러메시지 :"+msg);
 				},
-				success:userSelectResult
+				success:getEmpResult
 			});
 		}); //조회 버튼 클릭
 	}//userSelect
 	
 	//사용자 조회 응답
-	function userSelectResult(data) {
-		var user = data;
-		$('input:text[name="id"]').val(user.id);
-		$('input:text[name="name"]').val(user.name);
-		$('input:radio[name="gender"][value="'+user.gender+'"]').prop('checked', true);
-		$('select[name="role"]').val(user.role).attr("selected", "selected");
-	}//userSelectResult
+	function getEmpResult(data) {
+		var emp = data;
+		$('input:text[name="empName"]').val(emp.name);
+		$('input:text[name="password"]').val(emp.name);
+		$('input:text[name="deptId"]').val(emp.name);
+		$('select[name="positionTitle"]').val(user.positionTitle).attr("selected", "selected");
+		$('input:text[name="email"]').val(emp.name);
+		$('input:text[name="phone"]').val(emp.name);
+		$('input:text[name="address"]').val(emp.name);
+	}//getEmpResult
 </script>
 <style>
  #float1 { float: left; padding: 10px;}

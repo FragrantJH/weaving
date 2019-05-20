@@ -46,6 +46,7 @@
 			.append($('<td>').html(item.empName))
 			.append($('<td>').html(item.positionTitle))
 			.append($('<td>').html(item.deptName))
+			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<input type=\'hidden\' empNo=\'hidden_empNo\'>').val(item.empNo))
 			.appendTo('tbody');
 		});//each
