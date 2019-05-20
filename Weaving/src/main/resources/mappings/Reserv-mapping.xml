@@ -26,40 +26,41 @@
 	<update id="updateReserv" parameterType="reserv">
 		UPDATE RESERVATION
 		   SET ROOM_ID = #{roomID},
-		   	   ROOM_LOC = #{roomLoc},
-		   	   ROOM_SIZE = #{roomSize}
-		   	   ROOM_MAX = #{roomMax}		   	   
+		   	   EMP_NO = #{empNo},
+		   	   START_TIME = #{startTime},
+		   	   END_TIME = #{endTime}	   	   
 		 WHERE RESERV_ID = #{reservId}
 	</update>
 	
-	<delete id="deleteRoom" parameterType="reserv">
-		DELETE FROM ROOM
-		 WHERE ROOM_ID = #{roomId}
+	<delete id="deleteReserv" parameterType="reserv">
+		DELETE FROM RESERVATION
+		 WHERE RESERV_ID = #{reservId}
 	</delete>
 	
-	<select id="selectRoomList" resultType="reserv">
-		SELECT 
+	<select id="selectReservList" resultType="reserv">
+		SELECT RESERV_ID,
 		       ROOM_ID,
-			   ROOM_NAME,
-			   ROOM_LOC
-			   ROOM_SIZE
-			   ROOM_MAX
-		  FROM ROOM ORDER BY ROOM_ID
+			   EMP_NO,
+			   START_TIME,
+			   END_TIME,
+			   DESCRIPTION
+		  FROM ROOM ORDER BY RESERV_ID
 		  		
 	</select>
 	
-	<select id="selectRoom" parameterType="reserv" resultType="reserv">
-		SELECT ROOM_ID,
-			   ROOM_NAME,
-			   ROOM_LOC,
-			   ROOM_SIZE,
-			   ROOM_MAX			   
-		  FROM ROOM 
-		 WHERE ROOM_ID = #{roomId}
+	<select id="selectReserv" parameterType="reserv" resultType="reserv">
+		SELECT RESERV_ID,
+			   ROOM_ID,
+			   EMP_NO,
+			   START_TIME,
+			   END_TIME,	  
+			   DESCRIPTION 
+		  FROM RESERVATION
+		 WHERE RESERV_ID = #{reservId}
 	</select>
 	
-	<select id="selectRoomTotalCnt" resultType="int">
+	<select id="selectReservTotalCnt" resultType="int">
 		SELECT COUNT(*)
-		  FROM ROOM
+		  FROM RESERVATION
 	</select>
 </mapper>

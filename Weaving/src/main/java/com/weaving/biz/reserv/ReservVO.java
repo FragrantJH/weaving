@@ -1,4 +1,4 @@
-package com.weaving.biz.room;
+package com.weaving.biz.reserv;
 
 public class ReservVO {
 	private int reservId;
@@ -7,7 +7,6 @@ public class ReservVO {
 	private String startTime;
 	private String endTime;
 	private String description;
-	
 	
 	public int getReservId() {
 		return reservId;
@@ -44,5 +43,10 @@ public class ReservVO {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+		@Override
+		public String toString() {
+			return "ReservVO [reservId=" + reservId + ", roomId=" + roomId + ", empNo=" + empNo + ", startTime=" + startTime
+					+ ", endTime=" + endTime + ", description=" + description + "]";
 	}
 }

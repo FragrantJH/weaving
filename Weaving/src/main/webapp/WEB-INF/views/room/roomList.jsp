@@ -17,7 +17,7 @@
 					<th class="th-description">위치</th>
 					<th class="th-description">크기</th>
 					<th class="th-description">수용인원</th>
-					<th class="text-right">액션</th>
+					<th class="th-description">액션</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -29,14 +29,12 @@
 								<img src="images/re${s.index+1}.jpg" alt="room1" width="100">
 							</div>
 						</td>
-						<td>${RoomList.roomName} <br>
-						<small>대강당&nbsp;옆</small>
-						</td>
+						<td>${RoomList.roomName}</td>
 						<td>${RoomList.roomLoc}</td>
 						<td>${RoomList.roomSize}</td>
 						<td>${RoomList.roomMax}</td>
-						<td class="td-actions text-right">
-							<button type="button" rel="tooltip" class="btn btn-info">
+						<td class="td-actions">
+							<button type="button" rel="tooltip" class="btn btn-info" onclick="location.href='roomReservForm'">
 								<i class="material-icons">person</i>
 							</button>
 							<button type="button" rel="tooltip" class="btn btn-success">
