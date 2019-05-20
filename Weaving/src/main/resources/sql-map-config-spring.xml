@@ -15,7 +15,7 @@
 		<typeAlias alias="room" type="com.weaving.biz.room.RoomVO"/>
 		<typeAlias alias="reserv" type="com.weaving.biz.room.ReservVO"/>
 		<typeAlias alias="emp" type="com.weaving.biz.emp.EmpVO"/>
-		
+		<typeAlias alias="dept" type="com.weaving.biz.dept.DeptVO"/>
 		
 	</typeAliases>
 
