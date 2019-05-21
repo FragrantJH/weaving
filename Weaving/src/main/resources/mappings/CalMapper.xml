@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CalDAO">
+
+<select id="getCalList" resultType="cal">
+	SELECT CAL_ID,
+		   GROUP_ID,
+		   EMP_NO,
+		   TITLE,
+		   ALL_DAY,
+		   START_DATE,
+		   END_DATE,
+		   BACK_COLOR,
+		   CREATE_DATE
+	  FROM CALENDARS
+	 <if test="emp_no != null">
+	 WHERE EMP_NO = #{empNo}
+	 </if>
+	ORDER BY CAL_ID
+</select>
+
+<insert id="">
+
+</insert>
+
+
+
+</mapper>

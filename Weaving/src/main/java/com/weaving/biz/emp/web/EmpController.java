@@ -40,6 +40,7 @@ public class EmpController {
 	
 	//단건조회
 		@RequestMapping(value="/getEmpl/{empNo}",  method=RequestMethod.GET)
+		@ResponseBody
 		public EmpVO getUser(@PathVariable int empNo, EmpVO vo, Model model) {
 			vo.setEmpNo(empNo);
 			return  service.getEmp(vo);

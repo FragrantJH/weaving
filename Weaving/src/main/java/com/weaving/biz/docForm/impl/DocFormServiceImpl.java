@@ -12,41 +12,41 @@ import com.weaving.biz.docForm.DocFormVO;
 public class DocFormServiceImpl implements DocFormService {
 
 	@Autowired
-	DocFormDAO mybatis;
+	DocFormDAO dao;
 	
 	@Override
 	public void insertDocForm(DocFormVO vo) {
-		mybatis.insertDocForm(vo);
+		dao.insertDocForm(vo);
 	}
 
 	@Override
 	public void updateDocForm(DocFormVO vo) {
-		mybatis.updateDocForm(vo);
+		dao.updateDocForm(vo);
 	}
 
 	@Override
 	public void deleteDocForm(DocFormVO vo) {
-		mybatis.deleteDocForm(vo);
+		dao.deleteDocForm(vo);
 	}
 
 	@Override
 	public DocFormVO getDocForm(DocFormVO vo) {
-		return mybatis.getDocForm(vo);
+		return dao.getDocForm(vo);
 	}
 
 	@Override
 	public List<DocFormVO> getDocFormListPaging(DocFormVO vo) {
-		return mybatis.getDocFormListPaging(vo);
+		return dao.getDocFormListPaging(vo);
 	}
 
 	@Override
 	public int getDocFormTotalCount() {
-		return mybatis.getDocFormTotalCount();
+		return dao.getDocFormTotalCount();
 	}
 
 	@Override
 	public List<DocFormVO> getDocFormList() {
-		return mybatis.getDocFormList();
+		return dao.getDocFormList();
 	}
 
 }
