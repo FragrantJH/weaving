@@ -1,10 +1,13 @@
 package com.weaving.biz.reserv.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.reserv.ReservService;
 import com.weaving.biz.reserv.ReservVO;
 
@@ -21,7 +24,17 @@ public class ReservController {
 	}
 	
 	@RequestMapping("/roomInsertReserv")
-	public String roomInsertReserv(Model model,ReservVO vo) {
+	public String roomInsertReserv(Model model,ReservVO vo, HttpSession session ) {
+		
+		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
+		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
+		vo.setEmpNo(1);
+		
+		// 현재 접속한 사용자 정보
+		EmpVO emp = (EmpVO)session.getAttribute("emp");
+		
+		
+		System.out.println("test: " + vo);
 		service.insertReserv(vo);
 		model.addAttribute("list",service.getReservList());
 		return "room/roomReserv";

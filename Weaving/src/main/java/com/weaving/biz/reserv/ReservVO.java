@@ -11,14 +11,6 @@ public class ReservVO {
 	private String startDate;
 	private String endDate;
 
-	public String getReservDate() {
-		return reservDate;
-	}
-
-	public void setReservDate(String reservDate) {
-		this.reservDate = reservDate;
-	}
-
 	public int getReservId() {
 		return reservId;
 	}
@@ -41,6 +33,14 @@ public class ReservVO {
 
 	public void setEmpNo(int empNo) {
 		this.empNo = empNo;
+	}
+
+	public String getReservDate() {
+		return reservDate;
+	}
+
+	public void setReservDate(String reservDate) {
+		this.reservDate = reservDate;
 	}
 
 	public String getStartTime() {
@@ -72,7 +72,7 @@ public class ReservVO {
 	}
 
 	public void setStartDate(String startDate) {
-		this.startDate = this.reservDate + " " + this.startTime;
+		this.startDate = startDate;
 	}
 
 	public String getEndDate() {
@@ -80,7 +80,7 @@ public class ReservVO {
 	}
 
 	public void setEndDate(String endDate) {
-		this.endDate = this.reservDate + " " + this.endTime;
+		this.endDate = endDate;
 	}
 
 	@Override
