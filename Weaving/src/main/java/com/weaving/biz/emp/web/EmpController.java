@@ -57,7 +57,7 @@ public class EmpController {
 		Map result = new HashMap<String, Object>();
 		result.put("result", Boolean.TRUE);
 		return result;
-	}
+	}  
 	
 	//등록
 	@RequestMapping("/insertEmp")
@@ -71,9 +71,10 @@ public class EmpController {
 			,method= {RequestMethod.PUT,RequestMethod.GET} 
 			,headers = {"Content-type=application/json" }
 	)
+	@ResponseBody
 	public EmpVO updateEmp(@RequestBody EmpVO vo, Model model) {
 		service.updateEmp(vo);
-		return  vo;
+		return vo;
 	}	
 		
 	@RequestMapping("/showEmp/{empNo}")
@@ -118,7 +119,6 @@ public class EmpController {
 			return "empty/login";
 		} else {
 			session.setAttribute("empName", emp.getEmpName());
-			session.setAttribute("positionTitle", emp.getPositionTitle());
 			session.setAttribute("position", emp.getPosition());
 			session.setAttribute("emp", emp);
 

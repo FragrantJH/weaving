@@ -5,6 +5,8 @@
 	<settings>
 		<!-- 오라클 컬럼이 first_name 를 VO firstName 처럼 카멜케이스로 변환 -->
 		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="localCacheScope" value="STATEMENT" ></setting>
+		<setting name="cacheEnabled" value="false" />
 	</settings>
 
 

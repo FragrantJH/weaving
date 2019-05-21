@@ -54,13 +54,13 @@
 			var empName = $('input:text[name="empName"]').val();
 			var password = $('input:text[name="password"]').val();
 			var deptId = $('input:text[name="deptId"]').val();
-			var position = $('select[name="position"]').val();	
+			var position = $('select[name="position"]').val();
 			var email = $('input:text[name="email"]').val();
 			var phone = $('input:text[name="phone"]').val();
 			var address = $('input:text[name="address"]').val();
 			
 			$.ajax({ 
-			    url: "empUpdate", 
+			    url: "empUpdate",
 			    type: 'PUT', 
 			    dataType: 'json', 
 			    data: JSON.stringify({ empNo: empNo, empName: empName,password: password, deptId: deptId, position: position, email: email, phone: phone, address: address }),
@@ -113,7 +113,7 @@
 		$('input:text[name="empName"]').val(emp.empName);
 		$('input:text[name="password"]').val(emp.password);
 		$('input:text[name="deptId"]').val(emp.deptId);
-		$('select[name="position"]').val(emp.position).attr("selected","selected");
+		$('select[name="position"]').val(emp.position);
 		$('input:text[name="email"]').val(emp.email);
 		$('input:text[name="phone"]').val(emp.phone);
 		$('input:text[name="address"]').val(emp.address);
@@ -140,13 +140,14 @@
 			$('<tr>')
 			.append($('<td>').html(item.empNo))
 			.append($('<td>').html(item.empName))
-			.append($('<td>').html(item.positionTitle))
 			.append($('<td>').html(item.deptName))
+			.append($('<td>').html(item.position))
 			.append($('<td>').html('<button id=\'btnSelect\' data-toggle=\'modal\' data-target=\'#searchModel\'>조회</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_empNo\'>').val(item.empNo))
 			.appendTo('tbody');
 		});//each
 	}//userListResult
+
 </script>
 <style type="text/css">
 .submenu {
@@ -210,26 +211,29 @@
 								<input type="text" name="password" id="password">
 								<br>
 								<br>
+								
 								<!-- 
-	<label for="passwordcheck"><b>비밀번호 확인</b></label>
-	<input type="text" name="passwordcheck"><br><br>
-	 -->
-								<!-- 
-	<label for="joindate1"><b>입사일</b></label>
-	<input type="text" name="joindate1" id="joindate1"><br><br>
-	 -->
+								<label for="passwordcheck"><b>비밀번호 확인</b></label>
+								<input type="text" name="passwordcheck"><br><br>
+								 -->
+															<!-- 
+								<label for="joindate1"><b>입사일</b></label>
+								<input type="text" name="joindate1" id="joindate1"><br><br>
+								 -->
+								 
 								<label for="deptId"><b>소속조직</b></label> 
 								<input type="text" name="deptId" id="deptId">
 								<br>
 								<br> 
-								<label for="positionTitle"><b>직위</b></label> 
-								<select
-									name="positionTitle" size="1" id="positionTitle">
-									<option value="선택">선택</option>
-									<option value="사원">사원</option>
-									<option value="대리">대리</option>
-									<option value="이사">이사</option>
-								</select><br>
+								<label for="position"><b>직위</b></label> 
+								<select 
+									name="position" size="1" id="position">
+									<option value="">선택</option>
+									<option value="1">대리</option>
+									<option value="2">과장</option>
+									<option value="3">차장</option>
+								</select>
+								<br>
 								<br> 
 								<label for="email"><b>이메일</b></label> 
 								<input type="text" name="email" id="email">
