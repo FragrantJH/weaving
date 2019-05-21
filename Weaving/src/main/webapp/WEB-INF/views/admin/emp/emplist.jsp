@@ -18,7 +18,7 @@
 
 		//userInsert();
 
-		//empUpdate();
+		empUpdate();
 
 		init();
 	});
@@ -27,7 +27,7 @@
 	function empDelete() {
 		//삭제 버튼 클릭
 		$('body').on('click','#btnDelete',function(){
-			var empNo = $(this).closest('input').find('#empNo').val();
+			var empNo = $('#empNo').val();
 			var result = confirm(empNo +" 사용자를 정말로 삭제하시겠습니까?");
 			if(result) {
 				$.ajax({
@@ -39,12 +39,44 @@
 						console.log("상태값 :" + status + " Http에러메시지 :"+msg);
 					}, success:function(xhr) {
 						console.log(xhr.result);
+						$('#searchModel').modal("hide");
 						empList();
 					}
 				});      }//if
 		}); //삭제 버튼 클릭
 	}//empDelete
 
+	//사용자 수정 요청
+	function empUpdate() {
+		//수정 버튼 클릭
+		$('#btnUpdate').on('click',function(){
+			var empNo = $('input:text[name="empNo"]').val();
+			var empName = $('input:text[name="empName"]').val();
+			var password = $('input:text[name="password"]').val();
+			var deptId = $('input:text[name="deptId"]').val();
+			var position = $('select[name="position"]').val();	
+			var email = $('input:text[name="email"]').val();
+			var phone = $('input:text[name="phone"]').val();
+			var address = $('input:text[name="address"]').val();
+			
+			$.ajax({ 
+			    url: "empUpdate", 
+			    type: 'PUT', 
+			    dataType: 'json', 
+			    data: JSON.stringify({ empNo: empNo, empName: empName,password: password, deptId: deptId, position: position, email: email, phone: phone, address: address }),
+			    contentType: 'application/json ',
+			    mimeType: 'application/json',
+			    success: function(data) { 
+			    	$('#searchModel').modal("hide");
+					empList();
+			    },
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    }
+			});
+		});//수정 버튼 클릭
+	}//userUpdate
+	
 	//초기화
 	function init() {
 		//초기화 버튼 클릭
@@ -157,6 +189,7 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
+						
 						<div class="modal-body">
 							<form action="insertEmp" method="post">
 								<!-- <div class="btn-group">
@@ -215,7 +248,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary" id="btnDelete">삭제</button>
-							<button type="button" class="btn btn-primary" value="수정" id="btnUpdate" >수정</button>
+							<button type="button" class="btn btn-primary" id="btnUpdate" >수정</button>
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 						</div>
 					</div>

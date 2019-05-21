@@ -67,11 +67,14 @@ public class EmpController {
 		return "admin/emp/empinsert";
 	}
 	//수정
-		@RequestMapping("/updateEmp")
-		public EmpVO updateEmp(@RequestBody EmpVO vo, Model model) {
-			service.updateEmp(vo);
-			return  vo;
-		}	
+	@RequestMapping(value="/empUpdate"
+			,method= {RequestMethod.PUT,RequestMethod.GET} 
+			,headers = {"Content-type=application/json" }
+	)
+	public EmpVO updateEmp(@RequestBody EmpVO vo, Model model) {
+		service.updateEmp(vo);
+		return  vo;
+	}	
 		
 	@RequestMapping("/showEmp/{empNo}")
 	public String empViewForm(@ModelAttribute("EmpForm") EmpVO vo, @PathVariable Integer empNo, Model model) {

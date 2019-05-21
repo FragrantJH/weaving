@@ -74,15 +74,15 @@
 	<!-- 수정 -->
 	<update id="updateEmp" parameterType="emp">
 		update employees set
-		emp_name = #{password},
-		password = #{name},
-		position = #{role},
-		email = #{role},
-		phone = #{role},
-		address = #{role},
-		dept_id = #{role},
-		position_title = #{role}
-		where id = #{id}
+		emp_name = #{empName},
+		password = #{password},
+		position = #{position},
+		email = #{email},
+		phone = #{phone},
+		address = #{address},
+		dept_id = #{deptId},
+		position_title = #{positionTitle}
+		where id = #{empNo}
 	</update>
 	
 	<!-- 삭제 -->
