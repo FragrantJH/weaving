@@ -102,6 +102,7 @@
         <tr>
             <th class="text-center">No</th>
             <th>회의실</th>
+            <th>예약자</th>
             <th>날짜</th>
             <th>예약시간</th>
             <th>사용용도</th>        
@@ -112,8 +113,9 @@
         <tr>
             <td>${ReservList.reservId}</td>
             <td>${ReservList.roomId}</td>
+            <td>${ReservList.empName}</td>
             <td>${ReservList.startTime}</td>            
-            <td>${ReservList.startTime}</td>
+            <td>${ReservList.endTime}</td>
             <td>${ReservList.description}</td>
         </tr>
 		</c:forEach>

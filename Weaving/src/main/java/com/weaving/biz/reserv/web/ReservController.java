@@ -28,13 +28,13 @@ public class ReservController {
 		
 		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
 		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
-		vo.setEmpNo(1);
 		
 		// 현재 접속한 사용자 정보
-		EmpVO emp = (EmpVO)session.getAttribute("emp");
+		Object emp = session.getAttribute("emp");
+		if(emp != null) {
+			vo.setEmpNo(((EmpVO)emp).getEmpNo());
+		}
 		
-		
-		System.out.println("test: " + vo);
 		service.insertReserv(vo);
 		model.addAttribute("list",service.getReservList());
 		return "room/roomReserv";

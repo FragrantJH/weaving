@@ -40,11 +40,12 @@
 	<select id="selectReservList" resultType="reserv">
 		SELECT RESERV_ID,
 		       ROOM_ID,
-			   EMP_NO,
+			   A.EMP_NO,
+               B.EMP_NAME,
 			   START_TIME,
 			   END_TIME,
 			   DESCRIPTION
-		  FROM RESERVATION ORDER BY RESERV_ID
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO ORDER BY RESERV_ID
 		  		
 	</select>
 	

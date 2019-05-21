@@ -4,6 +4,7 @@ public class ReservVO {
 	private int reservId;
 	private int roomId;
 	private int empNo;
+	private String empName;
 	private String reservDate;
 	private String startTime;
 	private String endTime;
@@ -11,6 +12,13 @@ public class ReservVO {
 	private String startDate;
 	private String endDate;
 
+	public String getEmpName() {
+		return empName;
+	}
+	
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
 	public int getReservId() {
 		return reservId;
 	}
@@ -85,9 +93,8 @@ public class ReservVO {
 
 	@Override
 	public String toString() {
-		return "ReservVO [reservId=" + reservId + ", roomId=" + roomId + ", empNo=" + empNo + ", reservDate="
-				+ reservDate + ", startTime=" + startTime + ", endTime=" + endTime + ", description=" + description
-				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
+		return "ReservVO [reservId=" + reservId + ", roomId=" + roomId + ", empNo=" + empNo + ", empName=" + empName
+				+ ", reservDate=" + reservDate + ", startTime=" + startTime + ", endTime=" + endTime + ", description="
+				+ description + ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
-
 }
