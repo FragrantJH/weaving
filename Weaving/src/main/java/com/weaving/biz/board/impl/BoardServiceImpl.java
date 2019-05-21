@@ -39,4 +39,14 @@ public class BoardServiceImpl implements BoardService {
 		return mybatis.getBoardList(vo);
 	}
 
+	@Override
+	public List<BoardVO> getBoardListPaging(BoardVO vo) {
+		return mybatis.getBoardListPaging(vo);
+	}
+
+	@Override
+	public int getBoardListTotalCount(BoardVO vo) {
+		return mybatis.getBoardListToTalCount(vo);
+	}
+
 }

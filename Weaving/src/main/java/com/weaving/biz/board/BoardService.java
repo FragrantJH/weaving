@@ -20,4 +20,9 @@ public interface BoardService {
 	// 글 목록 조회
 	List<BoardVO> getBoardList(BoardVO vo);
 
+	// 페이징 처리
+	List<BoardVO> getBoardListPaging(BoardVO vo);
+	
+	// 전체 건수
+	int getBoardListTotalCount(BoardVO vo);
 }

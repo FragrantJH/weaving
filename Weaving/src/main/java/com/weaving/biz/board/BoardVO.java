@@ -10,8 +10,43 @@ public class BoardVO {
 	private String boardContents;
 	private Date time;
 	private char boardType;
-
+	private int first;
+	private int last;
+	private String searchCondition;
+	private String searchKeyword;
 	
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+
+	public int getFirst() {
+		return first;
+	}
+
+	public void setFirst(int first) {
+		this.first = first;
+	}
+
+	public int getLast() {
+		return last;
+	}
+
+	public void setLast(int last) {
+		this.last = last;
+	}
+
 	public String getEmpName() {
 		return empName;
 	}
@@ -70,8 +105,11 @@ public class BoardVO {
 
 	@Override
 	public String toString() {
-		return "BoardVO [boardId=" + boardId + ", empNo=" + empNo + ", title=" + title + ", boardContents="
-				+ boardContents + ", time=" + time + ", boardType=" + boardType + "]";
+		return "BoardVO [boardId=" + boardId + ", empNo=" + empNo + ", empName=" + empName + ", title=" + title
+				+ ", boardContents=" + boardContents + ", time=" + time + ", boardType=" + boardType + ", first="
+				+ first + ", last=" + last + ", searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword
+				+ "]";
 	}
-	
+
+
 }

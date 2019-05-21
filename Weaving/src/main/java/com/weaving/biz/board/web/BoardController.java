@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weaving.biz.board.BoardService;
 import com.weaving.biz.board.BoardVO;
+import com.weaving.biz.common.Paging;
 
 @Controller
 public class BoardController {
@@ -39,13 +39,23 @@ public class BoardController {
 	
 	// 글 목록 조회
 	@RequestMapping("/boardList")
-	public ModelAndView getBoardList(ModelAndView mav) {
-		BoardVO vo = new BoardVO();
-		List<BoardVO> list = service.getBoardList(vo);
+	public ModelAndView getBoardList(ModelAndView mav, Paging paging, BoardVO vo) {
+		//페이지 번호 파라미터
+		if (paging.getPage() == 0) {
+			paging.setPage(1);
+		}
 		
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		
+		//전체건수
+		paging.setTotalRecord(service.getBoardListTotalCount(vo));
+		List<BoardVO> list = service.getBoardListPaging(vo);
+		
+		mav.addObject("paging", paging);
 		mav.addObject("boardList", list);
 		mav.setViewName("board/boardList");
-		
+	
 		return mav;
 	}
 	
@@ -79,6 +89,5 @@ public class BoardController {
 		service.deleteBoard(vo);
 		return "redirect:boardList";
 	}
-	
-	
+		
 }

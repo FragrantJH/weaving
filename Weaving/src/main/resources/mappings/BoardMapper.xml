@@ -16,13 +16,14 @@
 	<update id="updateBoard" parameterType="board">
 		UPDATE BOARD
 		SET
-		TITLE = #{title},
+		TITLE =
+		#{title},
 		BOARD_CONTENTS = #{boardContents}
 		WHERE BOARD_ID = #{boardId}
 	</update>
 
 	<delete id="deleteBoard">
-		DELETE FROM BOARD 
+		DELETE FROM BOARD
 		WHERE BOARD_ID = #{boardId}
 	</delete>
 
@@ -32,19 +33,62 @@
 		FROM BOARD B, EMPLOYEES E
 		WHERE
 		B.EMP_NO = E.EMP_NO
+		ORDER BY BOARD_ID DESC
 	</select>
 
 	<select id="selectBoardOne" parameterType="board"
 		resultType="board">
 		SELECT E.EMP_NAME, B.*
-		FROM BOARD B join EMPLOYEES E on B.emp_no = E.emp_no
+		FROM BOARD B join EMPLOYEES E on
+		B.emp_no = E.emp_no
 		WHERE
 		B.board_id = #{boardId}
 	</select>
 
+	<select id="selectBoardListPaging" parameterType="board"
+		resultType="board">
+		SELECT ROW_NUM,
+		BOARD_ID,
+		EMP_NAME,
+		TITLE,
+		BOARD_CONTENTS,
+		TIME
+		FROM (SELECT ROWNUM ROW_NUM,
+		A.* FROM ( SELECT E.EMP_NAME, B.*
+		FROM BOARD B, EMPLOYEES E
+		WHERE B.EMP_NO = E.EMP_NO
+		
+			<if test="searchKeyword !=null and searchKeyword !=''">
+				<choose>
+					<when test="searchCondition == 'TITLE'">
+						AND TITLE LIKE '%' || #{searchKeyword} || '%'
+					</when>
+					<when test="searchCondition == 'BOARD_CONTENTS'">
+						AND BOARD_CONTENTS LIKE '%' || #{searchKeyword} || '%'
+					</when>
+				</choose>
+			</if>
+		
+		ORDER BY BOARD_ID DESC) A
+		) C
+		WHERE ROW_NUM BETWEEN #{first} AND #{last}
+	</select>
+
+	<select id="selectBoardListTotalCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM BOARD
+		<where>
+			<if test="searchKeyword !=null and searchKeyword !=''">
+				<choose>
+					<when test="searchCondition == 'TITLE'">
+						AND TITLE LIKE '%' || #{searchKeyword} || '%'
+					</when>
+					<when test="searchCondition == 'BOARD_CONTENTS'">
+						AND BOARD_CONTENTS LIKE '%' || #{searchKeyword} || '%'
+					</when>
+				</choose>
+			</if>
+		</where>
+	</select>
 </mapper>
-
-
-
-
 

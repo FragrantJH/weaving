@@ -36,5 +36,12 @@ public class BoardDAO {
     	return mybatis.selectList("BoardDAO.selectBoardList", vo);
     }
 	
-		
+	public List<BoardVO> getBoardListPaging(BoardVO vo) {
+		return mybatis.selectList("BoardDAO.selectBoardListPaging", vo);
+	}
+
+	public int getBoardListToTalCount(BoardVO vo) {
+		return mybatis.selectOne("BoardDAO.selectBoardListTotalCnt", vo);
+	}
+
 }
