@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.weaving.biz.doc.DocService;
 import com.weaving.biz.doc.DocVO;
-@Service("documentService")
+@Service("docService")
 public class DocServiceImpl implements DocService {
 
 	//@Autowired BoardDAO dao;
