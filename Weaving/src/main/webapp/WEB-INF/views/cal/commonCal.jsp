@@ -20,16 +20,12 @@
   }
 
 </style>
-
-
 </head>
 
 <body>
 
   <div id='calendar'></div>
-  
   <script>
-	  console.log('test');
 	  document.addEventListener('DOMContentLoaded', function() {
 		    var calendarEl = document.getElementById('calendar');
 		
@@ -50,5 +46,4 @@
 		  });
 
 </script>
-
 </body>
