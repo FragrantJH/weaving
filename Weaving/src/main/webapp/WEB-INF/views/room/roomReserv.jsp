@@ -20,7 +20,9 @@
             </div>
           </div>
           <div class="card-body">
-          <form action="roomReservInsert" method="POST">
+          <form action="roomInsertReserv" method="POST">
+          <input type="hidden" name="startDate">
+          <input type="hidden" name="endDate">
               	회의실 <select name="roomId" >
 			<option value="">회의실선택</option>
 			<option value="1">1번회의실</option>
@@ -29,49 +31,49 @@
 		 </select><p><p>
 	
 		 
-	날짜  <input type="text" id="datepicker" placeholder="예약일을 지정해주세요.">
+	날짜  <input type="text" name="reservDate" id="datepicker" placeholder="예약일을 지정해주세요.">
 		<script>
 			$('#datepicker').datepicker();
 		</script><p>
 		
-	예약시간 <select name="time">
+	예약시간 <select name="startTime">
 			<option value="">선택</option>
-			<option value="1">오전10:00</option>
-			<option value="2">오전10:30</option>
-			<option value="3">오전11:00</option>
-			<option value="4">오전11:30</option>
-			<option value="5">오전12:00</option>
-			<option value="6">오전12:30</option>
-			<option value="7">오전13:00</option>
-			<option value="8">오전13:30</option>
-			<option value="9">오전14:00</option>
-			<option value="10">오전14:30</option>
-			<option value="11">오전15:00</option>
-			<option value="12">오전15:30</option>
-			<option value="13">오전16:00</option>
-			<option value="14">오전16:30</option>
-			<option value="15">오전17:00</option>
-			<option value="16">오전17:30</option>
+			<option value="10:00">10:00</option>
+			<option value="10:30">10:30</option>
+			<option value="11:00">11:00</option>
+			<option value="11:30">11:30</option>
+			<option value="12:00">12:00</option>
+			<option value="12:30">12:30</option>
+			<option value="13:00">13:00</option>
+			<option value="13:30">13:30</option>
+			<option value="14:00">14:00</option>
+			<option value="14:30">14:30</option>
+			<option value="15:00">15:00</option>
+			<option value="15:30">15:30</option>
+			<option value="16:00">16:00</option>
+			<option value="16:30">16:30</option>
+			<option value="17:00">17:00</option>
+			<option value="17:30">17:30</option>
 		  </select>
 		  ~
-		  <select name="time1">
-			<option value="">선택</option>
-			<option value="1">오전10:00</option>
-			<option value="2">오전10:30</option>
-			<option value="3">오전11:00</option>
-			<option value="4">오전11:30</option>
-			<option value="5">오전12:00</option>
-			<option value="6">오전12:30</option>
-			<option value="7">오전13:00</option>
-			<option value="8">오전13:30</option>
-			<option value="9">오전14:00</option>
-			<option value="10">오전14:30</option>
-			<option value="11">오전15:00</option>
-			<option value="12">오전15:30</option>
-			<option value="13">오전16:00</option>
-			<option value="14">오전16:30</option>
-			<option value="15">오전17:00</option>
-			<option value="16">오전17:30</option>
+		  <select name="endTime">
+			<option value="">선택</option>			
+			<option value="10:30">10:30</option>
+			<option value="11:00">11:00</option>
+			<option value="11:30">11:30</option>
+			<option value="12:00">12:00</option>
+			<option value="12:30">12:30</option>
+			<option value="13:00">13:00</option>
+			<option value="13:30">13:30</option>
+			<option value="14:00">14:00</option>
+			<option value="14:30">14:30</option>
+			<option value="15:00">15:00</option>
+			<option value="15:30">15:30</option>
+			<option value="16:00">16:00</option>
+			<option value="16:30">16:30</option>
+			<option value="17:00">17:00</option>
+			<option value="17:30">17:30</option>
+			<option value="18:00">18:00</option>
 		  </select><p>
 	사용용도 <textarea name="description" rows="8" cols="40">
 
@@ -110,7 +112,7 @@
         <tr>
             <td>${ReservList.reservId}</td>
             <td>${ReservList.roomId}</td>
-            <td>${ReservList.startTime}	${roomReserv.endTime}</td>            
+            <td>${ReservList.startTime}</td>            
             <td>${ReservList.startTime}</td>
             <td>${ReservList.description}</td>
         </tr>

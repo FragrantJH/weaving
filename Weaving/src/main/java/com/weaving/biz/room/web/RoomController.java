@@ -28,7 +28,7 @@ public class RoomController {
 	public String roomReservForm(@ModelAttribute("roomReserv")RoomVO vo, Model model) {
 		return "room/roomReserv";
 	}
-	//회의실예약
+	//회의실추가
 	@RequestMapping(value = "/roomReservInsert", method = RequestMethod.POST)
 	public String reserv(RoomVO vo) {
 		System.out.println(vo);

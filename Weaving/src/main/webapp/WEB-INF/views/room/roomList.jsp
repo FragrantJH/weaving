@@ -34,7 +34,7 @@
 						<td>${RoomList.roomSize}</td>
 						<td>${RoomList.roomMax}</td>
 						<td class="td-actions">
-							<button type="button" rel="tooltip" class="btn btn-info" onclick="location.href='roomReservForm'">
+							<button type="button" rel="tooltip" class="btn btn-info" onclick="location.href='roomReserv'">
 								<i class="material-icons">person</i>
 							</button>
 							<button type="button" rel="tooltip" class="btn btn-success">

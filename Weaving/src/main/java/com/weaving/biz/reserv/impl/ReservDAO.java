@@ -15,6 +15,7 @@ public class ReservDAO {
 	public SqlSessionTemplate rss;
 
 	public void insert(ReservVO vo) {
+		System.out.println(vo);
 		rss.insert("ReservDAO.insertReserv",vo);
 	}
 	public List<ReservVO> getReservList(){

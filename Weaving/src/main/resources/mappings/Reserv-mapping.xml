@@ -14,11 +14,11 @@
 							  
 							)
 				    VALUES ( 
-				             #{reservId},
+				             RESERV_SEQ.nextval,
 				             #{roomId},
 				             #{empNo},
-				             #{startTime},
-				             #{endTime},
+				             to_date(#{startDate},'mm/dd/yyyy hh24:mi'),
+				             to_date(#{endDate},'mm/dd/yyyy hh24:mi'),
 				             #{description}
 				        
 				    )			    
