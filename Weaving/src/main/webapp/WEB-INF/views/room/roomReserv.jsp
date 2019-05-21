@@ -74,7 +74,7 @@
 			<option value="16">오전17:30</option>
 		  </select><p>
 	사용용도 <textarea name="description" rows="8" cols="40">
-	${roomReserv.description}
+
 	</textarea><p>
 		<div id="btn_group">
 		<button type="submit" id="reserv" class="btn btn-primary btn-sm">예약</button>
@@ -106,12 +106,11 @@
         </tr>
     </thead>
     <tbody>
-    ${list}
     	<c:forEach items="${list}" var="ReservList" varStatus="s">
         <tr>
-            <td>${ReservList.reservNo}</td>
-            <td>${ReservList.roomNo}</td>
-            <td>${ReservList.startTime}</td>            
+            <td>${ReservList.reservId}</td>
+            <td>${ReservList.roomId}</td>
+            <td>${ReservList.startTime}	${roomReserv.endTime}</td>            
             <td>${ReservList.startTime}</td>
             <td>${ReservList.description}</td>
         </tr>

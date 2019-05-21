@@ -13,7 +13,7 @@ public class ReservController {
 	ReservService service;
 	
 	//예약현황
-	@RequestMapping("/roomReserv")
+	@RequestMapping("/roomReserv_")
 	public String list(Model model) {
 		model.addAttribute("list",service.getReservList());
 		return "room/roomReserv";
