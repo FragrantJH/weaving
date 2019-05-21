@@ -2,7 +2,9 @@ package com.weaving.biz.emp.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,12 +41,23 @@ public class EmpController {
 	}
 	
 	//단건조회
-		@RequestMapping(value="/getEmpl/{empNo}",  method=RequestMethod.GET)
-		@ResponseBody
-		public EmpVO getUser(@PathVariable int empNo, EmpVO vo, Model model) {
-			vo.setEmpNo(empNo);
-			return  service.getEmp(vo);
+	@RequestMapping(value="/getEmpl/{empNo}",  method=RequestMethod.GET)
+	@ResponseBody
+	public EmpVO getUser(@PathVariable int empNo, EmpVO vo, Model model) {
+		vo.setEmpNo(empNo);
+		return  service.getEmp(vo);
 		}
+		
+	//삭제
+	@RequestMapping(value="/deleteEmp/{empNo}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public Map deleteUser( @PathVariable int empNo, EmpVO vo, Model model) {
+		vo.setEmpNo(empNo);
+		service.deleteEmp(vo);
+		Map result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
 	
 	//등록
 	@RequestMapping("/insertEmp")

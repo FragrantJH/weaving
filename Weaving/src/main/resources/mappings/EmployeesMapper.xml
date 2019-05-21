@@ -50,11 +50,12 @@
 				</if>
 				)
 	</insert>
-	
+	<!-- 로그인 -->
 	<select id ="getEmp" resultType="emp" parameterType="emp">
         select * from employees where emp_no =#{empNo} and password=#{password}
     </select>
     
+    <!-- 개인조회 -->
     <select id ="getEmpl" resultType="emp" parameterType="emp">
         select * 
         from employees 
@@ -83,4 +84,10 @@
 		position_title = #{role}
 		where id = #{id}
 	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteEmp" parameterType="emp">
+		DELETE FROM EMPLOYEES
+		WHERE EMP_NO = #{empNo}
+	</delete>
 </mapper>
