@@ -85,11 +85,21 @@
               <p>메일</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">
+          <li class="nav-item dropdown ">
+            <a class="nav-link" data-toggle="collapse" data-target="#board" role="button">
               <i class="material-icons">library_books</i>
               <p>게시판  </p>
             </a>
+            <div id="board" class="collapse in">
+            	<a class="dropdown-item" href="${pageContext.request.contextPath}/boardList">
+			      	<i class="material-icons">library_books</i>
+              		<p>공지사항</p>
+			    </a>
+			    <a class="dropdown-item" href="${pageContext.request.contextPath}/boardList">
+			      	<i class="material-icons">library_books</i>
+              		<p>게시판</p>
+			    </a>     
+            </div>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="${pageContext.request.contextPath}/roomlist">
@@ -102,7 +112,7 @@
               <i class="material-icons">description</i>
               <p>전자결재</p>
             </a>
-            <div id=document class="collapse in">
+            <div id="document" class="collapse in">
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docInsert/${empName}/${position}">
 			      	<i class="material-icons">create</i>
               		<p>문서 작성하기</p>
