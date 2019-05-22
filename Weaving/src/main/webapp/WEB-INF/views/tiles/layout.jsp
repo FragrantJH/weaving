@@ -112,12 +112,17 @@
               <i class="material-icons">description</i>
               <p>전자결재</p>
             </a>
+<<<<<<< HEAD
             <div id="document" class="collapse in">
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docInsert/${empName}/${position}">
+=======
+            <div id=document class="collapse in">
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docViewInsert">
+>>>>>>> branch 'master' of https://github.com/KimJinHee921/weaving.git
 			      	<i class="material-icons">create</i>
               		<p>문서 작성하기</p>
 			      </a>            
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList">
 			      	<i class="material-icons">list</i>
               		<p>문서조회</p>
 			      </a>
