@@ -4,9 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
 <script>
 	$(function(){
 		$("#reservation tr").on('click',function(){
@@ -38,8 +39,7 @@
 </script>
 <script>
 	$(function(){
-		
-		
+		 $( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 	})
 </script>
 <meta charset="UTF-8">
