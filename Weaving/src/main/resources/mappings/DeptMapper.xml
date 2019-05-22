@@ -12,7 +12,7 @@
     <select id ="getDept" resultType="dept" parameterType="dept">
         select dept_id, dept_name, upper_dept_id 
         from department 
-        where dept_id =#{deptId}
+        where dept_id = #{deptId}
     </select>
 	
 	<!-- 수정 -->
