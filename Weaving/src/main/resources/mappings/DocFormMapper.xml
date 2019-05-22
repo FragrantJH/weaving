@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DocFormDAO">
+
+	<insert id="insertDocForm" parameterType="docForm">
+		INSERT INTO DOCUMENTFORM (
+							  FORM_ID,
+							  FORM_NAME,
+							  DESCRIPTION,
+							  FORM_CONTENTS
+							)
+				    VALUES ( (SELECT NVL(MAX(FORM_ID), 0) + 1 FROM DOCUMENTFORM ),
+				             #{formName},
+				             #{description},
+				             #{formContents}
+				    )
+			    
+	</insert>
+	
+	<update id="updateDocForm" parameterType="docForm">
+		UPDATE DOCUMENTFORM
+		   SET FORM_NAME = #{formName},
+		   	   DESCRIPTION = #{description},
+		   	   FORM_CONTENTS = #{formContents}
+		 WHERE FORM_ID = #{formId}
+	</update>
+	
+	<delete id="deleteDocForm" parameterType="docForm">
+		DELETE FROM DOCUMENTFORM
+		 WHERE FORM_ID = #{formId}
+	</delete>
+	
+	<select id="selectDocFormList" resultType = "docForm">
+		SELECT FORM_ID,
+		 	   FORM_NAME,
+		 	   DESCRIPTION,
+		 	   FORM_CONTENTS
+		  FROM DOCUMENTFORM
+	    ORDER BY FORM_ID
+	</select>
+	
+	<select id="selectDocFormListPaging" parameterType="docForm" resultType="docForm">
+		SELECT ROW_NUM,
+		       FORM_ID,
+			   FORM_NAME,
+			   DESCRIPTION,
+			   FORM_CONTENTS
+		  FROM (SELECT ROWNUM ROW_NUM ,
+		  		A.* FROM (SELECT * 
+		  		            FROM DOCUMENTFORM 
+		  		          ORDER BY FORM_ID) A ) B 
+		  WHERE ROW_NUM BETWEEN #{first} AND #{last}
+	</select>
+	
+	<select id="selectDocForm" parameterType="docForm" resultType="docForm">
+		SELECT FORM_ID,
+			   FORM_NAME,
+			   DESCRIPTION,
+			   FORM_CONTENTS
+		  FROM DOCUMENTFORM 
+		 WHERE FORM_ID = #{formId}
+	</select>
+	
+	<select id="selectDocFormTotalCnt" resultType="int">
+		SELECT COUNT(*)
+		  FROM DOCUMENTFORM
+	</select>
+</mapper>
