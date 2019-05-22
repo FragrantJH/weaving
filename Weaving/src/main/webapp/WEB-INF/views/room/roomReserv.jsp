@@ -4,9 +4,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+<script>
+	$(function(){
+		$("#reservation tr").on('click',function(){
+			
+			var str = ""
+			var tdArr = new Array();
+			
+			var tr = $(this);
+			var td = tr.children();
+			
+			
+			//console.log($(this).children().eq(3).html());
+			var startTime = $(this).children().eq(3).html().substring(11,16);
+			console.log(startTime);
+			
+			//var sTime = $("#startTime option");
+			/* for(i=1;i<sTime.length;i++){
+				if(sTime.eq(i).text()!= null ){
+					var startTime = $("#startTime option:eq("+i+")").prop("selected",true);
+					break;
+				}
+			} */
+			//console.log(sTime);
+			//var startArr = 
+			
+			//console.log($(this).children().eq(1).html());
+			$("[name =roomId]").val($(this).children().eq(1).html());
+			$("[name =description]").val($(this).children().eq(5).html());
+			$("[name =startTime]").val(startTime);
+			$("[name =endTime]").val($(this).children().eq(4).html().substring(11,16));
+			
+		});
+	});
+</script>
+<script>
+	$(function(){
+		 $( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	})
+</script>
 <meta charset="UTF-8">
 <title>회의실예약</title>
 </head>
@@ -20,7 +60,7 @@
             </div>
           </div>
           <div class="card-body">
-          <form action="roomInsertReserv" method="POST">
+          <form name="frm" action="roomInsertReserv" method="POST">
           <input type="hidden" name="startDate">
           <input type="hidden" name="endDate">
               	회의실 <select name="roomId" >
@@ -97,7 +137,7 @@
             </div>
           </div>
           <div class="card-body">
-             <table class="table">
+<table id="reservation" class="table">
     <thead>
         <tr>
             <th class="text-center">No</th>
@@ -110,13 +150,13 @@
     </thead>
     <tbody>
     	<c:forEach items="${list}" var="ReservList" varStatus="s">
-        <tr>
-            <td>${ReservList.reservId}</td>
-            <td>${ReservList.roomId}</td>
+        <tr id="${ReservList.reservId}">
+            <td class="ReservId">${ReservList.reservId}</td>
+            <td class="RoomId">${ReservList.roomId}</td>
             <td>${ReservList.empName}</td>
             <td>${ReservList.startTime}</td>            
             <td>${ReservList.endTime}</td>
-            <td>${ReservList.description}</td>
+            <td class="description">${ReservList.description}</td>
         </tr>
 		</c:forEach>
     </tbody>
@@ -124,5 +164,6 @@
           </div>
       </div>
   </div>	
+
 </body>
 </html>

@@ -21,8 +21,13 @@
   <link href="${pageContext.request.contextPath}/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
+  <!-- full calendar style sheet -->
   <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/core/main.css' rel='stylesheet' />
-<link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+  <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+  <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/timegrid/main.css' rel='stylesheet' />
+  <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/list/main.css' rel='stylesheet' />
+  <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/bootstrap/main.css' rel='stylesheet' />
+  <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
 </head>
 
 <style>
@@ -248,10 +253,13 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath}/assets/demo/demo.js"></script>
   
-  
-<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/core/main.js'></script>
-<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/interaction/main.js'></script>
-<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/daygrid/main.js'></script>
+  <!-- full calendar packages -->
+  <script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/core/main.js'></script>
+  <script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/interaction/main.js'></script>
+  <script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/daygrid/main.js'></script>
+  <script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/timegrid/main.js'></script>
+  <script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/list/main.js'></script>
+  <script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/bootstrap/main.js'></script>
   
   <script>
     $(document).ready(function() {

@@ -1,80 +1,96 @@
 package com.weaving.biz.cal;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CalVO {
-
-	private int cal_id;
-	private int group_id;
-	private Integer emp_no;
+	private String id;
+	@JsonIgnore
+	private String groupId;
+	private Boolean allDay = false;
+	private String start;
+	private String end;
 	private String title;
-	private char allday;
-	private Date start_date;
-	private Date end_date;
-	private String back_color;
-	private Date create_date;
-	
-	public int getCal_id() {
-		return cal_id;
+	private String backgroundColor;
+	private Boolean editable = true;
+	private Integer empNo;
+
+	public String getId() {
+		return id;
 	}
-	public int getGroup_id() {
-		return group_id;
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	public Integer getEmp_no() {
-		return emp_no;
+
+	public String getGroupId() {
+		return groupId;
 	}
+
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
+	}
+
+	public Boolean getAllDay() {
+		return allDay;
+	}
+
+	public void setAllDay(Boolean allDay) {
+		this.allDay = allDay;
+	}
+
+	public String getStart() {
+		return start;
+	}
+
+	public void setStart(String start) {
+		this.start = start;
+	}
+
+	public String getEnd() {
+		return end;
+	}
+
+	public void setEnd(String end) {
+		this.end = end;
+	}
+
 	public String getTitle() {
 		return title;
 	}
-	public char getAllday() {
-		return allday;
-	}
-	public Date getStart_date() {
-		return start_date;
-	}
-	public Date getEnd_date() {
-		return end_date;
-	}
-	public String getBack_color() {
-		return back_color;
-	}
-	public Date getCreate_date() {
-		return create_date;
-	}
-	public void setCal_id(int cal_id) {
-		this.cal_id = cal_id;
-	}
-	public void setGroup_id(int group_id) {
-		this.group_id = group_id;
-	}
-	public void setEmp_no(Integer emp_no) {
-		this.emp_no = emp_no;
-	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public void setAllday(char allday) {
-		this.allday = allday;
+
+	public String getBackgroundColor() {
+		return backgroundColor;
 	}
-	public void setStart_date(Date start_date) {
-		this.start_date = start_date;
+
+	public void setBackgroundColor(String backgroundColor) {
+		this.backgroundColor = backgroundColor;
 	}
-	public void setEnd_date(Date end_date) {
-		this.end_date = end_date;
+
+	public Boolean getEditable() {
+		return editable;
 	}
-	public void setBack_color(String back_color) {
-		this.back_color = back_color;
+
+	public void setEditable(Boolean editable) {
+		this.editable = editable;
 	}
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
+
+	public Integer getEmpNo() {
+		return empNo;
 	}
-	
+
+	public void setEmpNo(Integer empNo) {
+		this.empNo = empNo;
+	}
+
 	@Override
 	public String toString() {
-		return "CalVO [cal_id=" + cal_id + ", group_id=" + group_id + ", emp_no=" + emp_no + ", title=" + title
-				+ ", allday=" + allday + ", start_date=" + start_date + ", end_date=" + end_date + ", back_color="
-				+ back_color + ", create_date=" + create_date + "]";
+		return "CalVO [id=" + id + ", groupId=" + groupId + ", allDay=" + allDay + ", start=" + start + ", end=" + end
+				+ ", title=" + title + ", backgroundColor=" + backgroundColor + ", editable=" + editable + ", empNo="
+				+ empNo + "]";
 	}
-	
-	
+
 }

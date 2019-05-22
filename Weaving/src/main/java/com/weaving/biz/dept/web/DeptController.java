@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,5 +29,21 @@ public class DeptController {
 			public String deptListFrom() {
 				return "admin/dept/deptlist";
 	}
+			
+	//dept 수정
+	@RequestMapping(value="/deptUpdate",method= {RequestMethod.PUT,RequestMethod.GET})
+	@ResponseBody
+	public DeptVO updateDept(DeptVO vo, Model model) {
+		service.updateDept(vo);
+		return vo;
+	}
+	
+	//dept 단건조회
+		@RequestMapping(value="/getDept/{deptId}",method=RequestMethod.GET)
+		@ResponseBody
+		public DeptVO getDept(@PathVariable String deptId, DeptVO vo, Model model) {
+			vo.setDeptId(deptId);
+			return service.getDept(vo);
+		}
 
 }

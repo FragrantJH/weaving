@@ -7,4 +7,20 @@
 		START WITH dept_name='회사'
 		CONNECT BY PRIOR dept_id=UPPER_DEPT_ID
 	</select>
+	
+	<!-- 부서 조회 -->
+    <select id ="getDept" resultType="dept" parameterType="dept">
+        select dept_id, dept_name, upper_dept_id 
+        from department 
+        where dept_id = #{deptId}
+    </select>
+	
+	<!-- 수정 -->
+	<update id="updateDept" parameterType="dept">
+		update department set
+		dept_id = #{deptId}
+		,dept_name = #{dpetName}
+		,upper_dept_id = #{upperDeptId}
+		where dept_id = #{deptId}
+	</update>
 </mapper>

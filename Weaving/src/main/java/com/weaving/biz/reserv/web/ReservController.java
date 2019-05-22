@@ -35,6 +35,7 @@ public class ReservController {
 			vo.setEmpNo(((EmpVO)emp).getEmpNo());
 		}
 		
+		
 		service.insertReserv(vo);
 		model.addAttribute("list",service.getReservList());
 		return "room/roomReserv";

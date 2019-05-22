@@ -46,7 +46,7 @@
 			   END_TIME,
 			   DESCRIPTION
 		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO ORDER BY RESERV_ID
-		  		
+		
 	</select>
 	
 	<select id="selectReserv" parameterType="reserv" resultType="reserv">
