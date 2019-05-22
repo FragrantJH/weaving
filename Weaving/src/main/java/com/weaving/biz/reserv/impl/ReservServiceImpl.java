@@ -16,7 +16,8 @@ public class ReservServiceImpl implements ReservService {
 	@Override
 	public void insertReserv(ReservVO vo) {
 		// TODO Auto-generated method stub
-
+		System.out.println(vo);
+		rss.insert(vo);
 	}
 
 	@Override

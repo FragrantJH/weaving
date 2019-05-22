@@ -2,7 +2,9 @@ package com.weaving.biz.emp.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
@@ -39,26 +42,42 @@ public class EmpController {
 	}
 	
 	//단건조회
-		@RequestMapping(value="/getEmpl/{empNo}",  method=RequestMethod.GET)
-		@ResponseBody
-		public EmpVO getUser(@PathVariable int empNo, EmpVO vo, Model model) {
-			vo.setEmpNo(empNo);
-			return  service.getEmp(vo);
+	@RequestMapping(value="/getEmpl/{empNo}",  method=RequestMethod.GET)
+	@ResponseBody
+	public EmpVO getUser(@PathVariable int empNo, EmpVO vo, Model model) {
+		vo.setEmpNo(empNo);
+		return  service.getEmp(vo);
 		}
+		
+	//삭제
+	@RequestMapping(value="/deleteEmp/{empNo}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public Map deleteEmp( @PathVariable int empNo, EmpVO vo, Model model) {
+		vo.setEmpNo(empNo);
+		service.deleteEmp(vo);
+		Map result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}  
 	
 	//등록
-	@RequestMapping("/insertEmp")
-	public String insertEmp(EmpVO vo) {
-		System.out.println(vo);
+	@RequestMapping(value="/insertEmp"
+			,method= {RequestMethod.POST,RequestMethod.GET}
+			,headers = {"Content-type=application/json" }
+	)
+	@ResponseBody
+	public EmpVO insertEmp(@RequestBody EmpVO vo, Model model) {
 		service.insertEmp(vo);
-		return "admin/emp/empinsert";
+		return  vo;
 	}
+	
 	//수정
-		@RequestMapping("/updateEmp")
-		public EmpVO updateEmp(@RequestBody EmpVO vo, Model model) {
-			service.updateEmp(vo);
-			return  vo;
-		}	
+	@RequestMapping(value="/empUpdate",method= {RequestMethod.PUT,RequestMethod.GET} )
+	@ResponseBody
+	public EmpVO updateEmp(EmpVO vo, Model model) {
+		service.updateEmp(vo);
+		return vo;
+	}	
 		
 	@RequestMapping("/showEmp/{empNo}")
 	public String empViewForm(@ModelAttribute("EmpForm") EmpVO vo, @PathVariable Integer empNo, Model model) {
@@ -102,7 +121,6 @@ public class EmpController {
 			return "empty/login";
 		} else {
 			session.setAttribute("empName", emp.getEmpName());
-			session.setAttribute("positionTitle", emp.getPositionTitle());
 			session.setAttribute("position", emp.getPosition());
 			session.setAttribute("emp", emp);
 

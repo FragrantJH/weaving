@@ -54,10 +54,36 @@ $(function(){
 	loadDocs();
 	init();
 	*/
+	selectDocForm();
+	selectSecureLevel();
 	toLeftMove();
 	toRightMove();
 	makeApprovalListTable();
 });
+
+function selectDocForm() {
+	$('.dropdown1').on('click', '.dropdown-menu button', function (e) {
+		var formTagClass = $(this).attr('id');
+		var $formTag = $('.'+formTagClass).clone();
+		
+		CKEDITOR.instances.editor1.setData($formTag.html());
+		
+		$formTag.show();
+	});
+}
+ 
+function selectSecureLevel() {
+	$('.dropdown2').on('click','.dropdown-menu button', function(e) {
+		/*
+		console.log(this);
+		console.log('==================');
+		*/
+		console.log($(this).text());
+		
+		$('#dropdownMenu2').text($(this).text());
+	});
+}
+
 
 function makeApprovalListTable() {
 	$('.modal-footer').on('click', '#rs-approval-list', function() {
@@ -66,15 +92,9 @@ function makeApprovalListTable() {
 		var tb = "";
 
 		if (empCnt > 0) {
-
-			/*
-			<div style="height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;">
-				결재									<span class="spr-approval set" title="결재" onclick="ApprovalProcess.getApprovalUserInfoLayer('A', 'approval_first_line');"></span>
-								</div>
-			*/
+			
 			$('.approval-line').empty();
 			var tb = "<table id='approval-table' border='1' bordercolor='#cdcdcd'>"+
-				//		"<thead>"+
 						"<tr>" +
 							"<th rowspan='2' scope='col'>"+
 								"<div style='height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;'>"+
@@ -88,20 +108,16 @@ function makeApprovalListTable() {
 			}
 			
 			tb += "</tr>"+
-				  //"</thead>"+
-				 // "<tbody>"+
 				  "<tr>" +
 				  	"<td class='stamp'>승인</td>";
 			for (var i = 0; i < empCnt; i++) {
 				tb += "<td class='stamp'></td>";
 			}
 			tb +="</tr>"+
-				// "</tbody>"+
 				 "</table>";
+			$('.approval-line').append(tb);
 		}
-		$('.approval-line').append(tb);
 		
-    	//$('#myModal').modal('hide')
     	$('#approvalLineModel').modal('hide');
 	});
 
@@ -182,7 +198,7 @@ $("#dropdownMenuButton")
 	*/
 </script> 
 </head>
-<body>ㅇㄹ
+<body>
 <div class="col-md-12">
 	<div class="card">
 	    <div class="card-header card-header-text card-header-primary">
@@ -205,22 +221,23 @@ $("#dropdownMenuButton")
 			        <tr>
 			            <td class="text-center">문서종류</td>
 			            <td>
-							<div class="dropdown">
-							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    선택
-							  </button>
-							  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							  	<c:forEach items="${list}" var="formList">
-							    	<a class="dropdown-item" href="#">${formList.formName}</a>
-							    </c:forEach>
-							  </div>
+							<div class="dropdown1">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="write-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							      	선택
+								</button>
+								
+								<div class="dropdown-menu" aria-labelledby="write-select">
+									<c:forEach items="${list}" var="formList" >
+										<button class="dropdown-item" id="docForm${formList.formId}" type="button">${formList.formName}</button>
+						  				<div class="docForm${formList.formId}" style="display:none;">
+						  					${formList.formContents}
+								  		</div>										
+    								</c:forEach>																	
+								</div>
+								<!-- Button trigger modal -->
+								<small><a href="#0" class="card-link" data-toggle="modal" data-target="#exampleModalLong">미리보기</a></small>
 							</div>
-							
-							
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-							  미리보기
-							</button>
+										            
 							<!-- Modal -->
 							<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 							  <div class="modal-dialog" role="document">
@@ -242,22 +259,22 @@ $("#dropdownMenuButton")
 							  </div>
 							</div>							
 							
-							
-							
+									
 			            </td>
 			        	<td class="text-center">보안등급</td>
 			        	<td>
-							<div class="dropdown">
-							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    보안등급
-							  </button>
-							  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							    <a class="dropdown-item" href="#">S등급</a>
-							    <a class="dropdown-item" href="#">A등급</a>
-							    <a class="dropdown-item" href="#">B등급</a>
-							    <a class="dropdown-item" href="#">C등급</a>
-							  </div>
-							</div>			        	
+							<div class="dropdown2">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							      	보안등급
+								</button>
+								
+								<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+									<button class="dropdown-item" type="button">S등급</button>
+									<button class="dropdown-item" type="button">A등급</button>
+									<button class="dropdown-item" type="button">B등급</button>
+									<button class="dropdown-item" type="button">C등급</button>
+								</div>
+							</div>	
 			        	</td>			            
 			        </tr>			        
 			    </tbody>
@@ -317,7 +334,6 @@ $("#dropdownMenuButton")
 			<h3><small class="text-muted">상세 입력</small></h3>
 			<div class="approval-form">
 				<textarea name="editor1" id="editor1" rows="10" cols="200">
-				    This is my textarea to be replaced with CKEditor.
 				</textarea>
 				<script>
 				    // Replace the <textarea id="editor1"> with a CKEditor
