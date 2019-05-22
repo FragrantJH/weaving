@@ -72,9 +72,10 @@ public class EmpController {
 	}
 	
 	//수정
-	@RequestMapping(value="/empUpdate",method= {RequestMethod.PUT,RequestMethod.GET} )
+	@RequestMapping(value="/empUpdate")
 	@ResponseBody
 	public EmpVO updateEmp(EmpVO vo, Model model) {
+		System.out.println("==========================="+vo);
 		service.updateEmp(vo);
 		return vo;
 	}	

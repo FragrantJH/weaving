@@ -29,8 +29,8 @@
 		$('#btnInsert').on('click',function(){		
 			var empName = $('input:text[name="empName"]').val();
 			var password = $('input:text[name="password"]').val();
-			var deptId = $('input:text[name="deptId"]').val();
-			var position = $('input:text[name="position"]').val();
+			var deptId = $('[name="deptId"]').val();
+			var position = $('[name="position"]').val();
 			var email = $('input:text[name="email"]').val();
 			var phone = $('input:text[name="phone"]').val();
 			var address = $('input:text[name="address"]').val();
@@ -85,7 +85,7 @@
 			
 			$.ajax({ 
 			    url: "empUpdate",
-			    type: 'PUT', 
+			   // type: 'PUT', 
 			    dataType: 'json', 
 			    data: $('#insertForm').serialize(),
 			    success: function(data) { 
@@ -243,6 +243,7 @@
 								<select 
 									name="deptId" size="1" id="deptId">
 									<option value="">선택</option>
+									<option value="0">없음</option>
 									<option value="1">경영지원팀</option>
 									<option value="2">회계</option>
 									<option value="3">인사</option>
