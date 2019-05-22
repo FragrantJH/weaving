@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-
 <script>
 	$(function(){
 		$("#reservation tr").on('click',function(){
@@ -36,6 +35,27 @@
 			console.log(changeDateFormat);
 		});
 	});
+</script>
+<script>
+
+	function modifyReserv(){
+		var roomId = $('[name="roomId"]').val();
+		var empNo = $('[name="empNo"]').val();
+		var startTime = $('[name="startTime"]').val();
+		var endTime = $('[name="endTime"]').val();
+		var description = $('[name="description"]').val();
+	}
+
+	$.ajax({
+				url : "./updateReserv",
+				type : "POST",
+				datatype : JSON,
+				data : JSON.stringify({roomId:roomId,empNo:empNo,startTime:startTime,endTime:endTime,description:description}),
+				contentType : 'application/json',
+				success : function(result){
+					console.log(result);
+			}	
+	})
 </script>
 <script>
 	$(function(){
@@ -118,6 +138,7 @@
 	</textarea><p>
 		<div id="btn_group">
 		<button type="submit" id="reserv" class="btn btn-primary btn-sm">예약</button>
+		<button type="submit" id="reservModify" class="btn btn-primary btn-sm" onclick="modifyReserv">수정</button>
 		<button id="cancel" class="btn btn-primary btn-sm">취소</button>		
 		</div>
 		</form>

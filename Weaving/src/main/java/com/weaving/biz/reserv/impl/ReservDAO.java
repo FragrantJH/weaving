@@ -18,6 +18,11 @@ public class ReservDAO {
 		System.out.println(vo);
 		rss.insert("ReservDAO.insertReserv",vo);
 	}
+	public void update(ReservVO vo) {
+		rss.update("ReservDAO.updateReserv",vo);
+	}
+	
+	
 	public List<ReservVO> getReservList(){
 		return rss.selectList("ReservDAO.selectReservList");
 	}
