@@ -82,6 +82,7 @@ public class DocController {
 
 	@RequestMapping(value="/docInsert", method=RequestMethod.POST)
 	public String docInsert(DocVO vo) {
+		//vo.setRegDate(regDate);
 		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 		System.out.println(vo);
 		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");		
