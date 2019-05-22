@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
 
@@ -51,7 +52,7 @@ public class EmpController {
 	//삭제
 	@RequestMapping(value="/deleteEmp/{empNo}", method=RequestMethod.DELETE)
 	@ResponseBody
-	public Map deleteUser( @PathVariable int empNo, EmpVO vo, Model model) {
+	public Map deleteEmp( @PathVariable int empNo, EmpVO vo, Model model) {
 		vo.setEmpNo(empNo);
 		service.deleteEmp(vo);
 		Map result = new HashMap<String, Object>();
@@ -60,19 +61,20 @@ public class EmpController {
 	}  
 	
 	//등록
-	@RequestMapping("/insertEmp")
-	public String insertEmp(EmpVO vo) {
-		System.out.println(vo);
-		service.insertEmp(vo);
-		return "admin/emp/empinsert";
-	}
-	//수정
-	@RequestMapping(value="/empUpdate"
-			,method= {RequestMethod.PUT,RequestMethod.GET} 
+	@RequestMapping(value="/insertEmp"
+			,method= {RequestMethod.POST,RequestMethod.GET}
 			,headers = {"Content-type=application/json" }
 	)
 	@ResponseBody
-	public EmpVO updateEmp(@RequestBody EmpVO vo, Model model) {
+	public EmpVO insertEmp(@RequestBody EmpVO vo, Model model) {
+		service.insertEmp(vo);
+		return  vo;
+	}
+	
+	//수정
+	@RequestMapping(value="/empUpdate",method= {RequestMethod.PUT,RequestMethod.GET} )
+	@ResponseBody
+	public EmpVO updateEmp(EmpVO vo, Model model) {
 		service.updateEmp(vo);
 		return vo;
 	}	
