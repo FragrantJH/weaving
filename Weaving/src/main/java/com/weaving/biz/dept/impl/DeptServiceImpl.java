@@ -12,34 +12,34 @@ import com.weaving.biz.dept.DeptVO;
 public class DeptServiceImpl implements DeptService {
 	
 	@Autowired
-	DeptDAO mybatis;
+	DeptDAO dept;
 
 	@Override
 	public void insertDept(DeptVO vo) {
-		mybatis.insertDept(vo);
+		dept.insertDept(vo);
 
 	}
 
 	@Override
 	public void updateDept(DeptVO vo) {
-		mybatis.updateDept(vo);
+		dept.updateDept(vo);
 
 	}
 
 	@Override
 	public void deleteDept(DeptVO vo) {
-		mybatis.deleteDept(vo);
+		dept.deleteDept(vo);
 
 	}
 
 	@Override
 	public DeptVO getDept(DeptVO vo) {
-		return mybatis.getDept(vo);
+		return dept.getDept(vo);
 	}
 
 	@Override
 	public List<DeptVO> getDeptList(DeptVO vo) {
-		return mybatis.getDeptList(vo);
+		return dept.getDeptList(vo);
 	}
 
 	@Override

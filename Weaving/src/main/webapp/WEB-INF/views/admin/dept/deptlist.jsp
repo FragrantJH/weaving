@@ -28,9 +28,10 @@
 	function deptSelect() {
 		//조회 버튼 클릭
 		$('body').on('click', '#btnSelect', function() {
-			var deptId = $(this).closest('tr').find('#hidden_deptId').val();
+			var deptId = $(this).parent().parent().children().eq(0).text();
+			console.log($(this).parent().parent().children().eq(0).text());
 			//특정 사용자 조회
-			$.ajax({
+			 $.ajax({
 				url : 'getDept/' + deptId,
 				type : 'GET',
 				contentType : 'application/json;charset=utf-8',
@@ -126,7 +127,7 @@
 					<tr>
 						<th class="text-center">부서번호</th>
 						<th class="text-center">부서명</th>
-						<th class="text-center">하위부서</th>
+						<th class="text-center">상위부서</th>
 					</tr>
 				</thead>
 				<tbody id="dept"></tbody>
