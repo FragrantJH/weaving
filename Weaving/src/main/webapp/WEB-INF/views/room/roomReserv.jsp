@@ -20,24 +20,19 @@
 			
 			//console.log($(this).children().eq(3).html());
 			var startTime = $(this).children().eq(3).html().substring(11,16);
-			console.log(startTime);
+			//console.log(startTime);
 			
-			//var sTime = $("#startTime option");
-			/* for(i=1;i<sTime.length;i++){
-				if(sTime.eq(i).text()!= null ){
-					var startTime = $("#startTime option:eq("+i+")").prop("selected",true);
-					break;
-				}
-			} */
-			//console.log(sTime);
-			//var startArr = 
-			
-			//console.log($(this).children().eq(1).html());
+			var changeDateFormat = $(this).children().eq(3).html();
+			//changeDateFormat = dateToMMDDYYYY(changeDateFormat);
+				
+				
+				
 			$("[name =roomId]").val($(this).children().eq(1).html());
 			$("[name =description]").val($(this).children().eq(5).html());
 			$("[name =startTime]").val(startTime);
 			$("[name =endTime]").val($(this).children().eq(4).html().substring(11,16));
-			
+			$("[name =reservDate]").val(changeDateFormat);
+			console.log(changeDateFormat);
 		});
 	});
 </script>
@@ -73,7 +68,10 @@
 		 
 	날짜  <input type="text" name="reservDate" id="datepicker" placeholder="예약일을 지정해주세요.">
 		<script>
-			$('#datepicker').datepicker();
+			//$('#datepicker').datepicker("option", "dateFormat","yy-mm-dd");
+			$("#datepicker").on("change", function() {
+			      $("#datepicker").datepicker("option","dateFormat","yy-mm-dd");
+			    });
 		</script><p>
 		
 	예약시간 <select name="startTime">
