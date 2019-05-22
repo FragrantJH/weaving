@@ -42,5 +42,6 @@
 				<button class="btn btn-default btn btn-primary col-md-2" onclick="location='${pageContext.request.contextPath}/docFormInsertForm'"> 결재폼 등록 </button>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

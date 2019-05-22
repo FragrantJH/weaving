@@ -16,8 +16,7 @@ public class CalServiceImpl implements CalService {
 	
 	@Override
 	public void insertCal(CalVO vo) {
-		// TODO Auto-generated method stub
-		
+		dao.insertCal(vo);
 	}
 
 	@Override

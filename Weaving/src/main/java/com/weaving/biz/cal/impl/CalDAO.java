@@ -15,10 +15,10 @@ public class CalDAO {
 	SqlSessionTemplate mybatis;
 	
 	public void insertCal(CalVO vo) {
-		
+		mybatis.insert("CalDAO.insertCal", vo);
 	}
 
 	public List<CalVO> getCalList(CalVO vo) {
-		return mybatis.selectList("getCalList", vo);
+		return mybatis.selectList("CalDAO.getCalList", vo);
 	}
 }

@@ -2,27 +2,72 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CalDAO">
 
-<select id="getCalList" resultType="cal">
-	SELECT CAL_ID,
-		   GROUP_ID,
-		   EMP_NO,
-		   TITLE,
-		   ALL_DAY,
-		   START_DATE,
-		   END_DATE,
-		   BACK_COLOR,
-		   CREATE_DATE
-	  FROM CALENDARS
-	 <if test="emp_no != null">
-	 WHERE EMP_NO = #{empNo}
-	 </if>
-	ORDER BY CAL_ID
-</select>
+    <resultMap id="calResult" type="cal">
+        <id property="id" column="CAL_ID" />
+        <result property="groupId" column="GROUP_ID"/>
+        <result property="allDay" column="ALL_DAY"/>
+        <result property="start" column="START_DATE"/>
+        <result property="end" column="END_DATE"/>
+        <result property="title" column="TITLE" />
+        <result property="backgroundColor" column="BACK_COLOR"/>
+        <result property="empNo" column="EMP_NO"/>
+    </resultMap>
+    
 
-<insert id="">
+	<select id="getCalList" resultMap="calResult">
+		SELECT CAL_ID,
+			   EMP_NO,
+			   TITLE,
+			   ALL_DAY,
+			   START_DATE,
+			   END_DATE,
+			   BACK_COLOR
+		  FROM CALENDARS
+		 <if test="empNo != null and empNo != ''">
+		 WHERE EMP_NO = #{empNo}
+		 </if>
+		 ORDER BY CAL_ID
+	</select>
 
-</insert>
-
+	<insert id="insertCal">
+		INSERT INTO CALENDARS (
+			    CAL_ID
+			<if test="empNo != null and empNo != ''">
+			   , EMP_NO
+    		</if>
+			   , TITLE
+			   , ALL_DAY
+			   , START_DATE
+			   , END_DATE
+			 <if test="backgroundColor != null and backgroundColor != ''">
+			   , BACK_COLOR
+			 </if>
+		     )
+		VALUES ( (SELECT (NVL(MAX(CAL_ID), 0) + 1) FROM CALENDARS)
+		 	<if test="empNo != null and empNo != ''">
+		 		 , #{empNo}
+		 	</if>
+		 		 , #{title}
+		 	<choose>
+		 		<when test="allDay == true">
+		 		 ,'1'
+		 		</when>
+		 		<otherwise>
+		 		 ,'0'
+		 		</otherwise>
+		 	</choose>	 
+		 		 , TO_DATE(#{start}, 'YYYY-MM-DD HH24:MI:SS')
+		 		 , TO_DATE(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+			<if test="backgroundColor != null and backgroundColor != ''">
+		 		 , #{backgroundColor}
+		 	</if>
+		)
+		
+		<selectKey keyProperty="id" resultType="String" order="AFTER">
+			SELECT TO_CHAR(MAX(CAL_ID)) as id FROM CALENDARS
+		</selectKey>
+		
+	</insert>
 
 
 </mapper>
