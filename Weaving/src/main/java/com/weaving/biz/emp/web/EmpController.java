@@ -47,7 +47,7 @@ public class EmpController {
 	public EmpVO getUser(@PathVariable int empNo, EmpVO vo, Model model) {
 		vo.setEmpNo(empNo);
 		return  service.getEmp(vo);
-		}
+	}
 		
 	//삭제
 	@RequestMapping(value="/deleteEmp/{empNo}", method=RequestMethod.DELETE)

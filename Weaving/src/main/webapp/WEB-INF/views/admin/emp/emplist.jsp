@@ -42,10 +42,11 @@
 			    contentType: 'application/json',
 			    mimeType: 'application/json',
 			    success: function(response) {
-			    	if(response.result == true) {
+			    	console.log(response)
+			    	//if(response.result == true) {
 			    		$('#searchModel').modal("hide");
 			    		empList();
-			    	}
+			    	//}
 			    }, 
 			    error:function(xhr, status, message) { 
 			        alert(" status: "+status+" er:"+message);
@@ -81,7 +82,6 @@
 	function empUpdate() {
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click',function(){
-			
 			
 			$.ajax({ 
 			    url: "empUpdate",
@@ -196,8 +196,8 @@
 					<tr>
 						<th class="text-center">사번</th>
 						<th class="text-center">이름</th>
-						<th class="text-center">직책</th>
 						<th class="text-center">부서</th>
+						<th class="text-center">직책</th>
 					</tr>
 				</thead>
 				<tbody id="user"></tbody>
@@ -240,7 +240,8 @@
 								 -->
 								 
 								<label for="deptId"><b>소속부서</b></label>
-								<select name="deptId" id="deptId" size="1">
+								<select 
+									name="deptId" size="1" id="deptId">
 									<option value="">선택</option>
 									<option value="1">경영지원팀</option>
 									<option value="2">회계</option>
