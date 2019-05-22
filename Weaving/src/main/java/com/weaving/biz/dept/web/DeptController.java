@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,13 +38,23 @@ public class DeptController {
 		service.updateDept(vo);
 		return vo;
 	}
+	//dept 부서 등록
+	@RequestMapping(value="/deptInsert"
+			,method= {RequestMethod.POST,RequestMethod.GET}
+			,headers = {"Content-type=application/json" }
+	)
+	@ResponseBody
+	public DeptVO insertDept(@RequestBody DeptVO vo,Model model) {
+		service.insertDept(vo);
+		return vo;
+	}
 	
 	//dept 단건조회
-		@RequestMapping(value="/getDept/{deptId}",method=RequestMethod.GET)
-		@ResponseBody
-		public DeptVO getDept(@PathVariable String deptId, DeptVO vo, Model model) {
-			vo.setDeptId(deptId);
-			return service.getDept(vo);
-		}
+	@RequestMapping(value="/getDept/{deptId}",method=RequestMethod.GET)
+	@ResponseBody
+	public DeptVO getDept(@PathVariable String deptId, DeptVO vo, Model model) {
+		vo.setDeptId(deptId);
+		return service.getDept(vo);
+	}
 
 }
