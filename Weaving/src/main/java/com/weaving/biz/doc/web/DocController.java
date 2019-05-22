@@ -1,10 +1,13 @@
 package com.weaving.biz.doc.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weaving.biz.common.Paging;
 import com.weaving.biz.doc.DocService;
@@ -29,9 +32,9 @@ public class DocController {
 	//cond로 변수명을 변경할 경우 value로 value로 searchCondition로 지정해줘야한다
 	//@RequestMapping("/docList")
 	//public String docList(Model model) {
-	@RequestMapping(value="/docList/{empName}/{position}")
-	public String docList(@PathVariable String empName, @PathVariable int position, Model model) {
-	
+	@RequestMapping("/docList")
+	public String docList(Model model, HttpSession session) {
+		
 		/*
 		 * - C : ALL
 		   - B : 대리 이상
@@ -46,7 +49,11 @@ public class DocController {
 		//2초과 S등급
 		//2이면 A
 		//1이면 B
-		//0이면 C
+		//0이면 C	
+		
+		/*
+		int position = Integer.parseInt((String)session.getAttribute("position"));
+		System.out.println(position);
 		String lv = "C";
 		if (position > 2 ) {
 			lv = "S";
@@ -59,21 +66,33 @@ public class DocController {
 		}
 
 		DocVO vo = new DocVO();
-		//vo.setEmpNo(empNo);
 		vo.setSecureLevel(lv);
 
 		model.addAttribute("list", docService.getDocList(vo));
 		return "approval/docList";
-
+*/
+		return null;
 	}
 	
-	@RequestMapping(value="/docInsert/{empName}/{position}")
-	public String docInsert(@PathVariable String empName, @PathVariable int position, Model model) {
+	@RequestMapping("/docViewInsert")
+	//public String docViewInsert(@PathVariable String empName, @PathVariable int position, Model model) {
+	public String docViewInsert(Model model) {
 		EmpVO evo = new EmpVO(); 
 		model.addAttribute("empList", empService.getEmpList(evo));
 		model.addAttribute("list", docFormService.getDocFormList());
 		return "approval/docInsert";
 	}
+
+	@RequestMapping(value="/docInsert", method=RequestMethod.POST)
+	public String docInsert(DocVO vo) {
+		//vo.setRegDate(regDate);
+		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		System.out.println(vo);
+		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");		
+		//System.out.println(vo.getSecureLevel());
+		return "";
+	}
+		
 	/*
 	 * empName, positionTitle, position, emp
 	 */
