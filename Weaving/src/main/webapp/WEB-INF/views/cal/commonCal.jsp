@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
 
 <style>
 body {
@@ -82,33 +83,30 @@ body {
 	<script>
 	
 		// 달력에서 날짜를 눌렀을 때 날짜값
-		var selectedDate;
-		var calendar;
+		var selectedDate = null;
+		var calendar = null;
 		
 		$(function() {
 			calList();
 			
 			$('#calModal').on('show.bs.modal', function (e) {
 				
-				console.log(selectedDate);
-				
-				var startDate;
-				var endDate = new Date();
-				
 				if(selectedDate != null) {
-					startDate = selectedDate;
+					var startDate = selectedDate;
 				} else {
-					startDate = new Date();
+					var startDate = new Date();
 				}
 				
-				startDate.setDate(startDate.getDate() + 1);
-				startDate = startDate.toISOString();
+				startDate = moment(startDate).format('YYYY-MM-DD' + 'T' + 'HH:00:00');
 				console.log(startDate);
-				$('#start').val(startDate.substr(0, startDate.lastIndexOf(':')));
-
-				endDate.setHours(endDate.getHours() + 1);
-				endDate = endDate.toISOString();
-				$('#end').val(endDate.substr(0, endDate.lastIndexOf(':')));
+				$('#start').val(startDate);
+				
+				var endDate = moment().format('YYYY-MM-DD' + 'T' + 'HH:00:00');
+				console.log(endDate);
+				$('#end').val(endDate);
+				
+				// reset
+				selectedDate = null;
 			})
 		});
 		
@@ -142,11 +140,9 @@ body {
 				dataType : 'json',
 				data: JSON.stringify({title: title, start: start, end: end, allDay: allDay, backgroundColor: backgroundColor}),
 				contentType : 'application/json',
-				//mimeType: 'application/json',
 				success: function(result) {
 			    	console.log(result);
 			    	
-			    	// TODO: 성공 후 event 등록할건지 다시 목록을 불러올건지 결정.
 			    	calendar.addEvent({
 			    		id: result.id,
 			            title: result.title,
@@ -158,9 +154,9 @@ body {
 			    	
 			    	$("#calModal").modal("hide");
 			    	
-			    }, 
+			    },
 			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
+			        alert('일정 등록에 실패 했습니다. (message: ' + message + ')');
 			    } 
 			});
 		}
@@ -188,7 +184,10 @@ body {
 				selectable : true,
 				selectMirror : true,
 				select : function(arg) {
-					selectedDate = arg.start;
+				},
+				dateClick: function(info) {
+					console.log(info);
+					selectedDate = info.date;
 					$("#calModal").modal();
 				},
 				editable : true,
