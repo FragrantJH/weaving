@@ -85,8 +85,8 @@ function selectDocForm() {
 	$('.dropdown1').on('click', '.dropdown-menu button', function (e) {
 		var formTagClass = $(this).attr('id');
 		var $formTag = $('.'+formTagClass).clone();
-		
-		CKEDITOR.instances.editor1.setData($formTag.html());
+		$('#write-select').text($(this).text());
+		CKEDITOR.instances.docContents.setData($formTag.html());
 		$('input[name=docType]').val($(this).text());
 		$formTag.show();
 	});
@@ -122,7 +122,7 @@ function makeApprovalListTable() {
 							"<th scope='col' class='team name' data-order='1' data-empNo='${position}'>${empName}</td>";
 			var writerData = {
 					'empNo' : '${empInfo.empNo}',
-					'order' : '1',
+					'approvalOrder' : '1',
 					'status': 'done'
 			};								
 
@@ -134,7 +134,7 @@ function makeApprovalListTable() {
 				tb +="<th scope='col' class='team name' data-order='" + (i + 2) + "' data-empNo='"+approvalEmp[i].value+"'>"+str[0]+"</th>";
 				console.log(approvalEmp[i].value);
 				ApprovalData['empNo'] = approvalEmp[i].value;
-				ApprovalData['order'] = ''+(i + 2)+'';
+				ApprovalData['approvalOrder'] = ''+(i + 2)+'';
 				ApprovalData['status'] = 'wait';
 				
 				DataArray.push(ApprovalData);
@@ -384,12 +384,12 @@ ${empInfo.empNo}cccc ${empName}
 				</div>
 				
 				<div class="approval-form">
-					<textarea name="editor1" id="editor1" rows="10" cols="200">
+					<textarea name="docContents" id="docContents" rows="10" cols="200">
 					</textarea>
 					<script>
 					    // Replace the <textarea id="editor1"> with a CKEditor
 					    // instance, using default configuration.
-					    CKEDITOR.replace( 'editor1' );
+					    CKEDITOR.replace( 'docContents' );
 					</script>
 					<input name="docType" type="hidden" value="">				
 					<input name="empNo" type="hidden" value="${empInfo.empNo}">

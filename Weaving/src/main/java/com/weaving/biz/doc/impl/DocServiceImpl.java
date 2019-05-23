@@ -30,9 +30,14 @@ public class DocServiceImpl implements DocService {
 	@Override
 	public void insertDoc(DocVO vo) {
 		// TODO Auto-generated method stub
-		
+		dao.insertDoc(vo);
 	}
-
+	
+	@Override
+	public void insertDocDetail(DocVO vo) {
+		// TODO Auto-generated method stub 
+	}
+	
 	@Override
 	public void updateDoc(DocVO vo) {
 		// TODO Auto-generated method stub
@@ -56,6 +61,4 @@ public class DocServiceImpl implements DocService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-
 }

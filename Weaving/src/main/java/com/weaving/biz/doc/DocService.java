@@ -5,6 +5,8 @@ import java.util.List;
 public interface DocService {
 	// 문서입력
 	void insertDoc(DocVO vo);
+	
+	void insertDocDetail(DocVO vo);
 	// 문서수정
 	void updateDoc(DocVO vo);
 	// 문서삭제	
