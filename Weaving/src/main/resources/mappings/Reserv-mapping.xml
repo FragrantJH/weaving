@@ -28,7 +28,8 @@
 		   SET ROOM_ID = #{roomID},
 		   	   EMP_NO = #{empNo},
 		   	   START_TIME = #{startTime},
-		   	   END_TIME = #{endTime}	   	   
+		   	   END_TIME = #{endTime},
+		   	   DESCRIPTION = #{description}	   	   
 		 WHERE RESERV_ID = #{reservId}
 	</update>
 	

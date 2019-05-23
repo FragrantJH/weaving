@@ -23,7 +23,7 @@ public class ReservServiceImpl implements ReservService {
 	@Override
 	public void updateReserv(ReservVO vo) {
 		// TODO Auto-generated method stub
-
+		rss.update(vo);
 	}
 
 	@Override

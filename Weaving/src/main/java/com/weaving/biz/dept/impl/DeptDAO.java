@@ -21,12 +21,12 @@ public class DeptDAO {
 	
 	public void updateDept(DeptVO vo) {
 		System.out.println(vo);
-		mybatis.insert("DeptDAO.updateDept",vo);
+		mybatis.update("DeptDAO.updateDept",vo);
 	}
 	
 	public void deleteDept(DeptVO vo) {
 		System.out.println(vo);
-		mybatis.insert("DeptDAO.deleteDept",vo);
+		mybatis.delete("DeptDAO.deleteDept",vo);
 	}
 	
 	public DeptVO getDept(DeptVO vo) {

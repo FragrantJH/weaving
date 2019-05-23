@@ -23,4 +23,19 @@
 		,upper_dept_id = #{upperDeptId}
 		where dept_id = #{deptId}
 	</update>
+	
+	<insert id="insertDept" parameterType="dept">
+		insert into department(
+								dept_id
+								,dept_name
+								<if test="upperDeptId != null">
+								,upper_dept_id)
+								</if>
+		values ( (SELECT NVL(MAX(DEPT_ID), 0) + 1 FROM DEPARTMENT )
+				,#{deptName}
+				<if test="upperDeptId != null">
+				,#{upperDeptId}
+				</if>
+		)
+	</insert>
 </mapper>

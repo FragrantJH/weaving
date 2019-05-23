@@ -17,12 +17,39 @@
 		
 		//userDelete();
 		
-		//userInsert();
+		deptInsert();
 	
 		deptUpdate();
 		
 		//init();
 	});
+	
+	//dept 등록 요청
+	function deptInsert(){
+		//등록 버튼 클릭
+		$('#btnInsert').on('click',function(){
+			var deptName = $('input:text[name="deptName"]').val();
+			var upperDeptId = $('input:text[name="upperDeptId"]').val();
+			$.ajax({ 
+			    url: "deptInsert",  
+			    type: 'POST',
+			    dataType: 'json', 
+			    data: JSON.stringify({ deptName: deptName,upperDeptId: upperDeptId }),
+			    contentType: 'application/json',
+			    mimeType: 'application/json',
+			    success: function(response) {
+			    	console.log(response)
+			    	//if(response.result == true) {
+			    		$('#searchModal').modal("hide");
+			    		deptList();
+			    	//}
+			    }, 
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    } 
+			 });  
+		});//등록 버튼 클릭
+	}//deptInsert
 	
 	//부서 조회 요청
 	function deptSelect() {
@@ -58,7 +85,7 @@
 		$('#btnUpdate').on('click',function(){
 			$.ajax({ 
 			    url: "deptUpdate",
-			    type: 'PUT', 
+			    //type: 'PUT', 
 			    dataType: 'json', 
 			    data: $('#InsertDeptForm').serialize(),
 			    success: function(data) { 
