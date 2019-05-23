@@ -91,11 +91,11 @@
               <p>게시판  </p>
             </a>
             <div id="board" class="collapse in">
-            	<a class="dropdown-item" href="${pageContext.request.contextPath}/boardList">
+            	<a class="dropdown-item" href="${pageContext.request.contextPath}/boardList?boardType=0">
 			      	<i class="material-icons">library_books</i>
               		<p>공지사항</p>
 			    </a>
-			    <a class="dropdown-item" href="${pageContext.request.contextPath}/boardList">
+			    <a class="dropdown-item" href="${pageContext.request.contextPath}/boardList?boardType=1">
 			      	<i class="material-icons">library_books</i>
               		<p>게시판</p>
 			    </a>     
