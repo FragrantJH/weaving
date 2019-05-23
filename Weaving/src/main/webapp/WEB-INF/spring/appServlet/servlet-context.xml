@@ -96,15 +96,14 @@
 	</interceptors>
 	
 	<!-- 인터셉터 객체 생성 -->
-	<!-- <beans:bean id="authenticationInterceptor" 
+	<beans:bean id="authenticationInterceptor" 
 		class="com.weaving.biz.emp.impl.AuthenticationInterceptor"/>
 	<interceptors>
 		<interceptor> 
 			<mapping path="/*"/>
+			<exclude-mapping path="/login/**"/>
 			<beans:ref bean="authenticationInterceptor"/>
 		</interceptor>
-	</interceptors> -->
-	
-
+	</interceptors>
 
 </beans:beans>
