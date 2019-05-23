@@ -48,8 +48,6 @@ public class CommonDateParser {
 			// to
 			String changedDate = javaFormat.format(originalDate);
 
-			System.out.println("[parseToJavaFormat] " + date + " >> " + changedDate);
-
 			return changedDate;
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -70,8 +68,6 @@ public class CommonDateParser {
 			Date originalDate = javaFormat.parse(date);
 			// to
 			String changedDate = htmlFormat.format(originalDate);
-
-			System.out.println("[parseToHtmlFormat] " + date + " >> " + changedDate);
 
 			return changedDate;
 		} catch (ParseException e) {

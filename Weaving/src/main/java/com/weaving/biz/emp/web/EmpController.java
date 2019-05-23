@@ -121,6 +121,7 @@ public class EmpController {
 			out.print("</script>");
 			return "empty/login";
 		} else {
+			session.setAttribute("empNo", emp.getEmpNo());
 			session.setAttribute("empName", emp.getEmpName());
 			session.setAttribute("position", emp.getPosition());
 			session.setAttribute("emp", emp);
