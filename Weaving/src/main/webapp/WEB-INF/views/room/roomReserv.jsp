@@ -9,8 +9,8 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script>
 	$(function(){
+		
 		$("#reservation tr").on('click',function(){
-			
 			var str = ""
 			var tdArr = new Array();
 			
@@ -22,7 +22,7 @@
 			var startTime = $(this).children().eq(3).html().substring(11,16);
 			//console.log(startTime);
 			
-			var changeDateFormat = $(this).children().eq(3).html();
+			var changeDateFormat = $(this).children().eq(3).html().substring(0,10);
 			//changeDateFormat = dateToMMDDYYYY(changeDateFormat);
 				
 				
@@ -33,10 +33,10 @@
 			$("[name =endTime]").val($(this).children().eq(4).html().substring(11,16));
 			$("[name =reservDate]").val(changeDateFormat);
 			console.log(changeDateFormat);
+			
 		});
 	});
-</script>
-<script>
+	
 
 	function modifyReserv(){
 		var roomId = $('[name="roomId"]').val();
@@ -44,23 +44,25 @@
 		var startTime = $('[name="startTime"]').val();
 		var endTime = $('[name="endTime"]').val();
 		var description = $('[name="description"]').val();
-	}
-
-	$.ajax({
-				url : "./updateReserv",
-				type : "POST",
-				datatype : JSON,
-				data : JSON.stringify({roomId:roomId,empNo:empNo,startTime:startTime,endTime:endTime,description:description}),
-				contentType : 'application/json',
-				success : function(result){
-					console.log(result);
+		
+		console.log(roomId);
+		console.log(startTime + ' -- ' + endTime);
+		
+		
+		$.ajax({
+			url : "./updateReserv",
+			type : "POST",
+			datatype : JSON,
+			data : JSON.stringify({roomId:roomId,empNo:empNo,startTime:startTime,endTime:endTime,description:description}),
+			contentType : 'application/json',
+			success : function(result){
+				console.log(result);
 			}	
-	})
-</script>
-<script>
-	$(function(){
-		 $("#datepicker").datepicker( "option", "dateFormat", "yy-mm-dd" );
-	})
+	   });
+	}
+	
+
+	
 </script>
 <meta charset="UTF-8">
 <title>회의실예약</title>
@@ -138,7 +140,7 @@
 	</textarea><p>
 		<div id="btn_group">
 		<button type="submit" id="reserv" class="btn btn-primary btn-sm">예약</button>
-		<button type="submit" id="reservModify" class="btn btn-primary btn-sm" onclick="modifyReserv">수정</button>
+		<button type="button" id="reservModify" class="btn btn-primary btn-sm" onclick="modifyReserv()">수정</button>
 		<button id="cancel" class="btn btn-primary btn-sm">취소</button>		
 		</div>
 		</form>
