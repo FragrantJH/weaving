@@ -7,11 +7,10 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-
 <script>
 	$(function(){
+		
 		$("#reservation tr").on('click',function(){
-			
 			var str = ""
 			var tdArr = new Array();
 			
@@ -21,31 +20,49 @@
 			
 			//console.log($(this).children().eq(3).html());
 			var startTime = $(this).children().eq(3).html().substring(11,16);
-			console.log(startTime);
+			//console.log(startTime);
 			
-			//var sTime = $("#startTime option");
-			/* for(i=1;i<sTime.length;i++){
-				if(sTime.eq(i).text()!= null ){
-					var startTime = $("#startTime option:eq("+i+")").prop("selected",true);
-					break;
-				}
-			} */
-			//console.log(sTime);
-			//var startArr = 
-			
-			//console.log($(this).children().eq(1).html());
+			var changeDateFormat = $(this).children().eq(3).html().substring(0,10);
+			//changeDateFormat = dateToMMDDYYYY(changeDateFormat);
+				
+				
+				
 			$("[name =roomId]").val($(this).children().eq(1).html());
 			$("[name =description]").val($(this).children().eq(5).html());
 			$("[name =startTime]").val(startTime);
 			$("[name =endTime]").val($(this).children().eq(4).html().substring(11,16));
+			$("[name =reservDate]").val(changeDateFormat);
+			console.log(changeDateFormat);
 			
 		});
 	});
-</script>
-<script>
-	$(function(){
-		 $("#datepicker").datepicker( "option", "dateFormat", "yy-mm-dd" );
-	})
+	
+
+	function modifyReserv(){
+		var roomId = $('[name="roomId"]').val();
+		var empNo = $('[name="empNo"]').val();
+		var startTime = $('[name="startTime"]').val();
+		var endTime = $('[name="endTime"]').val();
+		var description = $('[name="description"]').val();
+		
+		console.log(roomId);
+		console.log(startTime + ' -- ' + endTime);
+		
+		
+		$.ajax({
+			url : "./updateReserv",
+			type : "POST",
+			datatype : JSON,
+			data : JSON.stringify({roomId:roomId,empNo:empNo,startTime:startTime,endTime:endTime,description:description}),
+			contentType : 'application/json',
+			success : function(result){
+				console.log(result);
+			}	
+	   });
+	}
+	
+
+	
 </script>
 <meta charset="UTF-8">
 <title>회의실예약</title>
@@ -73,7 +90,10 @@
 		 
 	날짜  <input type="text" name="reservDate" id="datepicker" placeholder="예약일을 지정해주세요.">
 		<script>
-			$('#datepicker').datepicker();
+			//$('#datepicker').datepicker("option", "dateFormat","yy-mm-dd");
+			$("#datepicker").on("change", function() {
+			      $("#datepicker").datepicker("option","dateFormat","yy-mm-dd");
+			    });
 		</script><p>
 		
 	예약시간 <select name="startTime">
@@ -120,6 +140,7 @@
 	</textarea><p>
 		<div id="btn_group">
 		<button type="submit" id="reserv" class="btn btn-primary btn-sm">예약</button>
+		<button type="button" id="reservModify" class="btn btn-primary btn-sm" onclick="modifyReserv()">수정</button>
 		<button id="cancel" class="btn btn-primary btn-sm">취소</button>		
 		</div>
 		</form>

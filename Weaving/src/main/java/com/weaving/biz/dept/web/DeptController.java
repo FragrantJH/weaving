@@ -32,29 +32,31 @@ public class DeptController {
 	}
 			
 	//dept 수정
-	@RequestMapping(value="/deptUpdate",method= {RequestMethod.PUT,RequestMethod.GET})
+	@RequestMapping(value="/deptUpdate")
 	@ResponseBody
 	public DeptVO updateDept(DeptVO vo, Model model) {
+		System.out.println("==========================="+vo);
 		service.updateDept(vo);
 		return vo;
 	}
-	//dept 부서 등록
+	
+	//dept 등록
 	@RequestMapping(value="/deptInsert"
-			,method= {RequestMethod.POST,RequestMethod.GET}
-			,headers = {"Content-type=application/json" }
+			//,method= {RequestMethod.POST,RequestMethod.GET}
+			,headers = {"Content-type=application/json"}
 	)
 	@ResponseBody
-	public DeptVO insertDept(@RequestBody DeptVO vo,Model model) {
+	public DeptVO insertDept(@RequestBody DeptVO vo, Model model) {
 		service.insertDept(vo);
 		return vo;
 	}
 	
 	//dept 단건조회
-	@RequestMapping(value="/getDept/{deptId}",method=RequestMethod.GET)
-	@ResponseBody
-	public DeptVO getDept(@PathVariable String deptId, DeptVO vo, Model model) {
-		vo.setDeptId(deptId);
-		return service.getDept(vo);
-	}
+		@RequestMapping(value="/getDept/{deptId}",method=RequestMethod.GET)
+		@ResponseBody
+		public DeptVO getDept(@PathVariable String deptId, DeptVO vo, Model model) {
+			vo.setDeptId(deptId);
+			return service.getDept(vo);
+		}
 
 }

@@ -66,6 +66,8 @@ public class DocController {
 		//2이면 A
 		//1이면 B
 		//0이면 C	
+		
+		/*
 		int position = Integer.parseInt((String)session.getAttribute("position"));
 		System.out.println(position);
 		String lv = "C";
@@ -84,7 +86,8 @@ public class DocController {
 
 		model.addAttribute("list", docService.getDocList(vo));
 		return "approval/docList";
-
+*/
+		return null;
 	}
 	
 	@RequestMapping("/docViewInsert")

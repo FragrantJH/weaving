@@ -17,8 +17,8 @@
 				             RESERV_SEQ.nextval,
 				             #{roomId},
 				             #{empNo},
-				             to_date(#{startDate},'mm/dd/yyyy hh24:mi'),
-				             to_date(#{endDate},'mm/dd/yyyy hh24:mi'),
+				             to_date(#{startDate},'MM/DD/YYYY HH24:MI'),
+				             to_date(#{endDate},'MM/DD/YYYY HH24:MI'),
 				             #{description}
 				        
 				    )			    
@@ -28,7 +28,8 @@
 		   SET ROOM_ID = #{roomID},
 		   	   EMP_NO = #{empNo},
 		   	   START_TIME = #{startTime},
-		   	   END_TIME = #{endTime}	   	   
+		   	   END_TIME = #{endTime},
+		   	   DESCRIPTION = #{description}	   	   
 		 WHERE RESERV_ID = #{reservId}
 	</update>
 	
