@@ -59,47 +59,58 @@ $(function(){
 	toLeftMove();
 	toRightMove();
 	makeApprovalListTable();
+	
+	docInsert();
+	
+	init();
 });
+
+function init() {
+$("input[name=empNo]").val('${empInfo.empNo}');
+console.log("cc");
+
+console.log(${empInfo.empNo});
+}
+
+function docInsert() {
+	/*
+	$("#").on('click', function() {
+		
+	});
+	*/
+}
 
 function selectDocForm() {
 	$('.dropdown1').on('click', '.dropdown-menu button', function (e) {
 		var formTagClass = $(this).attr('id');
 		var $formTag = $('.'+formTagClass).clone();
-<<<<<<< HEAD
 		$('#write-select').text($(this).text());
 		CKEDITOR.instances.docContents.setData($formTag.html());
 		$('input[name=docType]').val($(this).text());
-=======
-		
-		CKEDITOR.instances.editor1.setData($formTag.html());
-		
->>>>>>> branch 'master' of https://github.com/KimJinHee921/weaving.git
 		$formTag.show();
 	});
 }
  
 function selectSecureLevel() {
 	$('.dropdown2').on('click','.dropdown-menu button', function(e) {
-		/*
-		console.log(this);
-		console.log('==================');
-		*/
-		console.log($(this).text());
-		
 		$('#dropdownMenu2').text($(this).text());
+		$('input[name=secureLevel]').val($(this).text().split('등급')[0]);
 	});
 }
 
 
 function makeApprovalListTable() {
 	$('.modal-footer').on('click', '#rs-approval-list', function() {
+		
 		var approvalEmp = $('#approvalList option');
 		var empCnt = approvalEmp.length;
 		var tb = "";
-
-		if (empCnt > 0) {
-			
+		
+		var DataArray = new Array();
+		
+		if (empCnt > 0) {	
 			$('.approval-line').empty();
+			
 			var tb = "<table id='approval-table' border='1' bordercolor='#cdcdcd'>"+
 						"<tr>" +
 							"<th rowspan='2' scope='col'>"+
@@ -107,7 +118,6 @@ function makeApprovalListTable() {
 									"결재"+
 								"</div>"+
 							"</th>"+
-<<<<<<< HEAD
 							"<th scope='col' class='team name' data-order='1' data-empNo='${position}'>${empName}</td>";
 			var writerData = {
 					'empNo' : '${empInfo.empNo}',
@@ -116,12 +126,9 @@ function makeApprovalListTable() {
 			};								
 
 			DataArray.push(writerData);
-=======
-							"<th scope='col' class='team name' data-empNo='${position}'>${empName}</td>";
->>>>>>> branch 'master' of https://github.com/KimJinHee921/weaving.git
 			for (var i = 0; i < empCnt; i++) {
+				var ApprovalData = {};
 				var str = approvalEmp[i].text.split('(');
-<<<<<<< HEAD
 				
 				tb +="<th scope='col' class='team name' data-order='" + (i + 2) + "' data-empNo='"+approvalEmp[i].value+"'>"+str[0]+"</th>";
 				console.log(approvalEmp[i].value);
@@ -130,10 +137,8 @@ function makeApprovalListTable() {
 				ApprovalData['status'] = 'wait';
 				
 				DataArray.push(ApprovalData);
-=======
-				tb +="<th scope='col' class='team name'  data-empNo='"+approvalEmp[0].value+"'>"+str[0]+"</th>";
->>>>>>> branch 'master' of https://github.com/KimJinHee921/weaving.git
 			}
+			
 			
 			tb += "</tr>"+
 				  "<tr>" +
@@ -144,7 +149,14 @@ function makeApprovalListTable() {
 			tb +="</tr>"+
 				 "</table>";
 			$('.approval-line').append(tb);
+		
+			var jsonString = JSON.stringify(DataArray);
+		    var jsonData = JSON.parse(jsonString);
+		    //var jsonData = JSON.parse(DataArray);
+		    //console.log(DataArray); 
+		   $("input[name=approvalList]").val(jsonString);
 		}
+		
 		
     	$('#approvalLineModel').modal('hide');
 	});
@@ -227,6 +239,7 @@ $("#dropdownMenuButton")
 </script> 
 </head>
 <body>
+${empInfo.empNo}cccc ${empName}
 <div class="col-md-12">
 	<div class="card">
 	    <div class="card-header card-header-text card-header-primary">
@@ -237,7 +250,6 @@ $("#dropdownMenuButton")
 	    
 
 	    <div class="card-body">
-		<form>
 			<h3><small class="text-muted">기본 설정</small></h3>
 				    			
 			<table class="table">
@@ -335,8 +347,8 @@ $("#dropdownMenuButton")
 									<select id="empList" size="7" style="width:200px;">
 										<c:forEach items="${empList}" var="empList">
 									    	<a class="dropdown-item" href="#">${formList.formName}</a>
-									    	<option value="${empList.empNo}">${empList.empName}(${empList.deptName})
-									    </c:forEach>									
+									    	<option class="order${orderNo}" value="${empList.empNo}">${empList.empName}(${empList.deptName})
+									    </c:forEach>					
 									</select>					            
 					            </td>
 					            <td style="border:none;"><button type="button" id="toRight" class="btn btn-default .btn-sm"> >> </button></td>
@@ -358,9 +370,8 @@ $("#dropdownMenuButton")
 			    </div>
 			  </div>
 			</div>		
-	
+		
 			<h3><small class="text-muted">상세 입력</small></h3>
-<<<<<<< HEAD
 			<form action="${pageContext.request.contextPath}/docInsert" method="post">
 				<div class="input-group">
 					<div class="input-group-prepend">
@@ -386,18 +397,6 @@ $("#dropdownMenuButton")
 				</div>
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>			
-=======
-			<div class="approval-form">
-				<textarea name="editor1" id="editor1" rows="10" cols="200">
-				</textarea>
-				<script>
-				    // Replace the <textarea id="editor1"> with a CKEditor
-				    // instance, using default configuration.
-				    CKEDITOR.replace( 'editor1' );
-				</script>
-			</div>				
-		</form>			
->>>>>>> branch 'master' of https://github.com/KimJinHee921/weaving.git
 	    </div>
 	</div>
 </div>
