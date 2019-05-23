@@ -83,8 +83,6 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
-	
-	
 
 	<beans:bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
@@ -105,4 +103,5 @@
 			<beans:ref bean="authenticationInterceptor"/>
 		</interceptor>
 	</interceptors>
+
 </beans:beans>

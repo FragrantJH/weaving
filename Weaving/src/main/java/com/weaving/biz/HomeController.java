@@ -94,4 +94,9 @@ public class HomeController {
 		map.put("datas", temp);
 		return new ModelAndView("commonExcelView", map);
 	}
+	
+	@RequestMapping("ui")
+	public String ui() {
+		return "sample/uiGuide";
+	}
 }
