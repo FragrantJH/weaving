@@ -101,6 +101,7 @@ public class DocController {
 
 	@RequestMapping(value="/docInsert", method=RequestMethod.POST)
 	public String docInsert(DocVO vo, HttpServletRequest request) {
+		System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||");
 		//vo.setRegDate(regDate);
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
@@ -120,6 +121,7 @@ public class DocController {
 		System.out.println(jsonString);
 		ObjectMapper mapper = new ObjectMapper();
 		//List<DocVO> myObjects = mapper.readValue(jsonString, new TypeReference<List<DocVO>>(){});
+		/*
 		try {
 			List<DocVO> docObj = Arrays.asList(mapper.readValue(jsonString, DocVO[].class));
 		
@@ -143,7 +145,7 @@ public class DocController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 		/*
 		try { 
 			System.out.println("-------------------JSON String 을 MAP 으로 변환-----------------------");

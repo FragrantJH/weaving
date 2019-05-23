@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="empInfo" value="${emp}" scope="session"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -239,7 +240,7 @@ $("#dropdownMenuButton")
 </script> 
 </head>
 <body>
-${empInfo.empNo}cccc ${empName}
+${empInfo.empNo} : ${empName}
 <div class="col-md-12">
 	<div class="card">
 	    <div class="card-header card-header-text card-header-primary">

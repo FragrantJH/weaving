@@ -2,35 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DocDAO">
 	<insert id="insertDoc" parameterType="com.weaving.biz.doc.DocVO">
-	<!--
-	 INSERT INTO DOCUMENTFORM (
-							  FORM_ID,
-							  FORM_NAME,
-							  DESCRIPTION,
-							  FORM_CONTENTS
-							)
-				    VALUES ( (SELECT NVL(MAX(FORM_ID), 0) + 1 FROM DOCUMENTFORM ),
-				             #{formName},
-				             #{description},
-				             #{formContents}
-				    )
-	 -->
-		insert into DOCUMENTS
+		insert into DOCUMENTS (
 			DOC_ID,
 			EMP_NO,
 			DOC_NO,
 			DOC_TITLE,
 			DOC_CONTENTS,
 			REG_DATE,
-			DONE_DATE,
 			SECURE_LEVEL
+			)
 		  values((select NVL(MAX(DOC_ID), 0) + 1 FROM DOCUMENTS),
 		  	#{empNo},
 		  	#{docNo},
 		  	#{docTitle},
 		  	#{docContents},
-		  	#{regDate},
-		  	#{doneDate},
+		  	to_date(#{regDate},'yyyy-mm-dd hh24:mi:ss'),
 		  	#{secureLevel}
 		   )
 	</insert>
