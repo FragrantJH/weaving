@@ -111,7 +111,7 @@
 			var upperDeptId = $('[name="upperDeptId"]').val();
 			$.ajax({ 
 			    url: "deptUpdate",
-			    //type: '', 
+			    type: 'PUT', 
 			    dataType: 'json', 
 			    data: JSON.stringify({deptId: deptId, deptName: deptName, upperDeptId: upperDeptId}),
 			    contentType: 'application/json',

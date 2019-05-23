@@ -50,7 +50,7 @@ public class DeptController {
 			,headers = {"Content-type=application/json"}
 	)
 	@ResponseBody
-	public DeptVO updateDept(DeptVO vo, Model model) {
+	public DeptVO updateDept(@RequestBody DeptVO vo, Model model) {
 		service.updateDept(vo);
 		return vo;
 	}
