@@ -99,7 +99,7 @@
 	<!-- <beans:bean id="authenticationInterceptor" 
 		class="com.weaving.biz.emp.impl.AuthenticationInterceptor"/>
 	<interceptors>
-		<interceptor>
+		<interceptor> 
 			<mapping path="/*"/>
 			<beans:ref bean="authenticationInterceptor"/>
 		</interceptor>
