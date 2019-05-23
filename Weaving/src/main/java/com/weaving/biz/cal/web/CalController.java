@@ -36,6 +36,8 @@ public class CalController {
 			data.setEnd(CommonDateParser.parseToHtmlFormat(data.getEnd()));
 		}
 		
+		System.out.println(list);
+		
 		return list;
 	}
 
