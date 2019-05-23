@@ -15,7 +15,7 @@
 	
 		deptSelect();
 		
-		//userDelete();
+		deptDelete();
 		
 		deptInsert();
 	
@@ -23,6 +23,29 @@
 		
 		//init();
 	});
+	
+	//사용자 삭제 요청
+	function deptDelete() {
+		//삭제 버튼 클릭
+		$('body').on('click','#btnDelete',function(){
+			var deptId = $('#deptId').val();
+			var result = confirm(deptId +" 사용자를 정말로 삭제하시겠습니까?");
+			if(result) {
+				$.ajax({
+					url:'deleteDept/'+deptId,  
+					type:'DELETE',
+					contentType:'application/json;charset=utf-8',
+					dataType:'json',
+					error:function(xhr,status,msg){
+						console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+					}, success:function(xhr) {
+						console.log(xhr.result);
+						$('#searchModal').modal("hide");
+						deptList();
+					}
+				});      }//if
+		}); //삭제 버튼 클릭
+	}//deptDelete
 	
 	//dept 등록 요청
 	function deptInsert(){
@@ -83,6 +106,7 @@
 	function deptUpdate() {
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click',function(){
+			
 			$.ajax({ 
 			    url: "deptUpdate",
 			    //type: 'PUT', 

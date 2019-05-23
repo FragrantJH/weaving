@@ -1,6 +1,8 @@
 package com.weaving.biz.dept.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.weaving.biz.dept.DeptService;
 import com.weaving.biz.dept.DeptVO;
 
+
 @Controller
 public class DeptController {
+	
 	@Autowired
 	DeptService service;
 	
@@ -52,11 +56,21 @@ public class DeptController {
 	}
 	
 	//dept 단건조회
-		@RequestMapping(value="/getDept/{deptId}",method=RequestMethod.GET)
-		@ResponseBody
-		public DeptVO getDept(@PathVariable String deptId, DeptVO vo, Model model) {
-			vo.setDeptId(deptId);
-			return service.getDept(vo);
-		}
+	@RequestMapping(value="/getDept/{deptId}",method=RequestMethod.GET)
+	@ResponseBody
+	public DeptVO getDept(@PathVariable String deptId, DeptVO vo, Model model) {
+		vo.setDeptId(deptId);
+		return service.getDept(vo);
+	}
+	//삭제
+	@RequestMapping(value="/deleteDept/{deptId}", method= {RequestMethod.DELETE,RequestMethod.GET})
+	@ResponseBody
+	public Map deleteDept( @PathVariable String deptId, DeptVO vo, Model model) {
+		vo.setDeptId(deptId);
+		service.deleteDept(vo);
+		Map result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	} 
 
 }
