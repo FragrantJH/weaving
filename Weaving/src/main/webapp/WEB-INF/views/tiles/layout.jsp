@@ -91,11 +91,11 @@
               <p>게시판  </p>
             </a>
             <div id="board" class="collapse in">
-            	<a class="dropdown-item" href="${pageContext.request.contextPath}/boardList">
+            	<a class="dropdown-item" href="${pageContext.request.contextPath}/boardList?boardType=0">
 			      	<i class="material-icons">library_books</i>
               		<p>공지사항</p>
 			    </a>
-			    <a class="dropdown-item" href="${pageContext.request.contextPath}/boardList">
+			    <a class="dropdown-item" href="${pageContext.request.contextPath}/boardList?boardType=1">
 			      	<i class="material-icons">library_books</i>
               		<p>게시판</p>
 			    </a>     
@@ -137,7 +137,7 @@
           </li>
                
           <li class="nav-item ">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="${pageContext.request.contextPath}/getCal">
               <i class="material-icons">today</i>
               <p>일정</p>
             </a>
@@ -147,11 +147,12 @@
     </div>
     
     <div class="main-panel">
+      <!-- TODO Navbar 어떻게 할지 정리 필요 -->
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Dashboard</a>
+           <!--  <a class="navbar-brand" href="#pablo">Dashboard</a> -->
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
