@@ -3,6 +3,7 @@ package com.weaving.biz.emp;
 import java.util.Arrays;
 
 public class EmpVO {
+	private String gmailAppKey;
 	private int empNo;
 	private String empName;
 	private String password;
@@ -19,6 +20,12 @@ public class EmpVO {
 	private String[] seqs;
 	private int cnt;
 	
+	public String getGmailAppKey() {
+		return gmailAppKey;
+	}
+	public void setGmailAppKey(String gmailAppKey) {
+		this.gmailAppKey = gmailAppKey;
+	}
 	public String getDeptName() {
 		return deptName;
 	}
@@ -109,14 +116,13 @@ public class EmpVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	
 	@Override
 	public String toString() {
-		return "EmpVO [empNo=" + empNo + ", empName=" + empName + ", password=" + password + ", position=" + position
-				+ ", joindate1=" + joindate1 + ", email=" + email + ", phone=" + phone + ", address=" + address
-				+ ", deptId=" + deptId + ", deletedYn=" + deletedYn + ", deletedDate=" + deletedDate
-				+ ", position_title=" + ", seq=" + seq + ", seqs=" + Arrays.toString(seqs) + ", cnt="
-				+ cnt + "]";
+		return "EmpVO [gmailAppKey=" + gmailAppKey + ", empNo=" + empNo + ", empName=" + empName + ", password="
+				+ password + ", position=" + position + ", joindate1=" + joindate1 + ", deptName=" + deptName
+				+ ", email=" + email + ", phone=" + phone + ", address=" + address + ", deptId=" + deptId
+				+ ", deletedYn=" + deletedYn + ", deletedDate=" + deletedDate + ", seq=" + seq + ", seqs="
+				+ Arrays.toString(seqs) + ", cnt=" + cnt + "]";
 	}
 	
 	

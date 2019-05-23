@@ -22,6 +22,8 @@
 								,DELETED_YN
 								</if><if test="deletedDate != null">
 								,DELETED_DATE
+								</if><if test="gmailAppKey != null">
+								,GMAIL_APP_KEY
 								</if>
 								)
 		VALUES ( (SELECT NVL(MAX(EMP_NO), 0) + 1 FROM EMPLOYEES )
@@ -43,6 +45,8 @@
 				,#{deletedYn}
 				</if><if test="deletedDate != null">
 				,#{deletedDate}
+				</if><if test="gmailAppKey != null">
+				,#{gmailAppKey}
 				</if>
 				)
 	</insert>
@@ -85,6 +89,7 @@
 		,phone = #{phone}
 		,address = #{address}
 		,dept_id = #{deptId}
+		,gmail_app_key = #{gmailAppKey}
 		where emp_no = #{empNo}
 	</update>
 	

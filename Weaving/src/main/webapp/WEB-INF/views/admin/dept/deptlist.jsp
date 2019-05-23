@@ -52,7 +52,7 @@
 		//등록 버튼 클릭
 		$('#btnInsert').on('click',function(){
 			var deptName = $('input:text[name="deptName"]').val();
-			var upperDeptId = $('input:text[name="upperDeptId"]').val();
+			var upperDeptId = $('[name="upperDeptId"]').val();
 			$.ajax({ 
 			    url: "deptInsert",  
 			    type: 'POST',
@@ -99,19 +99,23 @@
 		var dept = data;
 		$('input:text[name="deptId"]').val(dept.deptId);
 		$('input:text[name="deptName"]').val(dept.deptName);
-		$('input:text[name="upperDeptId"]').val(dept.upperDeptId);
+		$('select[name="upperDeptId"]').val(dept.upperDeptId);
 	}//deptSelectResult
 	
 	//부서 수정 요청
 	function deptUpdate() {
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click',function(){
-			
+			var deptId = $('input:text[name="deptId"]').val();
+			var deptName = $('input:text[name="deptName"]').val();
+			var upperDeptId = $('[name="upperDeptId"]').val();
 			$.ajax({ 
 			    url: "deptUpdate",
-			    //type: 'PUT', 
+			    //type: '', 
 			    dataType: 'json', 
-			    data: $('#InsertDeptForm').serialize(),
+			    data: JSON.stringify({deptId: deptId, deptName: deptName, upperDeptId: upperDeptId}),
+			    contentType: 'application/json',
+			    mimeType: 'application/json',
 			    success: function(data) { 
 			    	$('#searchModal').modal("hide");
 					deptList();
@@ -205,8 +209,18 @@
 								<input type="text" name="deptName" id="deptName">
 								<br>
 								<br> 
-								<label for="upperDeptId"><b>하위부서</b></label> 
-								<input type="text" name="upperDeptId" id="upperDeptId">
+								<label for="upperDeptId"><b>상위부서</b></label> 
+								<select 
+									name="upperDeptId" size="1" id="upperDeptId">
+									<option value="7">회사</option>
+									<option value="1">경영지원팀</option>
+									<option value="2">회계</option>
+									<option value="3">인사</option>
+									<option value="4">연구관리팀</option>
+									<option value="5">개발</option>
+									<option value="6">테스트</option>
+									
+								</select>
 								<br>
 								<hr>
 							</form>
