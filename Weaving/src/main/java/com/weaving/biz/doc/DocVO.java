@@ -5,18 +5,40 @@ import java.util.Arrays;
 public class DocVO {
 	private int docId;
 	private int empNo;
+	private int approvalOrder;
 	private String empName;
+	private String status;
 	private String docNo;
 	private String docTitle;
 	private String docContents;
 	private String regDate;
 	private String doneDate;
+	private String approvalDate;
 	private String secureLevel;
 	//검색조건
 	private String searchCondition;
 	private String searchKeyword;
 	private String[] seqs;
+
 	
+	public String getApprovalDate() {
+		return approvalDate;
+	}
+	public void setApprovalDate(String approvalDate) {
+		this.approvalDate = approvalDate;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public int getApprovalOrder() {
+		return approvalOrder;
+	}
+	public void setApprovalOrder(int approvalOrder) {
+		this.approvalOrder = approvalOrder;
+	}
 	public int getDocId() {
 		return docId;
 	}
@@ -91,11 +113,11 @@ public class DocVO {
 	}
 	@Override
 	public String toString() {
-		return "DocVO [docId=" + docId + ", empNo=" + empNo + ", empName=" + empName + ", docNo=" + docNo
-				+ ", docTitle=" + docTitle + ", docContents=" + docContents + ", regDate=" + regDate + ", doneDate="
-				+ doneDate + ", secureLevel=" + secureLevel + ", searchCondition=" + searchCondition
-				+ ", searchKeyword=" + searchKeyword + ", seqs=" + Arrays.toString(seqs) + "]";
-	}
-	
+		return "DocVO [docId=" + docId + ", empNo=" + empNo + ", approvalOrder=" + approvalOrder + ", empName="
+				+ empName + ", status=" + status + ", docNo=" + docNo + ", docTitle=" + docTitle + ", docContents="
+				+ docContents + ", regDate=" + regDate + ", doneDate=" + doneDate + ", approvalDate=" + approvalDate
+				+ ", secureLevel=" + secureLevel + ", searchCondition=" + searchCondition + ", searchKeyword="
+				+ searchKeyword + ", seqs=" + Arrays.toString(seqs) + "]";
+	}	
 	
 }

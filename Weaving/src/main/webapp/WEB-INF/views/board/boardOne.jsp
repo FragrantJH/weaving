@@ -32,14 +32,18 @@
 					</div>
 					<br>
 					<div>${board.boardContents}</div>
-					<br> <br>
-
+					<br><br><br><br><br><br><br><br>
+					<div>
+					Comment : <input type="text" class="form-control" id="reply" name="reply" 
+					value="${reply.replyContents}">
+					<button type="submit" class="btn btn-primary btn-sm">등록</button>
+					</div>
+					<br><br><br><br>
 					<div>
 						<button type="button" class="btn btn-primary btn-sm"
 							onclick="location.href='../boardList'">목록</button>
 						<button type="button" class="btn btn-primary btn-sm"
 							onclick="location.href='../boardUpdate/${board.boardId}'">수정</button>
-
 						<button type="button" class="btn btn-primary btn-sm"
 							onclick="location='${pageContext.request.contextPath}/boardDelete?boardId=${board.boardId}'">삭제</button>
 					</div>

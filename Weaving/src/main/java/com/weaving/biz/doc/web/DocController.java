@@ -1,5 +1,15 @@
 package com.weaving.biz.doc.web;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +19,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weaving.biz.common.Paging;
 import com.weaving.biz.doc.DocService;
 import com.weaving.biz.doc.DocVO;
@@ -16,6 +30,8 @@ import com.weaving.biz.docForm.DocFormService;
 import com.weaving.biz.docForm.DocFormVO;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
+
+import aj.org.objectweb.asm.TypeReference;
 
 @Controller
 public class DocController {
@@ -84,12 +100,65 @@ public class DocController {
 	}
 
 	@RequestMapping(value="/docInsert", method=RequestMethod.POST)
-	public String docInsert(DocVO vo) {
+	public String docInsert(DocVO vo, HttpServletRequest request) {
 		//vo.setRegDate(regDate);
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		Date date = new Date();
+		String curTime = f.format(date);
+		String[] d  = curTime.split(" ");
+		String[] d2 = d[0].split("-");
+		
+		String docType = request.getParameter("docType") +"-" + d2[0] + d2[1] + d2[2] + "-0000";
+		String jsonString = request.getParameter("approvalList");
 		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		vo.setDocNo(docType);
+		vo.setRegDate(curTime);
 		System.out.println(vo);
-		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");		
-		//System.out.println(vo.getSecureLevel());
+		docService.insertDoc(vo);
+		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		System.out.println(jsonString);
+		ObjectMapper mapper = new ObjectMapper();
+		//List<DocVO> myObjects = mapper.readValue(jsonString, new TypeReference<List<DocVO>>(){});
+		try {
+			List<DocVO> docObj = Arrays.asList(mapper.readValue(jsonString, DocVO[].class));
+		
+			boolean b = true;
+			for (DocVO v : docObj) {
+				if (b) {
+					System.out.println("hhhhhh");
+					v.setApprovalDate(curTime);
+					System.out.println(v);
+					b = false;	
+				}
+			}			
+			
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*
+		try { 
+			System.out.println("-------------------JSON String 을 MAP 으로 변환-----------------------");
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map = mapper.readValue(jsonString, new Map<String, String>); 
+			System.out.println(map);  
+		} catch (JsonGenerationException e) {
+			e.printStackTrace(); 
+		} catch (JsonMappingException e) {
+			e.printStackTrace(); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		*/
 		return "";
 	}
 		

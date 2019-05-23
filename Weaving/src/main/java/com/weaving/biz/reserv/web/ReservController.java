@@ -31,7 +31,6 @@ public class ReservController {
 		
 		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
 		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
-		
 		// 현재 접속한 사용자 정보
 		Object emp = session.getAttribute("emp");
 		if(emp != null) {

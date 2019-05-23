@@ -13,6 +13,10 @@ public class DocDAO {
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
+	public void insertDoc(DocVO vo) {
+		mybatis.insert("DocDAO.insertDoc", vo);
+	}
+	
 	public List<DocVO> getBoardList(DocVO vo) {
 		//
 		return mybatis.selectList("DocDAO.getDocList", vo);

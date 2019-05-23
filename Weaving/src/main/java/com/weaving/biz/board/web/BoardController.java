@@ -3,6 +3,7 @@ package com.weaving.biz.board.web;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,19 +33,26 @@ public class BoardController {
 
 	// 등록 처리
 	@RequestMapping("/boardInsert")
-	public String boardInsert(BoardVO vo) {
+	public String boardInsert(BoardVO vo, HttpSession session) {
+		vo.setBoardType((Character)session.getAttribute("boardType"));
 		service.insertBoard(vo);
 		return "redirect:boardList";
 	}
 	
 	// 글 목록 조회
 	@RequestMapping("/boardList")
-	public ModelAndView getBoardList(ModelAndView mav, Paging paging, BoardVO vo) {
+	public ModelAndView getBoardList(ModelAndView mav, Paging paging, BoardVO vo, HttpSession session) {
 		//페이지 번호 파라미터
 		if (paging.getPage() == 0) {
 			paging.setPage(1);
 		}
-		
+		System.out.println(vo);
+		if (vo.getBoardType() == ' '  ) {
+			vo.setBoardType((Character)session.getAttribute("boardType"));
+		} else {
+			session.setAttribute("boardType", vo.getBoardType());
+		}
+				
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());
 		
