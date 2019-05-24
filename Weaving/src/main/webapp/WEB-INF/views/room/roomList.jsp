@@ -37,12 +37,6 @@
 							<button type="button" rel="tooltip" class="btn btn-info" onclick="location.href='roomReserv'">
 								<i class="material-icons">person</i>
 							</button>
-							<button type="button" rel="tooltip" class="btn btn-success">
-								<i class="material-icons">edit</i>
-							</button>
-							<button type="button" rel="tooltip" class="btn btn-danger">
-								<i class="material-icons">close</i>
-							</button>
 						</td>
 					</tr>
 				</c:forEach>
