@@ -22,6 +22,9 @@
 		deptUpdate();
 		
 		//init();
+		$('#searchModal').on('show.bs.modal', function (e) {
+			$('#InsertDeptForm')[0].reset();
+		})
 	});
 	
 	//사용자 삭제 요청
@@ -175,7 +178,7 @@
 				<div class="card-text">
 					<h4 class="card-title">부서 관리</h4>
 				</div>
-				<button id="InsertDeptForm" data-toggle="modal" data-target="#searchModal">등록</button>
+				<button id="btnInsertDept" data-toggle="modal" data-target="#searchModal">등록</button>
 			</div>
 			<table class="table text-center">
 				<thead>

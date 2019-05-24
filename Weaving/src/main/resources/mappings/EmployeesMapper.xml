@@ -75,7 +75,7 @@
 		, d.dept_name
 		from employees e
 		join department d
-		on e.dept_id = d.dept_id
+		on e.dept_id = d.dept_id(+)
 		order by e.emp_no desc
 	</select>
 	
@@ -91,6 +91,11 @@
 		,dept_id = #{deptId}
 		,gmail_app_key = #{gmailAppKey}
 		where emp_no = #{empNo}
+	</update>
+	
+	<!-- 퇴사 -->
+	<update id="updateEmp" parameterType="emp">
+		update employees set deleted_yn = 'Y' ,delete_date=sysdate where emp_no=#{empNo};
 	</update>
 	
 	<!-- 삭제 -->
