@@ -4,58 +4,59 @@
 
 	<insert id="insertRoom" parameterType="room">
 		INSERT INTO ROOM (
-							  ROOM_ID,
-							  ROOM_NAME,
-							  ROOM_LOC,
-							  ROOM_SIZE,
-							  ROOM_MAX
-							 
-							  
-							)
-				    VALUES ( 
-				             #{roomId},
-				             #{roomName},
-				             #{roomLoc},
-				             #{roomSize},
-				             #{roomMax}
-				        
-				    )			    
+		ROOM_ID,
+		ROOM_NAME,
+		ROOM_LOC,
+		ROOM_SIZE,
+		ROOM_MAX
+
+
+		)
+		VALUES (
+		#{roomId},
+		#{roomName},
+		#{roomLoc},
+		#{roomSize},
+		#{roomMax}
+
+		)
 	</insert>
 	<update id="updateRoom" parameterType="room">
 		UPDATE room
-		   SET ROOM_NAME = #{roomName},
-		   	   ROOM_LOC = #{roomLoc},
-		   	   ROOM_SIZE = #{roomSize},
-		   	   ROOM_MAX = #{roomMax}		   	   
-		 WHERE ROOM_ID = #{roomId}
+		SET ROOM_NAME = #{roomName},
+		ROOM_LOC = #{roomLoc},
+		ROOM_SIZE = #{roomSize},
+		ROOM_MAX = #{roomMax}
+		WHERE ROOM_ID = #{roomId}
 	</update>
-	
+
 	<delete id="deleteRoom" parameterType="room">
 		DELETE FROM ROOM
-		 WHERE ROOM_ID = #{roomId}
+		WHERE ROOM_ID = #{roomId}
 	</delete>
-	
+
 	<select id="selectRoomList" resultType="room">
 		SELECT ROOM_ID,
-			   ROOM_NAME,
-			   ROOM_LOC,
-			   ROOM_SIZE,
-			   ROOM_MAX
-		  FROM ROOM ORDER BY ROOM_ID
+		ROOM_NAME,
+		ROOM_LOC,
+		ROOM_SIZE,
+		ROOM_MAX
+		FROM ROOM ORDER BY ROOM_ID
 	</select>
-	
+
 	<select id="selectRoom" parameterType="room" resultType="room">
-		SELECT ROOM_ID,
-			   ROOM_NAME,
-			   ROOM_LOC,
-			   ROOM_SIZE,
-			   ROOM_MAX			   
-		  FROM ROOM 
-		 WHERE ROOM_ID = #{roomId}
+		SELECT
+		ROOM_ID,
+		ROOM_NAME,
+		ROOM_LOC,
+		ROOM_SIZE,
+		ROOM_MAX
+		FROM ROOM
+		WHERE ROOM_ID = #{roomId}
 	</select>
-	
+
 	<select id="selectRoomTotalCnt" resultType="int">
 		SELECT COUNT(*)
-		  FROM ROOM
+		FROM ROOM
 	</select>
 </mapper>

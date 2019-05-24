@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.weaving.biz.cal.CalVO;
@@ -27,9 +28,10 @@ public class ReservController {
 		return "room/roomReserv";
 	}
 
-	@RequestMapping("/roomInsertReserv")
+	@RequestMapping(value = "/roomInsertReserv", method = RequestMethod.POST)
 	public String roomInsertReserv(Model model, ReservVO vo, HttpSession session) {
-
+		System.out.println(vo.getReservDate());
+		vo.setReservId(0);
 		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
 		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
 		// 현재 접속한 사용자 정보
@@ -47,12 +49,17 @@ public class ReservController {
 
 	@RequestMapping("/updateReserv")
 	@ResponseBody
-	public String modifyReserv(@RequestBody ReservVO vo, HttpSession session) {
+	public ReservVO modifyReserv(@RequestBody ReservVO vo, HttpSession session) {
 		System.out.println(vo);
 
 		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
 		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
-		
+		System.out.println("********************************************************");
+		System.out.println(vo.getStartDate());
+		System.out.println(vo.getEndDate());
+		System.out.println(vo.getReservDate());
+		System.out.println(vo.getDescription());
+		System.out.println("********************************************************");
 		// 현재 접속한 사용자 정보
 		// TODO 임시로 1번 넣은 것 수정 필요
 		Object emp = session.getAttribute("emp");
@@ -63,7 +70,7 @@ public class ReservController {
 		}
 
 		service.updateReserv(vo);
-		return null;
+		return vo;
 	}
 
 }
