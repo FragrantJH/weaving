@@ -21,11 +21,12 @@
 	<update id="updateDept" parameterType="dept">
 		update department set
 		dept_id = #{deptId}
-		,dept_name = #{dpetName}
+		,dept_name = #{deptName}
 		,upper_dept_id = #{upperDeptId}
 		where dept_id = #{deptId}
 	</update>
 	
+	<!--부서 등록 -->
 	<insert id="insertDept" parameterType="dept">
 		insert into department(
 								dept_id

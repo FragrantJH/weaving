@@ -45,7 +45,7 @@
               <p>회사관리</p>
             </a>
             <div id=company class="collapse in">
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/emplist">
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/adminemplist">
 			      	<i class="material-icons">group</i>
               		<p>직원관리</p>
 			      </a>

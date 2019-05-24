@@ -136,11 +136,21 @@
 			</div>
           </li>
                
-          <li class="nav-item ">
-            <a class="nav-link" href="${pageContext.request.contextPath}/getCal">
+          <li class="nav-item dropdown ">
+            <a class="nav-link" data-toggle="collapse" data-target="#cal" role="button">
               <i class="material-icons">today</i>
               <p>일정</p>
             </a>
+            <div id="cal" class="collapse in">
+            	<a class="dropdown-item" href="${pageContext.request.contextPath}/getCal?calType=All">
+			      	<i class="material-icons">today</i>
+              		<p>전체일정</p>
+			    </a>
+			    <a class="dropdown-item" href="${pageContext.request.contextPath}/getCal?calType=User">
+			      	<i class="material-icons">today</i>
+              		<p>개인일정</p>
+			    </a>     
+            </div>
           </li>
         </ul>
       </div>

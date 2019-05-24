@@ -35,11 +35,22 @@ public class DeptController {
 				return "admin/dept/deptlist";
 	}
 			
+	/*
+	 * //dept 수정
+	 * 
+	 * @RequestMapping(value="/deptUpdate")
+	 * 
+	 * @ResponseBody public DeptVO updateDept(DeptVO vo, Model model) {
+	 * System.out.println("==========================="+vo); service.updateDept(vo);
+	 * return vo; }
+	 */
 	//dept 수정
-	@RequestMapping(value="/deptUpdate")
+	@RequestMapping(value="/deptUpdate"
+			//,method= {RequestMethod.PUT,RequestMethod.GET}
+			,headers = {"Content-type=application/json"}
+	)
 	@ResponseBody
-	public DeptVO updateDept(DeptVO vo, Model model) {
-		System.out.println("==========================="+vo);
+	public DeptVO updateDept(@RequestBody DeptVO vo, Model model) {
 		service.updateDept(vo);
 		return vo;
 	}

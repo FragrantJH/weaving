@@ -16,38 +16,54 @@ import com.weaving.biz.reserv.ReservVO;
 
 @Controller
 public class ReservController {
+
 	@Autowired
 	ReservService service;
 
-	//예약현황
+	// 예약현황
 	@RequestMapping("/roomReserv")
 	public String roomReserv(Model model) {
-		model.addAttribute("list",service.getReservList());
+		model.addAttribute("list", service.getReservList());
 		return "room/roomReserv";
 	}
-	
+
 	@RequestMapping("/roomInsertReserv")
-	public String roomInsertReserv(Model model,ReservVO vo, HttpSession session ) {
-		
+	public String roomInsertReserv(Model model, ReservVO vo, HttpSession session) {
+
 		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
 		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
 		// 현재 접속한 사용자 정보
 		Object emp = session.getAttribute("emp");
-		if(emp != null) {
-			vo.setEmpNo(((EmpVO)emp).getEmpNo());
+		if (emp != null) {
+			vo.setEmpNo(((EmpVO) emp).getEmpNo());
+		} else {
+			vo.setEmpNo(1);
 		}
-		
+
 		service.insertReserv(vo);
-		model.addAttribute("list",service.getReservList());
+		model.addAttribute("list", service.getReservList());
 		return "room/roomReserv";
 	}
-	
+
 	@RequestMapping("/updateReserv")
 	@ResponseBody
 	public String modifyReserv(@RequestBody ReservVO vo, HttpSession session) {
 		System.out.println(vo);
+
+		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
+		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
+		
+		// 현재 접속한 사용자 정보
+		// TODO 임시로 1번 넣은 것 수정 필요
+		Object emp = session.getAttribute("emp");
+		if (emp != null) {
+			vo.setEmpNo(((EmpVO) emp).getEmpNo());
+		} else {
+			vo.setEmpNo(1);
+		}
+
 		service.updateReserv(vo);
 		return null;
 	}
-	
+
 }

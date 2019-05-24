@@ -83,6 +83,8 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
+	
+	
 
 	<beans:bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
@@ -92,5 +94,17 @@
 			<beans:property name="paramName" value="lang" />
 		</beans:bean>
 	</interceptors>
-
+	
+	<!-- 인터셉터 객체 생성 -->
+	<beans:bean id="authenticationInterceptor" 
+		class="com.weaving.biz.emp.impl.AuthenticationInterceptor"/>
+	<interceptors>
+		<interceptor> 
+			<mapping path="/*"/>
+			<exclude-mapping path="/login/**"/>
+			<beans:ref bean="authenticationInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	 
 </beans:beans>

@@ -34,11 +34,12 @@
 			var email = $('input:text[name="email"]').val();
 			var phone = $('input:text[name="phone"]').val();
 			var address = $('input:text[name="address"]').val();
+			var gmailAppKey = $('input:text[name="gmailAppKey"]').val();
 			$.ajax({ 
 			    url: "insertEmp",  
 			    type: 'POST',
 			    dataType: 'json', 
-			    data: JSON.stringify({ empName: empName, password: password,deptId: deptId, position: position, email: email, phone: phone, address: address, }),
+			    data: JSON.stringify({ empName: empName, password: password,deptId: deptId, position: position, email: email, phone: phone, address: address, gmailAppKey: gmailAppKey }),
 			    contentType: 'application/json',
 			    mimeType: 'application/json',
 			    success: function(response) {
@@ -139,6 +140,7 @@
 		$('input:text[name="email"]').val(emp.email);
 		$('input:text[name="phone"]').val(emp.phone);
 		$('input:text[name="address"]').val(emp.address);
+		$('input:text[name="gmailAppKey"]').val(emp.gmailAppKey);
 	}//userSelectResult
 
 	//사용자 목록 조회 요청
@@ -242,15 +244,14 @@
 								<label for="deptId"><b>소속부서</b></label>
 								<select 
 									name="deptId" size="1" id="deptId">
-									<option value="">선택</option>
-									<option value="0">없음</option>
+									<option value="7">회사</option>
 									<option value="1">경영지원팀</option>
 									<option value="2">회계</option>
 									<option value="3">인사</option>
 									<option value="4">연구관리팀</option>
 									<option value="5">개발</option>
 									<option value="6">테스트</option>
-									<option value="7">회사</option>
+									
 								</select>
 								<br>
 								<br> 
@@ -258,9 +259,12 @@
 								<select 
 									name="position" size="1" id="position">
 									<option value="">선택</option>
+									<option value="0">사원</option>
 									<option value="1">대리</option>
 									<option value="2">과장</option>
 									<option value="3">차장</option>
+									<option value="4">부장</option>
+									<option value="5">대표</option>
 								</select>
 								<br>
 								<br> 
@@ -274,6 +278,10 @@
 								<br> 
 								<label for="address"><b>자택주소</b></label> 
 								<input type="text" size="20" id="address" name="address"> 
+								<br>
+								<br>
+								<label for="gmailAppKey"><b>GMAILAPPKEY</b></label> 
+								<input type="text" size="20" id="gmailAppKey" name="gmailAppKey"> 
 								<br>
 								<br>
 								<hr>

@@ -21,8 +21,7 @@ public class ReservDAO {
 	public void update(ReservVO vo) {
 		rss.update("ReservDAO.updateReserv",vo);
 	}
-	
-	
+
 	public List<ReservVO> getReservList(){
 		return rss.selectList("ReservDAO.selectReservList");
 	}

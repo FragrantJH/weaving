@@ -7,30 +7,30 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	$(function(){
 		
 		$("#reservation tr").on('click',function(){
-			var str = ""
-			var tdArr = new Array();
+			var str = ""			
+			var td = $(this).children();			
 			
-			var tr = $(this);
-			var td = tr.children();
-			
+			console.log(td);
 			
 			//console.log($(this).children().eq(3).html());
-			var startTime = $(this).children().eq(3).html().substring(11,16);
+			var startTime =td.eq(3).html().substring(11,16);
 			//console.log(startTime);
 			
-			var changeDateFormat = $(this).children().eq(3).html().substring(0,10);
+			var changeDateFormat = td.eq(3).html().substring(0,10);
 			//changeDateFormat = dateToMMDDYYYY(changeDateFormat);
 				
 				
-				
-			$("[name =roomId]").val($(this).children().eq(1).html());
-			$("[name =description]").val($(this).children().eq(5).html());
+			$("[name =reservId]").val(td.eq(0).html());
+			$("[name =roomId]").val(td.eq(1).html());
+			$("[name =description]").val(td.eq(5).html());
 			$("[name =startTime]").val(startTime);
-			$("[name =endTime]").val($(this).children().eq(4).html().substring(11,16));
+			$("[name =endTime]").val(td.eq(4).html().substring(11,16));
 			$("[name =reservDate]").val(changeDateFormat);
 			console.log(changeDateFormat);
 			
@@ -39,21 +39,25 @@
 	
 
 	function modifyReserv(){
+		var reservId = $('[name="reservId"]').val();
 		var roomId = $('[name="roomId"]').val();
 		var empNo = $('[name="empNo"]').val();
 		var startTime = $('[name="startTime"]').val();
 		var endTime = $('[name="endTime"]').val();
 		var description = $('[name="description"]').val();
+		var startDate = $('[name="startDate"]').val();
+		var endDate = $('[name="endDate"]').val();
 		
-		console.log(roomId);
+		
+		console.log(reservId);
 		console.log(startTime + ' -- ' + endTime);
-		
+		console.log(JSON.stringify({reservId:reservId,roomId:roomId,empNo:empNo,startTime:startTime,endTime:endTime,description:description,startDate:startDate,endDate:endDate}));
 		
 		$.ajax({
 			url : "./updateReserv",
 			type : "POST",
 			datatype : JSON,
-			data : JSON.stringify({roomId:roomId,empNo:empNo,startTime:startTime,endTime:endTime,description:description}),
+			data : JSON.stringify({reservId:reservId,roomId:roomId,empNo:empNo,startTime:startTime,endTime:endTime,description:description,startDate:startDate,endDate:endDate}),
 			contentType : 'application/json',
 			success : function(result){
 				console.log(result);
@@ -78,23 +82,29 @@
           </div>
           <div class="card-body">
           <form name="frm" action="roomInsertReserv" method="POST">
-          <input type="hidden" name="startDate">
-          <input type="hidden" name="endDate">
+          <input type="hidden" name="reservId" value="">
+          <input type="hidden" name="startDate" value="">
+          <input type="hidden" name="endDate" value="">
               	회의실 <select name="roomId" >
 			<option value="">회의실선택</option>
 			<option value="1">1번회의실</option>
 			<option value="2">2번회의실</option>
 			<option value="3">3번회의실</option>
 		 </select><p><p>
+
+	
 	
 		 
-	날짜  <input type="text" name="reservDate" id="datepicker" placeholder="예약일을 지정해주세요.">
-		<script>
-			//$('#datepicker').datepicker("option", "dateFormat","yy-mm-dd");
-			$("#datepicker").on("change", function() {
-			      $("#datepicker").datepicker("option","dateFormat","yy-mm-dd");
-			    });
-		</script><p>
+	날짜  <input type="text" autocomplete="off" name="reservDate" id="datepicker" placeholder="예약일을 지정해주세요.">
+			<script>
+/* 			  $( function() {
+				    $( "#datepicker" ).datepicker();
+				    $( "#format" ).on( "change", function() {
+				      $( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );
+				    });
+				  } ); */
+				  $( "#datepicker" ).datepicker();
+	  		</script><p>
 		
 	예약시간 <select name="startTime">
 			<option value="">선택</option>
@@ -141,6 +151,7 @@
 		<div id="btn_group">
 		<button type="submit" id="reserv" class="btn btn-primary btn-sm">예약</button>
 		<button type="button" id="reservModify" class="btn btn-primary btn-sm" onclick="modifyReserv()">수정</button>
+		<button type="reset" id="reservReset" class="btn btn-primary btn-sm" onclick="reSetReserv()">초기화</button>
 		<button id="cancel" class="btn btn-primary btn-sm">취소</button>		
 		</div>
 		</form>
@@ -174,9 +185,9 @@
         <tr id="${ReservList.reservId}">
             <td class="ReservId">${ReservList.reservId}</td>
             <td class="RoomId">${ReservList.roomId}</td>
-            <td>${ReservList.empName}</td>
-            <td>${ReservList.startTime}</td>            
-            <td>${ReservList.endTime}</td>
+            <td class="empName">${ReservList.empName}</td>
+            <td class="startTime">${ReservList.startTime}</td>            
+            <td class="endTime">${ReservList.endTime}</td>
             <td class="description">${ReservList.description}</td>
         </tr>
 		</c:forEach>
