@@ -30,7 +30,7 @@ public class EmpController {
 	@Autowired
 	Empservice service;
 	//리스트 페이지 이동
-	@RequestMapping("/emplist")
+	@RequestMapping("/adminemplist")
 	public String emplist() {
 		return "admin/emp/emplist";
 	}
@@ -108,6 +108,7 @@ public class EmpController {
 		// Admin 계정 체크
 		if(vo.getEmpNo() == 1234 && vo.getPassword().equals("admin")) {
 			session.setAttribute("adminMode", true);
+			session.setAttribute("emp", vo);
 			return "admin/adminHome";
 		}
 
@@ -121,8 +122,10 @@ public class EmpController {
 			out.print("</script>");
 			return "empty/login";
 		} else {
+			session.setAttribute("empNo", emp.getEmpNo());
 			session.setAttribute("empName", emp.getEmpName());
 			session.setAttribute("position", emp.getPosition());
+			session.setAttribute("adminMode", false);
 			session.setAttribute("emp", emp);
 
 		}
