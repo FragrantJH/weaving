@@ -259,9 +259,12 @@
 								<select 
 									name="position" size="1" id="position">
 									<option value="">선택</option>
+									<option value="0">사원</option>
 									<option value="1">대리</option>
 									<option value="2">과장</option>
 									<option value="3">차장</option>
+									<option value="4">부장</option>
+									<option value="5">대표</option>
 								</select>
 								<br>
 								<br> 
