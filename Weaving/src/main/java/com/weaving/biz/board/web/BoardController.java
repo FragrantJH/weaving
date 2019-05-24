@@ -36,7 +36,7 @@ public class BoardController {
 	public String boardInsert(BoardVO vo, HttpSession session) {
 		vo.setBoardType((Character)session.getAttribute("boardType"));
 		service.insertBoard(vo);
-		return "redirect:boardList";
+		return "redirect:boardList?boardType="+ vo.getBoardType();
 	}
 	
 	// 글 목록 조회
