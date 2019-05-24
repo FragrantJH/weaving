@@ -14,9 +14,8 @@ public class CalVO {
 	private String backgroundColor;
 	private Boolean editable = true;
 	private String description;
-	private Map<String, Object> extendedProps;
+	private CalTypeEnum calType;
 	private Integer empNo;
-
 
 	public String getId() {
 		return id;
@@ -90,25 +89,19 @@ public class CalVO {
 		this.description = description;
 	}
 
-	public Map<String, Object> getExtendedProps() {
-		
-		if(extendedProps == null) {
-			extendedProps = new HashMap<String, Object>();
-		}
-		
-		if(extendedProps.containsKey("description") == false) {
-			extendedProps.put("description", this.description);
-		}
-		
-		return extendedProps;
+	public CalTypeEnum getCalType() {
+		return calType;
+	}
+
+	public void setCalType(CalTypeEnum calType) {
+		this.calType = calType;
 	}
 
 	@Override
 	public String toString() {
 		return "CalVO [id=" + id + ", allDay=" + allDay + ", start=" + start + ", end=" + end + ", title=" + title
 				+ ", backgroundColor=" + backgroundColor + ", editable=" + editable + ", description=" + description
-				+ ", extendedProps=" + extendedProps + ", empNo=" + empNo + "]";
+				+ ", calType=" + calType + ", empNo=" + empNo + "]";
 	}
-	
 
 }

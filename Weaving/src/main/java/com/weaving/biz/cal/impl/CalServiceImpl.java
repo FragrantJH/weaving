@@ -13,7 +13,7 @@ public class CalServiceImpl implements CalService {
 
 	@Autowired
 	CalDAO dao;
-	
+
 	@Override
 	public void insertCal(CalVO vo) {
 		dao.insertCal(vo);
