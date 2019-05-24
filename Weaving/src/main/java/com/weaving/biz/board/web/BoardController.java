@@ -85,17 +85,19 @@ public class BoardController {
 
 	// 수정 처리
 	@RequestMapping(value = "/boardUpdate", method = RequestMethod.POST)
-	public String boardUpdate(BoardVO vo) {
+	public String boardUpdate(BoardVO vo, HttpSession session) {
+		vo.setBoardType((Character)session.getAttribute("boardType"));
 		service.updateBoard(vo);
-		return "redirect:boardList";
+		return "redirect:boardList?boardType="+ vo.getBoardType();
 	}
 	
 	// 삭제
 	@RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
-	public String boardDelete(BoardVO vo, HttpServletRequest request) {
+	public String boardDelete(BoardVO vo, HttpSession session, HttpServletRequest request) {
 		vo.setBoardId(Integer.parseInt(request.getParameter("boardId")));
+		vo.setBoardType((Character)session.getAttribute("boardType"));
 		service.deleteBoard(vo);
-		return "redirect:boardList";
+		return "redirect:boardList?boardType="+ vo.getBoardType();
 	}
 		
 }
