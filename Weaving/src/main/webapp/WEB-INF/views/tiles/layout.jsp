@@ -142,11 +142,11 @@
               <p>일정</p>
             </a>
             <div id="cal" class="collapse in">
-            	<a class="dropdown-item" href="${pageContext.request.contextPath}/getCal?calType=All">
+            	<a class="dropdown-item" href="${pageContext.request.contextPath}/getCal.do?calType=All">
 			      	<i class="material-icons">today</i>
               		<p>전체일정</p>
 			    </a>
-			    <a class="dropdown-item" href="${pageContext.request.contextPath}/getCal?calType=User">
+			    <a class="dropdown-item" href="${pageContext.request.contextPath}/getCal.do?calType=User">
 			      	<i class="material-icons">today</i>
               		<p>개인일정</p>
 			    </a>     

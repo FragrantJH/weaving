@@ -43,6 +43,7 @@ body {
 						<div class="modal-body">
 							<div class="form-group">
 								<label for="title">일정 제목</label>
+								<input type="hidden" id="calId" name="calId">
 								<input type="text" class="form-control" id="title" name="title" placeholder="일정 제목을 입력해주세요">
 							</div>
 							<br>
@@ -95,6 +96,7 @@ body {
 	
 		// 달력에서 날짜를 눌렀을 때 날짜값
 		var selectedDate = null;
+		var calendar;
 		
 		$(function() {
 			
@@ -105,7 +107,7 @@ body {
 			
 			// modal창이 닫히면 값 초기화
 			$('#calModal').on('hidden.bs.modal', function (e) {
-				
+				$('[name=calId]').val('');
 				$('[name="title"]').val('');
 				$('[name="start"]').val('');
 				$('[name="end"]').val('');
@@ -118,7 +120,7 @@ body {
 		// 캘린더 목록 조회
 		function calList() {
 			$.ajax({
-				url : './calData',
+				url : './calendar',
 				type : 'GET',
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
@@ -132,9 +134,11 @@ body {
 		// 캘린더 화면에 출력
 		function calRender(data) {
 			
+			console.log(data);
+			
 			var calendarEl = document.getElementById('calendar');
 
-			var calendar = new FullCalendar.Calendar(calendarEl, {
+			calendar = new FullCalendar.Calendar(calendarEl, {
 				plugins : [ 'interaction', 'dayGrid', 'timeGrid', 'list' ], // 적용할 plugin
 				header : {
 					left : 'prev,next today',
@@ -179,11 +183,14 @@ body {
 		// 상세 일정 보기
 		function calDetail(eventInfo) {
 
+			console.log(eventInfo.event);
+			
 			if(eventInfo != null) {
 				$('.modal-title').html('일정 상세 내용');
+				$('[name=calId]').val(eventInfo.event.id);
 				$('[name="title"]').val(eventInfo.event.title);
-				$('[name="start"]').val(eventInfo.event.start);
-				$('[name="end"]').val(eventInfo.event.end);
+				$('[name="start"]').val(moment(eventInfo.event.start).format('YYYY-MM-DD' + 'T' + 'HH:00:00'));
+				$('[name="end"]').val(moment(eventInfo.event.end).format('YYYY-MM-DD' + 'T' + 'HH:00:00'));
 				$('[name="allDay"]').val(eventInfo.event.allDay);
 				$('[name="backgroundColor"]').val(eventInfo.event.backgroundColor);
 				$('[name="description"]').val(eventInfo.event.extendedProps.description);
@@ -206,7 +213,7 @@ body {
 			var description = $('[name="description"]').val();
 			
 			$.ajax({
-				url : './calData',
+				url : './calendar',
 				type : 'POST',
 				dataType : 'json',
 				data: JSON.stringify({title: title, start: start, end: end, allDay: allDay, backgroundColor: backgroundColor, description: description}),
@@ -214,21 +221,22 @@ body {
 				success: function(result) {
 					
 					console.log('add cal successed : ' + result);
-					calendar.addEvent({
-			    		id: result.id,
-			            title: result.title,
-			            start: result.start,
-			            end: result.end,
-			            allDay: result.allDay,
-			            backgroundColor: result.backgroundColor,
-			            extendedProps : {
-			            	'description' : result.description,
-			            	'empNo' : result.empNo
-			            }
-			        });
+					var event = {
+				    		id: result.id,
+				            title: result.title,
+				            start: result.start,
+				            end: result.end,
+				            allDay: result.allDay,
+				            backgroundColor: result.backgroundColor,
+				            extendedProps : {
+				            	'description' : result.description,
+				            	'empNo' : result.empNo
+				            }
+				     };
+					
+					calendar.addEvent(event);
 			    	
 			    	$("#calModal").modal("hide");
-			    	
 			    },
 			    error:function(xhr, status, message) { 
 			        alert('일정 등록에 실패 했습니다. (message: ' + message + ')');
@@ -238,6 +246,7 @@ body {
 		
 		function updateCal() {
 			
+			var id = $('[name=calId]').val();
 			var title = $('[name="title"]').val();
 			var start = $('[name="start"]').val();
 			var end = $('[name="end"]').val();
@@ -249,14 +258,12 @@ body {
 			var description = $('[name="description"]').val();
 			
 			$.ajax({
-				url : './calData',
+				url : './calendar',
 				type : 'PUT',
 				dataType : 'json',
-				data: JSON.stringify({title: title, start: start, end: end, allDay: allDay, backgroundColor: backgroundColor, description: description}),
+				data: JSON.stringify({id: id, title: title, start: start, end: end, allDay: allDay, backgroundColor: backgroundColor, description: description}),
 				contentType : 'application/json',
 				success: function(result) {
-			    	console.log(result);
-			    	
 			    	var event = calendar.getEventById(result.id);
 			    	event.title = result.title;
 			        event.start = result.start;
@@ -268,11 +275,32 @@ body {
 			    	$("#calModal").modal("hide");
 			    },
 			    error:function(xhr, status, message) { 
-			        alert('일정 등록에 실패 했습니다. (message: ' + message + ')');
+			        alert('일정 수정에 실패 했습니다. (message: ' + message + ')');
 			    } 
 			});
 		}
 		
+		function deleteCal() {
+			
+			var id = $('[name=calId]').val();
+			
+			$.ajax({
+				url : './calendar',
+				type : 'DELETE',
+				dataType : 'json',
+				data: JSON.stringify({id: id}),
+				contentType : 'application/json',
+				success: function(result) {
+			    	var event = calendar.getEventById(id);
+					// 이벤트 삭제
+			    	event.remove();
+			    	$("#calModal").modal("hide");
+			    },
+			    error:function(xhr, status, message) { 
+			        alert('일정 삭제에 실패 했습니다. (message: ' + message + ')');
+			    } 
+			});
+		}
 		
 	</script>
 </body>

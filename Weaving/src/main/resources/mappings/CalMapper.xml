@@ -13,19 +13,34 @@
         <result property="description" column="DESCRIPTION"/>
     </resultMap>
     
-
+    <select id="getCal" resultMap="calResult">
+    	SELECT CAL_ID,
+			   EMP_NO,
+			   TITLE,
+			   ALL_DAY,
+			   TO_CHAR(START_DATE, 'YYYY-MM-DD"T"HH24:MM') START_DATE,
+			   TO_CHAR(END_DATE, 'YYYY-MM-DD"T"HH24:MM') END_DATE,
+			   BACK_COLOR,
+			   DESCRIPTION
+		  FROM CALENDARS
+		 WHERE CAL_ID = #{id}
+    </select>
+    
 	<select id="getCalList" resultMap="calResult">
 		SELECT CAL_ID,
 			   EMP_NO,
 			   TITLE,
 			   ALL_DAY,
-			   START_DATE,
-			   END_DATE,
+			   TO_CHAR(START_DATE, 'YYYY-MM-DD"T"HH24:MI') START_DATE,
+			   TO_CHAR(END_DATE, 'YYYY-MM-DD"T"HH24:MI') END_DATE,
 			   BACK_COLOR,
 			   DESCRIPTION
 		  FROM CALENDARS
 		 <if test="empNo != null and empNo != ''">
 		 WHERE EMP_NO = #{empNo}
+		 </if>
+		 <if test="empNo == null or empNo == ''">
+		 WHERE EMP_NO IS NULL
 		 </if>
 		 ORDER BY CAL_ID
 	</select>
@@ -71,6 +86,21 @@
 		</selectKey>
 		
 	</insert>
-
+	
+	<update id="updateCal">
+		UPDATE CALENDARS
+		   SET TITLE = #{title},
+			   ALL_DAY = #{allDay},
+			   START_DATE = TO_DATE(#{start}, 'YYYY-MM-DD HH24:MI:SS'),
+			   END_DATE = TO_DATE(#{end}, 'YYYY-MM-DD HH24:MI:SS'),
+			   BACK_COLOR = #{backgroundColor},
+			   DESCRIPTION = #{description}
+		 WHERE CAL_ID = #{id}
+	</update>
+	
+	<delete id="deleteCal">
+		DELETE FROM CALENDARS
+		 WHERE CAL_ID = #{id}
+	</delete>
 
 </mapper>

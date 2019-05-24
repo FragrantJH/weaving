@@ -18,7 +18,19 @@ public class CalDAO {
 		mybatis.insert("CalDAO.insertCal", vo);
 	}
 
+	public CalVO getCal(CalVO vo) {
+		return mybatis.selectOne("CalDAO.getCal", vo);
+	}
+	
 	public List<CalVO> getCalList(CalVO vo) {
 		return mybatis.selectList("CalDAO.getCalList", vo);
+	}
+	
+	public void updateCal(CalVO vo) {
+		mybatis.update("CalDAO.updateCal", vo);
+	}
+
+	public void deleteCal(CalVO vo) {
+		mybatis.delete("CalDAO.deleteCal", vo);
 	}
 }

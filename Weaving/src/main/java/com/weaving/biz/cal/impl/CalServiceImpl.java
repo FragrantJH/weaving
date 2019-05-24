@@ -23,4 +23,19 @@ public class CalServiceImpl implements CalService {
 	public List<CalVO> getCalList(CalVO vo) {
 		return dao.getCalList(vo);
 	}
+
+	@Override
+	public void updateCal(CalVO vo) {
+		dao.updateCal(vo);
+	}
+
+	@Override
+	public void deleteCal(CalVO vo) {
+		dao.deleteCal(vo);
+	}
+
+	@Override
+	public CalVO getCal(CalVO vo) {
+		return dao.getCal(vo);
+	}
 }

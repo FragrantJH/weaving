@@ -1,10 +1,5 @@
 package com.weaving.biz.cal;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class CalVO {
 	private String id;
 	private Boolean allDay;
