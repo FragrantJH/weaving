@@ -25,8 +25,7 @@
 	</insert>
 	<update id="updateReserv" parameterType="reserv">
 		UPDATE RESERVATION
-		   SET RESERV_ID = #{reservId},
-		   	   ROOM_ID = #{roomId},		   	 
+		   SET ROOM_ID = #{roomId},		   	 
 		   	   EMP_NO = #{empNo},
 		   	   START_TIME = to_date(#{startDate},'MM/DD/YYYY HH24:MI'),
 		   	   END_TIME =  to_date(#{endDate},'MM/DD/YYYY HH24:MI'),
