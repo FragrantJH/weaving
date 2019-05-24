@@ -41,9 +41,9 @@
 					<br><br><br><br>
 					<div>
 						<button type="button" class="btn btn-primary btn-sm"
-							onclick="location.href='../boardList'">목록</button>
+							onclick="location.href='${pageContext.request.contextPath}/boardList?boardType=${boardType}'">목록</button>
 						<button type="button" class="btn btn-primary btn-sm"
-							onclick="location.href='../boardUpdate/${board.boardId}'">수정</button>
+							onclick="location.href='${pageContext.request.contextPath}/boardUpdate/${board.boardId}'">수정</button>
 						<button type="button" class="btn btn-primary btn-sm"
 							onclick="location='${pageContext.request.contextPath}/boardDelete?boardId=${board.boardId}'">삭제</button>
 					</div>

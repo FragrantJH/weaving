@@ -31,7 +31,8 @@
 								CKEDITOR.replace('editor');
 							</script>
 							<br> <br>
-							<button type="submit" class="btn btn-primary btn-sm">등록</button>
+							<button type="submit" class="btn btn-primary btn-sm"
+								onclick="location.href='../boardList?boardType=${boardType}'">등록</button>
 						</form>
 					</div>
 				</div>
