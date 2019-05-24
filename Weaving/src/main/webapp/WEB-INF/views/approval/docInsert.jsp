@@ -1,38 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:set var="empInfo" value="${emp}" scope="session"/>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="empInfo" value="${emp}" scope="session" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
-<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+<link rel="apple-touch-icon" sizes="76x76"
+	href="../assets/img/apple-icon.png">
 <link rel="icon" type="image/png" href="../assets/img/favicon.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>Insert title here</title>
-<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+	name='viewport' />
 <!--     Fonts and icons     -->
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- ckeditor 스크립트 -->
 <script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
 <style>
-#approval-table th{
+#approval-table th {
 	background-color: #f9f9f9;
 	height: 40px;
 	width: 116px;
-	vertical-align: middle; 
+	vertical-align: middle;
 	text-align: center;
 }
 
-#approval-table .stamp{
+#approval-table .stamp {
 	display: table-cell;
-	height:80px;
+	height: 80px;
 	width: 116px;
-	vertical-align: middle; 
-	text-align: center;	
+	vertical-align: middle;
+	text-align: center;
 }
 </style>
 <script>
@@ -60,9 +66,7 @@ $(function(){
 	toLeftMove();
 	toRightMove();
 	makeApprovalListTable();
-	
-	docInsert();
-	
+	loadDocPreview();	
 	init();
 });
 
@@ -73,12 +77,64 @@ console.log("cc");
 console.log(${empInfo.empNo});
 }
 
-function docInsert() {
-	/*
-	$("#").on('click', function() {
+function loadDocPreview() {
+	$('#docPreview').on('show.bs.modal', function (e) {
+		/*
+		if (!$('input[name=docType]').val()) {
+			alert("문서 종류를 선택하세요.");
+		}
+		*/
+		var date = new Date(); 
+		var year = date.getFullYear(); 
+		var month = new String(date.getMonth()+1); 
+		var day = new String(date.getDate()); 
+
+		// 한자리수일 경우 0을 채워준다. 
+		if(month.length == 1){ 
+		  month = "0" + month; 
+		} 
+		if(day.length == 1){ 
+		  day = "0" + day; 
+		} 
+//
+		 
+		$("#doc-title").html($("[name=docTitle]").val());
+		var sampleDoc =	"<table border='0' style='all:none;'>" +
+							"<tr>" +
+								"<td>문서번호</td>" +
+								"<td>"+$('input[name=docType]').val()+"-"+year + "" + month+"-xxxx</td>" +
+							"</tr>"+
+							"<tr>" +
+								"<td>기안부서</td>" +
+								"<td></td>" +							
+							"</tr>"+
+							"<tr>" +
+								"<td>기안자</td>" +
+								"<td>${empName}</td>" +							
+							"</tr>"+
+							"<tr>" +
+								"<td>기안일자</td>" +
+								"<td>"+year + "-" + month + "-" + day+"</td>" +							
+							"</tr>"+
+							"<tr>" +
+								"<td>보안등급</td>" +
+								"<td>"+$('#secureLevelMenu').text()+"</td>" +
+							"</tr>"+							
+						"</table>";
+		var sampleDoc2 = $('.approval-line');
+		var data = CKEDITOR.instances.docContents.getData();
 		
-	});
-	*/
+		$('#doc-info').html(sampleDoc);
+		$('#approval-list-tb').html(sampleDoc2);
+		$('#doc-write').html(data);
+		//$('.modal-body').html();
+		//$('.modal-body').html($('.approval-line'));
+		/*
+		var data = CKEDITOR.instances.docContents.getData();
+		$('.modal-body').html(data);
+		console.log(data);
+		*/
+	});	
 }
 
 function selectDocForm() {
@@ -93,8 +149,8 @@ function selectDocForm() {
 }
  
 function selectSecureLevel() {
-	$('.dropdown2').on('click','.dropdown-menu button', function(e) {
-		$('#dropdownMenu2').text($(this).text());
+	$('.secureLevel-dropdown').on('click','.dropdown-menu button', function(e) {
+		$('#secureLevelMenu').text($(this).text());
 		$('input[name=secureLevel]').val($(this).text().split('등급')[0]);
 	});
 }
@@ -237,304 +293,186 @@ $("#dropdownMenuButton")
 		}); //삭제 버튼 클릭
 	}//userDelete
 	*/
-</script> 
+</script>
 </head>
 <body>
-${empInfo.empNo} : ${empName}
-<div class="col-md-12">
-	<div class="card">
-	    <div class="card-header card-header-text card-header-primary">
-	      <div class="card-text">
-	        <h4 class="card-title">문서 작성하기</h4>
-	      </div>
-	    </div>
-	    
-
-	    <div class="card-body">
-			<h3><small class="text-muted">기본 설정</small></h3>
-				    			
-			<table class="table">
-			    <tbody>
-			        <tr>
-			            <td class="text-center">기안자</td>
-			            <td colspan="3">${empName}</td>
-			        </tr>
-			        <tr>
-			            <td class="text-center">문서종류</td>
-			            <td>
-							<div class="dropdown1">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="write-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							      	선택
-								</button>
-								
-								<div class="dropdown-menu" aria-labelledby="write-select">
-									<c:forEach items="${list}" var="formList" >
-										<button class="dropdown-item" id="docForm${formList.formId}" type="button">${formList.formName}</button>
-						  				<div class="docForm${formList.formId}" style="display:none;">
-						  					${formList.formContents}
-								  		</div>										
-    								</c:forEach>																	
-								</div>
-								<!-- Button trigger modal -->
-								<small><a href="#0" class="card-link" data-toggle="modal" data-target="#exampleModalLong">미리보기</a></small>
-							</div>
-										            
-							<!-- Modal -->
-							<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-body">
-							        ...
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							        <button type="button" class="btn btn-primary">Save changes</button>
-							      </div>
-							    </div>
-							  </div>
-							</div>							
-							
-									
-			            </td>
-			        	<td class="text-center">보안등급</td>
-			        	<td>
-							<div class="dropdown2">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							      	보안등급
-								</button>
-								
-								<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-									<button class="dropdown-item" type="button">S등급</button>
-									<button class="dropdown-item" type="button">A등급</button>
-									<button class="dropdown-item" type="button">B등급</button>
-									<button class="dropdown-item" type="button">C등급</button>
-								</div>
-							</div>	
-			        	</td>			            
-			        </tr>			        
-			    </tbody>
-			</table>
-			<div class="approval-line-title">
-				<h3 style="display:inline;"><small class="text-muted">결재선</small></h3>
-				<small><a href="#0" class="card-link" data-toggle="modal" data-target="#approvalLineModel">결제선설정</a></small>
-    		</div>
-			<div class="approval-line">결재선 설정되면 노출됩니다.
-			</div>	    
-			<!-- modal 페이지 -->
-			<div class="modal fade bd-example-modal-lg" id="approvalLineModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-			  <div class="modal-dialog modal-lg">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			      	<h5 class="modal-title card-title">결제자 설정</h5>
-			      </div>
-			      <div class="modal-body">
-					<table class="table" border="0">
-					    <thead>
-							<tr>
-					            <th>직원 목록</th>
-					            <th></th>
-					            <th>결재자</th>
-					        </tr>
-					    </thead>
-					    <tbody>
-					        <tr>
-					            <td rowspan="2">
-									<select id="empList" size="7" style="width:200px;">
-										<c:forEach items="${empList}" var="empList">
-									    	<a class="dropdown-item" href="#">${formList.formName}</a>
-									    	<option class="order${orderNo}" value="${empList.empNo}">${empList.empName}(${empList.deptName})
-									    </c:forEach>					
-									</select>					            
-					            </td>
-					            <td style="border:none;"><button type="button" id="toRight" class="btn btn-default .btn-sm"> >> </button></td>
-					            <td rowspan="2">
-									<select id="approvalList" size="7" style="width:200px;">
-									</select>					            
-					            </td>
-					        </tr>
-					        <tr>
-					            <td style="border:none;"><button type="button" id="toLeft" class="btn btn-default .btn-sm"> << </button></td>
-					        </tr>					        
-					    </tbody>
-					</table>			      
-			      </div>
-			      <div class="modal-footer justify-content-center">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        			<button type="button" id="rs-approval-list" class="btn btn-primary">Save changes</button>			      
-			      </div>
-			    </div>
-			  </div>
-			</div>		
-		
-			<h3><small class="text-muted">상세 입력</small></h3>
-			<form action="${pageContext.request.contextPath}/docInsert" method="post">
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text">
-							<label>제목</label>
-						</span>
-					</div>
-					<input type="text" name="docTitle" class="form-control" placeholder="제목을 입력하세요" style="margin-bottom:8px;">
+	${empInfo.empNo} : ${empName}
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header card-header-text card-header-primary">
+				<div class="card-text">
+					<h4 class="card-title">문서 작성하기</h4>
 				</div>
-				
-				<div class="approval-form">
-					<textarea name="docContents" id="docContents" rows="10" cols="200">
+			</div>
+
+
+			<div class="card-body">
+				<h3>
+					<small class="text-muted">기본 설정</small>
+				</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<td class="text-center">기안자</td>
+							<td colspan="3">${empName}</td>
+						</tr>
+						<tr>
+							<td class="text-center">문서종류</td>
+							<td>
+								<div class="dropdown1">
+									<button class="btn btn-secondary dropdown-toggle" type="button"
+										id="write-select" data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false">선택</button>
+
+									<div class="dropdown-menu" aria-labelledby="write-select">
+										<c:forEach items="${list}" var="formList">
+											<button class="dropdown-item" id="docForm${formList.formId}"
+												type="button">${formList.formName}</button>
+											<div class="docForm${formList.formId}" style="display: none;">
+												${formList.formContents}</div>
+										</c:forEach>
+									</div>
+									<!-- Button trigger modal -->
+									<small><a href="#0" class="card-link"
+										data-toggle="modal" data-target="#docPreview">미리보기</a></small>
+								</div> <!-- Modal -->
+								<div class="modal fade" id="docPreview" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLongTitle"
+									aria-hidden="true">
+									<div class="modal-dialog modal-lg" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLongTitle">미리보기</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<h3 id="doc-title"></h3>
+												<div id="doc-info" style="display:inline-block;"></div>
+												<div id="approval-list-tb" style="display:inline-block; float:right;"></div>
+												<h3>상세 입력</h3>
+												<div id="doc-write" style="border:1px solid black;"></div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+							</td>
+							<td class="text-center">보안등급</td>
+							<td>
+								<div class="secureLevel-dropdown">
+									<button class="btn btn-secondary dropdown-toggle" type="button"
+										id="secureLevelMenu" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">보안등급</button>
+
+									<div class="dropdown-menu" aria-labelledby="secureLevelMenu">
+										<button class="dropdown-item" type="button">S등급</button>
+										<button class="dropdown-item" type="button">A등급</button>
+										<button class="dropdown-item" type="button">B등급</button>
+										<button class="dropdown-item" type="button">C등급</button>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="approval-line-title">
+					<h3 style="display: inline;">
+						<small class="text-muted">결재선</small>
+					</h3>
+					<small><a href="#0" class="card-link" data-toggle="modal"
+						data-target="#approvalLineModel">결제선설정</a></small>
+				</div>
+				<div class="approval-line">결재선 설정되면 노출됩니다.</div>
+				<!-- modal 페이지 -->
+				<div class="modal fade bd-example-modal-lg" id="approvalLineModel"
+					tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title card-title">결제자 설정</h5>
+							</div>
+							<div class="modal-body">
+								<table class="table" border="0">
+									<thead>
+										<tr>
+											<th>직원 목록</th>
+											<th></th>
+											<th>결재자</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td rowspan="2"><select id="empList" size="7"
+												style="width: 200px;">
+													<c:forEach items="${empList}" var="empList">
+														<a class="dropdown-item" href="#">${formList.formName}</a>
+														<option class="order${orderNo}" value="${empList.empNo}">${empList.empName}(${empList.deptName})
+													</c:forEach>
+											</select></td>
+											<td style="border: none;"><button type="button"
+													id="toRight" class="btn btn-default .btn-sm">>></button></td>
+											<td rowspan="2"><select id="approvalList" size="7"
+												style="width: 200px;">
+											</select></td>
+										</tr>
+										<tr>
+											<td style="border: none;"><button type="button"
+													id="toLeft" class="btn btn-default .btn-sm"><<</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="modal-footer justify-content-center">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Close</button>
+								<button type="button" id="rs-approval-list"
+									class="btn btn-primary">Save changes</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<h3>
+					<small class="text-muted">상세 입력</small>
+				</h3>
+				<form action="${pageContext.request.contextPath}/docInsert"
+					method="post">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <label>제목</label>
+							</span>
+						</div>
+						<input type="text" name="docTitle" class="form-control"
+							placeholder="제목을 입력하세요" style="margin-bottom: 8px;">
+					</div>
+
+					<div class="approval-form">
+						<textarea name="docContents" id="docContents" rows="10" cols="200">
 					</textarea>
-					<script>
+						<script>
 					    // Replace the <textarea id="editor1"> with a CKEditor
 					    // instance, using default configuration.
 					    CKEDITOR.replace( 'docContents' );
 					</script>
-					<input name="docType" type="hidden" value="">				
-					<input name="empNo" type="hidden" value="${empInfo.empNo}">
-					<input name="secureLevel" type="hidden" value="">
-					<input name="approvalList" type="hidden" value="">
-				</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</form>			
-	    </div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="docu-detail" id="templateApprovalForm" >
-	<div class="print-wrap">
-		<h1>샘플</h1>
-		<div class="docu-info">
-			<div class="after">
-				<div class="list">
-					<dl>
-						<dt>문서 번호</dt>
-						<dd></dd>
-						<dt>기안 부서</dt>
-						<dd>yedam</dd>
-						<dt>기안자</dt>
-						<dd>이학영</dd>
-						<dt>기안 일자</dt>
-						<dd>2019-05-23</dd>
-						<dt>보존 연한/보안 등급</dt>
-						<dd>5년 / C등급</dd>
-					</dl>
-				</div>
-				<div class="approval">
-					<h2>결재</h2>
-					<table>
-						<colgroup><col><col><col><col><col></colgroup>
-						<tbody>
-							<tr>
-								<th scope="col">
-								</th>
-								<th scope="col">
-								</th>
-								<th scope="col">
-								</th>
-								<th scope="col">
-								</th>
-								<th scope="col">
-								</th>
-							</tr>
-							<tr>
-								<td class="stamp">
-								</td>
-								<td class="stamp">
-								</td>
-								<td class="stamp">
-								</td>
-								<td class="stamp">
-								</td>
-								<td class="stamp">
-								</td>
-								</tr>
-								<tr>
-								<td>
-								</td>
-								<td>
-								</td>
-								<td>
-								</td>
-								<td>
-								</td>
-								<td>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="after second-line">
-				<div class="agree no-finance">
-					<h2>합의</h2>
-					<table>
-						<tbody>
-							<tr>
-								<td>
-								</td>
-								<td>
-								</td>
-								<td>
-								</td>
-								<td>
-								</td>
-								<td>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="refer">
-				<h2>참조</h2>
-				<table>
-					<caption>참조</caption>
-					<tbody>
-						<tr>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="docu-contents">
-			<h2>샘플</h2>
-			<div class="text">
-				<p>샘플입니다</p>
+						<input name="docType" type="hidden" value=""> <input
+							name="empNo" type="hidden" value="${empInfo.empNo}"> <input
+							name="secureLevel" type="hidden" value=""> <input
+							name="approvalList" type="hidden" value="">
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
 			</div>
 		</div>
 	</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
 </body>
 </html>
