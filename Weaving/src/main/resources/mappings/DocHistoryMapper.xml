@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DocHistoryDAO">
+	<insert id="insertDocHistory" parameterType="com.weaving.biz.doc.DocHistoryVO">
+		<!-- 
+		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocVO" order="BEFORE">
+			select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'
+		</selectKey>
+		 --> 
+		insert into DOCUMENTHISTORY (
+			HISTORY_ID
+			, DOC_ID
+			, EMP_NO
+			<if test="preStatus != null">
+			, PRE_STATUS
+			</if>
+			, CUR_STATUS
+			, CHANGE_DATE
+			)
+		  values((select NVL(MAX(HISTORY_ID), 0) + 1 FROM DOCUMENTHISTORY)
+		  	, #{docId}
+		  	, #{empNo}
+		  	<if test="preStatus != null">
+		  	, #{preStatus}
+		  	</if>
+		  	, #{curStatus}
+		  	, to_date(#{changeDate},'yyyy-mm-dd hh24:mi:ss')
+		   ) 
+  
+	</insert>
+</mapper>

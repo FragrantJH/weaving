@@ -123,7 +123,7 @@ function makeApprovalListTable() {
 			var writerData = {
 					'empNo' : '${empInfo.empNo}',
 					'approvalOrder' : '1',
-					'status': 'done'
+					'status': 'DONE'
 			};								
 
 			DataArray.push(writerData);
@@ -400,6 +400,141 @@ ${empInfo.empNo} : ${empName}
 			</form>			
 	    </div>
 	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="docu-detail" id="templateApprovalForm" >
+	<div class="print-wrap">
+		<h1>샘플</h1>
+		<div class="docu-info">
+			<div class="after">
+				<div class="list">
+					<dl>
+						<dt>문서 번호</dt>
+						<dd></dd>
+						<dt>기안 부서</dt>
+						<dd>yedam</dd>
+						<dt>기안자</dt>
+						<dd>이학영</dd>
+						<dt>기안 일자</dt>
+						<dd>2019-05-23</dd>
+						<dt>보존 연한/보안 등급</dt>
+						<dd>5년 / C등급</dd>
+					</dl>
+				</div>
+				<div class="approval">
+					<h2>결재</h2>
+					<table>
+						<colgroup><col><col><col><col><col></colgroup>
+						<tbody>
+							<tr>
+								<th scope="col">
+								</th>
+								<th scope="col">
+								</th>
+								<th scope="col">
+								</th>
+								<th scope="col">
+								</th>
+								<th scope="col">
+								</th>
+							</tr>
+							<tr>
+								<td class="stamp">
+								</td>
+								<td class="stamp">
+								</td>
+								<td class="stamp">
+								</td>
+								<td class="stamp">
+								</td>
+								<td class="stamp">
+								</td>
+								</tr>
+								<tr>
+								<td>
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="after second-line">
+				<div class="agree no-finance">
+					<h2>합의</h2>
+					<table>
+						<tbody>
+							<tr>
+								<td>
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="refer">
+				<h2>참조</h2>
+				<table>
+					<caption>참조</caption>
+					<tbody>
+						<tr>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="docu-contents">
+			<h2>샘플</h2>
+			<div class="text">
+				<p>샘플입니다</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 </body>
 </html>

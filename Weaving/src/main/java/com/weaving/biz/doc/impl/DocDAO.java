@@ -17,6 +17,10 @@ public class DocDAO {
 		mybatis.insert("DocDAO.insertDoc", vo);
 	}
 	
+	public void insertDocDetail(DocVO vo) {
+		mybatis.insert("DocDAO.insertDocDeatil", vo);
+	}
+	
 	public List<DocVO> getBoardList(DocVO vo) {
 		//
 		return mybatis.selectList("DocDAO.getDocList", vo);

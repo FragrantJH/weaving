@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.weaving.biz.doc.DocHistoryVO;
 import com.weaving.biz.doc.DocService;
 import com.weaving.biz.doc.DocVO;
 @Service("docService")
@@ -13,7 +14,7 @@ public class DocServiceImpl implements DocService {
 	//@Autowired BoardDAO dao;
 	//@Autowired BoardDAOSpring dao;
 	@Autowired DocDAO dao;
-	
+	@Autowired DocHistoryDAO hdao;
 	// service단위로 메서드 호출
 	/*
 	@Override
@@ -35,7 +36,8 @@ public class DocServiceImpl implements DocService {
 	
 	@Override
 	public void insertDocDetail(DocVO vo) {
-		// TODO Auto-generated method stub 
+		// TODO Auto-generated method stub
+		dao.insertDocDetail(vo);
 	}
 	
 	@Override
@@ -60,5 +62,11 @@ public class DocServiceImpl implements DocService {
 	public int getDocCount(DocVO vo) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void insertDocHistory(DocHistoryVO vo) {
+		// TODO Auto-generated method stub
+		hdao.insertDocHistory(vo);
 	}
 }

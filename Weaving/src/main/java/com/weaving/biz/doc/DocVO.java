@@ -15,12 +15,34 @@ public class DocVO {
 	private String doneDate;
 	private String approvalDate;
 	private String secureLevel;
+	private String approvalComments;
+	
 	//검색조건
 	private String searchCondition;
 	private String searchKeyword;
 	private String[] seqs;
 
+	private int docTypeSeq;
+	private String docType;
 	
+	public String getApprovalComments() {
+		return approvalComments;
+	}
+	public void setApprovalComments(String approvalComments) {
+		this.approvalComments = approvalComments;
+	}
+	public int getDocTypeSeq() {
+		return docTypeSeq;
+	}
+	public void setDocTypeSeq(int docTypeSeq) {
+		this.docTypeSeq = docTypeSeq;
+	}
+	public String getDocType() {
+		return docType;
+	}
+	public void setDocType(String docType) {
+		this.docType = docType;
+	}
 	public String getApprovalDate() {
 		return approvalDate;
 	}
@@ -116,8 +138,9 @@ public class DocVO {
 		return "DocVO [docId=" + docId + ", empNo=" + empNo + ", approvalOrder=" + approvalOrder + ", empName="
 				+ empName + ", status=" + status + ", docNo=" + docNo + ", docTitle=" + docTitle + ", docContents="
 				+ docContents + ", regDate=" + regDate + ", doneDate=" + doneDate + ", approvalDate=" + approvalDate
-				+ ", secureLevel=" + secureLevel + ", searchCondition=" + searchCondition + ", searchKeyword="
-				+ searchKeyword + ", seqs=" + Arrays.toString(seqs) + "]";
-	}	
-	
+				+ ", secureLevel=" + secureLevel + ", approvalComments=" + approvalComments + ", searchCondition="
+				+ searchCondition + ", searchKeyword=" + searchKeyword + ", seqs=" + Arrays.toString(seqs)
+				+ ", docTypeSeq=" + docTypeSeq + ", docType=" + docType + "]";
+	}
+
 }

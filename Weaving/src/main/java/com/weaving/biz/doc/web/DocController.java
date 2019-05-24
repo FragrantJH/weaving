@@ -24,6 +24,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weaving.biz.common.Paging;
+import com.weaving.biz.doc.DocHistoryVO;
 import com.weaving.biz.doc.DocService;
 import com.weaving.biz.doc.DocVO;
 import com.weaving.biz.docForm.DocFormService;
@@ -101,40 +102,46 @@ public class DocController {
 
 	@RequestMapping(value="/docInsert", method=RequestMethod.POST)
 	public String docInsert(DocVO vo, HttpServletRequest request) {
-		System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||");
-		//vo.setRegDate(regDate);
+
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		Date date = new Date();
 		String curTime = f.format(date);
 		String[] d  = curTime.split(" ");
-		String[] d2 = d[0].split("-");
+		String[] dateArr = d[0].split("-");
 		
-		String docType = request.getParameter("docType") +"-" + d2[0] + d2[1] + d2[2] + "-0000";
+		String docType = request.getParameter("docType") +"-" + dateArr[0] + dateArr[1] + dateArr[2]+"-";
 		String jsonString = request.getParameter("approvalList");
-		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		vo.setDocNo(docType);
+		vo.setDocType(docType);
 		vo.setRegDate(curTime);
-		System.out.println(vo);
+
 		docService.insertDoc(vo);
-		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		System.out.println(jsonString);
+		
+		System.out.println(vo);
+
 		ObjectMapper mapper = new ObjectMapper();
 		//List<DocVO> myObjects = mapper.readValue(jsonString, new TypeReference<List<DocVO>>(){});
-		/*
+		int docId = 0;
+		String writerStatus = "";
 		try {
 			List<DocVO> docObj = Arrays.asList(mapper.readValue(jsonString, DocVO[].class));
-		
+			
 			boolean b = true;
 			for (DocVO v : docObj) {
+				
 				if (b) {
-					System.out.println("hhhhhh");
-					v.setApprovalDate(curTime);
-					System.out.println(v);
-					b = false;	
+					writerStatus = v.getStatus();
+					v.setApprovalDate(curTime);	
+					b = false;
+				} else {
+					v.setStatus("WAIT");	
 				}
-			}			
-			
+				v.setDocType(vo.getDocType());
+				v.setDocTypeSeq(vo.getDocTypeSeq());
+						
+				docService.insertDocDetail(v);
+				docId = v.getDocId();
+			}		
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -145,23 +152,16 @@ public class DocController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
-		/*
-		try { 
-			System.out.println("-------------------JSON String 을 MAP 으로 변환-----------------------");
-			ObjectMapper mapper = new ObjectMapper();
-			Map<String, Object> map = new HashMap<String, Object>();
-			map = mapper.readValue(jsonString, new Map<String, String>); 
-			System.out.println(map);  
-		} catch (JsonGenerationException e) {
-			e.printStackTrace(); 
-		} catch (JsonMappingException e) {
-			e.printStackTrace(); 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
-		return "";
+		
+		DocHistoryVO hvo = new DocHistoryVO();
+		hvo.setDocId(docId);
+		hvo.setEmpNo(vo.getEmpNo());
+		hvo.setCurStatus(writerStatus);
+		hvo.setChangeDate(curTime);
+
+		docService.insertDocHistory(hvo);
+		
+		return "redirect:docList";
 	}
 		
 	/*

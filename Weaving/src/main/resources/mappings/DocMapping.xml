@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DocDAO">
+	<insert id="insertDoc" parameterType="com.weaving.biz.doc.DocVO">
+
+		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocVO" order="BEFORE">
+			select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'
+		</selectKey> 
+		insert into DOCUMENTS (
+			DOC_ID,
+			EMP_NO,
+			DOC_NO,
+			DOC_TITLE,
+			DOC_CONTENTS,
+			REG_DATE,
+			SECURE_LEVEL
+			)
+		  values((select NVL(MAX(DOC_ID), 0) + 1 FROM DOCUMENTS),
+		  	#{empNo},
+		  	#{docType}||#{docTypeSeq},
+		  	#{docTitle},
+		  	#{docContents},
+		  	to_date(#{regDate},'yyyy-mm-dd hh24:mi:ss'),
+		  	#{secureLevel}
+		   ) 
+  
+	</insert>
+ 
+	<insert id="insertDocDeatil" parameterType="com.weaving.biz.doc.DocVO">
+		<selectKey keyProperty="docId" resultType="com.weaving.biz.doc.DocVO" order="BEFORE">
+			select DOC_ID from documents where doc_no = #{docType} || #{docTypeSeq}
+		</selectKey>
+		insert into DOCUMENTDETAIL (
+			DOC_ID
+			, EMP_NO
+			, APPROVAL_ORDER
+		  <if test="approvalDate != null">
+		  	, APPROVAL_DATE
+		  </if>		
+			, STATUS			
+		  <if test="approvalComments != null">
+		  	, APPROVAL_COMMENTS
+		  </if>							
+			)
+		  values(
+		  	#{docId}
+		  	, #{empNo}
+		  	, #{approvalOrder}
+		  <if test="approvalDate != null">
+		  	, to_date(#{approvalDate},'yyyy-mm-dd hh24:mi:ss')
+		  </if>
+		  	, #{status}
+		  <if test="approvalComments != null">
+		  	, #{approvalComments}
+		  </if>
+		   )
+	</insert>
+	
+	<insert id="insertDocHistory">
+	</insert>
+
+	<select id="getDocList" parameterType="com.weaving.biz.doc.DocVO"
+		resultType="com.weaving.biz.doc.DocVO">
+		SELECT 
+			D.DOC_ID,
+			E.EMP_NAME,
+			D.DOC_NO,
+			D.DOC_TITLE,
+			D.REG_DATE,
+			D.DONE_DATE,
+			D.SECURE_LEVEL
+		  FROM DOCUMENTS D JOIN EMPLOYEES E ON D.EMP_NO = E.EMP_NO
+		    <where> 
+		    		DONE_DATE IS NOT NULL AND SECURE_LEVEL BETWEEN #{secureLevel} AND 'C' ORDER BY D.REG_DATE DESC
+	    	</where>
+	</select>
+</mapper>
