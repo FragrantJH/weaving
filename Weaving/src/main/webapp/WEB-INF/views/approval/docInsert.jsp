@@ -25,7 +25,7 @@
 <!-- ckeditor 스크립트 -->
 <script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
 <style>
-#approval-table th {
+.approval-table th {
 	background-color: #f9f9f9;
 	height: 40px;
 	width: 116px;
@@ -33,49 +33,26 @@
 	text-align: center;
 }
 
-#approval-table .stamp {
+.approval-table .stamp {
 	display: table-cell;
 	height: 80px;
 	width: 116px;
 	vertical-align: middle;
 	text-align: center;
 }
+ 
 </style>
 <script>
 //jquery작업
 $(function(){
-	/*
-	userList();
-	userSelect();
-	userDelete();
-	userUpdate();
-	userInsert();	
-	
-	loadDocs();
-	selectDoc();
-
-	
-
-
-
-	loadDocs();
-	init();
-	*/
 	selectDocForm();
 	selectSecureLevel();
 	toLeftMove();
 	toRightMove();
 	makeApprovalListTable();
 	loadDocPreview();	
-	init();
+
 });
-
-function init() {
-$("input[name=empNo]").val('${empInfo.empNo}');
-console.log("cc");
-
-console.log(${empInfo.empNo});
-}
 
 function loadDocPreview() {
 	$('#docPreview').on('show.bs.modal', function (e) {
@@ -96,10 +73,9 @@ function loadDocPreview() {
 		if(day.length == 1){ 
 		  day = "0" + day; 
 		} 
-//
-		 
+
 		$("#doc-title").html($("[name=docTitle]").val());
-		var sampleDoc =	"<table border='0' style='all:none;'>" +
+		var doc_info =	"<table border='0' style='all:none;'>" +
 							"<tr>" +
 								"<td>문서번호</td>" +
 								"<td>"+$('input[name=docType]').val()+"-"+year + "" + month+"-xxxx</td>" +
@@ -121,20 +97,19 @@ function loadDocPreview() {
 								"<td>"+$('#secureLevelMenu').text()+"</td>" +
 							"</tr>"+							
 						"</table>";
-		var sampleDoc2 = $('.approval-line');
+						
+		var approvalLine = $('.approval-line').clone();
 		var data = CKEDITOR.instances.docContents.getData();
 		
-		$('#doc-info').html(sampleDoc);
-		$('#approval-list-tb').html(sampleDoc2);
+		$('#doc-info').html(doc_info);
+		
+		$('#approval-list-tb').html(approvalLine);
 		$('#doc-write').html(data);
-		//$('.modal-body').html();
-		//$('.modal-body').html($('.approval-line'));
-		/*
-		var data = CKEDITOR.instances.docContents.getData();
-		$('.modal-body').html(data);
-		console.log(data);
-		*/
-	});	
+	});
+	
+	$('#docPreview').on('hidden.bs.modal', function (e) {
+		$("#approval-list-tb .approval-line").remove();
+	});
 }
 
 function selectDocForm() {
@@ -164,11 +139,13 @@ function makeApprovalListTable() {
 		var tb = "";
 		
 		var DataArray = new Array();
-		
+		console.log("===============");
+		console.log(empCnt);
+		console.log("===============");
 		if (empCnt > 0) {	
 			$('.approval-line').empty();
 			
-			var tb = "<table id='approval-table' border='1' bordercolor='#cdcdcd'>"+
+			var tb = "<table class='approval-table' border='1' bordercolor='#cdcdcd'>"+
 						"<tr>" +
 							"<th rowspan='2' scope='col'>"+
 								"<div style='height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;'>"+
@@ -250,49 +227,6 @@ function toRightMove() {
 		}
 	});
 }
-/*
-	//결재폼 호출
-	function loadDocs() {
-		$.ajax({
-			url:'users/'+id,  
-			type:'DELETE',
-			contentType:'application/json;charset=utf-8',
-			dataType:'json',
-			error:function(xhr, status, msg){
-				console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-			}, success:function(xhr) {
-				console.log(xhr.result);
-				//userList();
-			}
-		});  		
-	}//loadDocs
-	
-$("#dropdownMenuButton")
-*/
-	//문서 선택 요청 삭제 요청
-	/*
-	function selectDoc() {
-		//삭제 버튼 클릭
-
-		$('body').on('click','#btnDelete',function(){
-			var id = $(this).closest('tr').find('#hidden_id').val();
-			var result = confirm(id +" 사용자를 정말로 삭제하시겠습니까?");
-			if(result) {
-				$.ajax({
-					url:'users/'+id,  
-					type:'DELETE',
-					contentType:'application/json;charset=utf-8',
-					dataType:'json',
-					error:function(xhr,status,msg){
-						console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-					}, success:function(xhr) {
-						console.log(xhr.result);
-						userList();
-					}
-				});      }//if
-		}); //삭제 버튼 클릭
-	}//userDelete
-	*/
 </script>
 </head>
 <body>

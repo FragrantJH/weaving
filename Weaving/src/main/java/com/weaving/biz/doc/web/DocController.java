@@ -51,7 +51,7 @@ public class DocController {
 	//public String docList(Model model) {
 	@RequestMapping("/docList")
 	public String docList(Model model, HttpSession session) {
-		
+		System.out.println(session.getAttribute("emp"));
 		/*
 		 * - C : ALL
 		   - B : 대리 이상
@@ -68,7 +68,7 @@ public class DocController {
 		//1이면 B
 		//0이면 C	
 		
-		/*
+
 		int position = Integer.parseInt((String)session.getAttribute("position"));
 		System.out.println(position);
 		String lv = "C";
@@ -87,8 +87,6 @@ public class DocController {
 
 		model.addAttribute("list", docService.getDocList(vo));
 		return "approval/docList";
-*/
-		return null;
 	}
 	
 	@RequestMapping("/docViewInsert")
