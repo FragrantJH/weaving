@@ -136,6 +136,7 @@ public class EmpController {
 			session.setAttribute("position", emp.getPosition());
 			session.setAttribute("adminMode", false);
 			session.setAttribute("emp", emp);
+			System.out.println(emp);
 
 		}
 		return "home";
