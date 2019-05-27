@@ -82,7 +82,7 @@ function loadDocPreview() {
 							"</tr>"+
 							"<tr>" +
 								"<td>기안부서</td>" +
-								"<td></td>" +							
+								"<td>${empInfo.deptName}</td>" +							
 							"</tr>"+
 							"<tr>" +
 								"<td>기안자</td>" +
