@@ -76,6 +76,7 @@
 		from employees e
 		join department d
 		on e.dept_id = d.dept_id(+)
+		where deleted_yn ='N'
 		order by e.emp_no desc
 	</select>
 	
