@@ -13,19 +13,24 @@
 								<thead class=" text-primary">
 									<tr>
 										
-										<th>작성자</th>
 										<th>제목</th>
+										<th>작성자</th>
 										<th>내용</th>
 										
 									</tr>
 								</thead>
 								<tbody>
-<c:forEach var="EmailList" items="${EmailList}">
+<c:forEach var="Email" items="${EmailList}" >
 
 <tr>
-											<td>${EmailList.subject}</td>
-											<td>${EmailList.from}</td>
-											<td>${EmailList.content}</td>
+
+											<td>${Email.subject}</td>
+											<td>${Email.from}</td>
+											<td>
+												<div class="collreadmail"  >
+													<span >${Email.content}</span>
+												</div>
+											</td>
 											
 											
 										</tr>

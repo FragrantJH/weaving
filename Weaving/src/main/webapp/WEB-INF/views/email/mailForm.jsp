@@ -10,10 +10,10 @@
 </head>
 
 	<body>
-	<form action="mailSend" method="get" >
+	<form action="mailSend" method="post" >
 	<div class="bigpage">
 		<div class="send-button">
-			<input type="submit" value="보내기"/>
+			<input type="submit" value="보내기" onclick=""/>
 			<button>미리보기</button>
 			<button>저장하기</button>
 			<button>옵션</button>
@@ -33,17 +33,6 @@
 					</td>
 				</tr>
 					
-				<tr class="Reference">
-					<th class="row">
-					<span>
-		 					<a href="#" >참조 </a>
-						 </span>
-					</th>
-						<td>
-						  <textarea rows="1" cols="30" name="from">
-							</textarea>
-						</td>
-					</tr>
 					
 				<tr class=title>
 					<th class="row">
