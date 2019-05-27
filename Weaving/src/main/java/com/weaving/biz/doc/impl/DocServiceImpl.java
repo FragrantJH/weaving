@@ -57,7 +57,12 @@ public class DocServiceImpl implements DocService {
 		// TODO Auto-generated method stub
 		return dao.getBoardList(vo);
 	}
-
+	
+	@Override
+	public List<DocVO> getDocWaitList(DocVO vo) {
+		// TODO Auto-generated method stub
+		return dao.getDocWaitList(vo);
+	}
 	@Override
 	public int getDocCount(DocVO vo) {
 		// TODO Auto-generated method stub
@@ -69,4 +74,11 @@ public class DocServiceImpl implements DocService {
 		// TODO Auto-generated method stub
 		hdao.insertDocHistory(vo);
 	}
+
+	@Override
+	public int getDocWaitTotalCount(DocVO vo) {
+		// TODO Auto-generated method stub
+		return dao.getDocWaitTotalCount(vo);
+	}
+
 }

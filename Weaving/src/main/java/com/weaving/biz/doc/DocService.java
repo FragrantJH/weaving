@@ -15,9 +15,12 @@ public interface DocService {
 	void deleteDoc(DocVO vo);
 	// 문서조회
 	List<DocVO> getDocList(DocVO vo);
+	// 대기 문서 조회
+	List<DocVO> getDocWaitList(DocVO vo);
 	// 문서 수
-	public int getDocCount(DocVO vo);
-	
+	int getDocCount(DocVO vo);
+	// 대기상태 문서리스트 수
+	int getDocWaitTotalCount(DocVO vo);
 	// 문서 history입력
 	void insertDocHistory(DocHistoryVO vo);	
 }

@@ -20,5 +20,8 @@ public interface Empservice {
 		List<EmpVO> getEmpList(EmpVO vo);
 		
 		public int getEmpCount(EmpVO vo);
+		
+		//퇴사처리
+		void updateDelEmp(EmpVO vo);
 
 }

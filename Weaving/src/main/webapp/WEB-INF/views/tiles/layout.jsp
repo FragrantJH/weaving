@@ -79,8 +79,8 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">
+         <li class="nav-item ">
+            <a class="nav-link" href="${pageContext.request.contextPath}/view_mail">
               <i class="material-icons">email</i>
               <p>메일</p>
             </a>
@@ -125,7 +125,7 @@
 			      	<i class="material-icons">create</i>
               		<p>진행 문서</p>
 			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docWaitList">
 			      	<i class="material-icons">create</i>
               		<p>대기 문서</p>
 			      </a>

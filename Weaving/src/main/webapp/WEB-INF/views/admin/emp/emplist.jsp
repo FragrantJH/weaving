@@ -19,6 +19,8 @@
 		empInsert();
 
 		empUpdate();
+		
+		empDelUpdate();
 
 		init();
 	});
@@ -78,6 +80,27 @@
 				});      }//if
 		}); //삭제 버튼 클릭
 	}//empDelete
+	
+	//사용자 퇴사 요청
+	function empDelUpdate() {
+		//수정 버튼 클릭
+		$('#btnDelInsert').on('click',function(){
+			
+			$.ajax({ 
+			    url: "empDelUpdate",
+			   // type: 'PUT', 
+			    dataType: 'json', 
+			    data: $('#insertForm').serialize(),
+			    success: function(data) { 
+			    	$('#searchModel').modal("hide");
+					empList();
+			    },
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    }
+			});
+		});//퇴사 버튼 클릭
+	}//empDelUpdate
 
 	//사용자 수정 요청
 	function empUpdate() {
@@ -172,6 +195,35 @@
 		});//each
 	}//userListResult
 
+	var pwch1 = 'N'
+
+	//비밀번호, 비밀번호확인 확인하기
+	function pwche() {
+		var pw = document.twin.password.value;
+		var pwch = document.twin.repassword.value;
+		if (document.getElementById('password').value != '' && document.getElementById('repassword').value != '') {
+			if (document.getElementById('password').value == document.getElementById('repassword').value) {
+				document.getElementById('same').innerHTML = '비밀번호 일치합니다.';
+				document.getElementById('same').style.color = 'blue';
+				pwch1 = 'Y'
+			} else {
+				document.getElementById('same').innerHTML = '비밀번호가 일치하지 않습니다.';
+				document.getElementById('same').style.color = 'red';
+				pwch1 = 'N'
+			}
+		}
+	}
+
+//비밀번호 불일치시 알림창
+function formch() {
+	if (pwch1 == "N") {
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
+
+	}
+	return true;
+}
+	
 </script>
 <style type="text/css">
 .submenu {
@@ -228,7 +280,12 @@
 								<br>
 								<br> 
 								<label for="password"><b>비밀번호</b></label> 
-								<input type="text" name="password" id="password">
+								<input type="text" name="password" id="password" onkeyup="pwche()">
+								<br>
+								<br> 
+								<label for="repassword"><b>비밀번호 확인</b></label> 
+								<input type="password" name="repassword" id="repassword" onkeyup="pwche()"><br>
+								<span id="same"></span>
 								<br>
 								<br>
 								
@@ -291,6 +348,7 @@
 							<button type="button" class="btn btn-primary" id="btnInsert">등록</button>
 							<button type="button" class="btn btn-primary" id="btnDelete">삭제</button>
 							<button type="button" class="btn btn-primary" id="btnUpdate" >수정</button>
+							<button type="button" class="btn btn-primary" id="btnDelInsert">퇴사</button>
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 						</div>
 					</div>

@@ -71,6 +71,15 @@ public class EmpController {
 		return  vo;
 	}
 	
+	//퇴사수정
+	@RequestMapping(value="/empDelUpdate")
+	@ResponseBody
+	public EmpVO updateDelEmp(EmpVO vo, Model model) {
+		System.out.println("==========================="+vo);
+		service.updateEmp(vo);
+		return vo;
+	}
+	
 	//수정
 	@RequestMapping(value="/empUpdate")
 	@ResponseBody
@@ -127,6 +136,7 @@ public class EmpController {
 			session.setAttribute("position", emp.getPosition());
 			session.setAttribute("adminMode", false);
 			session.setAttribute("emp", emp);
+			System.out.println(emp);
 
 		}
 		return "home";

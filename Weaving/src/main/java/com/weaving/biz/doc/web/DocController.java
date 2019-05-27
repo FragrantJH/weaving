@@ -51,7 +51,7 @@ public class DocController {
 	//public String docList(Model model) {
 	@RequestMapping("/docList")
 	public String docList(Model model, HttpSession session) {
-		
+		System.out.println(session.getAttribute("emp"));
 		/*
 		 * - C : ALL
 		   - B : 대리 이상
@@ -68,7 +68,7 @@ public class DocController {
 		//1이면 B
 		//0이면 C	
 		
-		/*
+
 		int position = Integer.parseInt((String)session.getAttribute("position"));
 		System.out.println(position);
 		String lv = "C";
@@ -87,8 +87,6 @@ public class DocController {
 
 		model.addAttribute("list", docService.getDocList(vo));
 		return "approval/docList";
-*/
-		return null;
 	}
 	
 	@RequestMapping("/docViewInsert")
@@ -167,11 +165,30 @@ public class DocController {
 	/*
 	 * empName, positionTitle, position, emp
 	 */
-	/*
-	@RequestMapping("/documentInsert")
-	public String documentInsert() {
-		return "/approval/documentInsert";
-	}*/
+
+	@RequestMapping("/docWaitList")
+	public String docWaitView(Model model, HttpSession session, Paging paging) {
+		DocVO vo = new DocVO();
+		
+		if (paging.getPage() == 0) {
+			paging.setPage(1);
+		}
+
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		vo.setEmpNo( ((Integer) session.getAttribute("empNo")).intValue() );
+
+		System.out.println(docService.getDocWaitTotalCount(vo));
+		// 전체 건수
+		paging.setTotalRecord(docService.getDocWaitTotalCount(vo));
+		
+		List<DocVO> list = docService.getDocWaitList(vo);
+
+		model.addAttribute("paging", paging);
+		model.addAttribute("docWaitList", list);
+
+		return "approval/docWaitList";
+	}
 }
 
 
