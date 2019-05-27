@@ -76,6 +76,7 @@
 		from employees e
 		join department d
 		on e.dept_id = d.dept_id(+)
+		where deleted_yn ='N'
 		order by e.emp_no desc
 	</select>
 	
@@ -93,11 +94,10 @@
 		where emp_no = #{empNo}
 	</update>
 	
-	<!-- 퇴사 
-	<update id="updateEmp1" parameterType="emp">
+	<!-- 퇴사 -->
+	<update id="updateDelEmp" parameterType="emp">
 		update employees set deleted_yn = 'Y' ,delete_date=sysdate where emp_no=#{empNo};
 	</update>
-	-->
 	
 	<!-- 삭제 -->
 	<delete id="deleteEmp" parameterType="emp">
