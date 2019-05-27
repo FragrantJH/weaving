@@ -79,8 +79,8 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">
+         <li class="nav-item ">
+            <a class="nav-link" href="${pageContext.request.contextPath}/view_mail">
               <i class="material-icons">email</i>
               <p>메일</p>
             </a>
