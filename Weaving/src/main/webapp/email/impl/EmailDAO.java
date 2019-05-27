@@ -11,6 +11,8 @@ import com.weaving.biz.email.EmailVO;
 @Repository
 public class EmailDAO {
 
+	
+	
 	@Autowired
 	SqlSessionTemplate mybatis;
 	

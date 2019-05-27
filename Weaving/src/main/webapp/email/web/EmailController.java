@@ -19,6 +19,7 @@ import com.weaving.biz.email.SendEmailService;
 @Controller
 public class EmailController {
 
+	
 	@Autowired
 	SendEmailService emailService;
 
