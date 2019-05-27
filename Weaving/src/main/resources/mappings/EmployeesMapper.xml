@@ -93,10 +93,11 @@
 		where emp_no = #{empNo}
 	</update>
 	
-	<!-- 퇴사 -->
-	<update id="updateEmp" parameterType="emp">
+	<!-- 퇴사 
+	<update id="updateEmp1" parameterType="emp">
 		update employees set deleted_yn = 'Y' ,delete_date=sysdate where emp_no=#{empNo};
 	</update>
+	-->
 	
 	<!-- 삭제 -->
 	<delete id="deleteEmp" parameterType="emp">
