@@ -125,7 +125,7 @@
 			      	<i class="material-icons">create</i>
               		<p>진행 문서</p>
 			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docWaitList">
 			      	<i class="material-icons">create</i>
               		<p>대기 문서</p>
 			      </a>

@@ -24,5 +24,14 @@ public class DocDAO {
 	public List<DocVO> getBoardList(DocVO vo) {
 		//
 		return mybatis.selectList("DocDAO.getDocList", vo);
-	}	
+	}
+
+	public List<DocVO> getDocWaitList(DocVO vo) {
+		// TODO Auto-generated method stub
+		return mybatis.selectList("DocDAO.getDocWaitList", vo);
+	}
+	
+	public int getDocWaitTotalCount(DocVO vo) {
+		return mybatis.selectOne("DocDAO.getDocWaitTotalCount", vo);
+	}
 }
