@@ -19,6 +19,8 @@
 		empInsert();
 
 		empUpdate();
+		
+		empDelUpdate();
 
 		init();
 	});
@@ -78,6 +80,27 @@
 				});      }//if
 		}); //삭제 버튼 클릭
 	}//empDelete
+	
+	//사용자 퇴사 요청
+	function empDelUpdate() {
+		//수정 버튼 클릭
+		$('#btnDelInsert').on('click',function(){
+			
+			$.ajax({ 
+			    url: "empDelUpdate",
+			   // type: 'PUT', 
+			    dataType: 'json', 
+			    data: $('#insertForm').serialize(),
+			    success: function(data) { 
+			    	$('#searchModel').modal("hide");
+					empList();
+			    },
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    }
+			});
+		});//퇴사 버튼 클릭
+	}//empDelUpdate
 
 	//사용자 수정 요청
 	function empUpdate() {
@@ -291,6 +314,7 @@
 							<button type="button" class="btn btn-primary" id="btnInsert">등록</button>
 							<button type="button" class="btn btn-primary" id="btnDelete">삭제</button>
 							<button type="button" class="btn btn-primary" id="btnUpdate" >수정</button>
+							<button type="button" class="btn btn-primary" id="btnDelInsert">퇴사</button>
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 						</div>
 					</div>

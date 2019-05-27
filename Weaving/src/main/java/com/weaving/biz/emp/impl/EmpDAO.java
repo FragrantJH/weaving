@@ -19,6 +19,10 @@ public class EmpDAO {
 		mybatis.insert("EmpDAO.insertEmp",vo);
 	}
 	
+	public void updateDelEmp(EmpVO vo) {
+		mybatis.update("EmpDAO.updateDelEmp",vo);
+	}
+	
 	public void updateEmp(EmpVO vo) {
 		mybatis.update("EmpDAO.updateEmp",vo);
 	}

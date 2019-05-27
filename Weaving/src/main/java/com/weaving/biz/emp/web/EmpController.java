@@ -71,6 +71,15 @@ public class EmpController {
 		return  vo;
 	}
 	
+	//퇴사수정
+	@RequestMapping(value="/empDelUpdate")
+	@ResponseBody
+	public EmpVO updateDelEmp(EmpVO vo, Model model) {
+		System.out.println("==========================="+vo);
+		service.updateEmp(vo);
+		return vo;
+	}
+	
 	//수정
 	@RequestMapping(value="/empUpdate")
 	@ResponseBody

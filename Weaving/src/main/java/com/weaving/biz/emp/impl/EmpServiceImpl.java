@@ -20,6 +20,11 @@ public class EmpServiceImpl implements Empservice {
 		dao.insertEmp(vo);
 
 	}
+	@Override
+	public void updateDelEmp(EmpVO vo) {
+		dao.updateEmp(vo);
+	}
+	
 
 	@Override
 	public void updateEmp(EmpVO vo) {
