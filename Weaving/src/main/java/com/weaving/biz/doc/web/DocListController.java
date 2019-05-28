@@ -18,11 +18,11 @@ public class DocListController {
 	DocListService service;
 	
 	@RequestMapping("docDoneList")
-	public Model getDocDoneList(Model model, HttpSession session) {
+	public String getDocDoneList(Model model, HttpSession session) {
 		
-		EmpVO vo = SessionInfo.getInstance().getLoginUser(session);		
+		EmpVO vo = SessionInfo.getInfo(session, "emp");		
 		model.addAttribute("doneList", service.getDoneDocList(vo.getEmpNo()));
 		
-		return model;
+		return "approval/docDoneList";
 	}
 }
