@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weaving.biz.common.Paging;
 import com.weaving.biz.doc.DocHistoryVO;
 import com.weaving.biz.doc.DocService;
-import com.weaving.biz.doc.DocVO;
+import com.weaving.biz.doc.DocVO_;
 import com.weaving.biz.docForm.DocFormService;
 import com.weaving.biz.docForm.DocFormVO;
 import com.weaving.biz.emp.EmpVO;
@@ -56,12 +56,12 @@ public class DocController {
 		 * - C : ALL
 		   - B : 대리 이상
 		   - A : 과장 이상
-		   사원 0
-		   대리 1
-		   과장 2
-		   차장 3
-		   부장 4
-		   대표 5
+		   사원 0		:C
+		   대리 1		:B
+		   과장 2		:A
+		   차장 3 		:A
+		   부장 4		:S
+		   대표 5		:S
 		 */
 		//2초과 S등급
 		//2이면 A
@@ -82,7 +82,7 @@ public class DocController {
 			lv = "C";
 		}
 
-		DocVO vo = new DocVO();
+		DocVO_ vo = new DocVO_();
 		vo.setSecureLevel(lv);
 
 		model.addAttribute("list", docService.getDocList(vo));
@@ -99,7 +99,7 @@ public class DocController {
 	}
 
 	@RequestMapping(value="/docInsert", method=RequestMethod.POST)
-	public String docInsert(DocVO vo, HttpServletRequest request) {
+	public String docInsert(DocVO_ vo, HttpServletRequest request) {
 
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
@@ -122,10 +122,10 @@ public class DocController {
 		int docId = 0;
 		String writerStatus = "";
 		try {
-			List<DocVO> docObj = Arrays.asList(mapper.readValue(jsonString, DocVO[].class));
+			List<DocVO_> docObj = Arrays.asList(mapper.readValue(jsonString, DocVO_[].class));
 			
 			boolean b = true;
-			for (DocVO v : docObj) {
+			for (DocVO_ v : docObj) {
 				
 				if (b) {
 					writerStatus = v.getStatus();
@@ -168,7 +168,7 @@ public class DocController {
 
 	@RequestMapping("/docWaitList")
 	public String docWaitView(Model model, HttpSession session, Paging paging) {
-		DocVO vo = new DocVO();
+		DocVO_ vo = new DocVO_();
 		
 		if (paging.getPage() == 0) {
 			paging.setPage(1);
@@ -182,7 +182,7 @@ public class DocController {
 		// 전체 건수
 		paging.setTotalRecord(docService.getDocWaitTotalCount(vo));
 		
-		List<DocVO> list = docService.getDocWaitList(vo);
+		List<DocVO_> list = docService.getDocWaitList(vo);
 
 		model.addAttribute("paging", paging);
 		model.addAttribute("docWaitList", list);

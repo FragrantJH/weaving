@@ -2,7 +2,7 @@ package com.weaving.biz.doc;
 
 import java.util.Arrays;
 
-public class DocVO {
+public class DocVO_ {
 	private int rowNum;
 	private int docId;
 	private int empNo;

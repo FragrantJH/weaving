@@ -4,23 +4,23 @@ import java.util.List;
 
 public interface DocService {
 	// 문서입력
-	void insertDoc(DocVO vo);
+	void insertDoc(DocVO_ vo);
 	
 	// 결재자문서입력
-	void insertDocDetail(DocVO vo);
+	void insertDocDetail(DocVO_ vo);
 	
 	// 문서수정
-	void updateDoc(DocVO vo);
+	void updateDoc(DocVO_ vo);
 	// 문서삭제	
-	void deleteDoc(DocVO vo);
+	void deleteDoc(DocVO_ vo);
 	// 문서조회
-	List<DocVO> getDocList(DocVO vo);
+	List<DocVO_> getDocList(DocVO_ vo);
 	// 대기 문서 조회
-	List<DocVO> getDocWaitList(DocVO vo);
+	List<DocVO_> getDocWaitList(DocVO_ vo);
 	// 문서 수
-	int getDocCount(DocVO vo);
+	int getDocCount(DocVO_ vo);
 	// 대기상태 문서리스트 수
-	int getDocWaitTotalCount(DocVO vo);
+	int getDocWaitTotalCount(DocVO_ vo);
 	// 문서 history입력
 	void insertDocHistory(DocHistoryVO vo);	
 }
