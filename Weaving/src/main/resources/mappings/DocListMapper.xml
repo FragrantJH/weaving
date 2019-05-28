@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DocListDAO">
+
+	<!-- 결재 완료 문서 조회 -->
+    <select id="getDoneDocList" resultType="docBase" parameterType="int">
+    <![CDATA[
+	    SELECT DISTINCT DOC_ID, DOC_NO, DOC_TITLE, DONE_DATE, WRITER_EMP_NAME, SECURE_LEVEL
+	  	  FROM ( SELECT A.DOC_ID, 
+	  	  				A.DOC_NO, 
+	  	  				A.DOC_TITLE, 
+	  	  				A.DONE_DATE, 
+	  	  				A.SECURE_LEVEL, 
+	  	  				C.EMP_NAME AS WRITER_EMP_NAME, 
+	  	  				B.EMP_NO, 
+			            CASE A.SECURE_LEVEL WHEN 'C' THEN 'D'
+			                                WHEN 'B' THEN 'C'
+			                                WHEN 'A' THEN 'B'
+			                                WHEN 'S' THEN 'A' END AS S_LEVEL
+	          	  FROM DOCUMENTS A INNER JOIN DOCUMENTDETAIL B ON A.DOC_ID = B.DOC_ID
+	                               INNER JOIN EMPLOYEES C ON A.EMP_NO = C.EMP_NO
+	             WHERE A.DONE_DATE IS NOT NULL
+	            )
+		 WHERE EMP_NO = #{empNo}
+	      	   OR S_LEVEL >= ( SELECT CASE WHEN POSITION = 0 THEN 'D'
+		                                   WHEN POSITION = 1 THEN 'C'
+		                                   WHEN POSITION >= 2 AND POSITION < 4 THEN 'B'
+		                                   WHEN POSITION >= 4 THEN 'A' END AS P_LEVEL
+	                             FROM EMPLOYEES
+	                            WHERE EMP_NO = #{empNo})
+		ORDER BY DONE_DATE
+    ]]>
+    </select>
+
+
+
+
+
+
+</mapper>

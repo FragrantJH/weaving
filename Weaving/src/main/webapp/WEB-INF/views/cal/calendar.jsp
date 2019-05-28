@@ -175,7 +175,7 @@ body {
 		// 캘린더 목록 조회
 		function calList() {
 			$.ajax({
-				url : './calendar',
+				url : '${pageContext.request.contextPath}/calendar',
 				type : 'GET',
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
@@ -309,7 +309,7 @@ body {
 			}
 			
 			$.ajax({
-				url : './calendar',
+				url : '${pageContext.request.contextPath}/calendar',
 				type : 'POST',
 				dataType : 'json',
 			 	data : JSON.stringify(calData),
@@ -363,7 +363,7 @@ body {
 			}
 			
 			$.ajax({
-				url : './calendar',
+				url : '${pageContext.request.contextPath}/calendar',
 				type : 'PUT',
 				dataType : 'json',
 				data: JSON.stringify(calData),
@@ -402,7 +402,7 @@ body {
 			var id = $('#calId').val();
 			
 			$.ajax({
-				url : './calendar',
+				url : '${pageContext.request.contextPath}/calendar',
 				type : 'DELETE',
 				dataType : 'json',
 				data: JSON.stringify({id: id}),

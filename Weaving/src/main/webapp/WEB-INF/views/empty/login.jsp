@@ -4,6 +4,21 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
 body, html {
 	height: 100%;
@@ -12,7 +27,8 @@ body, html {
 
 .bg {
 	/* The image used */
-	background-image: url("images/bg_image.jpg");
+	background-image:
+		url("${pageContext.request.contextPath}/images/bg_image.jpg");
 	/* Full height */
 	height: 100%;
 	/* Center and scale the image nicely */
@@ -31,18 +47,32 @@ body, html {
 	color: #f1f1f1; /* Grey text */
 	width: 100%; /* Full width */
 	padding: 20px; /* Some padding */
-	height: 250px;
+	height: 300px;
 }
 </style>
 </head>
 <body>
 	<div class="bg">
+		<div align="center">
+			<h1 class="display-3">WEAVING</h1>
+		</div>
 		<div class="centered">
-			<form action="login" method="post">
-				ID:<input name="empNo" value="${EmpVO.empNo}"><br> PW:<input
-					name="password" value="${EmpVO.password}"><br>
-				<button>로그인</button>
-			</form>
+				<form action="${pageContext.request.contextPath}/login" method="post">
+					<div class="form-group">
+						<label for="empNo">ID</label> 
+						<input type="text" class="form-control" id="empNo" name="empNo" value="${EmpVO.empNo}">
+					</div>
+					<div class="form-group">
+						<label for="pwd">Password</label> 
+						<input type="password" class="form-control" id="pwd" name="password" value="${EmpVO.password}">
+					</div>
+					<div class="form-group form-check">
+						<label class="form-check-label"> <input
+							class="form-check-input" type="checkbox"> Remember
+						</label>
+					</div>
+					<button type="submit" class="btn btn-primary">로그인</button>
+				</form>
 		</div>
 	</div>
 </body>

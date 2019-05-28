@@ -20,6 +20,7 @@
 		<typeAlias alias="emp" type="com.weaving.biz.emp.EmpVO"/>
 		<typeAlias alias="dept" type="com.weaving.biz.dept.DeptVO"/>
 		<typeAlias alias="cal" type="com.weaving.biz.cal.CalVO"/>
+		<typeAlias alias="docBase" type="com.weaving.biz.doc.DocBaseVO"/>
 	</typeAliases>
 
 </configuration>
