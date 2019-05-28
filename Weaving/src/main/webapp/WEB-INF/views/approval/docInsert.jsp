@@ -40,11 +40,19 @@
 	vertical-align: middle;
 	text-align: center;
 }
+
 @media (min-width: 992px) {
   .modal-lg {
     max-width: 1200px;
   }
 }
+
+@media {
+  .modal-approval-line-config {
+    max-width: 558px;
+  }
+}
+
 </style>
 <script>
 //jquery작업
@@ -380,10 +388,10 @@ function toRightMove() {
 				</div>
 				<div class="approval-line">결재선 설정되면 노출됩니다.</div>
 				<!-- modal 페이지 -->
-				<div class="modal fade bd-example-modal-lg" id="approvalLineModel"
+				<div class="modal fade" id="approvalLineModel"
 					tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 					aria-hidden="true">
-					<div class="modal-dialog modal-lg">
+					<div class="modal-dialog modal-approval-line-config">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title card-title">결재자 설정</h5>
@@ -403,7 +411,7 @@ function toRightMove() {
 												style="width: 200px;">
 													<c:forEach items="${empList}" var="empList">
 														<a class="dropdown-item" href="#">${formList.formName}</a>
-														<option class="order${orderNo}" value="${empList.empNo}">${empList.empName}(${empList.deptName})
+														<option class="order${orderNo}" value="${empList.empNo}">${empList.empName}(${empList.deptName}, ${empList.position})
 													</c:forEach>
 											</select></td>
 											<td style="border: none;"><button type="button"
@@ -420,10 +428,10 @@ function toRightMove() {
 								</table>
 							</div>
 							<div class="modal-footer justify-content-center">
+								<button type="button" id="rs-approval-list"
+									class="btn btn-primary">Save changes</button>							
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Close</button>
-								<button type="button" id="rs-approval-list"
-									class="btn btn-primary">Save changes</button>
 							</div>
 						</div>
 					</div>
