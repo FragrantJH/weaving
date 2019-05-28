@@ -25,4 +25,13 @@ public class DocListController {
 		
 		return "approval/docDoneList";
 	}
+	
+	@RequestMapping("docWaitList_")
+	public String getWaitList(Model model, HttpSession session) {
+		
+		EmpVO vo = SessionInfo.getInfo(session, "emp");		
+		model.addAttribute("waitList", service.getWaitDocList(vo.getEmpNo()));
+		
+		return "approval/docWaitList";
+	}
 }

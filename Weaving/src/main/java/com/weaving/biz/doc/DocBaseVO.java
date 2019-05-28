@@ -1,7 +1,5 @@
 package com.weaving.biz.doc;
 
-import java.util.Date;
-
 public class DocBaseVO {
 	
 	private int docId;
@@ -9,8 +7,8 @@ public class DocBaseVO {
 	private String writerEmpName;
 	private String docNo;
 	private String docTitle;
-	private Date regDate;
-	private Date doneDate;
+	private String regDate;
+	private String doneDate;
 	private char secureLevel;
 
 	public int getDocId() {
@@ -53,19 +51,19 @@ public class DocBaseVO {
 		this.docTitle = docTitle;
 	}
 
-	public Date getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(Date regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 
-	public Date getDoneDate() {
+	public String getDoneDate() {
 		return doneDate;
 	}
 
-	public void setDoneDate(Date doneDate) {
+	public void setDoneDate(String doneDate) {
 		this.doneDate = doneDate;
 	}
 
@@ -76,4 +74,12 @@ public class DocBaseVO {
 	public void setSecureLevel(char secureLevel) {
 		this.secureLevel = secureLevel;
 	}
+
+	@Override
+	public String toString() {
+		return "DocBaseVO [docId=" + docId + ", writerEmpNo=" + writerEmpNo + ", writerEmpName=" + writerEmpName
+				+ ", docNo=" + docNo + ", docTitle=" + docTitle + ", regDate=" + regDate + ", doneDate=" + doneDate
+				+ ", secureLevel=" + secureLevel + "]";
+	}
+	
 }

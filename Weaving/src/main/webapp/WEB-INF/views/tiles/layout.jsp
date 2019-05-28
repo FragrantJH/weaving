@@ -117,21 +117,21 @@
 			      	<i class="material-icons">create</i>
               		<p>문서 작성하기</p>
 			      </a>            
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList">
-			      	<i class="material-icons">list</i>
-              		<p>문서조회</p>
-			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
-			      	<i class="material-icons">create</i>
-              		<p>진행 문서</p>
-			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docWaitList">
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docWaitList_">
 			      	<i class="material-icons">create</i>
               		<p>대기 문서</p>
 			      </a>
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
 			      	<i class="material-icons">create</i>
+              		<p>진행 문서</p>
+			      </a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
+			      	<i class="material-icons">create</i>
               		<p>반려 문서</p>
+			      </a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docDoneList">
+			      	<i class="material-icons">list</i>
+              		<p>완료 문서</p>
 			      </a>			      			      
 			</div>
           </li>

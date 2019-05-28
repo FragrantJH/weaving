@@ -30,7 +30,7 @@
 							<tbody>
 								<c:forEach items="${doneList}" var="doc">
 									<tr>
-										<td class="text-center">${doc.docNo}</td>
+										<td>${doc.docNo}</td>
 										<td><a id="btnSelect" href="#">${doc.docTitle}</a></td>
 										<td>${doc.writerEmpName}</td>
 										<td>${doc.secureLevel}</td>
