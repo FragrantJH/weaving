@@ -26,7 +26,7 @@ public class DocListController {
 		return "approval/docDoneList";
 	}
 	
-	@RequestMapping("docWaitList_")
+	@RequestMapping("docWaitList")
 	public String getWaitList(Model model, HttpSession session) {
 		
 		EmpVO vo = SessionInfo.getInfo(session, "emp");		

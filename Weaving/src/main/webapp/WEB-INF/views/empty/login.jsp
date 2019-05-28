@@ -28,7 +28,7 @@ body, html {
 .bg {
 	/* The image used */
 	background-image:
-		url("${pageContext.request.contextPath}/images/bg_image.jpg");
+		url("${pageContext.request.contextPath}/images/bg_1.jpg");
 	/* Full height */
 	height: 100%;
 	/* Center and scale the image nicely */
@@ -53,6 +53,9 @@ body, html {
 </head>
 <body>
 	<div class="bg">
+	<br>
+	<br>
+	<br>
 		<div align="center">
 			<h1 class="display-3">WEAVING</h1>
 		</div>
