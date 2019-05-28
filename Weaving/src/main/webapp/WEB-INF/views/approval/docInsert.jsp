@@ -40,7 +40,11 @@
 	vertical-align: middle;
 	text-align: center;
 }
- 
+@media (min-width: 992px) {
+  .modal-lg {
+    max-width: 1200px;
+  }
+}
 </style>
 <script>
 //jquery작업
@@ -50,9 +54,62 @@ $(function(){
 	toLeftMove();
 	toRightMove();
 	makeApprovalListTable();
-	loadDocPreview();	
-
+	loadDocPreview();
+	
+	checkSum();
 });
+
+function checkSum() {
+	$('#approvalConfigBtn').on('click', function() {
+		
+		var emp = $('#empList option'); 
+		
+		for (var i = 0; i < emp.length; i++) {
+			if ($('#empList option')[i].value == '${empInfo.empNo}') {
+				$('#empList option')[i].remove();
+				break;
+			}
+		}
+	});
+	
+	$('form').on('click', 'button', function () {
+		
+		if ($('#write-select').text() == "선택") {
+			alert("문서종류를 선택하세요");
+			$('#write-select').focus();
+			return false;
+		}
+
+		if ($('#secureLevelMenu').text() == "보안등급") {
+			alert("보안등급을 선택하세요");
+			$('#secureLevelMenu').focus();
+			return false;
+		}
+		
+		var approvalTb = $('.approval-line .approval-table');
+		
+		if (approvalTb.length == 0) {
+			alert("결재선 설정을 해야합니다.");
+			$('#approvalConfigBtn').focus();
+			return false;				
+		}
+
+		if ($('input[name=docTitle]').val() == "") {
+			alert("제목을 입력하세요");
+			$('input[name=docTitle]').focus();
+			return false;
+		}
+		var contents = CKEDITOR.instances.docContents.getData(); 
+		
+		if (contents == '') {
+			alert("내용을 입력해주세요");
+			CKEDITOR.instances.docContents.focus();
+			return false;
+		}
+		
+		$('form').submit();
+	});
+}
 
 function loadDocPreview() {
 	$('#docPreview').on('show.bs.modal', function (e) {
@@ -139,9 +196,7 @@ function makeApprovalListTable() {
 		var tb = "";
 		
 		var DataArray = new Array();
-		console.log("===============");
-		console.log(empCnt);
-		console.log("===============");
+		
 		if (empCnt > 0) {	
 			$('.approval-line').empty();
 			
@@ -165,7 +220,7 @@ function makeApprovalListTable() {
 				var str = approvalEmp[i].text.split('(');
 				
 				tb +="<th scope='col' class='team name' data-order='" + (i + 2) + "' data-empNo='"+approvalEmp[i].value+"'>"+str[0]+"</th>";
-				console.log(approvalEmp[i].value);
+
 				ApprovalData['empNo'] = approvalEmp[i].value;
 				ApprovalData['approvalOrder'] = ''+(i + 2)+'';
 				ApprovalData['status'] = 'wait';
@@ -186,8 +241,7 @@ function makeApprovalListTable() {
 		
 			var jsonString = JSON.stringify(DataArray);
 		    var jsonData = JSON.parse(jsonString);
-		    //var jsonData = JSON.parse(DataArray);
-		    //console.log(DataArray); 
+ 
 		   $("input[name=approvalList]").val(jsonString);
 		}
 		
@@ -230,7 +284,6 @@ function toRightMove() {
 </script>
 </head>
 <body>
-	${empInfo.empNo} : ${empName}
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header card-header-text card-header-primary">
@@ -322,8 +375,8 @@ function toRightMove() {
 					<h3 style="display: inline;">
 						<small class="text-muted">결재선</small>
 					</h3>
-					<small><a href="#0" class="card-link" data-toggle="modal"
-						data-target="#approvalLineModel">결제선설정</a></small>
+					<small><a href="#0" id="approvalConfigBtn" class="card-link" data-toggle="modal"
+						data-target="#approvalLineModel">결재선설정</a></small>
 				</div>
 				<div class="approval-line">결재선 설정되면 노출됩니다.</div>
 				<!-- modal 페이지 -->
@@ -333,10 +386,10 @@ function toRightMove() {
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title card-title">결제자 설정</h5>
+								<h5 class="modal-title card-title">결재자 설정</h5>
 							</div>
 							<div class="modal-body">
-								<table class="table" border="0">
+								<table class="table">
 									<thead>
 										<tr>
 											<th>직원 목록</th>
@@ -354,14 +407,14 @@ function toRightMove() {
 													</c:forEach>
 											</select></td>
 											<td style="border: none;"><button type="button"
-													id="toRight" class="btn btn-default .btn-sm">>></button></td>
+													id="toRight" class="btn btn-default .btn-sm">&gt;&gt;</button></td>
 											<td rowspan="2"><select id="approvalList" size="7"
 												style="width: 200px;">
 											</select></td>
 										</tr>
 										<tr>
 											<td style="border: none;"><button type="button"
-													id="toLeft" class="btn btn-default .btn-sm"><<</button></td>
+													id="toLeft" class="btn btn-default .btn-sm">&lt;&lt;</button></td>
 										</tr>
 									</tbody>
 								</table>
@@ -403,7 +456,7 @@ function toRightMove() {
 							name="secureLevel" type="hidden" value=""> <input
 							name="approvalList" type="hidden" value="">
 					</div>
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="button" class="btn btn-primary">Submit</button>
 				</form>
 			</div>
 		</div>
