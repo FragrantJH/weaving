@@ -47,6 +47,8 @@ public class CalController {
 			vo.setEmpNo(null);
 		}
 		
+		System.out.println(service.getCalList(vo));
+		
 		return service.getCalList(vo);
 	}
 
@@ -81,6 +83,8 @@ public class CalController {
 	@ResponseBody
 	public CalVO updateCal(@RequestBody CalVO vo) {
 
+		System.out.println("updateCal: " + vo);
+		
 		vo.setStart(CommonDateParser.parseToJavaFormat(vo.getStart()));
 		vo.setEnd(CommonDateParser.parseToJavaFormat(vo.getEnd()));
 		service.updateCal(vo);
