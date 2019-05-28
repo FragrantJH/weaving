@@ -24,9 +24,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weaving.biz.common.Paging;
+import com.weaving.biz.doc.DocBaseVO;
 import com.weaving.biz.doc.DocHistoryVO;
 import com.weaving.biz.doc.DocService;
-import com.weaving.biz.doc.DocVO_;
+import com.weaving.biz.doc.DocInsertVO;
 import com.weaving.biz.docForm.DocFormService;
 import com.weaving.biz.docForm.DocFormVO;
 import com.weaving.biz.emp.EmpVO;
@@ -82,10 +83,10 @@ public class DocController {
 			lv = "C";
 		}
 
-		DocVO_ vo = new DocVO_();
-		vo.setSecureLevel(lv);
+		DocInsertVO vo = new DocInsertVO();
+		//vo.setSecureLevel(lv);
 
-		model.addAttribute("list", docService.getDocList(vo));
+		//model.addAttribute("list", docService.getDocList(vo));
 		return "approval/docList";
 	}
 	
@@ -99,7 +100,7 @@ public class DocController {
 	}
 
 	@RequestMapping(value="/docInsert", method=RequestMethod.POST)
-	public String docInsert(DocVO_ vo, HttpServletRequest request) {
+	public String docInsert(DocInsertVO vo, HttpServletRequest request) {
 
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
@@ -110,11 +111,19 @@ public class DocController {
 		
 		String docType = request.getParameter("docType") +"-" + dateArr[0] + dateArr[1] + dateArr[2]+"-";
 		String jsonString = request.getParameter("approvalList");
+		
+		System.out.println(docType);
+		System.out.println(jsonString);
+
 		vo.setDocType(docType);
 		vo.setRegDate(curTime);
+		
+		System.out.println("==========");
+		System.out.println(vo);
+		System.out.println("==========");
 
 		docService.insertDoc(vo);
-		
+
 		System.out.println(vo);
 
 		ObjectMapper mapper = new ObjectMapper();
@@ -122,10 +131,10 @@ public class DocController {
 		int docId = 0;
 		String writerStatus = "";
 		try {
-			List<DocVO_> docObj = Arrays.asList(mapper.readValue(jsonString, DocVO_[].class));
+			List<DocInsertVO> docObj = Arrays.asList(mapper.readValue(jsonString, DocInsertVO[].class));
 			
 			boolean b = true;
-			for (DocVO_ v : docObj) {
+			for (DocInsertVO v : docObj) {
 				
 				if (b) {
 					writerStatus = v.getStatus();
@@ -153,7 +162,7 @@ public class DocController {
 		
 		DocHistoryVO hvo = new DocHistoryVO();
 		hvo.setDocId(docId);
-		hvo.setEmpNo(vo.getEmpNo());
+		hvo.setEmpNo(vo.getWriterEmpNo());
 		hvo.setCurStatus(writerStatus);
 		hvo.setChangeDate(curTime);
 
@@ -165,10 +174,10 @@ public class DocController {
 	/*
 	 * empName, positionTitle, position, emp
 	 */
-
+/*
 	@RequestMapping("/docWaitList")
 	public String docWaitView(Model model, HttpSession session, Paging paging) {
-		DocVO_ vo = new DocVO_();
+		DocInsertVO vo = new DocInsertVO();
 		
 		if (paging.getPage() == 0) {
 			paging.setPage(1);
@@ -182,13 +191,19 @@ public class DocController {
 		// 전체 건수
 		paging.setTotalRecord(docService.getDocWaitTotalCount(vo));
 		
-		List<DocVO_> list = docService.getDocWaitList(vo);
+		List<DocInsertVO> list = docService.getDocWaitList(vo);
 
 		model.addAttribute("paging", paging);
 		model.addAttribute("docWaitList", list);
 
 		return "approval/docWaitList";
 	}
+	
+	@RequestMapping("/docApprovalView")
+	public String test() {
+		return "approval/docApprovalView";
+	}
+*/
 }
 
 
