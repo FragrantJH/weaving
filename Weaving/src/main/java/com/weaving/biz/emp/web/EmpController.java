@@ -2,10 +2,13 @@ package com.weaving.biz.emp.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,16 +22,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
+import com.weaving.biz.emp.impl.AdminAccountsMngService;
 
 @Controller
 public class EmpController {
 
 	@Autowired
 	Empservice service;
+	@Inject
+	AdminAccountsMngService AdminAccountsMngService;
+	
+	@RequestMapping(value="/excelUploadPage",method =RequestMethod.GET)
+	public String serviceMngForm(Model model, Principal principal) {
+		return "admin/emp/excelupload";
+	}
+
+	@RequestMapping(value = "/compExcelUpload")
+	@ResponseBody
+	public List<EmpVO> excelUpload(MultipartHttpServletRequest req) {
+		List<EmpVO> list = new ArrayList<EmpVO>();
+		//엑셀 파일이 xls일때와 xlsx일때 서비스 라우팅
+		String excelType = req.getParameter("excelType");
+		if (excelType.equals("xlsx")) {
+			list = AdminAccountsMngService.xlsxExcelReader(req);
+		} else if (excelType.equals("xls")) {
+			list = AdminAccountsMngService.xlsExcelReader(req);
+		}
+		return list;
+	}
 	//리스트 페이지 이동
 	@RequestMapping("/adminemplist")
 	public String emplist() {

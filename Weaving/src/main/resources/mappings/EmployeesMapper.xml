@@ -118,4 +118,21 @@
 		DELETE FROM EMPLOYEES
 		WHERE EMP_NO = #{empNo}
 	</delete>
+	
+	<insert id="insertExcelTest" parameterType="emp">
+	INSERT ALL 
+	<foreach collection="list" item="item" index="index" separator="">
+	INTO EMPLOYEES(emp_no,emp_name,password,joindate,email,gmail_app_key) 
+	VALUES
+		(
+		(SELECT NVL(MAX(EMP_NO), 0) + 1 FROM EMPLOYEES)+#{index}
+		, #{item.empName}
+		, #{item.password}
+		,to_date( #{item.joindate1},'yyyy-mm-dd')
+		, #{item.email}
+		, #{item.gmailAppKey}
+		)
+	</foreach>
+	SELECT * FROM DUAL
+</insert>
 </mapper>
