@@ -171,39 +171,14 @@ public class DocController {
 		return "redirect:docList";
 	}
 		
-	/*
-	 * empName, positionTitle, position, emp
-	 */
-/*
-	@RequestMapping("/docWaitList")
-	public String docWaitView(Model model, HttpSession session, Paging paging) {
-		DocInsertVO vo = new DocInsertVO();
-		
-		if (paging.getPage() == 0) {
-			paging.setPage(1);
-		}
+	
 
-		vo.setFirst(paging.getFirst());
-		vo.setLast(paging.getLast());
-		vo.setEmpNo( ((Integer) session.getAttribute("empNo")).intValue() );
-
-		System.out.println(docService.getDocWaitTotalCount(vo));
-		// 전체 건수
-		paging.setTotalRecord(docService.getDocWaitTotalCount(vo));
-		
-		List<DocInsertVO> list = docService.getDocWaitList(vo);
-
-		model.addAttribute("paging", paging);
-		model.addAttribute("docWaitList", list);
-
-		return "approval/docWaitList";
-	}
 	
 	@RequestMapping("/docApprovalView")
 	public String test() {
 		return "approval/docApprovalView";
 	}
-*/
+
 }
 
 

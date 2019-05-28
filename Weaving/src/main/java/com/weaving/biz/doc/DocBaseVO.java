@@ -1,5 +1,8 @@
 package com.weaving.biz.doc;
 
+/***
+ * 문서 기본 정보
+ */
 public class DocBaseVO {
 	
 	private int docId;

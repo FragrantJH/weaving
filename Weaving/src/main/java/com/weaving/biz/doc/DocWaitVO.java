@@ -1,5 +1,8 @@
 package com.weaving.biz.doc;
 
+/***
+ * 대기중인 문서 정보
+ */
 public class DocWaitVO extends DocBaseVO {
 
 	private int waitEmpNo;

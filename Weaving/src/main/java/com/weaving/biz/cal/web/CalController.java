@@ -1,13 +1,11 @@
 package com.weaving.biz.cal.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.weaving.biz.cal.CalVO;
 import com.weaving.biz.common.CommonDateParser;
+import com.weaving.biz.common.SessionInfo;
 import com.weaving.biz.cal.CalService;
 import com.weaving.biz.cal.CalTypeEnum;
 
@@ -36,18 +35,16 @@ public class CalController {
 	@ResponseBody
 	public List<CalVO> getCalData(CalVO vo, HttpSession session) {
 		
-		Object calType = session.getAttribute("calType");
+		CalTypeEnum calType = SessionInfo.getInfo(session, "calType");
 		
-		if(calType != null && (CalTypeEnum)calType == CalTypeEnum.User) {
-			Object empNo = session.getAttribute("empNo");
+		if(calType != null && calType == CalTypeEnum.USER) {
+			Integer empNo = SessionInfo.getInfo(session, "empNo");
 			if(empNo != null) {
-				vo.setEmpNo((Integer)empNo);
+				vo.setEmpNo(empNo);
 			}
 		} else {
 			vo.setEmpNo(null);
 		}
-		
-		System.out.println(service.getCalList(vo));
 		
 		return service.getCalList(vo);
 	}
@@ -63,7 +60,7 @@ public class CalController {
 		// 캘린더 타입에 따라서 EmpNo 값 vo에 입력
 		Object calType = session.getAttribute("calType");
 		
-		if(calType != null && (CalTypeEnum)calType == CalTypeEnum.User) {
+		if(calType != null && (CalTypeEnum)calType == CalTypeEnum.USER) {
 			Object empNo = session.getAttribute("empNo");
 			if(empNo != null) {
 				vo.setEmpNo((Integer)empNo);
