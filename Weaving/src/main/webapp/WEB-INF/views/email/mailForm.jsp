@@ -15,7 +15,7 @@
 	<form action="mailSend" method="get">
 		<div class="bigpage">
 			<div class="send-button">
-				<input type="submit" value="보내기" onclick="" />
+				<input type="submit" value="보내기"  onclick="location.href='success_email.jsp'"/>
 				<button>미리보기</button>
 				<button>저장하기</button>
 				<button>옵션</button>
