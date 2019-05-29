@@ -22,7 +22,7 @@ public class EmpServiceImpl implements Empservice {
 	}
 	@Override
 	public void updateDelEmp(EmpVO vo) {
-		dao.updateEmp(vo);
+		dao.updateDelEmp(vo);
 	}
 	
 

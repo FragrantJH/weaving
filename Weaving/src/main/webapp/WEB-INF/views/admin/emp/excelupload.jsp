@@ -74,7 +74,7 @@
 						<div class="col-sm-12">
 							<div class="row" id="regGoodsImgArea">
 								<div class="col-sm-4">
-									<label>엑셀업로드 (업로드하고 디비에 INSERT)</label>
+									<label>확장자명 : xlsx,<br> joindata 입력시 날짜앞에 `넣어서 텍스트 형식으로 입력해야함<br>  엑셀업로드 (업로드하고 디비에 INSERT)</label>
 									<input id="excel" name="excel" class="file" type="file" multiple data-show-upload="false" data-show-caption="true">
 								</div>
 							</div>

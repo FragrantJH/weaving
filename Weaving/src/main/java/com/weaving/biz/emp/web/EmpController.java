@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -54,7 +55,14 @@ public class EmpController {
 		}
 		return list;
 	}
-	//리스트 페이지 이동
+	//일반 사원 페이지 이동
+		@RequestMapping("/empselect")
+		public String empselect(Model model,EmpVO vo,HttpSession session) {
+			vo.setEmpNo((Integer)(session.getAttribute("empNo")));
+			model.addAttribute("emp", service.getEmp(vo));
+			return "emp/emp";
+		}
+	//admin리스트 페이지 이동
 	@RequestMapping("/adminemplist")
 	public String emplist() {
 		return "admin/emp/emplist";
@@ -101,7 +109,7 @@ public class EmpController {
 	@ResponseBody
 	public EmpVO updateDelEmp(EmpVO vo, Model model) {
 		System.out.println("==========================="+vo);
-		service.updateEmp(vo);
+		service.updateDelEmp(vo);
 		return vo;
 	}
 	
@@ -158,7 +166,13 @@ public class EmpController {
 		} else {
 			session.setAttribute("empNo", emp.getEmpNo());
 			session.setAttribute("empName", emp.getEmpName());
+			session.setAttribute("password", emp.getPassword());
+			session.setAttribute("deptId", emp.getDeptId());
 			session.setAttribute("position", emp.getPosition());
+			session.setAttribute("email", emp.getEmail());
+			session.setAttribute("phone", emp.getPhone());
+			session.setAttribute("address", emp.getAddress());
+			session.setAttribute("gmailAppKey", emp.getGmailAppKey());
 			session.setAttribute("adminMode", false);
 			session.setAttribute("emp", emp);
 			System.out.println(emp);
@@ -171,5 +185,11 @@ public class EmpController {
 	public String logout(HttpSession session) {
 		session.invalidate();// 세션 무효화
 		return "home";
+	}
+	//일반사용자 수정처리
+	@RequestMapping("/normalempinsert")
+	public String normalempinsert(EmpVO vo){
+		service.updateEmp(vo);
+		return "redirect:empselect";
 	}
 }
