@@ -90,7 +90,7 @@ public class EmpController {
 	@ResponseBody
 	public EmpVO getUser(@PathVariable int empNo, EmpVO vo, Model model) {
 		vo.setEmpNo(empNo);
-		return service.getEmp(vo);
+		return service.getEmpl(vo);
 	}
 
 	// 삭제
