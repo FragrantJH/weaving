@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.weaving.biz.doc.DocHistoryVO;
 import com.weaving.biz.doc.DocService;
-import com.weaving.biz.doc.DocVO;
+import com.weaving.biz.doc.DocInsertVO;
 @Service("docService")
 public class DocServiceImpl implements DocService {
 
@@ -29,37 +29,42 @@ public class DocServiceImpl implements DocService {
 */
 
 	@Override
-	public void insertDoc(DocVO vo) {
+	public void insertDoc(DocInsertVO vo) {
 		// TODO Auto-generated method stub
 		dao.insertDoc(vo);
 	}
 	
 	@Override
-	public void insertDocDetail(DocVO vo) {
+	public void insertDocDetail(DocInsertVO vo) {
 		// TODO Auto-generated method stub
 		dao.insertDocDetail(vo);
 	}
 	
 	@Override
-	public void updateDoc(DocVO vo) {
+	public void updateDoc(DocInsertVO vo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteDoc(DocVO vo) {
+	public void deleteDoc(DocInsertVO vo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<DocVO> getDocList(DocVO vo) {
+	public List<DocInsertVO> getDocList(DocInsertVO vo) {
 		// TODO Auto-generated method stub
 		return dao.getBoardList(vo);
 	}
-
+	
 	@Override
-	public int getDocCount(DocVO vo) {
+	public List<DocInsertVO> getDocWaitList(DocInsertVO vo) {
+		// TODO Auto-generated method stub
+		return dao.getDocWaitList(vo);
+	}
+	@Override
+	public int getDocCount(DocInsertVO vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -69,4 +74,11 @@ public class DocServiceImpl implements DocService {
 		// TODO Auto-generated method stub
 		hdao.insertDocHistory(vo);
 	}
+
+	@Override
+	public int getDocWaitTotalCount(DocInsertVO vo) {
+		// TODO Auto-generated method stub
+		return dao.getDocWaitTotalCount(vo);
+	}
+
 }

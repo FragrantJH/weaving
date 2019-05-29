@@ -1,20 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="empInfo" value="${emp}" scope="session" />
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<link rel="apple-touch-icon" sizes="76x76"
-	href="../assets/img/apple-icon.png">
-<link rel="icon" type="image/png" href="../assets/img/favicon.png">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="UTF-8">
 <title>Insert title here</title>
-<meta
-	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-	name='viewport' />
-<!--     Fonts and icons     -->
 <link rel="stylesheet" type="text/css"
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <link rel="stylesheet"
@@ -22,124 +12,21 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!-- ckeditor 스크립트 -->
-<script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
-<style>
-.approval-table th {
-	background-color: #f9f9f9;
-	height: 40px;
-	width: 116px;
-	vertical-align: middle;
-	text-align: center;
-}
-
-.approval-table .stamp {
-	display: table-cell;
-	height: 80px;
-	width: 116px;
-	vertical-align: middle;
-	text-align: center;
-}
-
-@media (min-width: 992px) {
-  .modal-lg {
-    max-width: 1200px;
-  }
-}
-
-@media {
-  .modal-approval-line-config {
-    max-width: 558px;
-  }
-}
-
-</style>
-<script>
-//jquery작업
-$(function(){
-	selectDocForm();
-	selectSecureLevel();
-	toLeftMove();
-	toRightMove();
-	makeApprovalListTable();
-	loadDocPreview();
-	checkSum();
-});
-
-function checkSum() {
-	$('#approvalConfigBtn').on('click', function() {
-		
-		var emp = $('#empList option'); 
-		
-		for (var i = 0; i < emp.length; i++) {
-			if ($('#empList option')[i].value == '${empInfo.empNo}') {
-				$('#empList option')[i].remove();
-				break;
-			}
-		}
-	});
-	
-	$('form').on('click', 'button', function () {
-		
-		if ($('#write-select').text() == "선택") {
-			alert("문서종류를 선택하세요");
-			$('#write-select').focus();
-			return false;
-		}
-
-		if ($('#secureLevelMenu').text() == "보안등급") {
-			alert("보안등급을 선택하세요");
-			$('#secureLevelMenu').focus();
-			return false;
-		}
-		
-		var approvalTb = $('.approval-line .approval-table');
-		
-		if (approvalTb.length == 0) {
-			alert("결재선 설정을 해야합니다.");
-			$('#approvalConfigBtn').focus();
-			return false;				
-		}
-
-		if ($('input[name=docTitle]').val() == "") {
-			alert("제목을 입력하세요");
-			$('input[name=docTitle]').focus();
-			return false;
-		}
-		var contents = CKEDITOR.instances.docContents.getData(); 
-		
-		if (contents == '') {
-			alert("내용을 입력해주세요");
-			CKEDITOR.instances.docContents.focus();
-			return false;
-		}
-		
-		$('form').submit();
-	});
-}
-
-function loadDocPreview() {
-	$('#docPreview').on('show.bs.modal', function (e) {
-		/*
-		if (!$('input[name=docType]').val()) {
-			alert("문서 종류를 선택하세요.");
-		}
-		*/
-		var date = new Date(); 
-		var year = date.getFullYear(); 
-		var month = new String(date.getMonth()+1); 
-		var day = new String(date.getDate()); 
-
-		// 한자리수일 경우 0을 채워준다. 
-		if(month.length == 1){ 
-		  month = "0" + month; 
-		} 
-		if(day.length == 1){ 
-		  day = "0" + day; 
-		} 
-
-		$("#doc-title").html($("[name=docTitle]").val());
-		var doc_info =	"<table border='0' style='all:none;'>" +
+</head>
+<body>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header card-header-text card-header-primary">
+					<div class="card-text">
+						<h4 class="card-title">결재 문서</h4>
+					</div>
+				</div>
+				<div class="card-body">
+					<h3 id="doc-title" class="text-center">test</h3>
+					<div style="display:inline-block;">
+					<!--
+					 		var doc_info =	"<table border='0' style='all:none;'>" +
 							"<tr>" +
 								"<td>문서번호</td>" +
 								"<td>"+$('input[name=docType]').val()+"-"+year + "" + month+"-xxxx</td>" +
@@ -161,53 +48,32 @@ function loadDocPreview() {
 								"<td>"+$('#secureLevelMenu').text()+"</td>" +
 							"</tr>"+							
 						"</table>";
-						
-		var approvalLine = $('.approval-line').clone();
-		var data = CKEDITOR.instances.docContents.getData();
-		
-		$('#doc-info').html(doc_info);
-		
-		$('#approval-list-tb').html(approvalLine);
-		$('#doc-write').html(data);
-	});
-	
-	$('#docPreview').on('hidden.bs.modal', function (e) {
-		$("#approval-list-tb .approval-line").remove();
-	});
-}
-
-function selectDocForm() {
-	$('.dropdown1').on('click', '.dropdown-menu button', function (e) {
-		var formTagClass = $(this).attr('id');
-		var $formTag = $('.'+formTagClass).clone();
-		$('#write-select').text($(this).text());
-		CKEDITOR.instances.docContents.setData($formTag.html());
-		$('input[name=docType]').val($(this).text());
-		$formTag.show();
-	});
-}
- 
-function selectSecureLevel() {
-	$('.secureLevel-dropdown').on('click','.dropdown-menu button', function(e) {
-		$('#secureLevelMenu').text($(this).text());
-		$('input[name=secureLevel]').val($(this).text().split('등급')[0]);
-	});
-}
-
-
-function makeApprovalListTable() {
-	$('.modal-footer').on('click', '#rs-approval-list', function() {
-		
-		var approvalEmp = $('#approvalList option');
-		var empCnt = approvalEmp.length;
-		var tb = "";
-		
-		var DataArray = new Array();
-		
-		if (empCnt > 0) {	
-			$('.approval-line').empty();
-			
-			var tb = "<table class='approval-table' border='1' bordercolor='#cdcdcd'>"+
+					 -->
+						<table class="table">
+							<tr>
+								<th>문서번호</th>
+								<th>test-190528-0001</th>
+							</tr>
+							<tr>
+								<th>기안부서</th>
+								<th>전산과</th>
+							</tr>							
+							<tr>
+								<th>기안자</th>
+								<th>누구누구</th>
+							</tr>							
+							<tr>
+								<th>기안일자</th>
+								<th>2019-05-28</th>
+							</tr>
+							<tr>
+								<th>보안등급</th>
+								<th>A등급</th>
+							</tr>
+						</table>
+					</div>
+					<!--
+var tb = "<table class='approval-table' border='1' bordercolor='#cdcdcd'>"+
 						"<tr>" +
 							"<th rowspan='2' scope='col'>"+
 								"<div style='height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;'>"+
@@ -243,59 +109,69 @@ function makeApprovalListTable() {
 				tb += "<td class='stamp'></td>";
 			}
 			tb +="</tr>"+
-				 "</table>";
-			$('.approval-line').append(tb);
-		
-			var jsonString = JSON.stringify(DataArray);
-		    var jsonData = JSON.parse(jsonString);
- 
-		   $("input[name=approvalList]").val(jsonString);
-		}
-		
-		
-    	$('#approvalLineModel').modal('hide');
-	});
-
-	
-}
-
-function toLeftMove() {
-	$('table').on('click', '#toLeft', function() {
-		//empList, approvalList
-		var index = $('#approvalList option').index($('#approvalList option:selected'));
-		var chooseEmp = $('#approvalList option:selected');
-		
-		if (chooseEmp.length == 0) {
-			alert("직원을 선택하세요");
-		} else {
-			chooseEmp.remove();	
-			$('#empList').append(chooseEmp);
-		}
-	});
-}
-
-function toRightMove() {
-	$('table').on('click', '#toRight', function() {
-		//empList, approvalList
-		var index = $('#empList option').index($('#empList option:selected'));
-		var chooseEmp = $('#empList option:selected');
-		
-		if (chooseEmp.length == 0) {
-			alert("직원을 선택하세요");
-		} else {
-			chooseEmp.remove();	
-			$('#approvalList').append(chooseEmp);
-		}
-	});
-}
-</script>
-</head>
-<body>
+				 "</table>";					 
+					 -->
+					<div style="dispaly:inline-block; float:right;">
+						<table class='approval-table' border='1' bordercolor='#cdcdcd'>
+							<tr>
+								<th rowspan='3' scope='col'>
+									<div style='height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;'>
+									결재
+									</div>
+								</th>
+								<th scope='col' class='team name' data-order='1' data-empNo=''>누구누구</td>
+								<th scope='col' class='team name' data-order='2' data-empNo=''>누구누구</th>
+								<th scope='col' class='team name' data-order='3' data-empNo=''>누구누구</th>
+							</tr>
+				  			<tr>
+				  				<td class='stamp'>승인</td>
+								<td class='stamp'></td>
+								<td class='stamp'></td>
+							</tr>
+				  			<tr>
+				  				<td class='stamp'></td>
+								<td class='stamp'>결재하기</td>
+								<td class='stamp'></td>
+							</tr>							
+				 		</table>					
+					</div>
+					<h3>상세 입력</h3>
+					<div id="docDetail" style="border:1px solid black;">
+					</div>										
+				</div>
+				<div class="card-footer">
+					<div class="stats">
+					<i class="material-icons">access_time</i> campaign sent 2 days ago
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+	<!-- 
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-header card-chart card-header-success">
+					<div class="ct-chart" id="completedTasksChart"></div>
+				</div>
+				<div class="card-body">
+					<h4 class="card-title">Completed Tasks</h4>
+					<p class="card-category">Last Campaign Performance</p>
+				</div>
+				<div class="card-footer">
+					<div class="stats">
+						<i class="material-icons">access_time</i> updated 2 minutes ago
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	 -->
+	<!-- 
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header card-header-text card-header-primary">
 				<div class="card-text">
-					<h4 class="card-title">문서 작성하기</h4>
+					<h4 class="card-title">결재 문서</h4>
 				</div>
 			</div>
 
@@ -327,10 +203,10 @@ function toRightMove() {
 												${formList.formContents}</div>
 										</c:forEach>
 									</div>
-									<!-- Button trigger modal -->
+
 									<small><a href="#0" class="card-link"
 										data-toggle="modal" data-target="#docPreview">미리보기</a></small>
-								</div> <!-- Modal -->
+								</div> 
 								<div class="modal fade" id="docPreview" tabindex="-1"
 									role="dialog" aria-labelledby="exampleModalLongTitle"
 									aria-hidden="true">
@@ -384,7 +260,7 @@ function toRightMove() {
 						data-target="#approvalLineModel">결재선설정</a></small>
 				</div>
 				<div class="approval-line">결재선 설정되면 노출됩니다.</div>
-				<!-- modal 페이지 -->
+				
 				<div class="modal fade" id="approvalLineModel"
 					tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 					aria-hidden="true">
@@ -457,7 +333,7 @@ function toRightMove() {
 					    CKEDITOR.replace( 'docContents' );
 					</script>
 						<input name="docType" type="hidden" value=""> <input
-							name="writerEmpNo" type="hidden" value="${empInfo.empNo}"> <input
+							name="empNo" type="hidden" value="${empInfo.empNo}"> <input
 							name="secureLevel" type="hidden" value=""> <input
 							name="approvalList" type="hidden" value="">
 					</div>
@@ -466,5 +342,6 @@ function toRightMove() {
 			</div>
 		</div>
 	</div>
+	-->
 </body>
 </html>

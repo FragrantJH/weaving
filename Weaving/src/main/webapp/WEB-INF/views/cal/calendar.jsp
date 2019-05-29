@@ -26,7 +26,6 @@ body {
 <body>
 	<div>
 		<div id='calendar'></div>
-		<button class="btn btn-default" data-toggle="modal" data-target="#calModal"> 일정등록 </button>
 		
 		<!-- Modal 시작 -->
 		<div>
@@ -44,7 +43,7 @@ body {
 							<div class="form-group">
 								<label for="title">일정 제목</label>
 								<input type="hidden" id="calId" name="calId">
-								<input type="text" class="form-control" id="title" name="title" placeholder="일정 제목을 입력해주세요">
+								<input type="text" class="form-control" id="title" name="title" placeholder="일정 제목을 입력해주세요" autofocus>
 							</div>
 							<br>
 							<div class="form-row">
@@ -61,11 +60,12 @@ body {
 							<br>
 							<div class="form-check">
 							      <label class="form-check-label">
-							          <input class="form-check-input" type="checkbox" id="allDay"  name="allDay" value="true"> 종일
+							          <input class="form-check-input" type="checkbox" id="allDay" name="allDay" value="true"> 종일
 							          <span class="form-check-sign">
 							              <span class="check"></span>
 							          </span>
 							      </label>
+							      <br>
 							</div>
 							<br>
 							<div class="form-group">
@@ -75,15 +75,15 @@ body {
 							<br>
 							<div class="form-group">
 								<label for="backgroundColor">색상</label>
-  								<input type="color" name="backgroundColor" value="#3788d8">
+  								<input type="color" id="backgroundColor" name="backgroundColor" value="#da92e7">
 							</div>
 							<br>
 						</div>
 						<div class="modal-footer">
-							<button id="btnAdd" type="button" class="btn btn-primary" onclick="insertCal()">저장</button>
-							<button id="btnUpdate" type="button" class="btn btn-primary" onclick="updateCal()">수정</button>
-							<button id="btnDelete" type="button" class="btn btn-primary" onclick="deleteCal()">삭제</button>
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+							<button id="btnAdd" type="button" class="btn btn-primary btn-sm" onclick="insertCal()">등록</button>
+							<button id="btnUpdate" type="button" class="btn btn-primary btn-sm" onclick="updateCal()">수정</button>
+							<button id="btnDelete" type="button" class="btn btn-default btn-sm" onclick="deleteCal()">삭제</button>
+							<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">취소</button>
 						</div>
 					</div>
 				</div>
@@ -92,41 +92,96 @@ body {
 		<!-- Modal 종료 -->
 		
 	</div>
+	
 	<script>
 	
-		// 달력에서 날짜를 눌렀을 때 날짜값
-		var selectedDate = null;
 		var calendar;
+		var dateTimeFormat = 'YYYY-MM-DD' + 'T' + 'HH:00:00';	// 시간 포함 포맷
+		var dateFormat = 'YYYY-MM-DD';							// 날짜 포맷
 		
 		$(function() {
 			
-			console.log('calData: ' + '${cal.calType}');
-		
 			// 화면 로드 시 캘린더 목록 조회
 			calList();
 			
 			// modal창이 닫히면 값 초기화
 			$('#calModal').on('hidden.bs.modal', function (e) {
-				$('[name=calId]').val('');
-				$('[name="title"]').val('');
-				$('[name="start"]').val('');
-				$('[name="end"]').val('');
-				$('[name="allDay"]').val(false);
-				$('[name="backgroundColor"]').val('#3788d8');
-				$('[name="description"]').val('');
-			})
+				$('#calId').val('');
+				$('#title').val('');
+				$('#start').val('');
+				$('#end').val('');
+				$('#allDay').prop("checked", false);
+				$('#backgroundColor').val('#da92e7');
+				$('#description').val('');
+				
+				$('#start').prop('type', 'datetime-local');
+	        	$('#end').prop('type', 'datetime-local');
+			});
+			
+			// modal창이 열리면 처리
+			$('#calModal').on('shown.bs.modal', function (e) {
+				$('#title').focus();
+			});
+			
+			
+			// allDay 체크 이벤트 변경 시 포맷 변경 처리
+			$("#allDay").change(function(){
+				
+		        if($("#allDay").is(":checked")){
+		        	
+		        	var start = $('#start').val();
+		        	var end = $('#end').val();
+		        	
+		        	$('#start').prop('type', 'date');
+		        	$('#end').prop('type', 'date');
+		        	
+		        	$('#start').val(moment(start).format(dateFormat));
+		        	$('#end').val(moment(end).format(dateFormat));
+		        	
+		        } else {
+		        	
+		        	var start = $('#start').val();
+		        	var end = $('#end').val();
+		        	
+		        	$('#start').prop('type', 'datetime-local');
+		        	$('#end').prop('type', 'datetime-local');
+		        	
+		        	$('#start').val(moment(start).format(dateTimeFormat));
+		        	$('#end').val(moment(end).format(dateTimeFormat));
+		        }
+		    });
 		});
+		
+		// 추가/수정에 따라 버튼 보이기 처리
+		function showButtons(isAdd) {
+			isAdd == true ? $('#btnAdd').show() : $('#btnAdd').hide();
+			isAdd == true ? $('#btnUpdate').hide() : $('#btnUpdate').show();
+			isAdd == true ? $('#btnDelete').hide() : $('#btnDelete').show() ;
+		}
+		
+		// 상세 화면의 데이터 객체 가져옴
+		function getCalDataFromUI() {
+		  	var calData = { id: $('#calId').val(),
+		  					title : $('#title').val(),
+					   	  	start :  $('#start').val(),
+					      	end :  $('#end').val(),
+					      	allDay :  $('#allDay:checked').val() == 'true' ? true : false,
+					      	backgroundColor: $('#backgroundColor').val(),
+					      	description: $('#description').val()
+					      };
+		  	return calData;
+		}
 		
 		// 캘린더 목록 조회
 		function calList() {
 			$.ajax({
-				url : './calendar',
+				url : '${pageContext.request.contextPath}/calendar',
 				type : 'GET',
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
 				success : calRender,
 				error : function() {
-					console.log('error');
+					alert('일정을 불러오는 데 실패했습니다. 관리자에게 문의해주세요.');
 				}
 			});
 		}
@@ -152,48 +207,80 @@ body {
 					day : '오늘 일정',
 					list : '목록'
 				},
-				defaultDate : moment().format('YYYY-MM-DD' + 'T' + 'HH:00:00'), // 현재 날짜
+				defaultDate : moment().format(dateTimeFormat), // 현재 날짜
 				navLinks : true,
 				selectable : true,
 				selectMirror : true,
-				eventClick: function(info){ 
-					calDetail(info);
-				},
-				dateClick: function(info) {
-					// 새로운 일정 등록
-					$('.modal-title').html('일정 등록');
-					
-					// 달력에 클릭한 날짜로 지정
-					var date = moment(info.date).format('YYYY-MM-DD' + 'T' + 'HH:00:00');
-					$('#start').val(date);
-					$('#end').val(date);
-					
-					// 오늘 날짜 하려면
-					// var today = moment().format('YYYY-MM-DD' + 'T' + 'HH:00:00');
-					
-					$("#calModal").modal();
-				},
 				editable : true,
 				eventLimit : true, // allow "more" link when too many events
+				eventClick: function(info){
+					showCalDetail(info);
+				},
+				dateClick: function(info) {
+					showCalAdd(info);
+				},
+				droppable: true,
+				eventDrop: function(dropInfo) {
+			    	if(dropInfo != null) {
+			    		updateCal(dropInfo);
+			    	}
+			    },
 				events : data
 			});
 			calendar.render();
 		}
 		
-		// 상세 일정 보기
-		function calDetail(eventInfo) {
-
-			console.log(eventInfo.event);
+		// 일정 추가 화면 보기
+		function showCalAdd(eventInfo) {
 			
+			$('.modal-title').html('일정 등록');
+			
+			// 추가 삭제 버튼 처리
+			showButtons(true);
+			
+			// 달력에 클릭한 날짜로 지정
+			var date = moment(eventInfo.date).format(dateTimeFormat);
+			$('#start').val(date);
+			$('#end').val(date);
+			
+			$("#calModal").modal();
+		}
+		
+		// 상세 일정 보기
+		function showCalDetail(eventInfo) {
+
 			if(eventInfo != null) {
-				$('.modal-title').html('일정 상세 내용');
-				$('[name=calId]').val(eventInfo.event.id);
-				$('[name="title"]').val(eventInfo.event.title);
-				$('[name="start"]').val(moment(eventInfo.event.start).format('YYYY-MM-DD' + 'T' + 'HH:00:00'));
-				$('[name="end"]').val(moment(eventInfo.event.end).format('YYYY-MM-DD' + 'T' + 'HH:00:00'));
-				$('[name="allDay"]').val(eventInfo.event.allDay);
-				$('[name="backgroundColor"]').val(eventInfo.event.backgroundColor);
-				$('[name="description"]').val(eventInfo.event.extendedProps.description);
+				
+				// 추가 삭제 버튼 처리
+				showButtons(false);
+				
+				$('#calId').val(eventInfo.event.id);
+				$('#title').val(eventInfo.event.title);
+				
+				$('#allDay').prop("checked", eventInfo.event.allDay);
+				$('#backgroundColor').val(eventInfo.event.backgroundColor);
+				$('#description').val(eventInfo.event.extendedProps.description);
+				
+				// 하루 종일 일정 일 때, 날짜 포맷을 변경 해준다
+				if(eventInfo.event.allDay) {
+					$('#start').prop('type', 'date');
+		        	$('#end').prop('type', 'date');
+		        	
+		        	$('#start').val(moment(eventInfo.event.start).format(dateFormat));
+				} else {
+					$('#start').val(moment(eventInfo.event.start).format(dateTimeFormat));
+				}
+				
+				// event의 end가  null일 경우 처리
+				if(eventInfo.event.end == null) {
+					$('#end').val($('#start').val());
+				} else {
+					if(eventInfo.event.allDay) {
+						$('#end').val(moment(eventInfo.event.end).add(-1, 'day').format(dateFormat));
+					} else {
+						$('#end').val(moment(eventInfo.event.end).format(dateTimeFormat));
+					}
+				} 
 				
 				$("#calModal").modal();
 			}
@@ -202,39 +289,49 @@ body {
 		// 일정 등록
 		function insertCal() {
 			
-			var title = $('[name="title"]').val();
-			var start = $('[name="start"]').val();
-			var end = $('[name="end"]').val();
-			var allDay = $('[name="allDay"]:checked').val();
-			if(allDay == 'true') {
-				allDay = true;
+			var calData = getCalDataFromUI();
+			
+			// validation - 제목
+			if(calData.title == null || calData.title == '') {
+				alert('일정 제목을 등록해주세요');
+				$('#title').focus();
+				return;
 			}
-			var backgroundColor = $('[name="backgroundColor"]').val();
-			var description = $('[name="description"]').val();
+			// validation - 날짜
+			if(moment(calData.end, dateTimeFormat).diff(moment(calData.start, dateTimeFormat)) < 0) {
+				alert('시작날짜는가 종료날짜보다 이후입니다. 다시 선택해 주세요.');
+				$('#start').focus();
+				return;
+			}
+			
+			if(calData.allDay) {
+				calData.end = moment(calData.end).add(1, 'day').format(dateTimeFormat);
+			}
 			
 			$.ajax({
-				url : './calendar',
+				url : '${pageContext.request.contextPath}/calendar',
 				type : 'POST',
 				dataType : 'json',
-				data: JSON.stringify({title: title, start: start, end: end, allDay: allDay, backgroundColor: backgroundColor, description: description}),
+			 	data : JSON.stringify(calData),
 				contentType : 'application/json',
 				success: function(result) {
 					
-					console.log('add cal successed : ' + result);
-					var event = {
-				    		id: result.id,
-				            title: result.title,
-				            start: result.start,
-				            end: result.end,
-				            allDay: result.allDay,
-				            backgroundColor: result.backgroundColor,
-				            extendedProps : {
-				            	'description' : result.description,
-				            	'empNo' : result.empNo
-				            }
-				     };
+					console.log('insertCal() : success');
+					for(var key in result) {
+						console.log(key + ': '  + result[key]);
+					}					
 					
-					calendar.addEvent(event);
+					// 캘린더에 이벤트 등록
+					calendar.addEvent({ id: result.id,
+							            title: result.title,
+							            start: moment(result.start).format(dateTimeFormat),
+							            end: moment(result.end).format(dateTimeFormat),
+							            allDay: result.allDay,
+							            backgroundColor: result.backgroundColor,
+							            extendedProps : {
+							            	'description' : result.description,
+							            }
+									});
 			    	
 			    	$("#calModal").modal("hide");
 			    },
@@ -244,48 +341,68 @@ body {
 			});
 		}
 		
-		function updateCal() {
+		// 일정 수정
+		function updateCal(dropInfo) {
 			
-			var id = $('[name=calId]').val();
-			var title = $('[name="title"]').val();
-			var start = $('[name="start"]').val();
-			var end = $('[name="end"]').val();
-			var allDay = $('[name="allDay"]:checked').val();
-			if(allDay == 'true') {
-				allDay = true;
+			var calData;
+			
+			if(dropInfo != null) {
+				calData = {	id: dropInfo.event.id, 
+							title: dropInfo.event.title, 
+							start: moment(dropInfo.event.start).format(dateTimeFormat), 
+							end: dropInfo.event.end == null ? moment(dropInfo.event.start).format(dateTimeFormat) : moment(dropInfo.event.end).format(dateTimeFormat), 
+							allDay: dropInfo.event.allDay, 
+							backgroundColor: dropInfo.event.backgroundColor, 
+							description: dropInfo.event.extendedProps.description 
+						  };
+			} else {
+				calData = getCalDataFromUI();
+				if(calData.allDay) {
+					calData.end = moment(calData.end).add(1, 'day').format(dateTimeFormat);
+				}
 			}
-			var backgroundColor = $('[name="backgroundColor"]').val();
-			var description = $('[name="description"]').val();
 			
 			$.ajax({
-				url : './calendar',
+				url : '${pageContext.request.contextPath}/calendar',
 				type : 'PUT',
 				dataType : 'json',
-				data: JSON.stringify({id: id, title: title, start: start, end: end, allDay: allDay, backgroundColor: backgroundColor, description: description}),
+				data: JSON.stringify(calData),
 				contentType : 'application/json',
 				success: function(result) {
-			    	var event = calendar.getEventById(result.id);
-			    	event.title = result.title;
-			        event.start = result.start;
-			        event.end = result.end;
-			        event.allDay = result.allDay;
-			        event.backgroundColor = result.backgroundColor;
-			        event.setExtendedProp('description', result.description);
-			    	
+					
+					// 이전 이벤트 제거하고
+					var oldEvent = calendar.getEventById(result.id);
+					oldEvent.remove();
+
+					// 캘린더에 이벤트 등록
+					calendar.addEvent({ id: result.id,
+							            title: result.title,
+							            start: moment(result.start).format(dateTimeFormat),
+							            end: moment(result.end).format(dateTimeFormat),
+							            allDay: result.allDay,
+							            backgroundColor: result.backgroundColor,
+							            extendedProps : {
+							            	'description' : result.description,
+							            }
+									});
+
 			    	$("#calModal").modal("hide");
 			    },
-			    error:function(xhr, status, message) { 
+			    error:function(xhr, status, message) {
 			        alert('일정 수정에 실패 했습니다. (message: ' + message + ')');
 			    } 
 			});
+			 
+			
 		}
 		
+		// 일정 삭제
 		function deleteCal() {
 			
-			var id = $('[name=calId]').val();
+			var id = $('#calId').val();
 			
 			$.ajax({
-				url : './calendar',
+				url : '${pageContext.request.contextPath}/calendar',
 				type : 'DELETE',
 				dataType : 'json',
 				data: JSON.stringify({id: id}),

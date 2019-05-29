@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DocDAO">
-	<insert id="insertDoc" parameterType="com.weaving.biz.doc.DocVO">
+	<insert id="insertDoc" parameterType="com.weaving.biz.doc.DocInsertVO">
 
-		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocVO" order="BEFORE">
+		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocInsertVO" order="BEFORE">
 			select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'
 		</selectKey> 
 		insert into DOCUMENTS (
@@ -16,7 +16,7 @@
 			SECURE_LEVEL
 			)
 		  values((select NVL(MAX(DOC_ID), 0) + 1 FROM DOCUMENTS),
-		  	#{empNo},
+		  	#{writerEmpNo},
 		  	#{docType}||#{docTypeSeq},
 		  	#{docTitle},
 		  	#{docContents},
@@ -25,9 +25,9 @@
 		   ) 
   
 	</insert>
- 
-	<insert id="insertDocDeatil" parameterType="com.weaving.biz.doc.DocVO">
-		<selectKey keyProperty="docId" resultType="com.weaving.biz.doc.DocVO" order="BEFORE">
+  
+	<insert id="insertDocDeatil" parameterType="com.weaving.biz.doc.DocInsertVO">
+		<selectKey keyProperty="docId" resultType="com.weaving.biz.doc.DocInsertVO" order="BEFORE">
 			select DOC_ID from documents where doc_no = #{docType} || #{docTypeSeq}
 		</selectKey>
 		insert into DOCUMENTDETAIL (
@@ -55,12 +55,12 @@
 		  </if>
 		   )
 	</insert>
-	
+
 	<insert id="insertDocHistory">
 	</insert>
 
-	<select id="getDocList" parameterType="com.weaving.biz.doc.DocVO"
-		resultType="com.weaving.biz.doc.DocVO">
+	<select id="getDocList" parameterType="com.weaving.biz.doc.DocInsertVO"
+		resultType="com.weaving.biz.doc.DocInsertVO">
 		SELECT 
 			D.DOC_ID,
 			E.EMP_NAME,
@@ -74,4 +74,32 @@
 		    		DONE_DATE IS NOT NULL AND SECURE_LEVEL BETWEEN #{secureLevel} AND 'C' ORDER BY D.REG_DATE DESC
 	    	</where>
 	</select>
+	
+	<select id="getDocWaitList" parameterType="com.weaving.biz.doc.DocInsertVO"
+		resultType="com.weaving.biz.doc.DocInsertVO">					
+		SELECT ROWNUM ROW_NUM,
+			DT.DOC_ID,
+			D.DOC_NO,
+			DT.STATUS,	
+			D.DOC_TITLE,
+			D.EMP_NO,
+			E.EMP_NAME,
+			D.REG_DATE
+		  FROM DOCUMENTDETAIL DT 
+		  JOIN DOCUMENTS D ON DT.DOC_ID = D.DOC_ID 
+		  JOIN EMPLOYEES E ON D.EMP_NO = E.EMP_NO
+		    <where> 
+		    	DT.EMP_NO= #{empNo} AND DT.STATUS='WAIT' AND 
+		    	ROWNUM between #{first} and #{last}
+	    	</where>
+	</select>
+	
+	<select id="getDocWaitTotalCount" parameterType="com.weaving.biz.doc.DocInsertVO"
+		resultType="int">					
+		SELECT COUNT(*)
+		  FROM DOCUMENTDETAIL 
+		    <where> 
+		    	EMP_NO= #{empNo} AND STATUS='WAIT'
+	    	</where>
+	</select>	
 </mapper>
