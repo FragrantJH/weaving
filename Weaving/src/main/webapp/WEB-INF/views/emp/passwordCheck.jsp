@@ -49,6 +49,7 @@ function formch(){
 		<br>
 		
 		<button type ="submit"  class="signupbtn">수정하기</button>
+		<button type ="button"onclick="location='${pageContext.request.contextPath}/home'" class="cancelbtn">돌아가기</button>
 </form>
 </div>
 </body>
