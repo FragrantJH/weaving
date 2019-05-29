@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.weaving.biz.common.SessionInfo;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
 import com.weaving.biz.emp.impl.AdminAccountsMngService;
@@ -90,7 +91,7 @@ public class EmpController {
 	@ResponseBody
 	public EmpVO getUser(@PathVariable int empNo, EmpVO vo, Model model) {
 		vo.setEmpNo(empNo);
-		return service.getEmp(vo);
+		return service.getEmpl(vo);
 	}
 
 	// 삭제
@@ -180,7 +181,7 @@ public class EmpController {
 				session.setAttribute("empName", emp.getEmpName());
 				session.setAttribute("position", emp.getPosition());
 
-				return "home";
+				return "redirect:home";
 			}
 		}
 	}
@@ -189,7 +190,7 @@ public class EmpController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();// 세션 무효화
-		return "home";
+		return "empty/login";
 	}
 
 	// 일반사용자 수정처리
