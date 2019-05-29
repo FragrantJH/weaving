@@ -55,6 +55,15 @@ public class EmpController {
 		}
 		return list;
 	}
+	
+	//일반 사원 페이지 이동
+			@RequestMapping("/pwcheck")
+			public String pwcheck(Model model,EmpVO vo,HttpSession session) {
+				vo.setEmpNo((Integer)(session.getAttribute("empNo")));
+				model.addAttribute("emp", service.getEmp(vo));
+				return "emp/passwordCheck";
+			}
+			
 	//일반 사원 페이지 이동
 		@RequestMapping("/empselect")
 		public String empselect(Model model,EmpVO vo,HttpSession session) {
