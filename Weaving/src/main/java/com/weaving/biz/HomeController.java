@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weaving.biz.common.SessionInfo;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
 
@@ -59,8 +60,10 @@ public class HomeController {
 	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
 	public String adminHome(Locale locale, Model model, HttpServletResponse response, HttpSession session)
 			throws IOException {
-
-		if (session.getAttribute("adminMode") != null) {
+		
+		EmpVO emp = SessionInfo.getInfo(session, "emp");
+		
+		if (emp != null && emp.getAdminYn()) {
 			return "/admin/adminHome";
 		} else {
 			PrintWriter out = response.getWriter();

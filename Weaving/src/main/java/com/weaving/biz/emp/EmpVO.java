@@ -19,6 +19,7 @@ public class EmpVO {
 	private int seq;
 	private String[] seqs;
 	private int cnt;
+	private boolean adminYn;
 	
 	public String getGmailAppKey() {
 		return gmailAppKey;
@@ -115,6 +116,13 @@ public class EmpVO {
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+	
+	public boolean getAdminYn() {
+		return adminYn;
+	}
+	public void setAdminYn(boolean adminYn) {
+		this.adminYn = adminYn;
 	}
 	@Override
 	public String toString() {

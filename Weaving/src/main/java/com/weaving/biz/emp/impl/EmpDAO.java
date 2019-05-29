@@ -33,7 +33,7 @@ public class EmpDAO {
 	}
 	
 	public EmpVO getEmp(EmpVO vo) {
-		return (EmpVO)mybatis.selectOne("EmpDAO.getEmpl",vo);
+		return (EmpVO)mybatis.selectOne("EmpDAO.getEmp",vo);
 	}
 	
 	public List<EmpVO> getEmpList(EmpVO vo) {

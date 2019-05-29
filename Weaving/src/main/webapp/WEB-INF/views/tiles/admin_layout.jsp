@@ -24,19 +24,50 @@
   <script src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js"></script>
 </head>
 
-<body class="">
+<style>
+	.avatar {
+	  vertical-align: middle;
+	  width: 100px;
+	  height: 100px;
+	  border-radius: 50%;
+	}
+</style>
+
   <div class="wrapper ">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-      <div class="logo">
-        <a class="simple-text logo-normal">
-          WEAVING 관리자
+    <!-- Logo -->      
+    <div class="logo">
+        <a href="${pageContext.request.contextPath}/home" class="simple-text logo-normal">
+          WEAVING
         </a>
+        <br>
+      	<div class="container">
+        	<div align="center">
+	        	<img src="${pageContext.request.contextPath}/images/no_login_avatar.png" alt="Avatar" class="avatar">
+	        	<br>
+	        	<br>
+	        	<c:if test="${not empty emp && emp.adminYn}">
+	            	<h5>관리자님, 환영합니다</h5>
+	            </c:if>
+	            <br>
+	            <c:if test="${not empty emp && emp.adminYn}">
+					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/logout'">
+					  <i class="material-icons">face</i> 로그아웃
+					</button>
+					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/home'">
+					  <i class="material-icons">face</i> WEAVING으로 이동
+					</button>
+				</c:if>
+				<c:if test="${empty emp}">
+					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/login'">
+					  <i class="material-icons">face</i> 로그인
+					</button>
+				</c:if>
+			</div>
+		</div>        
       </div>
+      
+      <!-- Logo -->
       <div class="sidebar-wrapper">
         <ul class="nav">
           <!-- 회사 관리 메뉴 -->
@@ -82,7 +113,7 @@
     		<tiles:insertAttribute name="content" />
       </div>
     </div>
-  </div>
+    </div>
    <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath}/assets/js/core/popper.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/js/core/bootstrap-material-design.min.js"></script>

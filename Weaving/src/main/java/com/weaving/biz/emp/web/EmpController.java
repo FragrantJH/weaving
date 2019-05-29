@@ -57,6 +57,14 @@ public class EmpController {
 	}
 
 	// 일반 사원 페이지 이동
+	@RequestMapping("/pwcheck")
+	public String pwcheck(Model model, EmpVO vo, HttpSession session) {
+		vo.setEmpNo((Integer) (session.getAttribute("empNo")));
+		model.addAttribute("emp", service.getEmp(vo));
+		return "emp/passwordCheck";
+	}
+
+	// 일반 사원 페이지 이동
 	@RequestMapping("/empselect")
 	public String empselect(Model model, EmpVO vo, HttpSession session) {
 		vo.setEmpNo((Integer) (session.getAttribute("empNo")));
@@ -150,13 +158,14 @@ public class EmpController {
 
 		// 일반 사용자 계정 체크
 		EmpVO emp = service.getEmp(vo);
-		
+
 		if (emp == null) {
-			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('등록된 사용자 정보가 없습니다');");
-			out.print("history.go(-1);");
-			out.print("</script>");
+			// TODO : 잘못된 사용자 정보 처리 안되는 것 해결
+			/*
+			 * PrintWriter out = response.getWriter(); out.print("<script>");
+			 * out.print("alert('등록된 사용자 정보가 없습니다');"); out.print("history.go(-1);");
+			 * out.print("</script>");
+			 */
 			return "empty/login";
 		} else {
 
@@ -165,14 +174,13 @@ public class EmpController {
 				return "admin/adminHome";
 			} else {
 				session.setAttribute("emp", emp);
-				return "home";
 
 				// TODO : 해당 정보 emp.XXX 으로 변경 필요
-				/*
-				 * session.setAttribute("empNo", emp.getEmpNo());
-				 * session.setAttribute("empName", emp.getEmpName());
-				 * session.setAttribute("position", emp.getPosition());
-				 */
+				session.setAttribute("empNo", emp.getEmpNo());
+				session.setAttribute("empName", emp.getEmpName());
+				session.setAttribute("position", emp.getPosition());
+
+				return "home";
 			}
 		}
 	}
