@@ -75,6 +75,9 @@
 					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/logout'">
 					  <i class="material-icons">face</i> 로그아웃
 					</button>
+					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/pwcheck'">
+					  <i class="material-icons">face</i> 정보수정
+					</button>
 				</c:if>
 				<c:if test="${empty sessionScope.empName }">
 					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/login'">

@@ -244,7 +244,9 @@ function formch() {
 				<div class="card-text">
 					<h4 class="card-title">직원 관리</h4>
 				</div>
-				<button id="btnInsertForm" data-toggle="modal" data-target="#searchModel">등록</button>
+				<button id="btnInsertForm" data-toggle="modal" data-target="#searchModel" class="btn btn-primary">등록</button>
+				<button id="btnExcelUpForm" data-toggle="modal" data-target="#searchModel" class="btn btn-primary"
+				 onclick="location.href='${pageContext.request.contextPath}/excelUploadPage'">엑셀 등록</button>
 			</div>
 			<table class="table text-center">
 				<thead>

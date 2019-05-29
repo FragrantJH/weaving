@@ -110,7 +110,7 @@
 	
 	<!-- 퇴사 -->
 	<update id="updateDelEmp" parameterType="emp">
-		UPDATE EMPLOYEES SET DELETED_YN = 'Y' ,DELETE_DATE=SYSDATE WHERE EMP_NO=#{empNo};
+		UPDATE EMPLOYEES SET DELETED_YN = 'Y' ,DELETE_DATE=SYSDATE WHERE EMP_NO=#{empNo}
 	</update>
 	
 	<!-- 삭제 -->
