@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,8 +36,8 @@ public class EmpController {
 	Empservice service;
 	@Inject
 	AdminAccountsMngService AdminAccountsMngService;
-	
-	@RequestMapping(value="/excelUploadPage",method =RequestMethod.GET)
+
+	@RequestMapping(value = "/excelUploadPage", method = RequestMethod.GET)
 	public String serviceMngForm(Model model, Principal principal) {
 		return "admin/emp/excelupload";
 	}
@@ -45,7 +46,7 @@ public class EmpController {
 	@ResponseBody
 	public List<EmpVO> excelUpload(MultipartHttpServletRequest req) {
 		List<EmpVO> list = new ArrayList<EmpVO>();
-		//엑셀 파일이 xls일때와 xlsx일때 서비스 라우팅
+		// 엑셀 파일이 xls일때와 xlsx일때 서비스 라우팅
 		String excelType = req.getParameter("excelType");
 		if (excelType.equals("xlsx")) {
 			list = AdminAccountsMngService.xlsxExcelReader(req);
@@ -54,74 +55,82 @@ public class EmpController {
 		}
 		return list;
 	}
-	//리스트 페이지 이동
+
+	// 일반 사원 페이지 이동
+	@RequestMapping("/empselect")
+	public String empselect(Model model, EmpVO vo, HttpSession session) {
+		vo.setEmpNo((Integer) (session.getAttribute("empNo")));
+		model.addAttribute("emp", service.getEmp(vo));
+		return "emp/emp";
+	}
+
+	// admin리스트 페이지 이동
 	@RequestMapping("/adminemplist")
 	public String emplist() {
 		return "admin/emp/emplist";
 	}
-	//Emp 전체 조회
-	@RequestMapping(value="/emplist1",method=RequestMethod.GET )
+
+	// Emp 전체 조회
+	@RequestMapping(value = "/emplist1", method = RequestMethod.GET)
 	@ResponseBody
-	public List<EmpVO> getUserList(Model model, EmpVO vo){
+	public List<EmpVO> getUserList(Model model, EmpVO vo) {
 		return service.getEmpList(vo);
 	}
-	
-	//단건조회
-	@RequestMapping(value="/getEmpl/{empNo}",  method=RequestMethod.GET)
+
+	// 단건조회
+	@RequestMapping(value = "/getEmpl/{empNo}", method = RequestMethod.GET)
 	@ResponseBody
 	public EmpVO getUser(@PathVariable int empNo, EmpVO vo, Model model) {
 		vo.setEmpNo(empNo);
-		return  service.getEmp(vo);
+		return service.getEmp(vo);
 	}
-		
-	//삭제
-	@RequestMapping(value="/deleteEmp/{empNo}", method=RequestMethod.DELETE)
+
+	// 삭제
+	@RequestMapping(value = "/deleteEmp/{empNo}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public Map deleteEmp( @PathVariable int empNo, EmpVO vo, Model model) {
+	public Map deleteEmp(@PathVariable int empNo, EmpVO vo, Model model) {
 		vo.setEmpNo(empNo);
 		service.deleteEmp(vo);
 		Map result = new HashMap<String, Object>();
 		result.put("result", Boolean.TRUE);
 		return result;
-	}  
-	
-	//등록
-	@RequestMapping(value="/insertEmp"
-			,method= {RequestMethod.POST,RequestMethod.GET}
-			,headers = {"Content-type=application/json" }
-	)
+	}
+
+	// 등록
+	@RequestMapping(value = "/insertEmp", method = { RequestMethod.POST, RequestMethod.GET }, headers = {
+			"Content-type=application/json" })
 	@ResponseBody
 	public EmpVO insertEmp(@RequestBody EmpVO vo, Model model) {
 		service.insertEmp(vo);
-		return  vo;
+		return vo;
 	}
-	
-	//퇴사수정
-	@RequestMapping(value="/empDelUpdate")
+
+	// 퇴사수정
+	@RequestMapping(value = "/empDelUpdate")
 	@ResponseBody
 	public EmpVO updateDelEmp(EmpVO vo, Model model) {
-		System.out.println("==========================="+vo);
+		System.out.println("===========================" + vo);
+		service.updateDelEmp(vo);
+		return vo;
+	}
+
+	// 수정
+	@RequestMapping(value = "/empUpdate")
+	@ResponseBody
+	public EmpVO updateEmp(EmpVO vo, Model model) {
+		System.out.println("===========================" + vo);
 		service.updateEmp(vo);
 		return vo;
 	}
-	
-	//수정
-	@RequestMapping(value="/empUpdate")
-	@ResponseBody
-	public EmpVO updateEmp(EmpVO vo, Model model) {
-		System.out.println("==========================="+vo);
-		service.updateEmp(vo);
-		return vo;
-	}	
-		
+
 	@RequestMapping("/showEmp/{empNo}")
 	public String empViewForm(@ModelAttribute("EmpForm") EmpVO vo, @PathVariable Integer empNo, Model model) {
 		vo.setEmpNo(empNo);
-		model.addAttribute("EmpForm",service.getEmp(vo));
+		model.addAttribute("EmpForm", service.getEmp(vo));
 		return "admin/emp/empinsert";
 	}
-	
-	//등록폼으로 이동
+
+	// 등록폼으로 이동
 	@RequestMapping("/empinsertForm")
 	public String empinsertForm(@ModelAttribute("EmpForm") EmpVO vo, Model model) {
 		return "admin/emp/empinsert";
@@ -138,16 +147,10 @@ public class EmpController {
 	public String login(@ModelAttribute("Emp") EmpVO vo, HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) throws IOException {
 		// 커맨드 객체는 자동으로 model.addAttribute("emp"vo)
-		
-		// Admin 계정 체크
-		if(vo.getEmpNo() == 1234 && vo.getPassword().equals("admin")) {
-			session.setAttribute("adminMode", true);
-			session.setAttribute("emp", vo);
-			return "admin/adminHome";
-		}
 
-		// 일반 사용자 계정 체크		
+		// 일반 사용자 계정 체크
 		EmpVO emp = service.getEmp(vo);
+		
 		if (emp == null) {
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
@@ -156,20 +159,35 @@ public class EmpController {
 			out.print("</script>");
 			return "empty/login";
 		} else {
-			session.setAttribute("empNo", emp.getEmpNo());
-			session.setAttribute("empName", emp.getEmpName());
-			session.setAttribute("position", emp.getPosition());
-			session.setAttribute("adminMode", false);
-			session.setAttribute("emp", emp);
-			System.out.println(emp);
 
+			if (emp.getAdminYn()) {
+				session.setAttribute("emp", emp);
+				return "admin/adminHome";
+			} else {
+				session.setAttribute("emp", emp);
+				return "home";
+
+				// TODO : 해당 정보 emp.XXX 으로 변경 필요
+				/*
+				 * session.setAttribute("empNo", emp.getEmpNo());
+				 * session.setAttribute("empName", emp.getEmpName());
+				 * session.setAttribute("position", emp.getPosition());
+				 */
+			}
 		}
-		return "home";
 	}
-	//로그아웃
+
+	// 로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();// 세션 무효화
 		return "home";
+	}
+
+	// 일반사용자 수정처리
+	@RequestMapping("/normalempinsert")
+	public String normalempinsert(EmpVO vo) {
+		service.updateEmp(vo);
+		return "redirect:empselect";
 	}
 }
