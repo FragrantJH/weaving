@@ -2,10 +2,25 @@ package com.weaving.biz.doc;
 
 import java.util.Arrays;
 
-public class DocVO {
+public class DocInsertVO extends DocBaseVO{
+	private int rowNum;
+	
+	private int docTypeSeq;
+	private int empNo;
+	private int approvalOrder;
+	private String docType;
+	private String docContents;
+	private String status;
+	private String approvalDate;
+	private String approvalComments;
+	/*
+	private int rowNum;
 	private int docId;
 	private int empNo;
 	private int approvalOrder;
+	private int first;
+	private int last;
+	
 	private String empName;
 	private String status;
 	private String docNo;
@@ -25,6 +40,25 @@ public class DocVO {
 	private int docTypeSeq;
 	private String docType;
 	
+	
+	public int getRowNum() {
+		return rowNum;
+	}
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
+	public int getFirst() {
+		return first;
+	}
+	public void setFirst(int first) {
+		this.first = first;
+	}
+	public int getLast() {
+		return last;
+	}
+	public void setLast(int last) {
+		this.last = last;
+	}
 	public String getApprovalComments() {
 		return approvalComments;
 	}
@@ -133,14 +167,70 @@ public class DocVO {
 	public void setSeqs(String[] seqs) {
 		this.seqs = seqs;
 	}
+	
 	@Override
 	public String toString() {
-		return "DocVO [docId=" + docId + ", empNo=" + empNo + ", approvalOrder=" + approvalOrder + ", empName="
-				+ empName + ", status=" + status + ", docNo=" + docNo + ", docTitle=" + docTitle + ", docContents="
-				+ docContents + ", regDate=" + regDate + ", doneDate=" + doneDate + ", approvalDate=" + approvalDate
-				+ ", secureLevel=" + secureLevel + ", approvalComments=" + approvalComments + ", searchCondition="
-				+ searchCondition + ", searchKeyword=" + searchKeyword + ", seqs=" + Arrays.toString(seqs)
-				+ ", docTypeSeq=" + docTypeSeq + ", docType=" + docType + "]";
+		return "DocVO [rowNum=" + rowNum + ", docId=" + docId + ", empNo=" + empNo + ", approvalOrder=" + approvalOrder
+				+ ", first=" + first + ", last=" + last + ", empName=" + empName + ", status=" + status + ", docNo="
+				+ docNo + ", docTitle=" + docTitle + ", docContents=" + docContents + ", regDate=" + regDate
+				+ ", doneDate=" + doneDate + ", approvalDate=" + approvalDate + ", secureLevel=" + secureLevel
+				+ ", approvalComments=" + approvalComments + ", searchCondition=" + searchCondition + ", searchKeyword="
+				+ searchKeyword + ", seqs=" + Arrays.toString(seqs) + ", docTypeSeq=" + docTypeSeq + ", docType="
+				+ docType + "]";
 	}
-
+	*/
+	public int getRowNum() {
+		return rowNum;
+	}
+	public int getEmpNo() {
+		return empNo;
+	}
+	public void setEmpNo(int empNo) {
+		this.empNo = empNo;
+	}
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
+	public int getDocTypeSeq() {
+		return docTypeSeq;
+	}
+	public int getApprovalOrder() {
+		return approvalOrder;
+	}
+	public void setApprovalOrder(int approvalOrder) {
+		this.approvalOrder = approvalOrder;
+	}
+	public void setDocTypeSeq(int docTypeSeq) {
+		this.docTypeSeq = docTypeSeq;
+	}
+	public String getDocType() {
+		return docType;
+	}
+	public void setDocType(String docType) {
+		this.docType = docType;
+	}
+	public String getDocContents() {
+		return docContents;
+	}
+	public void setDocContents(String docContents) {
+		this.docContents = docContents;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getApprovalDate() {
+		return approvalDate;
+	}
+	public void setApprovalDate(String approvalDate) {
+		this.approvalDate = approvalDate;
+	}
+	public String getApprovalComments() {
+		return approvalComments;
+	}
+	public void setApprovalComments(String approvalComments) {
+		this.approvalComments = approvalComments;
+	}	
 }

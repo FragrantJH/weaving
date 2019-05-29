@@ -194,7 +194,7 @@
 			.appendTo('tbody');
 		});//each
 	}//userListResult
-
+<!--
 	var pwch1 = 'N'
 
 	//비밀번호, 비밀번호확인 확인하기
@@ -223,6 +223,7 @@ function formch() {
 	}
 	return true;
 }
+-->
 	
 </script>
 <style type="text/css">
@@ -283,11 +284,12 @@ function formch() {
 								<input type="text" name="password" id="password" onkeyup="pwche()">
 								<br>
 								<br> 
-								<label for="repassword"><b>비밀번호 확인</b></label> 
+								<!-- <label for="repassword"><b>비밀번호 확인</b></label> 
 								<input type="password" name="repassword" id="repassword" onkeyup="pwche()"><br>
 								<span id="same"></span>
 								<br>
 								<br>
+								 -->
 								
 								<!-- 
 								<label for="passwordcheck"><b>비밀번호 확인</b></label>

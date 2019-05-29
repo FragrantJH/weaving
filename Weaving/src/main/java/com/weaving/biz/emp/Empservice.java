@@ -1,6 +1,9 @@
 package com.weaving.biz.emp;
 
 import java.util.List;
+import java.util.Map;
+
+
 
 public interface Empservice {
 	
@@ -23,5 +26,7 @@ public interface Empservice {
 		
 		//퇴사처리
 		void updateDelEmp(EmpVO vo);
+		
+		public List<Map> insertExcelTest(List<EmpVO> list); 
 
 }

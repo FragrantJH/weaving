@@ -1,7 +1,7 @@
 package com.weaving.biz.emp.impl;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +51,10 @@ public class EmpServiceImpl implements Empservice {
 	@Override
 	public int getEmpCount(EmpVO vo) {
 		return dao.getEmpCount(vo);
+	}
+	@Override
+	public List<Map> insertExcelTest(List<EmpVO> list) {
+		return dao.insertExcelTest(list);
 	}
 
 }

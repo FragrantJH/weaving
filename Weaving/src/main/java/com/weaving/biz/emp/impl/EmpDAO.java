@@ -1,6 +1,7 @@
 package com.weaving.biz.emp.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,10 @@ public class EmpDAO {
 	
 	public int getEmpCount(EmpVO vo) {
 		return mybatis.selectOne("EmpDAO.getEmpCount", vo);
+	}
+	
+	public List<Map> insertExcelTest(List<EmpVO> list) {
+		return mybatis.selectList("EmpDAO.insertExcelTest", list);
 	}
 
 }

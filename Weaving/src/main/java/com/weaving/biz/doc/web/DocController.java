@@ -24,9 +24,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weaving.biz.common.Paging;
+import com.weaving.biz.doc.DocBaseVO;
 import com.weaving.biz.doc.DocHistoryVO;
 import com.weaving.biz.doc.DocService;
-import com.weaving.biz.doc.DocVO;
+import com.weaving.biz.doc.DocInsertVO;
 import com.weaving.biz.docForm.DocFormService;
 import com.weaving.biz.docForm.DocFormVO;
 import com.weaving.biz.emp.EmpVO;
@@ -56,12 +57,12 @@ public class DocController {
 		 * - C : ALL
 		   - B : 대리 이상
 		   - A : 과장 이상
-		   사원 0
-		   대리 1
-		   과장 2
-		   차장 3
-		   부장 4
-		   대표 5
+		   사원 0		:C
+		   대리 1		:B
+		   과장 2		:A
+		   차장 3 		:A
+		   부장 4		:S
+		   대표 5		:S
 		 */
 		//2초과 S등급
 		//2이면 A
@@ -82,10 +83,10 @@ public class DocController {
 			lv = "C";
 		}
 
-		DocVO vo = new DocVO();
-		vo.setSecureLevel(lv);
+		DocInsertVO vo = new DocInsertVO();
+		//vo.setSecureLevel(lv);
 
-		model.addAttribute("list", docService.getDocList(vo));
+		//model.addAttribute("list", docService.getDocList(vo));
 		return "approval/docList";
 	}
 	
@@ -99,7 +100,7 @@ public class DocController {
 	}
 
 	@RequestMapping(value="/docInsert", method=RequestMethod.POST)
-	public String docInsert(DocVO vo, HttpServletRequest request) {
+	public String docInsert(DocInsertVO vo, HttpServletRequest request) {
 
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
@@ -110,11 +111,19 @@ public class DocController {
 		
 		String docType = request.getParameter("docType") +"-" + dateArr[0] + dateArr[1] + dateArr[2]+"-";
 		String jsonString = request.getParameter("approvalList");
+		
+		System.out.println(docType);
+		System.out.println(jsonString);
+
 		vo.setDocType(docType);
 		vo.setRegDate(curTime);
+		
+		System.out.println("==========");
+		System.out.println(vo);
+		System.out.println("==========");
 
 		docService.insertDoc(vo);
-		
+
 		System.out.println(vo);
 
 		ObjectMapper mapper = new ObjectMapper();
@@ -122,10 +131,10 @@ public class DocController {
 		int docId = 0;
 		String writerStatus = "";
 		try {
-			List<DocVO> docObj = Arrays.asList(mapper.readValue(jsonString, DocVO[].class));
+			List<DocInsertVO> docObj = Arrays.asList(mapper.readValue(jsonString, DocInsertVO[].class));
 			
 			boolean b = true;
-			for (DocVO v : docObj) {
+			for (DocInsertVO v : docObj) {
 				
 				if (b) {
 					writerStatus = v.getStatus();
@@ -153,7 +162,7 @@ public class DocController {
 		
 		DocHistoryVO hvo = new DocHistoryVO();
 		hvo.setDocId(docId);
-		hvo.setEmpNo(vo.getEmpNo());
+		hvo.setEmpNo(vo.getWriterEmpNo());
 		hvo.setCurStatus(writerStatus);
 		hvo.setChangeDate(curTime);
 
@@ -162,14 +171,14 @@ public class DocController {
 		return "redirect:docList";
 	}
 		
-	/*
-	 * empName, positionTitle, position, emp
-	 */
-	/*
-	@RequestMapping("/documentInsert")
-	public String documentInsert() {
-		return "/approval/documentInsert";
-	}*/
+	
+
+	
+	@RequestMapping("/docApprovalView")
+	public String test() {
+		return "approval/docApprovalView";
+	}
+
 }
 
 

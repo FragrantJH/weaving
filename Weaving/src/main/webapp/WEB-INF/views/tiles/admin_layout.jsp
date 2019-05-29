@@ -21,6 +21,7 @@
   <link href="${pageContext.request.contextPath}/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
+  <script src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js"></script>
 </head>
 
 <body class="">
@@ -83,7 +84,6 @@
     </div>
   </div>
    <!--   Core JS Files   -->
-  <script src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/js/core/popper.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>

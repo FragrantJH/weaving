@@ -33,8 +33,8 @@
 <style>
 	.avatar {
 	  vertical-align: middle;
-	  width: 50px;
-	  height: 50px;
+	  width: 100px;
+	  height: 100px;
 	  border-radius: 50%;
 	}
 </style>
@@ -42,7 +42,7 @@
 <body>
 
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-4.jpg">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -52,22 +52,37 @@
         <a href="${pageContext.request.contextPath}/home" class="simple-text logo-normal">
           WEAVING
         </a>
-        <div>
-	        <!-- <img src="./images/img_avatar2.png" alt="Avatar" class="avatar"> -->
+        <br>
+      	<div class="container">
 			<!-- 로그인 했을 때 -->
-	        <c:if test="${not empty sessionScope.empName }">
-	        	<img src="./images/img_avatar2.png" alt="Avatar" class="avatar"> <br>
-	            ${empName} 님 환영합니다.<br><br>
-				<button class="btn btn-default btn-primary" style="width: 90%" onclick="location='logout'">로그아웃</button>
-			</c:if>
-			
-			<!-- 로그인 안했을 때 -->
-			<c:if test="${empty sessionScope.empName }">
-	            <button class="btn btn-default btn-primary" style="width: 90%" onclick="location='login'">
-  					<i class="material-icons">face</i> 로그인
-				</button>
-			</c:if>        
-        </div>
+        	<div align="center">
+        		<c:if test="${not empty sessionScope.empName }">
+	        		<img src="${pageContext.request.contextPath}/assets/img/faces/avatar.jpg" alt="Avatar" class="avatar">
+	        	</c:if>
+	        	<c:if test="${empty sessionScope.empName }">
+	        		<img src="${pageContext.request.contextPath}/images/no_login_avatar.png" alt="Avatar" class="avatar">
+	        	</c:if>
+	        	<br>
+	        	<br>
+	        	<c:if test="${not empty sessionScope.empName }">
+	            	<h5>${empName} 님, 환영합니다</h5>
+	            </c:if>
+	            <c:if test="${empty sessionScope.empName }">
+	            	<h6>오늘도 WEAVING과 함께 열일 합시다</h6>
+	            </c:if>
+	            <br>
+	            <c:if test="${not empty sessionScope.empName }">
+					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/logout'">
+					  <i class="material-icons">face</i> 로그아웃
+					</button>
+				</c:if>
+				<c:if test="${empty sessionScope.empName }">
+					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/login'">
+					  <i class="material-icons">face</i> 로그인
+					</button>
+				</c:if>
+			</div>
+		</div>        
       </div>
       
       <!-- 메뉴 -->
@@ -117,9 +132,9 @@
 			      	<i class="material-icons">create</i>
               		<p>문서 작성하기</p>
 			      </a>            
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList">
-			      	<i class="material-icons">list</i>
-              		<p>문서조회</p>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docWaitList">
+			      	<i class="material-icons">create</i>
+              		<p>대기 문서</p>
 			      </a>
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
 			      	<i class="material-icons">create</i>
@@ -127,11 +142,11 @@
 			      </a>
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
 			      	<i class="material-icons">create</i>
-              		<p>대기 문서</p>
-			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
-			      	<i class="material-icons">create</i>
               		<p>반려 문서</p>
+			      </a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docDoneList">
+			      	<i class="material-icons">list</i>
+              		<p>완료 문서</p>
 			      </a>			      			      
 			</div>
           </li>
@@ -142,12 +157,12 @@
               <p>일정</p>
             </a>
             <div id="cal" class="collapse in">
-            	<a class="dropdown-item" href="${pageContext.request.contextPath}/getCal.do?calType=All">
+            	<a class="dropdown-item" href="${pageContext.request.contextPath}/getCal.do?calType=ALL">
 			      	<i class="material-icons">today</i>
               		<p>전체일정</p>
 			    </a>
-			    <a class="dropdown-item" href="${pageContext.request.contextPath}/getCal.do?calType=User">
-			      	<i class="material-icons">today</i>
+			    <a class="dropdown-item" href="${pageContext.request.contextPath}/getCal.do?calType=USER">
+			      	<i class="material-icons">perm_contact_calendar</i>
               		<p>개인일정</p>
 			    </a>     
             </div>
