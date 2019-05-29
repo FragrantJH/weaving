@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="modal-body">
-		<form action="normalempinsert" method="post" id="insertForm" name="insertForm">
+		<form action="normalempinsert" method="post" id="insertForm" name="insertForm" >
 			<br> 
 			<label for="empNo"><b>사번</b></label> 
 			<input type="text" name="empNo" id="empNo" readonly value="${emp.empNo}"> 
@@ -21,14 +21,8 @@
 			<input type="text" name="empName" id="empName" value="${emp.empName}">
 			<br><br> 
 			<label for="password"><b>비밀번호</b></label>
-			<input type="text" name="password" id="password" onkeyup="pwche()">
+			<input type="password" name="password" id="password"  readonly value="${emp.password}">
 			<br><br>
-			<!-- <label for="repassword"><b>비밀번호 확인</b></label> 
-			<input type="password" name="repassword" id="repassword" onkeyup="pwche()"><br>
-			<span id="same"></span>
-			<br>
-			<br>
-			-->
 
 			<label for="deptId"><b>소속부서</b></label> 
 			<select name="deptId" size="1" id="deptId">
@@ -69,9 +63,8 @@
 			<br><br>
 			<hr>
 			<div>
-				<button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
-				<button type ="submit"  class="btn btn-primary">수정하기</button>
-				<button type ="button"onclick="location='../home.jsp'" class="cancelbtn">돌아가기</button>
+				<button type ="submit"  class="btn btn-primary">수정</button>
+				<button type ="button"onclick="location='${pageContext.request.contextPath}/home'" class="cancelbtn">돌아가기</button>
 			</div>
 		</form>
 	</div>
