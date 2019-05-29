@@ -4,59 +4,56 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="./resources/workspace/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript"
+	src="./resources/workspace/js/service/HuskyEZCreator.js"
+	charset="utf-8"></script>
 <!-- 메일보내기 -->
 
 </head>
 
-	<body>
-	<form action="mailSend" method="post" >
-	<div class="bigpage">
-		<div class="send-button">
-			<input type="submit" value="보내기" onclick=""/>
-			<button>미리보기</button>
-			<button>저장하기</button>
-			<button>옵션</button>
-		</div>
-	<div class="text-cell">
-		<table>
-			<tbody>
-				<tr class="Recipient">
-		 			<th class="row" >
-		 				<span>
-		 					<a href="#"  >받는사람 </a>
-						 </span>
-					</th>
-					<td colspan="2">
-						 <textarea rows="1" cols="30" name="to">
-						</textarea>
-					</td>
-				</tr>
-					
-					
-				<tr class=title>
-					<th class="row">
-					<label>제목</label>
-					</th>
-					<td>
-						 <textarea rows="1" cols="30" name="subject">
-						</textarea>
-					</td>
-					
-					</tr>
-					
-							
-				</tbody>
-		</table>
-		</div>
-	
-		<div class="file-attachment">
-		
-		</div>
-		<div class="editer-textarea">
-		<textarea name="content" id="ir1" rows="10" cols="100"></textarea>
-	
-	<script>
+<body>
+	<form action="mailSend" method="get">
+		<div class="bigpage">
+			<div class="send-button">
+				<input type="submit" value="보내기" onclick="" />
+				<button>미리보기</button>
+				<button>저장하기</button>
+				<button>옵션</button>
+			</div>
+			<div class="text-cell">
+				<table>
+					<tbody>
+						<tr class="Recipient">
+							<th class="row"><label> <a href="#">보내는사람</a>
+						</label></th>
+							<td colspan="2"><input type="text" name="from"><br>
+							</td>
+						</tr>
+
+						<tr>
+							<th class="row"><label> <a href="#">받는사람 </a></label>
+							</th>
+							<td colspan="2"><input type="text" name="to"><br>
+							</td>
+						</tr>
+
+
+						<tr class=title>
+							<th class="row"><label>제목</label></th>
+							<td><input type="text" name="subject"><br></td>
+
+						</tr>
+
+
+					</tbody>
+				</table>
+			</div>
+
+			<div class="file-attachment"></div>
+			<div class="editer-textarea">
+				<textarea name="content" id="ir1" rows="10" cols="100"></textarea>
+
+				<script>
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
  oAppRef: oEditors,
@@ -65,9 +62,9 @@ nhn.husky.EZCreator.createInIFrame({
  fCreator: "createSEditor2"
 });
 </script>
-		
+
+			</div>
 		</div>
-	</div>
 	</form>
 
 </body>

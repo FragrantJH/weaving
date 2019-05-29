@@ -20,6 +20,8 @@ import javax.mail.internet.MimeMultipart;
 
 import org.springframework.stereotype.Service;
 
+import com.weaving.biz.board.BoardVO;
+
 @Service
 public class SendEmailService {
 	
@@ -48,8 +50,8 @@ public class SendEmailService {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(from));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-			message.setSubject(vo.getSubject());
-			message.setText(vo.getContent());
+			message.setSubject(vo.getSubject());//제목
+			message.setText(vo.getContent());//내용
 			Transport.send(message);
 			System.out.println("Sent message successfully....");
 		} catch (MessagingException e) {
@@ -109,5 +111,6 @@ public class SendEmailService {
 			throw new RuntimeException(e);
 		}
 	}	
+	
 }
 

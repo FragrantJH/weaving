@@ -1,5 +1,6 @@
 package com.weaving.biz.email;
 
+
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -62,6 +63,7 @@ public class FetchingEmail {
                break;
             }
          }
+
          // close the store and folder objects
          emailFolder.close(false);
          store.close();
@@ -75,13 +77,15 @@ public class FetchingEmail {
       } catch (Exception e) {
          e.printStackTrace();
       }
-   }
+}
+   
+   
+
    public static void main(String[] args) {
 
       String host = "pop.gmail.com";// change accordingly
       String mailStoreType = "pop3";
-      String username = 
-         "dohy43@gmail.com";// change accordingly
+      String username ="dohy43@gmail.com";// change accordingly
       String password = "uuioeaxjqhwqerno";// change accordingly
 
       //Call method fetch
@@ -89,10 +93,14 @@ public class FetchingEmail {
 
    }
 
-
+   /*
+   * This method checks for content-type 
+   * based on which, it processes and
+   * fetches the content of the message
+   */
    public static void writePart(Part p) throws Exception {
       if (p instanceof Message)
-      
+         //Call methos writeEnvelope
          writeEnvelope((Message) p);
 
       System.out.println("----------------------------");
@@ -133,7 +141,6 @@ public class FetchingEmail {
          while ((i = (int) ((InputStream) x).available()) > 0) {
             int result = (int) (((InputStream) x).read(bArray));
             if (result == -1)
-      
             break;
          }
          FileOutputStream f2 = new FileOutputStream("/tmp/image.jpg");
@@ -174,9 +181,9 @@ public class FetchingEmail {
             System.out.println("---------------------------");
             System.out.println(o.toString());
          }
-      }
-
    }
+
+}
    /*
    * This method would print FROM,TO and SUBJECT of the message
    */

@@ -47,25 +47,27 @@ public class CheckingMails {
 			System.out.println("messages.length---" + messages.length);
 
 			// 리스트 담아서 리턴
-
-			for (int i = 0, n = 5; i < n; i++) {
+			//if(messages.length != 0) {
+				 for (int i = 0, n = messages.length; i < n; i++) {
 				Message message = messages[i];
 
 				EmailVO vo = new EmailVO();
+
 			//	vo.setSubject(message.getSubject());
 			//	vo.setFrom(message.getFrom()[0].toString());
 			//	vo.setContent(((Multipart)message.getContent()).getBodyPart(0).toString() );
 				writePart(message, vo);
 				
 				list.add(vo);
-				/*
-				 * System.out.println("---------------------------------");
-				 * System.out.println("Email Number " + (i + 1));
-				 *  System.out.println("Subject: "+ message.getSubject()); System.out.println("From: " + message.getFrom()[0]);
-				 * System.out.println("Text: " + message.getContent().toString());
-				 */
-
+				
 			}
+			/*
+			 * }else { for(int i=1; i<5; i++) { Message message = messages[i];
+			 * 
+			 * EmailVO vo = new EmailVO(); writePart(message, vo);
+			 * 
+			 * list.add(vo); } }
+			 */
 
 			// close the store and folder objects
 			emailFolder.close(false);
@@ -188,8 +190,11 @@ public class CheckingMails {
 		      }
 
 		      // SUBJECT
-		      if (m.getSubject() != null)
-		        vo.setSubject(m.getSubject());
+		      if (m.getSubject() != null) {
+		    	  vo.setSubject(m.getSubject());
+		      }
+		  
+ 
 
 		   }
 

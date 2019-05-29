@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.weaving.biz.email.CheckingMails;
 import com.weaving.biz.email.EmailVO;
+import com.weaving.biz.email.FetchingEmail;
 import com.weaving.biz.email.SendEmailService;
 
 @Controller
@@ -33,12 +35,10 @@ public class EmailController {
 	@RequestMapping("mailSend")
 	public void mailSend(EmailVO vo, HttpServletResponse response) throws IOException {
 		emailService.send(vo);
-		response.setContentType("text/html; charset=UTF-8");
-		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=euc-kr");
+		response.setCharacterEncoding("euc-kr");
 		PrintWriter out = response.getWriter();
-		out.println("<script>");
-		out.println("alert('mail send success!!!');");
-		out.println("</script>");
+		
 	}
 
 	// 메일보기폼
@@ -59,8 +59,17 @@ public class EmailController {
 
 	// 메일읽기폼
 	@RequestMapping("reading_mail")
-	public String reading_mail() {
-		return "email/send_mail";
+	public String reading_mail(Model model) {
+		String host = "pop.gmail.com";// change accordingly
+		String mailStoreType = "pop3";
+		String username = "dohy43@gmail.com";// change accordingly
+		String password = "uuioeaxjqhwqerno";// change accordingly
+		FetchingEmail fetchingEmail = new FetchingEmail();
+		  
+
+		model.addAttribute("Emailreading");
+		
+		return "email/reading_mail";
 	}
 
 }
