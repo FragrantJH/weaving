@@ -15,7 +15,7 @@ public class EmpVO {
 	private String address;
 	private String deptId;
 	private String deletedYn;
-	private String deletedDate;
+	private String deleteDate;
 	private int seq;
 	private String[] seqs;
 	private int cnt;
@@ -93,12 +93,7 @@ public class EmpVO {
 	public void setDeletedYn(String deletedYn) {
 		this.deletedYn = deletedYn;
 	}
-	public String getDeletedDate() {
-		return deletedDate;
-	}
-	public void setDeletedDate(String deletedDate) {
-		this.deletedDate = deletedDate;
-	}
+
 	public int getSeq() {
 		return seq;
 	}
@@ -124,13 +119,19 @@ public class EmpVO {
 	public void setAdminYn(boolean adminYn) {
 		this.adminYn = adminYn;
 	}
+	public String getDeleteDate() {
+		return deleteDate;
+	}
+	public void setDeleteDate(String deleteDate) {
+		this.deleteDate = deleteDate;
+	}
 	@Override
 	public String toString() {
 		return "EmpVO [gmailAppKey=" + gmailAppKey + ", empNo=" + empNo + ", empName=" + empName + ", password="
 				+ password + ", position=" + position + ", joindate1=" + joindate1 + ", deptName=" + deptName
 				+ ", email=" + email + ", phone=" + phone + ", address=" + address + ", deptId=" + deptId
-				+ ", deletedYn=" + deletedYn + ", deletedDate=" + deletedDate + ", seq=" + seq + ", seqs="
-				+ Arrays.toString(seqs) + ", cnt=" + cnt + "]";
+				+ ", deletedYn=" + deletedYn + ", deleteDate=" + deleteDate + ", seq=" + seq + ", seqs="
+				+ Arrays.toString(seqs) + ", cnt=" + cnt + ", adminYn=" + adminYn + "]";
 	}
 	
 	

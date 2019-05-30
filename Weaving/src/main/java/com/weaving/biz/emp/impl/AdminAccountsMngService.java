@@ -117,7 +117,7 @@ public class AdminAccountsMngService {
 											vo.setDeletedYn(value);
 											break;
 										case 9: 
-											vo.setDeletedDate(value);
+											vo.setDeleteDate(value);
 											break;
 										case 10: 
 											vo.setGmailAppKey(value);
@@ -247,7 +247,7 @@ public class AdminAccountsMngService {
 											vo.setDeletedYn(value);
 											break;
 										case 9: 
-											vo.setDeletedDate(value);
+											vo.setDeleteDate(value);
 											break;
 										case 10: 
 											vo.setGmailAppKey(value);
