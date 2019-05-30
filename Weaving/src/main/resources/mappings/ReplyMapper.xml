@@ -4,21 +4,36 @@
 
 <mapper namespace="ReplyDAO">
 
+	<!-- 댓글 등록 -->
 	<insert id="insertReply">
 		INSERT INTO
-		REPLY(REPLY_ID, BOARD_ID, EMP_NO, REP_CONTENTS)
-		VALUES(REPLY_SEQ.NEXTVAL, #{boardID} #{empNo}, #{replyContents})
+		REPLY(REPLY_ID, BOARD_ID, EMP_NO,
+		REP_CONTENTS)
+		VALUES((SELECT NVL(MAX(REPLY_ID),0) +1 FROM REPLY),
+		#{boardId}, #{empNo}, #{repContents})
 	</insert>
 
+	<!-- 댓글 목록 -->
+	<select id="getReplyList" resultType="reply">
+		SELECT E.EMP_NAME, R.*
+		FROM REPLY R JOIN EMPLOYEES E ON
+		R.EMP_NO = E.EMP_NO
+		WHERE R.BOARD_ID = #{boardId}
+		ORDER BY TIME
+	</select>
 	
-
-
-
-
-
-
-
-
-
-
+	<!-- 댓글 수정 -->
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply">
+		DELETE FROM REPLY
+		WHERE REPLY_ID = #{replyId}
+	</delete>
+	
+	<!-- 페이징 sql -->
+	
+	
 </mapper>
+
+
+
