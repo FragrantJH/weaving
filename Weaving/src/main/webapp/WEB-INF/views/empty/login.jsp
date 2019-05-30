@@ -56,8 +56,9 @@ body, html {
 	<br>
 	<br>
 	<br>
+	<br>
 		<div align="center">
-			<h1 class="display-3">WEAVING</h1>
+			<h1 class="display-3" style="color: white">WEAVING</h1>
 		</div>
 		<div class="centered">
 		

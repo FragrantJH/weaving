@@ -70,7 +70,6 @@
 	            <c:if test="${empty emp }">
 	            	<h6>오늘도 WEAVING과 함께 열일 합시다</h6>
 	            </c:if>
-	            <br>
 	            <c:if test="${not empty emp}">
 					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/logout'">
 					  <i class="material-icons">face</i> 로그아웃
