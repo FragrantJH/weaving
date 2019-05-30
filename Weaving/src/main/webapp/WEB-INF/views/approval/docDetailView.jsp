@@ -49,10 +49,6 @@ $(function() {
 	
 function approvalSendEvent() {
 
-	$('#approvalModal').on('hidden.bs.modal', function (e) {
-		location.replace("${pageContext.request.contextPath}/"); 
-	});
-
 	$('.modal-footer').on('click', '#approvalSend', function() {
 		$.ajax({ 
 		    url: "updateDone",
@@ -67,7 +63,8 @@ function approvalSendEvent() {
 		    contentType: 'application/json',
 		    //mimeType: 'application/json',
 		    success: function(data) {
-		    	$('#approvalModal').modal("hide");
+		    	//$('#approvalModal').modal("hide");
+		    	location.replace('${pageContext.request.contextPath}/docWaitList');
 		    },
 		    error:function(xhr, status, message) { 
 		        alert(" status: "+status+" er:"+message);
