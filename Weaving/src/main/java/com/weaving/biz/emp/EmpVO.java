@@ -57,6 +57,7 @@ public class EmpVO {
 	public void setPosition(String position) {
 		this.position = position;
 	}
+
 	public String getJoindate1() {
 		return joindate1;
 	}

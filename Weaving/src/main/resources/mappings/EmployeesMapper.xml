@@ -108,7 +108,7 @@
 		FROM EMPLOYEES E
 		JOIN DEPARTMENT D
 		ON E.DEPT_ID = D.DEPT_ID(+)
-		WHERE DELETED_YN ='N'
+		WHERE DELETED_YN ='N' OR DELETED_YN IS NULL
 		ORDER BY E.EMP_NO DESC
 	</select>
 	
@@ -181,7 +181,7 @@
 		</if><if test="item.deptId != null">
 		,#{item.deptId}
 		</if><if test="item.deletedYn != null">
-		,#{item.deletedYn}
+		,'N'
 		</if><if test="item.deleteDate != null">
 		,TO_DATE( #{item.deleteDate},'yyyy-mm-dd')
 		</if><if test="item.gmailAppKey != null">
