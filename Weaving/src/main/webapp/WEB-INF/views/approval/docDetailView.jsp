@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="docBaseInfo" value="${docInfo}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,87 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<style>
+.approval-table th {
+	background-color: #f9f9f9;
+	height: 40px;
+	width: 116px;
+	vertical-align: middle;
+	text-align: center;
+}
+.approval-table .stamp {
+	display: table-cell;
+	height: 80px;
+	width: 116px;
+	vertical-align: middle;
+	text-align: center;
+}
+#docDetailContents {
+    pointer-events: none;
+}
+</style>
 </head>
+<script>
+$(function() {
+	makeApprovalListTable();
+});
+	
+function makeApprovalListTable() {		
+	var approvalEmp = $('#approvalList option');
+	var empCnt = approvalEmp.length;
+	var tb = "";
+	
+	var DataArray = new Array();
+	
+	if (empCnt > 0) {	
+		$('.approval-line').empty();
+		
+		var tb = "<table class='approval-table' border='1' bordercolor='#cdcdcd'>"+
+					"<tr>" +
+						"<th rowspan='2' scope='col'>"+
+							"<div style='height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;'>"+
+								"결재"+
+							"</div>"+
+						"</th>"+
+						"<th scope='col' class='team name' data-order='1' data-empNo='${position}'>${empName}</td>";
+		var writerData = {
+				'empNo' : '${empInfo.empNo}',
+				'approvalOrder' : '1',
+				'status': 'DONE'
+		};								
+
+		DataArray.push(writerData);
+		for (var i = 0; i < empCnt; i++) {
+			var ApprovalData = {};
+			var str = approvalEmp[i].text.split('(');
+			
+			tb +="<th scope='col' class='team name' data-order='" + (i + 2) + "' data-empNo='"+approvalEmp[i].value+"'>"+str[0]+"</th>";
+
+			ApprovalData['empNo'] = approvalEmp[i].value;
+			ApprovalData['approvalOrder'] = ''+(i + 2)+'';
+			ApprovalData['status'] = 'wait';
+			
+			DataArray.push(ApprovalData);
+		}
+		
+		
+		tb += "</tr>"+
+			  "<tr>" +
+			  	"<td class='stamp'>승인</td>";
+		for (var i = 0; i < empCnt; i++) {
+			tb += "<td class='stamp'></td>";
+		}
+		tb +="</tr>"+
+			 "</table>";
+		$('.approval-line').append(tb);
+	
+		var jsonString = JSON.stringify(DataArray);
+	    var jsonData = JSON.parse(jsonString);
+
+	   $("input[name=approvalList]").val(jsonString);
+	}	
+}
+</script>
 <body>
 	<div class="row">
 		<div class="col-md-12">
@@ -23,52 +105,32 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<h3 id="doc-title" class="text-center">test</h3>
+					<div style="float:right;">
+						<button type="button" class="btn btn-primary">결재이력</button>
+						<button type="button" class="btn btn-primary">결재하기</button>
+					</div>
+					<h3 id="doc-title" class="text-center">${docBaseInfo.docTitle}</h3>
 					<div style="display:inline-block;">
-					<!--
-					 		var doc_info =	"<table border='0' style='all:none;'>" +
-							"<tr>" +
-								"<td>문서번호</td>" +
-								"<td>"+$('input[name=docType]').val()+"-"+year + "" + month+"-xxxx</td>" +
-							"</tr>"+
-							"<tr>" +
-								"<td>기안부서</td>" +
-								"<td>${empInfo.deptName}</td>" +							
-							"</tr>"+
-							"<tr>" +
-								"<td>기안자</td>" +
-								"<td>${empName}</td>" +							
-							"</tr>"+
-							"<tr>" +
-								"<td>기안일자</td>" +
-								"<td>"+year + "-" + month + "-" + day+"</td>" +							
-							"</tr>"+
-							"<tr>" +
-								"<td>보안등급</td>" +
-								"<td>"+$('#secureLevelMenu').text()+"</td>" +
-							"</tr>"+							
-						"</table>";
-					 -->
 						<table class="table">
 							<tr>
 								<th>문서번호</th>
-								<th>test-190528-0001</th>
+								<th>${docBaseInfo.docNo}</th>
 							</tr>
 							<tr>
 								<th>기안부서</th>
-								<th>전산과</th>
+								<th>${docBaseInfo.deptName}</th>
 							</tr>							
 							<tr>
 								<th>기안자</th>
-								<th>누구누구</th>
+								<th>${docBaseInfo.empName}</th>
 							</tr>							
 							<tr>
 								<th>기안일자</th>
-								<th>2019-05-28</th>
+								<th>${docBaseInfo.regDate}</th>
 							</tr>
 							<tr>
 								<th>보안등급</th>
-								<th>A등급</th>
+								<th>${docBaseInfo.secureLevel}</th>
 							</tr>
 						</table>
 					</div>
@@ -114,29 +176,30 @@ var tb = "<table class='approval-table' border='1' bordercolor='#cdcdcd'>"+
 					<div style="dispaly:inline-block; float:right;">
 						<table class='approval-table' border='1' bordercolor='#cdcdcd'>
 							<tr>
-								<th rowspan='3' scope='col'>
+								<th rowspan='2' scope='col'>
 									<div style='height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;'>
 									결재
 									</div>
 								</th>
-								<th scope='col' class='team name' data-order='1' data-empNo=''>누구누구</td>
-								<th scope='col' class='team name' data-order='2' data-empNo=''>누구누구</th>
-								<th scope='col' class='team name' data-order='3' data-empNo=''>누구누구</th>
+								<c:forEach items="${docDetailInfo}" var="docDetailInfo">
+									<th scope='col' class='team name'>${docDetailInfo.empName}</th>
+								</c:forEach>
 							</tr>
 				  			<tr>
-				  				<td class='stamp'>승인</td>
-								<td class='stamp'></td>
-								<td class='stamp'></td>
-							</tr>
-				  			<tr>
-				  				<td class='stamp'></td>
-								<td class='stamp'>결재하기</td>
-								<td class='stamp'></td>
+								<c:forEach items="${docDetailInfo}" var="docDetailInfo">
+									<c:if test="${docDetailInfo.status eq 'DONE'}">
+										<td class='stamp'>승인</td>
+									</c:if>
+									<c:if test="${docDetailInfo.status ne 'DONE'}">
+										<td class='stamp'></td>
+									</c:if>									
+								</c:forEach>				  			
 							</tr>							
 				 		</table>					
 					</div>
 					<h3>상세 입력</h3>
-					<div id="docDetail" style="border:1px solid black;">
+					<div id="docDetailContents" style="border:1px solid black;">
+						${docBaseInfo.docContents}
 					</div>										
 				</div>
 				<div class="card-footer">

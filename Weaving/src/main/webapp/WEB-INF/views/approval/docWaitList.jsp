@@ -32,7 +32,7 @@
 								<c:forEach items="${waitList}" var="doc">
 									<tr>
 										<td>${doc.docNo}</td>
-										<td><a id="btnSelect" href="${pageContext.request.contextPath}/?docId=${doc.docId}">${doc.docTitle}</a></td>
+										<td><a id="btnSelect" href="${pageContext.request.contextPath}/docDetailView?docId=${doc.docId}">${doc.docTitle}</a></td>
 										<td>${doc.writerEmpName}</td>
 										<td>${doc.secureLevel}</td>
 										<td>${doc.regDate}</td>
