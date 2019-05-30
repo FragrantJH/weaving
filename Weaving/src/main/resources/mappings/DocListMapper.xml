@@ -26,24 +26,7 @@
 		
 	</select>
 	
-	<select id="getWaitDocCount" resultType="int" parameterType="int">
-		
-		SELECT COUNT(*) AS WAIT_COUNT
-		  FROM DOCUMENTDETAIL A INNER JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO
-		                        INNER JOIN DOCUMENTS C ON A.DOC_ID = C.DOC_ID
-		                        INNER JOIN EMPLOYEES D ON C.EMP_NO = D.EMP_NO
-		 WHERE A.APPROVAL_ORDER = (SELECT MIN(APPROVAL_ORDER)
-		                             FROM DOCUMENTDETAIL
-		                            WHERE APPROVAL_DATE IS NULL 
-		                              AND STATUS = 'WAIT'
-		                              AND DOC_ID = A.DOC_ID 
-		                          )
-		  AND A.EMP_NO = #{empNo}
-		
-	</select>
-
-
-
+	
 	<!-- 결재 완료 문서 조회 -->
     <select id="getDoneDocList" resultType="docBase" parameterType="int">
     <![CDATA[
@@ -80,8 +63,27 @@
     </select>
 
 
-
-
-
+	<!-- 반려문서 조회 -->
+	<select id="getReturnDocList" parameterType="int" resultType="com.weaving.biz.doc.DocReturnVO">
+		SELECT A.DOC_ID,
+		       A.DOC_NO,
+		       A.DOC_TITLE,
+		       A.REG_DATE,
+		       A.SECURE_LEVEL,
+		       A.EMP_NO AS WRITER_EMP_NO,
+		       C.EMP_NAME AS WRITER_EMP_NAME,
+		       A.RETURN_EMP_NO AS RETURN_EMP_NO,
+		       B.EMP_NAME AS RETURN_EMP_NAME
+		  FROM DOCUMENTS A INNER JOIN EMPLOYEES B ON A.RETURN_EMP_NO = B.EMP_NO
+		                   INNER JOIN EMPLOYEES C ON A.EMP_NO = C.EMP_NO
+		 WHERE RETURN_EMP_NO IS NOT NULL AND A.EMP_NO = #{empNo}
+		 ORDER BY A.DOC_ID
+	</select>
+	
+	
+	<!-- 진행중인 문서 조회 (진행 중, 반려) -->
+	<select id="getIngDocList">
+	
+	</select>
 
 </mapper>
