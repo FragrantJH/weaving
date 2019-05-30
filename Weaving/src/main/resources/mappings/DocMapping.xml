@@ -57,9 +57,9 @@
 	</insert>
 
 	<update id="updateDoneDoc" parameterType="com.weaving.biz.doc.DocApprovalVO">
-		UPDATE DOCUMENTDETAIL SET STATUS='DONE', APPROVAL_COMMENTS=#{approvalComments}
+		UPDATE DOCUMENTDETAIL SET STATUS='DONE', APPROVAL_COMMENTS=#{approvalComments}, APPROVAL_DATE=sysdate
 		<where>
-			DOC_ID=#{doc_id} AND EMP_NO = #{emp_no}
+			DOC_ID=#{docId} AND EMP_NO = #{empNo}
 		</where>
 	</update>
 	<select id="getDocument" parameterType="com.weaving.biz.doc.DocDetailVO"
