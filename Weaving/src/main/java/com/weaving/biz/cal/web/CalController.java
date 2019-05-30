@@ -35,7 +35,7 @@ public class CalController {
 	@ResponseBody
 	public List<CalVO> getCalData(CalVO vo, HttpSession session) {
 		
-		CalTypeEnum calType = SessionInfo.getInfo(session, "emp");
+		CalTypeEnum calType = SessionInfo.getInfo(session, "calType");
 		
 		if(calType != null && calType == CalTypeEnum.USER) {
 			Integer empNo = SessionInfo.getInfo(session, "empNo");
