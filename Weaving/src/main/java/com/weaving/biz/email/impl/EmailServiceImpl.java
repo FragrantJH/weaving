@@ -3,10 +3,12 @@ package com.weaving.biz.email.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.weaving.biz.email.EmailService;
 import com.weaving.biz.email.EmailVO;
 
+@Service
 public class EmailServiceImpl implements EmailService {
 
 	@Autowired

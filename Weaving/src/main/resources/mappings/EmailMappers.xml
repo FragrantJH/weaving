@@ -24,7 +24,7 @@ to_date(#{checkTime},'yyyy-mm-dd hh24:mi:ss'),
 )
 
 </insert>
-<delete id="mailsDAO.deleteMails_S">
+<delete id="deleteMails_S">
 		<![CDATA[
 			DELETE FROM Email WHERE email_id = #{email_id}
 			]]>
