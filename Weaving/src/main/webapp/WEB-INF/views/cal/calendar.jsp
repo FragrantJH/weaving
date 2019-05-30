@@ -93,7 +93,8 @@ body {
 		
 	</div>
 
-	<c:set var="isAminRestrict" value="${calType == 'ALL' && admin.adminYn == false}" />
+	<!-- 전체 일정에서 관리자인지 유무  -->
+	<c:set var="isNoAdmin" value="${calType == 'ALL' && emp.adminYn == false}" />
 
 	<script>
 	
@@ -106,10 +107,10 @@ body {
 			// 화면 로드 시 캘린더 목록 조회
 			calList();
 			
-			console.log('isAminRestrict? ' + ${isAminRestrict});
+			console.log('isNoAdmin? ' + ${isNoAdmin});
 			
 			// 전체 일정에 일반 사용자 접속 시 처리
-			if(${isAminRestrict}) {
+			if(${isNoAdmin}) {
 				
 				$('#calModal input').attr('readonly', 'readonly');
 				$('#calModal input:checkbox').attr('disabled', 'disabled');
@@ -168,7 +169,7 @@ body {
 		function showButtons(isAdd) {
 			
 			// adminMode가 아니면 해당 버튼을 가린다
-			if(${isAminRestrict}) {
+			if(${isNoAdmin}) {
 				$('#btnAdd').hide();
 				$('#btnUpdate').hide();
 				$('#btnDelete').hide();
@@ -212,7 +213,7 @@ body {
 			var calendarEl = document.getElementById('calendar');
 			var myPlugins;
 			
-			if(${isAminRestrict}) {
+			if(${isNoAdmin}) {
 				myPlugins = [ 'dayGrid', 'timeGrid', 'list' ];
 			} else {
 				myPlugins = [ 'interaction', 'dayGrid', 'timeGrid', 'list' ];
