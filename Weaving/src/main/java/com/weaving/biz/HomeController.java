@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weaving.biz.common.SessionInfo;
+import com.weaving.biz.doc.DocListService;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
 
@@ -35,6 +37,8 @@ public class HomeController {
 
 	@Autowired
 	Empservice service;
+	@Autowired
+	DocListService waitservice;
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -43,14 +47,15 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model,  HttpSession session) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
 		String formattedDate = dateFormat.format(date);
-
+		EmpVO vo = SessionInfo.getInfo(session, "emp");
+		
+		model.addAttribute("count", waitservice.getWaitDocCount(vo.getEmpNo()));
 		model.addAttribute("serverTime", formattedDate);
 
 		return "home";
@@ -59,8 +64,10 @@ public class HomeController {
 	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
 	public String adminHome(Locale locale, Model model, HttpServletResponse response, HttpSession session)
 			throws IOException {
-
-		if (session.getAttribute("adminMode") != null) {
+		
+		EmpVO emp = SessionInfo.getInfo(session, "emp");
+		
+		if (emp != null && emp.getAdminYn()) {
 			return "/admin/adminHome";
 		} else {
 			PrintWriter out = response.getWriter();
@@ -88,7 +95,9 @@ public class HomeController {
 		}
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		String[] header = { "empNo", "empName", "position" };
+		String[] header = { "empNo"
+				, "empName"
+				, "position" };
 		map.put("headers", header);
 		map.put("filename", "excel_dept");
 		map.put("datas", temp);

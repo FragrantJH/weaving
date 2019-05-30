@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.weaving.biz.doc.DocApprovalVO;
+import com.weaving.biz.doc.DocDetailVO;
 import com.weaving.biz.doc.DocInsertVO;
 
 @Repository
@@ -21,17 +23,14 @@ public class DocDAO {
 		mybatis.insert("DocDAO.insertDocDeatil", vo);
 	}
 	
-	public List<DocInsertVO> getBoardList(DocInsertVO vo) {
+	public void updateApprovalDoc(DocApprovalVO vo) {
+		mybatis.update("DocDAO.updateDoneDoc", vo);
+	}
+	public DocDetailVO getDocument(DocDetailVO vo) {
+		return mybatis.selectOne("DocDAO.getDocument", vo);
+	}
+	public List<DocInsertVO> getDocDetail(DocDetailVO vo) {
 		//
-		return mybatis.selectList("DocDAO.getDocList", vo);
-	}
-
-	public List<DocInsertVO> getDocWaitList(DocInsertVO vo) {
-		// TODO Auto-generated method stub
-		return mybatis.selectList("DocDAO.getDocWaitList", vo);
-	}
-	
-	public int getDocWaitTotalCount(DocInsertVO vo) {
-		return mybatis.selectOne("DocDAO.getDocWaitTotalCount", vo);
+		return mybatis.selectList("DocDAO.getDocDetail", vo);
 	}
 }

@@ -23,8 +23,12 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weaving.biz.cal.CalTypeEnum;
 import com.weaving.biz.common.Paging;
+import com.weaving.biz.common.SessionInfo;
+import com.weaving.biz.doc.DocApprovalVO;
 import com.weaving.biz.doc.DocBaseVO;
+import com.weaving.biz.doc.DocDetailVO;
 import com.weaving.biz.doc.DocHistoryVO;
 import com.weaving.biz.doc.DocService;
 import com.weaving.biz.doc.DocInsertVO;
@@ -50,26 +54,11 @@ public class DocController {
 	//cond로 변수명을 변경할 경우 value로 value로 searchCondition로 지정해줘야한다
 	//@RequestMapping("/docList")
 	//public String docList(Model model) {
+	/*
 	@RequestMapping("/docList")
 	public String docList(Model model, HttpSession session) {
 		System.out.println(session.getAttribute("emp"));
-		/*
-		 * - C : ALL
-		   - B : 대리 이상
-		   - A : 과장 이상
-		   사원 0		:C
-		   대리 1		:B
-		   과장 2		:A
-		   차장 3 		:A
-		   부장 4		:S
-		   대표 5		:S
-		 */
-		//2초과 S등급
-		//2이면 A
-		//1이면 B
-		//0이면 C	
-		
-
+	
 		int position = Integer.parseInt((String)session.getAttribute("position"));
 		System.out.println(position);
 		String lv = "C";
@@ -89,7 +78,7 @@ public class DocController {
 		//model.addAttribute("list", docService.getDocList(vo));
 		return "approval/docList";
 	}
-	
+	*/
 	@RequestMapping("/docViewInsert")
 	//public String docViewInsert(@PathVariable String empName, @PathVariable int position, Model model) {
 	public String docViewInsert(Model model) {
@@ -112,22 +101,12 @@ public class DocController {
 		String docType = request.getParameter("docType") +"-" + dateArr[0] + dateArr[1] + dateArr[2]+"-";
 		String jsonString = request.getParameter("approvalList");
 		
-		System.out.println(docType);
-		System.out.println(jsonString);
-
 		vo.setDocType(docType);
 		vo.setRegDate(curTime);
-		
-		System.out.println("==========");
-		System.out.println(vo);
-		System.out.println("==========");
 
 		docService.insertDoc(vo);
 
-		System.out.println(vo);
-
 		ObjectMapper mapper = new ObjectMapper();
-		//List<DocVO> myObjects = mapper.readValue(jsonString, new TypeReference<List<DocVO>>(){});
 		int docId = 0;
 		String writerStatus = "";
 		try {
@@ -173,12 +152,31 @@ public class DocController {
 		
 	
 
-	
-	@RequestMapping("/docApprovalView")
-	public String test() {
-		return "approval/docApprovalView";
+	@RequestMapping(value="/docDetailView", method= RequestMethod.GET)	
+	public String docDetailView(Model model, HttpSession session, HttpServletRequest request) {
+		int empNo = SessionInfo.getInfo(session, "empNo");
+		DocDetailVO vo = new DocDetailVO();
+		
+		vo.setEmpNo(empNo);
+		vo.setDocId(Integer.parseInt(request.getParameter("docId")));
+		
+		System.out.println(docService.getDocument(vo));
+		model.addAttribute("docInfo",docService.getDocument(vo));
+		model.addAttribute("docDetailInfo",docService.getDocDetail(vo));
+		return "approval/docDetailView";
 	}
-
+	/*
+	@RequestMapping(value="/", method= RequestMethod.)	
+	public String docApprovalUpdate(DocApprovalVO vo, HttpSession session) {
+		int empNo = SessionInfo.getInfo(session, "empNo");
+		
+		vo.setEmpNo(empNo);
+		vo.setDocId(8);
+		vo.setApprovalComments("call");
+		
+		return "approval/docDetailView";
+	}
+	*/
 }
 
 

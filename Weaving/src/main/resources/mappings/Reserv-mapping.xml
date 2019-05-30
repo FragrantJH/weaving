@@ -65,4 +65,11 @@
 		SELECT COUNT(*)
 		  FROM RESERVATION
 	</select>
+	
+	<select id="idcheck" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM RESERVATION
+      WHERE START_TIME = #{startTime}
+	</select>
+	
+	
 </mapper>

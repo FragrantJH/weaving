@@ -20,8 +20,8 @@
 								,DEPT_ID
 								</if><if test="deletedYn != null">
 								,DELETED_YN
-								</if><if test="deletedDate != null">
-								,DELETED_DATE
+								</if><if test="deleteDate != null">
+								,DELETE_DATE
 								</if><if test="gmailAppKey != null">
 								,GMAIL_APP_KEY
 								</if>
@@ -43,8 +43,8 @@
 				,#{deptId}
 				</if><if test="deletedYn != null">
 				,#{deletedYn}
-				</if><if test="deletedDate != null">
-				,#{deletedDate}
+				</if><if test="deleteDate != null">
+				,#{deleteDate}
 				</if><if test="gmailAppKey != null">
 				,#{gmailAppKey}
 				</if>
@@ -52,7 +52,24 @@
 	</insert>
 	<!-- 로그인 -->
 	<select id ="getEmp" resultType="emp" parameterType="emp">
-        select * from employees where emp_no =#{empNo} and password=#{password}
+        SELECT E.EMP_NO
+	        ,E.EMP_NAME 
+	        ,E.PASSWORD 
+	        ,E.POSITION 
+	        ,E.JOINDATE 
+	        ,E.EMAIL 
+	        ,E.PHONE 
+	        ,E.ADDRESS 
+	        ,E.DELETED_YN 
+	        ,E.DELETE_DATE 
+	        ,E.DEPT_ID 
+	        ,E.GMAIL_APP_KEY
+	        ,E.ADMIN_YN 
+	        ,D.DEPT_NAME
+        FROM EMPLOYEES E
+        JOIN DEPARTMENT D
+        ON E.DEPT_ID = D.DEPT_ID(+)
+        WHERE EMP_NO =#{empNo} AND PASSWORD = #{password}
     </select>
     
     <!-- 개인조회 -->
@@ -68,7 +85,8 @@
         ,E.DELETED_YN 
         ,E.DELETE_DATE 
         ,E.DEPT_ID 
-        ,E.GMAIL_APP_KEY 
+        ,E.GMAIL_APP_KEY
+        ,E.ADMIN_YN 
         ,D.DEPT_NAME
         FROM EMPLOYEES E
         JOIN DEPARTMENT D
@@ -90,7 +108,7 @@
 		FROM EMPLOYEES E
 		JOIN DEPARTMENT D
 		ON E.DEPT_ID = D.DEPT_ID(+)
-		WHERE DELETED_YN ='N'
+		WHERE DELETED_YN ='N' OR DELETED_YN IS NULL
 		ORDER BY E.EMP_NO DESC
 	</select>
 	
@@ -122,15 +140,53 @@
 	<insert id="insertExcelTest" parameterType="emp">
 	INSERT ALL 
 	<foreach collection="list" item="item" index="index" separator="">
-	INTO EMPLOYEES(emp_no,emp_name,password,joindate,email,gmail_app_key) 
+	INTO EMPLOYEES(
+					EMP_NO
+					,EMP_NAME
+					,PASSWORD
+					<if test="item.position != null">
+					,POSITION
+					</if><if test="item.joindate1 != null">
+					,JOINDATE
+					</if>
+					,EMAIL
+					<if test="item.phone != null">
+					,PHONE
+					</if><if test="item.address != null">
+					,ADDRESS
+					</if><if test="item.deptId != null">
+					,DEPT_ID
+					</if><if test="item.deletedYn != null">
+					,DELETED_YN
+					</if><if test="item.deleteDate != null">
+					,DELETE_DATE
+					</if><if test="item.gmailAppKey != null">
+					,GMAIL_APP_KEY
+					</if>) 
 	VALUES
 		(
 		(SELECT NVL(MAX(EMP_NO), 0) + 1 FROM EMPLOYEES)+#{index}
-		, #{item.empName}
-		, #{item.password}
-		,to_date( #{item.joindate1},'yyyy-mm-dd')
-		, #{item.email}
-		, #{item.gmailAppKey}
+		,#{item.empName}
+		,#{item.password}
+		<if test="item.position != null">
+		,#{item.position}
+		</if><if test="item.joindate1 != null">
+		,TO_DATE( #{item.joindate1},'yyyy-mm-dd')
+		</if>
+		,#{item.email}
+		<if test="item.phone != null">
+		,#{item.phone}
+		</if><if test="item.address != null">
+		,#{item.address}
+		</if><if test="item.deptId != null">
+		,#{item.deptId}
+		</if><if test="item.deletedYn != null">
+		,'N'
+		</if><if test="item.deleteDate != null">
+		,TO_DATE( #{item.deleteDate},'yyyy-mm-dd')
+		</if><if test="item.gmailAppKey != null">
+		,#{item.gmailAppKey}
+		</if>
 		)
 	</foreach>
 	SELECT * FROM DUAL

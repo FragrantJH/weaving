@@ -56,25 +56,60 @@
 		   )
 	</insert>
 
-	<insert id="insertDocHistory">
-	</insert>
-
-	<select id="getDocList" parameterType="com.weaving.biz.doc.DocInsertVO"
-		resultType="com.weaving.biz.doc.DocInsertVO">
+	<update id="updateDoneDoc" parameterType="com.weaving.biz.doc.DocApprovalVO">
+		UPDATE DOCUMENTDETAIL SET STATUS='DONE', APPROVAL_COMMENTS=#{approvalComments}
+		<where>
+			DOC_ID=#{doc_id} AND EMP_NO = #{emp_no}
+		</where>
+	</update>
+	<select id="getDocument" parameterType="com.weaving.biz.doc.DocDetailVO"
+		resultType="com.weaving.biz.doc.DocDetailVO">		
 		SELECT 
-			D.DOC_ID,
-			E.EMP_NAME,
-			D.DOC_NO,
-			D.DOC_TITLE,
-			D.REG_DATE,
-			D.DONE_DATE,
-			D.SECURE_LEVEL
-		  FROM DOCUMENTS D JOIN EMPLOYEES E ON D.EMP_NO = E.EMP_NO
-		    <where> 
-		    		DONE_DATE IS NOT NULL AND SECURE_LEVEL BETWEEN #{secureLevel} AND 'C' ORDER BY D.REG_DATE DESC
+			A.DOC_ID,
+			A.DOC_NO,
+			A.EMP_NO,
+			B.EMP_NAME,
+			A.DOC_TITLE,
+			A.DOC_CONTENTS,
+			A.REG_DATE,
+			A.DONE_DATE,
+			A.SECURE_LEVEL,
+			C.DEPT_NAME
+		  FROM DOCUMENTS A 
+		  JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO
+		  JOIN DEPARTMENT C ON B.DEPT_ID = C.DEPT_ID
+		    <where>
+		    	A.DOC_ID=#{docId} 
 	    	</where>
 	</select>
-	
+	<select id="getDocDetail" parameterType="com.weaving.biz.doc.DocDetailVO"
+		resultType="com.weaving.biz.doc.DocDetailVO">
+		SELECT 
+		    A.DOC_ID, 
+		    A.EMP_NO, 
+		    B.EMP_NAME,
+		    A.APPROVAL_ORDER, 
+		    A.APPROVAL_DATE, 
+		    A.STATUS, 
+		    A.APPROVAL_COMMENTS, 
+			CASE WHEN POSITION = '0' THEN '사원'
+				WHEN POSITION = '1' THEN '대리'
+				WHEN POSITION = '2' THEN '과장'
+				WHEN POSITION = '3' THEN '차장'
+				WHEN POSITION = '4' THEN '부장'
+		        WHEN POSITION = '5' THEN '대표'
+				ELSE '없음' END AS POSITION
+				,
+		    C.DEPT_NAME
+		FROM DOCUMENTDETAIL  A 
+		JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO 
+		JOIN DEPARTMENT C ON B.DEPT_ID = C.DEPT_ID
+		<where>
+			DOC_ID=#{docId}
+		</where>
+		ORDER BY APPROVAL_ORDER ASC
+	</select>
+	<!-- 
 	<select id="getDocWaitList" parameterType="com.weaving.biz.doc.DocInsertVO"
 		resultType="com.weaving.biz.doc.DocInsertVO">					
 		SELECT ROWNUM ROW_NUM,
@@ -101,5 +136,6 @@
 		    <where> 
 		    	EMP_NO= #{empNo} AND STATUS='WAIT'
 	    	</where>
-	</select>	
+	</select>
+	 -->	
 </mapper>

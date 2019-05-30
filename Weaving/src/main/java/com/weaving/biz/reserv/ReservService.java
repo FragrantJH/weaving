@@ -14,4 +14,5 @@ public interface ReservService {
 	
 	List<ReservVO> getReservList();
 
+
 }
