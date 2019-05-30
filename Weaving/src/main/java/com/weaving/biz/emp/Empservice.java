@@ -16,8 +16,11 @@ public interface Empservice {
 		// 글 삭제
 		void deleteEmp(EmpVO vo);
 
-		// 글 상세 조회
+		//로그인
 		EmpVO getEmp(EmpVO vo);
+		
+		// 글 상세 조회
+		EmpVO getEmpl(EmpVO vo);
 
 		// 글 목록 조회
 		List<EmpVO> getEmpList(EmpVO vo);

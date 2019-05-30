@@ -52,7 +52,24 @@
 	</insert>
 	<!-- 로그인 -->
 	<select id ="getEmp" resultType="emp" parameterType="emp">
-        select * from employees where emp_no =#{empNo} and password=#{password}
+        SELECT E.EMP_NO
+	        ,E.EMP_NAME 
+	        ,E.PASSWORD 
+	        ,E.POSITION 
+	        ,E.JOINDATE 
+	        ,E.EMAIL 
+	        ,E.PHONE 
+	        ,E.ADDRESS 
+	        ,E.DELETED_YN 
+	        ,E.DELETE_DATE 
+	        ,E.DEPT_ID 
+	        ,E.GMAIL_APP_KEY
+	        ,E.ADMIN_YN 
+	        ,D.DEPT_NAME
+        FROM EMPLOYEES E
+        JOIN DEPARTMENT D
+        ON E.DEPT_ID = D.DEPT_ID(+)
+        WHERE EMP_NO =#{empNo} AND PASSWORD = #{password}
     </select>
     
     <!-- 개인조회 -->
@@ -68,7 +85,8 @@
         ,E.DELETED_YN 
         ,E.DELETE_DATE 
         ,E.DEPT_ID 
-        ,E.GMAIL_APP_KEY 
+        ,E.GMAIL_APP_KEY
+        ,E.ADMIN_YN 
         ,D.DEPT_NAME
         FROM EMPLOYEES E
         JOIN DEPARTMENT D

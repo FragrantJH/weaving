@@ -4,7 +4,6 @@
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 
 <body>
-
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -68,7 +67,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 </body>
 </html>

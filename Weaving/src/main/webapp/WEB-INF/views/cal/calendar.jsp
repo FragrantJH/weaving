@@ -92,7 +92,9 @@ body {
 		<!-- Modal 종료 -->
 		
 	</div>
-	
+
+	<c:set var="isAminRestrict" value="${calType == 'ALL' && admin.adminYn == false}" />
+
 	<script>
 	
 		var calendar;
@@ -103,6 +105,16 @@ body {
 			
 			// 화면 로드 시 캘린더 목록 조회
 			calList();
+			
+			console.log('isAminRestrict? ' + ${isAminRestrict});
+			
+			// 전체 일정에 일반 사용자 접속 시 처리
+			if(${isAminRestrict}) {
+				
+				$('#calModal input').attr('readonly', 'readonly');
+				$('#calModal input:checkbox').attr('disabled', 'disabled');
+				$('#calModal textarea').attr('readonly', 'readonly');
+			}
 			
 			// modal창이 닫히면 값 초기화
 			$('#calModal').on('hidden.bs.modal', function (e) {
@@ -122,7 +134,6 @@ body {
 			$('#calModal').on('shown.bs.modal', function (e) {
 				$('#title').focus();
 			});
-			
 			
 			// allDay 체크 이벤트 변경 시 포맷 변경 처리
 			$("#allDay").change(function(){
@@ -150,13 +161,22 @@ body {
 		        	$('#end').val(moment(end).format(dateTimeFormat));
 		        }
 		    });
+			
 		});
 		
 		// 추가/수정에 따라 버튼 보이기 처리
 		function showButtons(isAdd) {
-			isAdd == true ? $('#btnAdd').show() : $('#btnAdd').hide();
-			isAdd == true ? $('#btnUpdate').hide() : $('#btnUpdate').show();
-			isAdd == true ? $('#btnDelete').hide() : $('#btnDelete').show() ;
+			
+			// adminMode가 아니면 해당 버튼을 가린다
+			if(${isAminRestrict}) {
+				$('#btnAdd').hide();
+				$('#btnUpdate').hide();
+				$('#btnDelete').hide();
+			} else {
+				isAdd == true ? $('#btnAdd').show() : $('#btnAdd').hide();
+				isAdd == true ? $('#btnUpdate').hide() : $('#btnUpdate').show();
+				isAdd == true ? $('#btnDelete').hide() : $('#btnDelete').show() ;
+			}
 		}
 		
 		// 상세 화면의 데이터 객체 가져옴
@@ -189,12 +209,17 @@ body {
 		// 캘린더 화면에 출력
 		function calRender(data) {
 			
-			console.log(data);
-			
 			var calendarEl = document.getElementById('calendar');
-
+			var myPlugins;
+			
+			if(${isAminRestrict}) {
+				myPlugins = [ 'dayGrid', 'timeGrid', 'list' ];
+			} else {
+				myPlugins = [ 'interaction', 'dayGrid', 'timeGrid', 'list' ];
+			}
+			
 			calendar = new FullCalendar.Calendar(calendarEl, {
-				plugins : [ 'interaction', 'dayGrid', 'timeGrid', 'list' ], // 적용할 plugin
+				plugins : myPlugins, //[ 'interaction', 'dayGrid', 'timeGrid', 'list' ], // 적용할 plugin
 				header : {
 					left : 'prev,next today',
 					center : 'title',
@@ -227,6 +252,7 @@ body {
 			    },
 				events : data
 			});
+			
 			calendar.render();
 		}
 		
@@ -250,6 +276,8 @@ body {
 		function showCalDetail(eventInfo) {
 
 			if(eventInfo != null) {
+				
+				$('.modal-title').html('일정 정보');
 				
 				// 추가 삭제 버튼 처리
 				showButtons(false);
