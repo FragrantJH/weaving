@@ -11,8 +11,6 @@ DROP TABLE TodoList CASCADE CONSTRAINTS;
 DROP TABLE Employees CASCADE CONSTRAINTS;
 DROP TABLE Department CASCADE CONSTRAINTS;
 DROP TABLE DocumentForm CASCADE CONSTRAINTS;
-DROP TABLE DOCUMENTHISTORY CASCADE CONSTRAINTS;
-DROP TABLE email CASCADE CONSTRAINTS;
 DROP TABLE Room CASCADE CONSTRAINTS;
 
 
@@ -45,14 +43,16 @@ CREATE TABLE Calendars
 (
 	-- 캘린더ID
 	cal_id number NOT NULL,
+	-- 그룹ID
+	group_id number,
 	-- 직원ID
 	emp_no number,
 	-- 제목
 	title varchar2(100) NOT NULL,
-	-- 하루종일여부 : 1 : 하루종일
-	-- 0 : 하루종일 아님
+	-- 하루종일여부 : Y : 하루종일 (default)
+	-- N
 	-- 
-	all_Day char DEFAULT '1',
+	allDay char DEFAULT 'Y',
 	-- 시작
 	start_date date DEFAULT sysdate NOT NULL,
 	-- 종료
@@ -60,8 +60,8 @@ CREATE TABLE Calendars
 	-- 색상 : CSS색상 코드
 	-- #ff0000
 	back_color varchar2(10),
-	-- 설명
-	description varchar2(500),
+	-- 작성날자
+	create_date date DEFAULT sysdate,
 	PRIMARY KEY (cal_id)
 );
 
@@ -70,7 +70,7 @@ CREATE TABLE Calendars
 CREATE TABLE Department
 (
 	-- 부서ID
-	dept_id number DEFAULT 0 NOT NULL,
+	dept_id number NOT NULL,
 	-- 부서명
 	dept_name varchar2(100) NOT NULL,
 	-- 부모부서ID
@@ -117,25 +117,6 @@ CREATE TABLE DocumentForm
 );
 
 
--- 문서히스토리
-CREATE TABLE DOCUMENTHISTORY
-(
-	-- 히스토리ID
-	HISTORY_ID number NOT NULL,
-	-- DOC_ID
-	DOC_ID number,
-	-- EMP_NO
-	EMP_NO number,
-	-- PRE_STATUS : 변경 전 상태값
-	PRE_STATUS char(4),
-	-- 현재상태 : 현재 상태 값
-	CUR_STATUS char(4),
-	-- 변경날짜
-	CHANGE_DATE date DEFAULT sysdate,
-	PRIMARY KEY (HISTORY_ID)
-);
-
-
 -- 결재문서
 CREATE TABLE Documents
 (
@@ -159,28 +140,6 @@ CREATE TABLE Documents
 );
 
 
--- 이메일
-CREATE TABLE email
-(
-	-- 이메일ID
-	email_id number NOT NULL,
-	-- 보낸이메일주소
-	from_email varchar2(100) NOT NULL,
-	-- 받은이메일주소
-	to_email varchar2(100) NOT NULL,
-	-- 제목
-	title varchar2(200),
-	-- 내용
-	email_contents varchar2(500),
-	-- 읽은시간
-	check_time date,
-	-- 읽음확인유무 : 1 : 읽음
-	-- 0 : 안읽음
-	read_check char DEFAULT '0',
-	PRIMARY KEY (email_id)
-);
-
-
 -- 직원
 CREATE TABLE Employees
 (
@@ -190,19 +149,14 @@ CREATE TABLE Employees
 	emp_name varchar2(100) NOT NULL,
 	-- 비밀번호
 	password varchar2(100) NOT NULL,
-	-- 직위 : 0 사원
-	-- 1 대리
-	-- 2 과장
-	-- 3 차장
-	-- 4 부장
-	-- 5 대표
-	position number DEFAULT 0,
+	-- 직위
+	position number DEFAULT 1,
+	-- 직위명
+	position_title varchar2(50) DEFAULT '사원',
 	-- 입사일
 	joindate date DEFAULT sysdate NOT NULL,
 	-- 이메일
 	email varchar2(200) NOT NULL,
-	-- Gmail앱키 : Gmail과 연동하기 위해 사용자별 App key 관리
-	gmail_app_key varchar2(16) NOT NULL,
 	-- 휴대전화
 	phone varchar2(50),
 	-- 주소
@@ -390,16 +344,17 @@ COMMENT ON COLUMN Board.board_type IS '게시판타입 : 0: 공지사항
 1: 사내게시판';
 COMMENT ON TABLE Calendars IS '일정';
 COMMENT ON COLUMN Calendars.cal_id IS '캘린더ID';
+COMMENT ON COLUMN Calendars.group_id IS '그룹ID';
 COMMENT ON COLUMN Calendars.emp_no IS '직원ID';
 COMMENT ON COLUMN Calendars.title IS '제목';
-COMMENT ON COLUMN Calendars.all_Day IS '하루종일여부 : 1 : 하루종일
-0 : 하루종일 아님
+COMMENT ON COLUMN Calendars.allDay IS '하루종일여부 : Y : 하루종일 (default)
+N
 ';
 COMMENT ON COLUMN Calendars.start_date IS '시작';
 COMMENT ON COLUMN Calendars.end_date IS '종료';
 COMMENT ON COLUMN Calendars.back_color IS '색상 : CSS색상 코드
 #ff0000';
-COMMENT ON COLUMN Calendars.description IS '설명';
+COMMENT ON COLUMN Calendars.create_date IS '작성날자';
 COMMENT ON TABLE Department IS '부서';
 COMMENT ON COLUMN Department.dept_id IS '부서ID';
 COMMENT ON COLUMN Department.dept_name IS '부서명';
@@ -419,13 +374,6 @@ COMMENT ON COLUMN DocumentForm.form_name IS '이름';
 COMMENT ON COLUMN DocumentForm.description IS '설명';
 COMMENT ON COLUMN DocumentForm.form_contents IS '폼내용';
 COMMENT ON COLUMN DocumentForm.create_date IS '등록날짜';
-COMMENT ON TABLE DOCUMENTHISTORY IS '문서히스토리';
-COMMENT ON COLUMN DOCUMENTHISTORY.HISTORY_ID IS '히스토리ID';
-COMMENT ON COLUMN DOCUMENTHISTORY.DOC_ID IS 'DOC_ID';
-COMMENT ON COLUMN DOCUMENTHISTORY.EMP_NO IS 'EMP_NO';
-COMMENT ON COLUMN DOCUMENTHISTORY.PRE_STATUS IS 'PRE_STATUS : 변경 전 상태값';
-COMMENT ON COLUMN DOCUMENTHISTORY.CUR_STATUS IS '현재상태 : 현재 상태 값';
-COMMENT ON COLUMN DOCUMENTHISTORY.CHANGE_DATE IS '변경날짜';
 COMMENT ON TABLE Documents IS '결재문서';
 COMMENT ON COLUMN Documents.doc_id IS '결재문서ID';
 COMMENT ON COLUMN Documents.emp_no IS '기안자ID';
@@ -435,28 +383,14 @@ COMMENT ON COLUMN Documents.doc_contents IS '내용';
 COMMENT ON COLUMN Documents.reg_date IS '기안날짜';
 COMMENT ON COLUMN Documents.done_date IS '결재완료날짜';
 COMMENT ON COLUMN Documents.secure_level IS '보안등급';
-COMMENT ON TABLE email IS '이메일';
-COMMENT ON COLUMN email.email_id IS '이메일ID';
-COMMENT ON COLUMN email.from_email IS '보낸이메일주소';
-COMMENT ON COLUMN email.to_email IS '받은이메일주소';
-COMMENT ON COLUMN email.title IS '제목';
-COMMENT ON COLUMN email.email_contents IS '내용';
-COMMENT ON COLUMN email.check_time IS '읽은시간';
-COMMENT ON COLUMN email.read_check IS '읽음확인유무 : 1 : 읽음
-0 : 안읽음';
 COMMENT ON TABLE Employees IS '직원';
 COMMENT ON COLUMN Employees.emp_no IS '사번';
 COMMENT ON COLUMN Employees.emp_name IS '이름';
 COMMENT ON COLUMN Employees.password IS '비밀번호';
-COMMENT ON COLUMN Employees.position IS '직위 : 0 사원
-1 대리
-2 과장
-3 차장
-4 부장
-5 대표';
+COMMENT ON COLUMN Employees.position IS '직위';
+COMMENT ON COLUMN Employees.position_title IS '직위명';
 COMMENT ON COLUMN Employees.joindate IS '입사일';
 COMMENT ON COLUMN Employees.email IS '이메일';
-COMMENT ON COLUMN Employees.gmail_app_key IS 'Gmail앱키 : Gmail과 연동하기 위해 사용자별 App key 관리';
 COMMENT ON COLUMN Employees.phone IS '휴대전화';
 COMMENT ON COLUMN Employees.address IS '주소';
 COMMENT ON COLUMN Employees.deleted_yn IS '삭제유무 : Y : 삭제

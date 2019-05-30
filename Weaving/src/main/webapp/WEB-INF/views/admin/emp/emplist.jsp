@@ -279,11 +279,11 @@ function formch() {
 								<br>
 								<br> 
 								<label for="empName"><b>이름</b></label> 
-								<input type="text" name="empName" id="empName">
+								<input type="text" name="empName" id="empName" required>
 								<br>
 								<br> 
 								<label for="password"><b>비밀번호</b></label> 
-								<input type="text" name="password" id="password" onkeyup="pwche()">
+								<input type="text" name="password" id="password" onkeyup="pwche()" required>
 								<br>
 								<br> 
 								<!-- <label for="repassword"><b>비밀번호 확인</b></label> 
@@ -330,7 +330,7 @@ function formch() {
 								<br>
 								<br> 
 								<label for="email"><b>이메일</b></label> 
-								<input type="text" name="email" id="email">
+								<input type="text" name="email" id="email" required>
 								<br>
 								<br> 
 								<label for="phone"><b>휴대 전화</b></label> 

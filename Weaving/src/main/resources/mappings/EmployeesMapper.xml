@@ -140,15 +140,53 @@
 	<insert id="insertExcelTest" parameterType="emp">
 	INSERT ALL 
 	<foreach collection="list" item="item" index="index" separator="">
-	INTO EMPLOYEES(emp_no,emp_name,password,joindate,email,gmail_app_key) 
+	INTO EMPLOYEES(
+					EMP_NO
+					,EMP_NAME
+					,PASSWORD
+					<if test="position != null">
+					,POSITION
+					</if><if test="joindate1 != null">
+					,JOINDATE
+					</if>
+					,EMAIL
+					<if test="phone != null">
+					,PHONE
+					</if><if test="address != null">
+					,ADDRESS
+					</if><if test="deptId != null">
+					,DEPT_ID
+					</if><if test="deletedYn != null">
+					,DELETED_YN
+					</if><if test="deletedDate != null">
+					,DELETED_DATE
+					</if><if test="gmailAppKey != null">
+					,GMAIL_APP_KEY
+					</if>) 
 	VALUES
 		(
 		(SELECT NVL(MAX(EMP_NO), 0) + 1 FROM EMPLOYEES)+#{index}
-		, #{item.empName}
-		, #{item.password}
+		,#{item.empName}
+		,#{item.password}
+		<if test="position != null">
+		,#{item.position}
+		</if><if test="joindate1 != null">
 		,to_date( #{item.joindate1},'yyyy-mm-dd')
-		, #{item.email}
-		, #{item.gmailAppKey}
+		</if>
+		,#{item.email}
+		<if test="phone != null">
+		,#{item.phone}
+		</if><if test="address != null">
+		,#{item.address}
+		</if><if test="deptId != null">
+		,#{item.deptId}
+		</if><if test="deletedYn != null">
+		,#{item.deletedYn}
+		</if><if test="deletedDate != null">
+		,#{item.deletedDate}
+		</if><if test="gmailAppKey != null">
+		,#{item.gmailAppKey}
+		</if>
 		)
 	</foreach>
 	SELECT * FROM DUAL
