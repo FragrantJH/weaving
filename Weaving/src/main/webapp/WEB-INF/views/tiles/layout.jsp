@@ -96,11 +96,21 @@
               <p>Dashboard</p>
             </a>
           </li>
-         <li class="nav-item ">
-            <a class="nav-link" href="${pageContext.request.contextPath}/view_mail">
+          <li class="nav-item dropdown ">
+            <a class="nav-link" data-toggle="collapse" data-target="#email" role="button">
               <i class="material-icons">email</i>
               <p>메일</p>
             </a>
+            <div id="email" class="collapse in">
+            	<a class="dropdown-item" href="${pageContext.request.contextPath}/mailForm">
+			      	<i class="material-icons">email</i>
+              		<p>메일보내기</p>
+			    </a>
+			    <a class="dropdown-item" href="${pageContext.request.contextPath}/view_mail">
+			      	<i class="material-icons">email</i>
+              		<p>받은메일함</p>
+			    </a>     
+            </div>
           </li>
           <li class="nav-item dropdown ">
             <a class="nav-link" data-toggle="collapse" data-target="#board" role="button">

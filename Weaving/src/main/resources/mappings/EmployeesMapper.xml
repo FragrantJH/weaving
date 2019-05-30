@@ -20,8 +20,8 @@
 								,DEPT_ID
 								</if><if test="deletedYn != null">
 								,DELETED_YN
-								</if><if test="deletedDate != null">
-								,DELETED_DATE
+								</if><if test="deleteDate != null">
+								,DELETE_DATE
 								</if><if test="gmailAppKey != null">
 								,GMAIL_APP_KEY
 								</if>
@@ -43,8 +43,8 @@
 				,#{deptId}
 				</if><if test="deletedYn != null">
 				,#{deletedYn}
-				</if><if test="deletedDate != null">
-				,#{deletedDate}
+				</if><if test="deleteDate != null">
+				,#{deleteDate}
 				</if><if test="gmailAppKey != null">
 				,#{gmailAppKey}
 				</if>
@@ -108,7 +108,7 @@
 		FROM EMPLOYEES E
 		JOIN DEPARTMENT D
 		ON E.DEPT_ID = D.DEPT_ID(+)
-		WHERE DELETED_YN ='N'
+		WHERE DELETED_YN ='N' OR DELETED_YN IS NULL
 		ORDER BY E.EMP_NO DESC
 	</select>
 	
@@ -144,23 +144,23 @@
 					EMP_NO
 					,EMP_NAME
 					,PASSWORD
-					<if test="position != null">
+					<if test="item.position != null">
 					,POSITION
-					</if><if test="joindate1 != null">
+					</if><if test="item.joindate1 != null">
 					,JOINDATE
 					</if>
 					,EMAIL
-					<if test="phone != null">
+					<if test="item.phone != null">
 					,PHONE
-					</if><if test="address != null">
+					</if><if test="item.address != null">
 					,ADDRESS
-					</if><if test="deptId != null">
+					</if><if test="item.deptId != null">
 					,DEPT_ID
-					</if><if test="deletedYn != null">
+					</if><if test="item.deletedYn != null">
 					,DELETED_YN
-					</if><if test="deletedDate != null">
-					,DELETED_DATE
-					</if><if test="gmailAppKey != null">
+					</if><if test="item.deleteDate != null">
+					,DELETE_DATE
+					</if><if test="item.gmailAppKey != null">
 					,GMAIL_APP_KEY
 					</if>) 
 	VALUES
@@ -168,23 +168,23 @@
 		(SELECT NVL(MAX(EMP_NO), 0) + 1 FROM EMPLOYEES)+#{index}
 		,#{item.empName}
 		,#{item.password}
-		<if test="position != null">
+		<if test="item.position != null">
 		,#{item.position}
-		</if><if test="joindate1 != null">
-		,to_date( #{item.joindate1},'yyyy-mm-dd')
+		</if><if test="item.joindate1 != null">
+		,TO_DATE( #{item.joindate1},'yyyy-mm-dd')
 		</if>
 		,#{item.email}
-		<if test="phone != null">
+		<if test="item.phone != null">
 		,#{item.phone}
-		</if><if test="address != null">
+		</if><if test="item.address != null">
 		,#{item.address}
-		</if><if test="deptId != null">
+		</if><if test="item.deptId != null">
 		,#{item.deptId}
-		</if><if test="deletedYn != null">
-		,#{item.deletedYn}
-		</if><if test="deletedDate != null">
-		,#{item.deletedDate}
-		</if><if test="gmailAppKey != null">
+		</if><if test="item.deletedYn != null">
+		,'N'
+		</if><if test="item.deleteDate != null">
+		,TO_DATE( #{item.deleteDate},'yyyy-mm-dd')
+		</if><if test="item.gmailAppKey != null">
 		,#{item.gmailAppKey}
 		</if>
 		)
