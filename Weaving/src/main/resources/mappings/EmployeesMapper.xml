@@ -183,7 +183,7 @@
 		</if><if test="item.deletedYn != null">
 		,#{item.deletedYn}
 		</if><if test="item.deleteDate != null">
-		,#{item.deleteDate}
+		,to_date( #{item.deleteDate},'yyyy-mm-dd')
 		</if><if test="item.gmailAppKey != null">
 		,#{item.gmailAppKey}
 		</if>

@@ -196,6 +196,7 @@ public class AdminAccountsMngService {
 									if (true) {
 										value = "";
 // cell 스타일이 다르더라도 String으로 반환 받음
+										if(curCell != null)
 										switch (curCell.getCellType()) {
 										case HSSFCell.CELL_TYPE_FORMULA:
 											value = curCell.getCellFormula();
