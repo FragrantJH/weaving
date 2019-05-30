@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="empInfo" value="${emp}" scope="session" />
 <c:set var="docBaseInfo" value="${docInfo}"/>
+<c:set var="docDetailInfo" value="${docDetailInfo}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +31,12 @@
 	vertical-align: middle;
 	text-align: center;
 }
+.appraoval-date {
+	height: 40px;
+	width: 116px;
+	vertical-align: middle;
+	text-align: center;
+}
 #docDetailContents {
     pointer-events: none;
 }
@@ -36,63 +44,36 @@
 </head>
 <script>
 $(function() {
-	makeApprovalListTable();
+	approvalSendEvent();
 });
 	
-function makeApprovalListTable() {		
-	var approvalEmp = $('#approvalList option');
-	var empCnt = approvalEmp.length;
-	var tb = "";
-	
-	var DataArray = new Array();
-	
-	if (empCnt > 0) {	
-		$('.approval-line').empty();
-		
-		var tb = "<table class='approval-table' border='1' bordercolor='#cdcdcd'>"+
-					"<tr>" +
-						"<th rowspan='2' scope='col'>"+
-							"<div style='height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;'>"+
-								"결재"+
-							"</div>"+
-						"</th>"+
-						"<th scope='col' class='team name' data-order='1' data-empNo='${position}'>${empName}</td>";
-		var writerData = {
-				'empNo' : '${empInfo.empNo}',
-				'approvalOrder' : '1',
-				'status': 'DONE'
-		};								
+function approvalSendEvent() {
 
-		DataArray.push(writerData);
-		for (var i = 0; i < empCnt; i++) {
-			var ApprovalData = {};
-			var str = approvalEmp[i].text.split('(');
-			
-			tb +="<th scope='col' class='team name' data-order='" + (i + 2) + "' data-empNo='"+approvalEmp[i].value+"'>"+str[0]+"</th>";
+	$('#approvalModal').on('hidden.bs.modal', function (e) {
+		location.replace("${pageContext.request.contextPath}/"); 
+	});
 
-			ApprovalData['empNo'] = approvalEmp[i].value;
-			ApprovalData['approvalOrder'] = ''+(i + 2)+'';
-			ApprovalData['status'] = 'wait';
-			
-			DataArray.push(ApprovalData);
-		}
-		
-		
-		tb += "</tr>"+
-			  "<tr>" +
-			  	"<td class='stamp'>승인</td>";
-		for (var i = 0; i < empCnt; i++) {
-			tb += "<td class='stamp'></td>";
-		}
-		tb +="</tr>"+
-			 "</table>";
-		$('.approval-line').append(tb);
-	
-		var jsonString = JSON.stringify(DataArray);
-	    var jsonData = JSON.parse(jsonString);
-
-	   $("input[name=approvalList]").val(jsonString);
-	}	
+	$('.modal-footer').on('click', '#approvalSend', function() {
+		$.ajax({ 
+		    url: "updateDone",
+		    type: 'PUT', 
+		    dataType: 'json', 
+		    data: JSON.stringify({
+		    	docId: ${docBaseInfo.docId},
+		    	empNo: ${empInfo.empNo},
+		    	approvalComments: $('#approvalComment').val()
+		    	}),
+		    //서버에 데이터를 보낼 때 사용 content - type 헤더의 값
+		    contentType: 'application/json',
+		    //mimeType: 'application/json',
+		    success: function(data) {
+		    	$('#approvalModal').modal("hide");
+		    },
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    }
+		});
+	});
 }
 </script>
 <body>
@@ -107,8 +88,34 @@ function makeApprovalListTable() {
 				<div class="card-body">
 					<div style="float:right;">
 						<button type="button" class="btn btn-primary">결재이력</button>
-						<button type="button" class="btn btn-primary">결재하기</button>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#approvalModal">결재하기</button>
 					</div>
+					<!-- 결재하기 모달 -->
+					<div class="modal fade" id="approvalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">결재하기</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><label>의견</label></span>
+										</div>
+										<input type="text" id="approvalComment" class="form-control" size="100" placeholder="의견을 입력하세요" style="margin-bottom: 8px;">
+									</div>									
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary">Reject</button>
+									<button type="button" class="btn btn-primary" id="approvalSend">Approval</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>							
 					<h3 id="doc-title" class="text-center">${docBaseInfo.docTitle}</h3>
 					<div style="display:inline-block;">
 						<table class="table">
@@ -176,13 +183,13 @@ var tb = "<table class='approval-table' border='1' bordercolor='#cdcdcd'>"+
 					<div style="dispaly:inline-block; float:right;">
 						<table class='approval-table' border='1' bordercolor='#cdcdcd'>
 							<tr>
-								<th rowspan='2' scope='col'>
+								<th rowspan='3' scope='col'>
 									<div style='height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;'>
 									결재
 									</div>
 								</th>
 								<c:forEach items="${docDetailInfo}" var="docDetailInfo">
-									<th scope='col' class='team name'>${docDetailInfo.empName}</th>
+									<th scope='col' class='appraval name'>${docDetailInfo.empName}</th>
 								</c:forEach>
 							</tr>
 				  			<tr>
@@ -194,7 +201,12 @@ var tb = "<table class='approval-table' border='1' bordercolor='#cdcdcd'>"+
 										<td class='stamp'></td>
 									</c:if>									
 								</c:forEach>				  			
-							</tr>							
+							</tr>
+							<tr>
+								<c:forEach items="${docDetailInfo}" var="docDetailInfo">
+									<td scope='col' class='appraoval-date'>${docDetailInfo.approvalDate}</td>
+								</c:forEach>							
+							</tr>
 				 		</table>					
 					</div>
 					<h3>상세 입력</h3>
