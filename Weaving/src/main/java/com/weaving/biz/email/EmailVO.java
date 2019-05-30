@@ -1,26 +1,36 @@
 package com.weaving.biz.email;
 
+import java.sql.Date;
+
 public class EmailVO {
 	
-	String from;
-	String to;
+	int emailId;
+	String fromEmail;
+	String toEmail;
 	String subject;
-	String content;
+	String emailContents;
+	Date checkTime;
+	String readCheck;
+
 	String filename;
-	String gmail_app_key;
-	String email;
-	
-	public String getFrom() {
-		return from;
+	String gmailAppKey;
+	public int getEmailId() {
+		return emailId;
 	}
-	public void setFrom(String from) {
-		this.from = from;
+	public void setEmailId(int emailId) {
+		this.emailId = emailId;
 	}
-	public String getTo() {
-		return to;
+	public String getFromEmail() {
+		return fromEmail;
 	}
-	public void setTo(String to) {
-		this.to = to;
+	public void setFromEmail(String fromEmail) {
+		this.fromEmail = fromEmail;
+	}
+	public String getToEmail() {
+		return toEmail;
+	}
+	public void setToEmail(String toEmail) {
+		this.toEmail = toEmail;
 	}
 	public String getSubject() {
 		return subject;
@@ -28,11 +38,23 @@ public class EmailVO {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	public String getContent() {
-		return content;
+	public String getEmailContents() {
+		return emailContents;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setEmailContents(String emailContents) {
+		this.emailContents = emailContents;
+	}
+	public Date getCheckTime() {
+		return checkTime;
+	}
+	public void setCheckTime(Date checkTime) {
+		this.checkTime = checkTime;
+	}
+	public String getReadCheck() {
+		return readCheck;
+	}
+	public void setReadCheck(String readCheck) {
+		this.readCheck = readCheck;
 	}
 	public String getFilename() {
 		return filename;
@@ -40,24 +62,19 @@ public class EmailVO {
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
-	public String getGmail_app_key() {
-		return gmail_app_key;
+	public String getGmailAppKey() {
+		return gmailAppKey;
 	}
-	public void setGmail_app_key(String gmail_app_key) {
-		this.gmail_app_key = gmail_app_key;
+	public void setGmailAppKey(String gmailAppKey) {
+		this.gmailAppKey = gmailAppKey;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 	@Override
 	public String toString() {
-		return "EmailVO [from=" + from + ", to=" + to + ", subject=" + subject + ", content=" + content + ", filename="
-				+ filename + ", gmail_app_key=" + gmail_app_key + ", email=" + email + "]";
+		return "EmailVO [emailId=" + emailId + ", fromEmail=" + fromEmail + ", toEmail=" + toEmail + ", subject="
+				+ subject + ", emailContents=" + emailContents + ", checkTime=" + checkTime + ", readCheck=" + readCheck
+				+ ", filename=" + filename + ", gmailAppKey=" + gmailAppKey + "]";
 	}
-
 	
 	
 }

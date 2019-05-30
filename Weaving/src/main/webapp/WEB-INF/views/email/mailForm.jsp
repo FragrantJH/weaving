@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +17,7 @@
 	<form action="mailSend" method="get">
 		<div class="bigpage">
 			<div class="send-button">
-				<input type="submit" value="보내기"  onclick="location.href='success_email.jsp'"/>
+				<input type="submit" value="보내기"/>
 				<button>미리보기</button>
 				<button>저장하기</button>
 				<button>옵션</button>

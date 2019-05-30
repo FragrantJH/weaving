@@ -1,5 +1,6 @@
 package com.weaving.biz.email;
 
+import java.util.List;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -21,13 +22,14 @@ import javax.mail.internet.MimeMultipart;
 import org.springframework.stereotype.Service;
 
 import com.weaving.biz.board.BoardVO;
+import com.weaving.biz.doc.DocWaitVO;
 
 @Service
 public class SendEmailService {
 	
 	public void send(EmailVO vo) {
-		String to = vo.getTo();// change accordingly
-		String from = vo.getFrom(); // change accordingly
+		String to = vo.getToEmail();// change accordingly
+		String from = vo.getFromEmail(); // change accordingly
 		final String username ="dohy43@gmail.com"; // change accordingly
 		final String password = "uuioeaxjqhwqerno"; // change accordingly
 		
@@ -51,7 +53,7 @@ public class SendEmailService {
 			message.setFrom(new InternetAddress(from));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 			message.setSubject(vo.getSubject());//제목
-			message.setText(vo.getContent());//내용
+			message.setText(vo.getEmailContents());//내용
 			Transport.send(message);
 			System.out.println("Sent message successfully....");
 		} catch (MessagingException e) {
@@ -60,8 +62,8 @@ public class SendEmailService {
 	}
 	
 	public void sendAttatch(EmailVO vo) {
-		String to = vo.getTo();// change accordingly
-		String from = vo.getFrom(); // change accordingly
+		String to = vo.getToEmail();// change accordingly
+		String from = vo.getFromEmail(); // change accordingly
 		final String username ="dohy43@gmail.com"; // change accordingly
 		final String password = "uuioeaxjqhwqerno"; // change accordingly
 		
@@ -92,7 +94,7 @@ public class SendEmailService {
 	        
 	         // Create the message part
 	         BodyPart messageBodyPart = new MimeBodyPart();
-	         messageBodyPart.setText(vo.getContent());
+	         messageBodyPart.setText(vo.getEmailContents());
 	         Multipart multipart = new MimeMultipart();
 	         multipart.addBodyPart(messageBodyPart);
 	         
@@ -110,7 +112,8 @@ public class SendEmailService {
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
-	}	
+	}
+	
 	
 }
 

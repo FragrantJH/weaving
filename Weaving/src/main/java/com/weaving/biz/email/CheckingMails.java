@@ -28,7 +28,6 @@ public class CheckingMails {
 		try {
 			// create properties field
 			Properties properties = new Properties();
-
 			properties.put("mail.pop3.host", host);
 			properties.put("mail.pop3.port", "995");
 			properties.put("mail.pop3.starttls.enable", "true");
@@ -96,7 +95,7 @@ public class CheckingMails {
 		      if (p.isMimeType("text/plain")) {
 		         System.out.println("This is plain text");
 		         System.out.println("---------------------------");
-		       vo.setContent((String) p.getContent());
+		       vo.setEmailContents((String) p.getContent());
 		      } 
 		      //check if the content has attachment
 		      else if (p.isMimeType("multipart/*")) {
@@ -180,13 +179,13 @@ public class CheckingMails {
 		      // FROM
 		      if ((a = m.getFrom()) != null) {
 		         for (int j = 0; j < a.length; j++)
-		         vo.setFrom( a[j].toString());
+		         vo.setFromEmail(a[j].toString());
 		      }
 
 		      // TO
 		      if ((a = m.getRecipients(Message.RecipientType.TO)) != null) {
 		         for (int j = 0; j < a.length; j++)
-		         vo.setTo(a[j].toString());
+		         vo.setToEmail(a[j].toString());
 		      }
 
 		      // SUBJECT
