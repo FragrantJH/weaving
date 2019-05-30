@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.weaving.biz.doc.DocBaseVO;
+import com.weaving.biz.doc.DocReturnVO;
 import com.weaving.biz.doc.DocWaitVO;
 
 @Repository
@@ -24,7 +25,7 @@ public class DocListDAO {
 		return mybatis.selectList("DocListDAO.getWaitDocList", empNo);
 	}
 	
-	public int getWaitDocCount(int empNo) {
-		return mybatis.selectOne("DocListDAO.getWaitDocCount", empNo);
+	public List<DocReturnVO> getReturnDocList(int empNo) {
+		return mybatis.selectList("DocListDAO.getReturnDocList", empNo);
 	}
 }
