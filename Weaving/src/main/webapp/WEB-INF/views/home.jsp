@@ -64,8 +64,7 @@
             </div>
           </div>
           <div class="card-body">
-              <h4 class="card-title">label1</h4>
-                  label1 input
+              <h6 class="card-title">하기 싫다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</h6>
           </div>
       </div>
   </div>
