@@ -25,4 +25,8 @@ public class DocListServiceImpl implements DocListService{
 		return dao.getWaitDocList(empNo);
 	}
 
+	@Override
+	public int getWaitDocCount(int empNo) {
+		return dao.getWaitDocCount(empNo);
+	}
 }

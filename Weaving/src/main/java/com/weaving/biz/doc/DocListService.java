@@ -6,4 +6,6 @@ public interface DocListService {
 	List<DocBaseVO> getDoneDocList(int empNo);
 	
 	List<DocWaitVO> getWaitDocList(int empNo);
+	
+	int getWaitDocCount(int empNo);
 }
