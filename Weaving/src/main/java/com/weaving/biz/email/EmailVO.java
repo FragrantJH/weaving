@@ -1,6 +1,9 @@
 package com.weaving.biz.email;
 
 import java.sql.Date;
+import java.util.Arrays;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class EmailVO {
 	
@@ -11,9 +14,18 @@ public class EmailVO {
 	String emailContents;
 	Date checkTime;
 	String readCheck;
-
+	
 	String filename;
 	String gmailAppKey;
+	
+	String attachment;
+	String empNo;
+	int mailNo;
+	int mailNoList[];
+	MultipartFile uploadFile;
+	    
+	 String[] toarr;
+	
 	public int getEmailId() {
 		return emailId;
 	}
@@ -68,12 +80,51 @@ public class EmailVO {
 	public void setGmailAppKey(String gmailAppKey) {
 		this.gmailAppKey = gmailAppKey;
 	}
+	public String getAttachment() {
+		return attachment;
+	}
+	public void setAttachment(String attachment) {
+		this.attachment = attachment;
+	}
+	public String getEmpNo() {
+		return empNo;
+	}
+	public void setEmpNo(String empNo) {
+		this.empNo = empNo;
+	}
+	public int getMailNo() {
+		return mailNo;
+	}
+	public void setMailNo(int mailNo) {
+		this.mailNo = mailNo;
+	}
+	public int[] getMailNoList() {
+		return mailNoList;
+	}
+	public void setMailNoList(int[] mailNoList) {
+		this.mailNoList = mailNoList;
+	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public String[] getToarr() {
+		return toarr;
+	}
+	public void setToarr(String[] toarr) {
+		this.toarr = toarr;
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "EmailVO [emailId=" + emailId + ", fromEmail=" + fromEmail + ", toEmail=" + toEmail + ", subject="
 				+ subject + ", emailContents=" + emailContents + ", checkTime=" + checkTime + ", readCheck=" + readCheck
-				+ ", filename=" + filename + ", gmailAppKey=" + gmailAppKey + "]";
+				+ ", filename=" + filename + ", gmailAppKey=" + gmailAppKey + ", attachment=" + attachment + ", empNo="
+				+ empNo + ", mailNo=" + mailNo + ", mailNoList=" + Arrays.toString(mailNoList) + ", uploadFile="
+				+ uploadFile + ", toarr=" + Arrays.toString(toarr) + "]";
 	}
 	
 	

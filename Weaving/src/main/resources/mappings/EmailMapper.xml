@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Email">
+<mapper namespace="EmailDAO">
 
 
 <insert id="insertEmail" parameterType="com.weaving.biz.email.EmailVO" >
@@ -26,7 +26,7 @@ to_date(#{checkTime},'yyyy-mm-dd hh24:mi:ss'),
 </insert>
 <delete id="mailsDAO.deleteMails_S">
 		<![CDATA[
-			DELETE FROM Email WHERE MAIL_NO = #email_id#
+			DELETE FROM Email WHERE email_id = #email_id#
 			]]>
 	</delete>
 </mapper>

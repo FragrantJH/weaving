@@ -1,0 +1,682 @@
+src/main/java/com/weaving/biz/HomeController.java:40:	Variables that are final and static should be all capitals, 'logger' is not all capitals.
+src/main/java/com/weaving/biz/HomeController.java:40:	Variables that are final and static should be all capitals, 'logger' is not all capitals.
+src/main/java/com/weaving/biz/board/BoardService.java:9:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:9:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:12:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:12:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:15:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:15:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:21:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:21:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:27:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/BoardService.java:27:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:18:	System.out.println is used
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:18:	System.out.println is used
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:27:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:27:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:31:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:31:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:35:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:35:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:39:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:39:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:43:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardDAO.java:43:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:38:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:38:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:43:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:43:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:48:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/impl/BoardServiceImpl.java:48:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:44:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:44:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:49:	System.out.println is used
+src/main/java/com/weaving/biz/board/web/BoardController.java:49:	System.out.println is used
+src/main/java/com/weaving/biz/board/web/BoardController.java:72:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:72:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:80:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:80:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:88:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:88:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:96:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/board/web/BoardController.java:96:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/CalService.java:9:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/CalService.java:9:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/CalService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/CalService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/CalService.java:13:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/CalService.java:13:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/CalService.java:15:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/CalService.java:15:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/CalService.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/CalService.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/CalVO.java:4:	Avoid variables with short names like id
+src/main/java/com/weaving/biz/cal/CalVO.java:4:	Avoid variables with short names like id
+src/main/java/com/weaving/biz/cal/CalVO.java:19:	Avoid variables with short names like id
+src/main/java/com/weaving/biz/cal/CalVO.java:19:	Avoid variables with short names like id
+src/main/java/com/weaving/biz/cal/impl/CalDAO.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalDAO.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalDAO.java:21:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalDAO.java:21:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalDAO.java:25:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalDAO.java:25:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalDAO.java:29:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalDAO.java:29:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalDAO.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalDAO.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalServiceImpl.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalServiceImpl.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalServiceImpl.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalServiceImpl.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalServiceImpl.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalServiceImpl.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalServiceImpl.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalServiceImpl.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalServiceImpl.java:38:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/impl/CalServiceImpl.java:38:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/web/CalController.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/web/CalController.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/web/CalController.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/web/CalController.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/web/CalController.java:54:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/web/CalController.java:54:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/web/CalController.java:74:	System.out.println is used
+src/main/java/com/weaving/biz/cal/web/CalController.java:74:	System.out.println is used
+src/main/java/com/weaving/biz/cal/web/CalController.java:81:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/web/CalController.java:81:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/web/CalController.java:83:	System.out.println is used
+src/main/java/com/weaving/biz/cal/web/CalController.java:83:	System.out.println is used
+src/main/java/com/weaving/biz/cal/web/CalController.java:93:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/cal/web/CalController.java:93:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/common/CommonDateParser.java:8:	The utility class name 'CommonDateParser' doesn't match '[A-Z][a-zA-Z0-9]+(Utils?|Helper)'
+src/main/java/com/weaving/biz/common/CommonDateParser.java:8:	The utility class name 'CommonDateParser' doesn't match '[A-Z][a-zA-Z0-9]+(Utils?|Helper)'
+src/main/java/com/weaving/biz/common/CommonExcelView.java:30:	Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'file_name' is not final.
+src/main/java/com/weaving/biz/common/CommonExcelView.java:30:	Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'file_name' is not final.
+src/main/java/com/weaving/biz/common/CommonExcelView.java:43:	System.out.println is used
+src/main/java/com/weaving/biz/common/CommonExcelView.java:43:	System.out.println is used
+src/main/java/com/weaving/biz/common/CommonExcelView.java:53:	System.out.println is used
+src/main/java/com/weaving/biz/common/CommonExcelView.java:53:	System.out.println is used
+src/main/java/com/weaving/biz/common/SessionInfo.java:7:	The utility class name 'SessionInfo' doesn't match '[A-Z][a-zA-Z0-9]+(Utils?|Helper)'
+src/main/java/com/weaving/biz/common/SessionInfo.java:7:	The utility class name 'SessionInfo' doesn't match '[A-Z][a-zA-Z0-9]+(Utils?|Helper)'
+src/main/java/com/weaving/biz/dept/DeptService.java:8:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/DeptService.java:8:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/DeptService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/DeptService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/DeptService.java:14:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/DeptService.java:14:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/DeptService.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/DeptService.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/DeptService.java:20:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/DeptService.java:20:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/DeptService.java:22:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/DeptService.java:22:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:18:	System.out.println is used
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:18:	System.out.println is used
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:22:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:22:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:23:	System.out.println is used
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:23:	System.out.println is used
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:27:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:27:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:28:	System.out.println is used
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:28:	System.out.println is used
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:32:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:32:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptDAO.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:30:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:30:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:41:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:41:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:46:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/impl/DeptServiceImpl.java:46:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/web/DeptController.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/web/DeptController.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/web/DeptController.java:53:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/web/DeptController.java:53:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/web/DeptController.java:64:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/web/DeptController.java:64:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/web/DeptController.java:72:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/web/DeptController.java:72:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/web/DeptController.java:79:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/dept/web/DeptController.java:79:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:7:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:7:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:10:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:10:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:13:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:13:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:15:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:15:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:19:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:19:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:21:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:21:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:25:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/DocService.java:25:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocDAO.java:16:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocDAO.java:16:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocDAO.java:20:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocDAO.java:20:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocDAO.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocDAO.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocDAO.java:29:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocDAO.java:29:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocDAO.java:34:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocDAO.java:34:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocHistoryDAO.java:15:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocHistoryDAO.java:15:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:32:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:32:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:38:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:38:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:44:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:44:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:50:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:50:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:56:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:56:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:62:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:62:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:67:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:67:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:73:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:73:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:79:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/impl/DocServiceImpl.java:79:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/web/DocController.java:55:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:55:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:74:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:74:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:75:	Avoid variables with short names like lv
+src/main/java/com/weaving/biz/doc/web/DocController.java:75:	Avoid variables with short names like lv
+src/main/java/com/weaving/biz/doc/web/DocController.java:86:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/web/DocController.java:86:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/web/DocController.java:103:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/web/DocController.java:103:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/web/DocController.java:105:	Avoid variables with short names like f
+src/main/java/com/weaving/biz/doc/web/DocController.java:105:	Avoid variables with short names like f
+src/main/java/com/weaving/biz/doc/web/DocController.java:109:	Avoid variables with short names like d
+src/main/java/com/weaving/biz/doc/web/DocController.java:109:	Avoid variables with short names like d
+src/main/java/com/weaving/biz/doc/web/DocController.java:115:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:115:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:116:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:116:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:121:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:121:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:122:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:122:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:123:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:123:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:127:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:127:	System.out.println is used
+src/main/java/com/weaving/biz/doc/web/DocController.java:136:	Avoid variables with short names like b
+src/main/java/com/weaving/biz/doc/web/DocController.java:136:	Avoid variables with short names like b
+src/main/java/com/weaving/biz/doc/web/DocListController.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/web/DocListController.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/web/DocListController.java:32:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/doc/web/DocListController.java:32:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/DocFormService.java:7:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/DocFormService.java:7:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/DocFormService.java:9:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/DocFormService.java:9:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/DocFormService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/DocFormService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/DocFormService.java:13:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/DocFormService.java:13:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/DocFormService.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/DocFormService.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormDAO.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormDAO.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormDAO.java:21:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormDAO.java:21:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormDAO.java:25:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormDAO.java:25:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormDAO.java:29:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormDAO.java:29:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormDAO.java:37:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormDAO.java:37:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormServiceImpl.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormServiceImpl.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormServiceImpl.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormServiceImpl.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormServiceImpl.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormServiceImpl.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormServiceImpl.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormServiceImpl.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormServiceImpl.java:38:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/impl/DocFormServiceImpl.java:38:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:30:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:30:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:44:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:44:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:52:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:52:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:62:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:62:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:69:	Avoid variables with short names like mv
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:69:	Avoid variables with short names like mv
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:75:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/docForm/web/DocFormController.java:75:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/CheckingMails.java:46:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:46:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:53:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/CheckingMails.java:53:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/CheckingMails.java:86:	Avoid variables with short names like p
+src/main/java/com/weaving/biz/email/CheckingMails.java:86:	Avoid variables with short names like p
+src/main/java/com/weaving/biz/email/CheckingMails.java:86:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/CheckingMails.java:86:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/CheckingMails.java:91:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:91:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:92:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:92:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:96:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:96:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:97:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:97:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:102:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:102:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:103:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:103:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:104:	Avoid variables with short names like mp
+src/main/java/com/weaving/biz/email/CheckingMails.java:104:	Avoid variables with short names like mp
+src/main/java/com/weaving/biz/email/CheckingMails.java:111:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:111:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:112:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:112:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:117:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:117:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:118:	Avoid variables with short names like o
+src/main/java/com/weaving/biz/email/CheckingMails.java:118:	Avoid variables with short names like o
+src/main/java/com/weaving/biz/email/CheckingMails.java:120:	Avoid variables with short names like x
+src/main/java/com/weaving/biz/email/CheckingMails.java:120:	Avoid variables with short names like x
+src/main/java/com/weaving/biz/email/CheckingMails.java:122:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:122:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:123:	Avoid variables with short names like i
+src/main/java/com/weaving/biz/email/CheckingMails.java:123:	Avoid variables with short names like i
+src/main/java/com/weaving/biz/email/CheckingMails.java:133:	Avoid variables with short names like f2
+src/main/java/com/weaving/biz/email/CheckingMails.java:133:	Avoid variables with short names like f2
+src/main/java/com/weaving/biz/email/CheckingMails.java:137:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:137:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:138:	Avoid variables with short names like f
+src/main/java/com/weaving/biz/email/CheckingMails.java:138:	Avoid variables with short names like f
+src/main/java/com/weaving/biz/email/CheckingMails.java:151:	Avoid variables with short names like o
+src/main/java/com/weaving/biz/email/CheckingMails.java:151:	Avoid variables with short names like o
+src/main/java/com/weaving/biz/email/CheckingMails.java:153:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:153:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:154:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:154:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:155:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:155:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:158:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:158:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:159:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:159:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:160:	Avoid variables with short names like is
+src/main/java/com/weaving/biz/email/CheckingMails.java:160:	Avoid variables with short names like is
+src/main/java/com/weaving/biz/email/CheckingMails.java:162:	Avoid variables with short names like c
+src/main/java/com/weaving/biz/email/CheckingMails.java:162:	Avoid variables with short names like c
+src/main/java/com/weaving/biz/email/CheckingMails.java:167:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:167:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:168:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:168:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:169:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:169:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:174:	Avoid variables with short names like m
+src/main/java/com/weaving/biz/email/CheckingMails.java:174:	Avoid variables with short names like m
+src/main/java/com/weaving/biz/email/CheckingMails.java:174:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/CheckingMails.java:174:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/CheckingMails.java:175:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:175:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:176:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:176:	System.out.println is used
+src/main/java/com/weaving/biz/email/CheckingMails.java:177:	Avoid variables with short names like a
+src/main/java/com/weaving/biz/email/CheckingMails.java:177:	Avoid variables with short names like a
+src/main/java/com/weaving/biz/email/EmailVO.java:6:	Avoid variables with short names like to
+src/main/java/com/weaving/biz/email/EmailVO.java:6:	Avoid variables with short names like to
+src/main/java/com/weaving/biz/email/EmailVO.java:10:	Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'gmail_app_key' is not final.
+src/main/java/com/weaving/biz/email/EmailVO.java:10:	Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'gmail_app_key' is not final.
+src/main/java/com/weaving/biz/email/EmailVO.java:22:	Avoid variables with short names like to
+src/main/java/com/weaving/biz/email/EmailVO.java:22:	Avoid variables with short names like to
+src/main/java/com/weaving/biz/email/EmailVO.java:43:	The instance method name 'getGmail_app_key' doesn't match '[a-z][a-zA-Z0-9]*'
+src/main/java/com/weaving/biz/email/EmailVO.java:43:	The instance method name 'getGmail_app_key' doesn't match '[a-z][a-zA-Z0-9]*'
+src/main/java/com/weaving/biz/email/EmailVO.java:46:	Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'gmail_app_key' is not final.
+src/main/java/com/weaving/biz/email/EmailVO.java:46:	Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'gmail_app_key' is not final.
+src/main/java/com/weaving/biz/email/EmailVO.java:46:	The instance method name 'setGmail_app_key' doesn't match '[a-z][a-zA-Z0-9]*'
+src/main/java/com/weaving/biz/email/EmailVO.java:46:	The instance method name 'setGmail_app_key' doesn't match '[a-z][a-zA-Z0-9]*'
+src/main/java/com/weaving/biz/email/FetchingEmail.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/FetchingEmail.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/FetchingEmail.java:58:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:58:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:93:	Avoid variables with short names like p
+src/main/java/com/weaving/biz/email/FetchingEmail.java:93:	Avoid variables with short names like p
+src/main/java/com/weaving/biz/email/FetchingEmail.java:93:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/FetchingEmail.java:93:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/FetchingEmail.java:98:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:98:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:99:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:99:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:105:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:105:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:111:	Avoid variables with short names like mp
+src/main/java/com/weaving/biz/email/FetchingEmail.java:111:	Avoid variables with short names like mp
+src/main/java/com/weaving/biz/email/FetchingEmail.java:118:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:118:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:119:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:119:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:124:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:124:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:125:	Avoid variables with short names like o
+src/main/java/com/weaving/biz/email/FetchingEmail.java:125:	Avoid variables with short names like o
+src/main/java/com/weaving/biz/email/FetchingEmail.java:127:	Avoid variables with short names like x
+src/main/java/com/weaving/biz/email/FetchingEmail.java:127:	Avoid variables with short names like x
+src/main/java/com/weaving/biz/email/FetchingEmail.java:129:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:129:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:130:	Avoid variables with short names like i
+src/main/java/com/weaving/biz/email/FetchingEmail.java:130:	Avoid variables with short names like i
+src/main/java/com/weaving/biz/email/FetchingEmail.java:138:	Avoid variables with short names like f2
+src/main/java/com/weaving/biz/email/FetchingEmail.java:138:	Avoid variables with short names like f2
+src/main/java/com/weaving/biz/email/FetchingEmail.java:142:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:142:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:143:	Avoid variables with short names like f
+src/main/java/com/weaving/biz/email/FetchingEmail.java:143:	Avoid variables with short names like f
+src/main/java/com/weaving/biz/email/FetchingEmail.java:156:	Avoid variables with short names like o
+src/main/java/com/weaving/biz/email/FetchingEmail.java:156:	Avoid variables with short names like o
+src/main/java/com/weaving/biz/email/FetchingEmail.java:158:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:158:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:159:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:159:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:160:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:160:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:163:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:163:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:164:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:164:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:165:	Avoid variables with short names like is
+src/main/java/com/weaving/biz/email/FetchingEmail.java:165:	Avoid variables with short names like is
+src/main/java/com/weaving/biz/email/FetchingEmail.java:167:	Avoid variables with short names like c
+src/main/java/com/weaving/biz/email/FetchingEmail.java:167:	Avoid variables with short names like c
+src/main/java/com/weaving/biz/email/FetchingEmail.java:172:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:172:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:173:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:173:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:174:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:174:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:182:	Avoid variables with short names like m
+src/main/java/com/weaving/biz/email/FetchingEmail.java:182:	Avoid variables with short names like m
+src/main/java/com/weaving/biz/email/FetchingEmail.java:182:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/FetchingEmail.java:182:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/FetchingEmail.java:183:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:183:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:184:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:184:	System.out.println is used
+src/main/java/com/weaving/biz/email/FetchingEmail.java:185:	Avoid variables with short names like a
+src/main/java/com/weaving/biz/email/FetchingEmail.java:185:	Avoid variables with short names like a
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:42:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:42:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:59:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:59:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:64:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:64:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:66:	Avoid variables with short names like to
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:66:	Avoid variables with short names like to
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:69:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:69:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:74:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:74:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:78:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:78:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:81:	System.out.print is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:81:	System.out.print is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:93:	Avoid variables with short names like t
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:93:	Avoid variables with short names like t
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:103:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:103:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:115:	System.out.println is used
+src/main/java/com/weaving/biz/email/ReplyToEmail.java:115:	System.out.println is used
+src/main/java/com/weaving/biz/email/SendEmailService.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/SendEmailService.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/SendEmailService.java:29:	Avoid variables with short names like to
+src/main/java/com/weaving/biz/email/SendEmailService.java:29:	Avoid variables with short names like to
+src/main/java/com/weaving/biz/email/SendEmailService.java:56:	System.out.println is used
+src/main/java/com/weaving/biz/email/SendEmailService.java:56:	System.out.println is used
+src/main/java/com/weaving/biz/email/SendEmailService.java:62:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/SendEmailService.java:62:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/SendEmailService.java:63:	Avoid variables with short names like to
+src/main/java/com/weaving/biz/email/SendEmailService.java:63:	Avoid variables with short names like to
+src/main/java/com/weaving/biz/email/SendEmailService.java:109:	System.out.println is used
+src/main/java/com/weaving/biz/email/SendEmailService.java:109:	System.out.println is used
+src/main/java/com/weaving/biz/email/impl/EmailDAO.java:20:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/impl/EmailDAO.java:20:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/impl/EmailDAO.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/impl/EmailDAO.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/impl/EmailDAO.java:27:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/impl/EmailDAO.java:27:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/web/EmailController.java:35:	The instance method name 'success_email' doesn't match '[a-z][a-zA-Z0-9]*'
+src/main/java/com/weaving/biz/email/web/EmailController.java:35:	The instance method name 'success_email' doesn't match '[a-z][a-zA-Z0-9]*'
+src/main/java/com/weaving/biz/email/web/EmailController.java:42:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/web/EmailController.java:42:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/email/web/EmailController.java:52:	The instance method name 'send_mail' doesn't match '[a-z][a-zA-Z0-9]*'
+src/main/java/com/weaving/biz/email/web/EmailController.java:52:	The instance method name 'send_mail' doesn't match '[a-z][a-zA-Z0-9]*'
+src/main/java/com/weaving/biz/email/web/EmailController.java:68:	The instance method name 'reading_mail' doesn't match '[a-z][a-zA-Z0-9]*'
+src/main/java/com/weaving/biz/email/web/EmailController.java:68:	The instance method name 'reading_mail' doesn't match '[a-z][a-zA-Z0-9]*'
+src/main/java/com/weaving/biz/emp/Empservice.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:14:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:14:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:20:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:20:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:25:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:25:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/Empservice.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/AdminAccountsMngService.java:45:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/AdminAccountsMngService.java:45:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/AdminAccountsMngService.java:157:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/AdminAccountsMngService.java:157:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/AuthenticationInterceptor.java:17:	System.out.println is used
+src/main/java/com/weaving/biz/emp/impl/AuthenticationInterceptor.java:17:	System.out.println is used
+src/main/java/com/weaving/biz/emp/impl/AuthenticationInterceptor.java:20:	System.out.println is used
+src/main/java/com/weaving/biz/emp/impl/AuthenticationInterceptor.java:20:	System.out.println is used
+src/main/java/com/weaving/biz/emp/impl/AuthenticationInterceptor.java:22:	System.out.println is used
+src/main/java/com/weaving/biz/emp/impl/AuthenticationInterceptor.java:22:	System.out.println is used
+src/main/java/com/weaving/biz/emp/impl/AuthenticationInterceptor.java:31:	System.out.println is used
+src/main/java/com/weaving/biz/emp/impl/AuthenticationInterceptor.java:31:	System.out.println is used
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:19:	System.out.println is used
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:19:	System.out.println is used
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:27:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:27:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:31:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:31:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:35:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:35:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:39:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:39:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:43:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpDAO.java:43:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:19:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:19:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:30:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:30:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:42:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:42:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:47:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:47:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:52:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/impl/EmpServiceImpl.java:52:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:37:	Avoid excessively long variable names like AdminAccountsMngService
+src/main/java/com/weaving/biz/emp/web/EmpController.java:37:	Avoid excessively long variable names like AdminAccountsMngService
+src/main/java/com/weaving/biz/emp/web/EmpController.java:37:	Variables should start with a lowercase character, 'AdminAccountsMngService' starts with uppercase character.
+src/main/java/com/weaving/biz/emp/web/EmpController.java:37:	Variables should start with a lowercase character, 'AdminAccountsMngService' starts with uppercase character.
+src/main/java/com/weaving/biz/emp/web/EmpController.java:65:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:65:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:72:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:72:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:80:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:80:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:94:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:94:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:102:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:102:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:103:	System.out.println is used
+src/main/java/com/weaving/biz/emp/web/EmpController.java:103:	System.out.println is used
+src/main/java/com/weaving/biz/emp/web/EmpController.java:111:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:111:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:112:	System.out.println is used
+src/main/java/com/weaving/biz/emp/web/EmpController.java:112:	System.out.println is used
+src/main/java/com/weaving/biz/emp/web/EmpController.java:118:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:118:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:126:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:126:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:138:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:138:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/emp/web/EmpController.java:164:	System.out.println is used
+src/main/java/com/weaving/biz/emp/web/EmpController.java:164:	System.out.println is used
+src/main/java/com/weaving/biz/reply/ReplyService.java:8:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/ReplyService.java:8:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/ReplyService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/ReplyService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/ReplyService.java:14:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/ReplyService.java:14:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/ReplyService.java:20:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/ReplyService.java:20:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/ReplyService.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/ReplyService.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyDAO.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyDAO.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyDAO.java:22:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyDAO.java:22:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyDAO.java:26:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyDAO.java:26:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyServiceImpl.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyServiceImpl.java:18:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyServiceImpl.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyServiceImpl.java:23:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyServiceImpl.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyServiceImpl.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyServiceImpl.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyServiceImpl.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyServiceImpl.java:39:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/impl/ReplyServiceImpl.java:39:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/web/ReplyController.java:26:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reply/web/ReplyController.java:26:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/ReservService.java:7:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/ReservService.java:7:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/ReservService.java:9:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/ReservService.java:9:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/ReservService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/ReservService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/ReservService.java:13:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/ReservService.java:13:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservDAO.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservDAO.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservDAO.java:18:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/impl/ReservDAO.java:18:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/impl/ReservDAO.java:21:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservDAO.java:21:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservServiceImpl.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservServiceImpl.java:17:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservServiceImpl.java:19:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/impl/ReservServiceImpl.java:19:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/impl/ReservServiceImpl.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservServiceImpl.java:24:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservServiceImpl.java:30:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservServiceImpl.java:30:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservServiceImpl.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/impl/ReservServiceImpl.java:36:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:32:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:32:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:33:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:33:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:52:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:52:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:53:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:53:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:57:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:57:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:58:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:58:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:59:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:59:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:60:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:60:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:61:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:61:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:62:	System.out.println is used
+src/main/java/com/weaving/biz/reserv/web/ReservController.java:62:	System.out.println is used
+src/main/java/com/weaving/biz/room/RoomService.java:7:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/RoomService.java:7:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/RoomService.java:9:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/RoomService.java:9:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/RoomService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/RoomService.java:11:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/RoomService.java:13:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/RoomService.java:13:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/impl/RoomDAO.java:17:	Avoid variables with short names like ss
+src/main/java/com/weaving/biz/room/impl/RoomDAO.java:17:	Avoid variables with short names like ss
+src/main/java/com/weaving/biz/room/impl/RoomDAO.java:19:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/impl/RoomDAO.java:19:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/impl/RoomServiceImpl.java:16:	Avoid variables with short names like ss
+src/main/java/com/weaving/biz/room/impl/RoomServiceImpl.java:16:	Avoid variables with short names like ss
+src/main/java/com/weaving/biz/room/impl/RoomServiceImpl.java:19:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/impl/RoomServiceImpl.java:19:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/impl/RoomServiceImpl.java:25:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/impl/RoomServiceImpl.java:25:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/impl/RoomServiceImpl.java:31:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/impl/RoomServiceImpl.java:31:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/impl/RoomServiceImpl.java:37:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/impl/RoomServiceImpl.java:37:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/web/RoomController.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/web/RoomController.java:28:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/web/RoomController.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/web/RoomController.java:33:	Avoid variables with short names like vo
+src/main/java/com/weaving/biz/room/web/RoomController.java:34:	System.out.println is used
+src/main/java/com/weaving/biz/room/web/RoomController.java:34:	System.out.println is used
+src/test/java/com/weaving/biz/cal/CalDAOClient.java:19:	Avoid variables with short names like vo
+src/test/java/com/weaving/biz/cal/CalDAOClient.java:19:	Avoid variables with short names like vo
+src/test/java/com/weaving/biz/cal/CalDAOClient.java:21:	System.out.println is used
+src/test/java/com/weaving/biz/cal/CalDAOClient.java:21:	System.out.println is used
