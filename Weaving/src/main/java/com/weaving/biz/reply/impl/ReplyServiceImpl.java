@@ -29,21 +29,21 @@ public class ReplyServiceImpl implements ReplyService {
 		mybatis.delete(vo);	
 	}
 
-//	@Override
-//	public List<ReplyVO> getReplyListPaging(ReplyVO vo) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-//	@Override
-//	public int getReplyListToTalCount(ReplyVO vo) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
+	@Override
+	public List<ReplyVO> getReplyListPaging(ReplyVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
-	public List<ReplyVO> getReplyList(ReplyVO vo) {
-		return mybatis.getReplyList(vo);
+	public int getReplyListToTalCount(ReplyVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<ReplyVO> getReplyList(Integer boardId) {
+		return mybatis.getReplyList(boardId);
 	}
 	
 }

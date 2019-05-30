@@ -23,4 +23,8 @@ public class DocListDAO {
 	public List<DocWaitVO> getWaitDocList(int empNo) {
 		return mybatis.selectList("DocListDAO.getWaitDocList", empNo);
 	}
+	
+	public int getWaitDocCount(int empNo) {
+		return mybatis.selectOne("DocListDAO.getWaitDocCount", empNo);
+	}
 }

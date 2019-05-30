@@ -89,19 +89,37 @@ public class AdminAccountsMngService {
 
 // 현재 colum index에 따라서 vo입력
 										switch (cellIndex) {
-										case 0: // 이름
+										case 0: 
 											vo.setEmpName(value);
 											break;
-										case 1: // 나이
+										case 1: 
 											vo.setPassword(value);
 											break;
-										case 2: // 이메일
+										case 2: 
+											vo.setPosition(value);
+											break;
+										case 3: 
 											vo.setJoindate1(value);
 											break;
-										case 3: // 이메일
+										case 4: 
 											vo.setEmail(value);
 											break;
-										case 4: // 이메일
+										case 5: 
+											vo.setPhone(value);
+											break;
+										case 6: 
+											vo.setAddress(value);
+											break;
+										case 7: 
+											vo.setDeptId(value);
+											break;
+										case 8: 
+											vo.setDeletedYn(value);
+											break;
+										case 9: 
+											vo.setDeletedDate(value);
+											break;
+										case 10: 
 											vo.setGmailAppKey(value);
 											break;
 										default:
@@ -201,19 +219,37 @@ public class AdminAccountsMngService {
 
 // 현재 colum index에 따라서 vo입력
 										switch (cellIndex) {
-										case 0: // 이름
+										case 0: 
 											vo.setEmpName(value);
 											break;
-										case 1: // 나이
+										case 1: 
 											vo.setPassword(value);
 											break;
-										case 2: // 이메일
+										case 2: 
+											vo.setPosition(value);
+											break;
+										case 3: 
 											vo.setJoindate1(value);
 											break;
-										case 3: // 이메일
+										case 4: 
 											vo.setEmail(value);
 											break;
-										case 4: // 이메일
+										case 5: 
+											vo.setPhone(value);
+											break;
+										case 6: 
+											vo.setAddress(value);
+											break;
+										case 7: 
+											vo.setDeptId(value);
+											break;
+										case 8: 
+											vo.setDeletedYn(value);
+											break;
+										case 9: 
+											vo.setDeletedDate(value);
+											break;
+										case 10: 
 											vo.setGmailAppKey(value);
 											break;
 										default:

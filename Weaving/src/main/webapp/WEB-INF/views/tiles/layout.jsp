@@ -56,27 +56,29 @@
       	<div class="container">
 			<!-- 로그인 했을 때 -->
         	<div align="center">
-        		<c:if test="${not empty sessionScope.empName }">
+        		<c:if test="${not empty emp}">
 	        		<img src="${pageContext.request.contextPath}/assets/img/faces/avatar.jpg" alt="Avatar" class="avatar">
 	        	</c:if>
-	        	<c:if test="${empty sessionScope.empName }">
+	        	<c:if test="${empty emp }">
 	        		<img src="${pageContext.request.contextPath}/images/no_login_avatar.png" alt="Avatar" class="avatar">
 	        	</c:if>
 	        	<br>
 	        	<br>
-	        	<c:if test="${not empty sessionScope.empName }">
-	            	<h5>${empName} 님, 환영합니다</h5>
+	        	<c:if test="${not empty emp }">
+	            	<h5>${emp.empName} 님, 환영합니다</h5>
 	            </c:if>
-	            <c:if test="${empty sessionScope.empName }">
+	            <c:if test="${empty emp }">
 	            	<h6>오늘도 WEAVING과 함께 열일 합시다</h6>
 	            </c:if>
-	            <br>
-	            <c:if test="${not empty sessionScope.empName }">
+	            <c:if test="${not empty emp}">
 					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/logout'">
 					  <i class="material-icons">face</i> 로그아웃
 					</button>
+					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/pwcheck'">
+					  <i class="material-icons">face</i> 정보수정
+					</button>
 				</c:if>
-				<c:if test="${empty sessionScope.empName }">
+				<c:if test="${empty emp}">
 					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/login'">
 					  <i class="material-icons">face</i> 로그인
 					</button>

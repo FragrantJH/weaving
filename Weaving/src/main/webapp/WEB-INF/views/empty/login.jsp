@@ -56,11 +56,16 @@ body, html {
 	<br>
 	<br>
 	<br>
+	<br>
 		<div align="center">
-			<h1 class="display-3">WEAVING</h1>
+			<h1 class="display-3" style="color: white">WEAVING</h1>
 		</div>
 		<div class="centered">
-				<form action="${pageContext.request.contextPath}/login" method="post">
+		
+		<div class="row">
+		  <div class="col-3"></div>
+		  <div class="col-6">
+		  		<form action="${pageContext.request.contextPath}/login" method="post">
 					<div class="form-group">
 						<label for="empNo">ID</label> 
 						<input type="text" class="form-control" id="empNo" name="empNo" value="${EmpVO.empNo}">
@@ -76,7 +81,10 @@ body, html {
 					</div>
 					<button type="submit" class="btn btn-primary">로그인</button>
 				</form>
-		</div>
+		  </div>
+		  <div class="col-3"></div>
+		  </div>
+	  </div>
 	</div>
 </body>
 </html>

@@ -14,11 +14,11 @@ public interface ReplyService {
 	void deleteReply(ReplyVO vo);
 	
 	//댓글 목록 조회
-	List<ReplyVO> getReplyList(ReplyVO vo);
+	List<ReplyVO> getReplyList(Integer boardId);
 	
 	//페이징 처리
-	//List<ReplyVO> getReplyListPaging(ReplyVO vo);
+	List<ReplyVO> getReplyListPaging(ReplyVO vo);
 	
 	//전체 건수
-	//int getReplyListToTalCount(ReplyVO vo);
+	int getReplyListToTalCount(ReplyVO vo);
 }

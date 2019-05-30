@@ -27,8 +27,8 @@ public class ReplyDAO {
 		mybatis.delete("ReplyDAO.deleteReply", vo);
 	}
 
-	public List<ReplyVO> getReplyList(ReplyVO vo) {
-		return mybatis.selectList("ReplyDAO.getReplyList", vo);
+	public List<ReplyVO> getReplyList(Integer boardId) {
+		return mybatis.selectList("reply.getReplyList", boardId);
 	}
 
 }

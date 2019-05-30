@@ -7,6 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.weaving.biz.common.SessionInfo;
+import com.weaving.biz.emp.EmpVO;
+
 // 로그인처리를 담당하는 인터셉터
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
@@ -14,37 +17,17 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println(request.getRequestURL());
 
 		StringBuffer geturl = new StringBuffer(request.getRequestURL());
-		System.out.println(geturl);
 		String strurl = geturl.toString();
-		System.out.println(strurl);
 
-		// url admin
-		if (strurl.matches(".*admin.*")) {
+		EmpVO emp = SessionInfo.getInfo(request.getSession(), "emp");
 
-			// session.setAttribute("adminMode", true);
-
-			HttpSession session = request.getSession();
-			Object objad = session.getAttribute("adminMode");
-			System.out.println(objad);
-			
-			if (objad==null || objad.equals(false)) {
-				response.sendRedirect("/weaving/login");
-				return false;
-			}
-			return true;
-		}
-		// 일반 페이지
-		else {
-			HttpSession session = request.getSession();
-			Object obj = session.getAttribute("emp");
-
-			if (obj == null) {
-				response.sendRedirect("/weaving/login");
-				return false;
-			}
+		if (emp == null || (strurl.matches(".*admin.*") && emp.getAdminYn() == false)) {
+			// 로그인 정보 없으면 로그인 페이지로 이동
+			response.sendRedirect("/weaving/login");
+			return false;
+		} else {
 			return true;
 		}
 	}

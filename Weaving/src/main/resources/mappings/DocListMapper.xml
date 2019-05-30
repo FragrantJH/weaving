@@ -25,6 +25,22 @@
 		  AND A.EMP_NO = #{empNo}
 		
 	</select>
+	
+	<select id="getWaitDocCount" resultType="int" parameterType="int">
+		
+		SELECT COUNT(*) AS WAIT_COUNT
+		  FROM DOCUMENTDETAIL A INNER JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO
+		                        INNER JOIN DOCUMENTS C ON A.DOC_ID = C.DOC_ID
+		                        INNER JOIN EMPLOYEES D ON C.EMP_NO = D.EMP_NO
+		 WHERE A.APPROVAL_ORDER = (SELECT MIN(APPROVAL_ORDER)
+		                             FROM DOCUMENTDETAIL
+		                            WHERE APPROVAL_DATE IS NULL 
+		                              AND STATUS = 'WAIT'
+		                              AND DOC_ID = A.DOC_ID 
+		                          )
+		  AND A.EMP_NO = #{empNo}
+		
+	</select>
 
 
 
