@@ -11,7 +11,7 @@ import com.weaving.biz.email.EmailVO;
 
 @Repository
 public class EmailDAO {
-
+	
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
@@ -20,7 +20,7 @@ public class EmailDAO {
 	 * @param vo - 등록할 정보가 담긴 EmailVO
 	 * */
 	public void insertEmail(EmailVO vo) throws Exception{
-		 mybatis.insert("EmailDAO.insertEmail", vo);
+		mybatis.insert("EmailDAO.insertEmail", vo);
 	}
 	
 	/**
@@ -85,7 +85,6 @@ public class EmailDAO {
 	public List<EmailVO> getEmailListTotalCountS(EmailVO vo) throws Exception {
 		return  mybatis.selectList("EmailDAO.selectEmailListTotCnt_S", vo);
 		
-	
 	};
 	
 	 /**
