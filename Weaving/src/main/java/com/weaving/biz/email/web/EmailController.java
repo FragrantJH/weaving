@@ -54,6 +54,27 @@ public class EmailController {
 		
 	}
 
+	@RequestMapping("getMailList")
+	public String getMail(HttpSession session) { 
+		
+		// 메일 서버에서 조회
+		// Session에 저장되어 있는 사용자의 이메일과 이메일 인증키로 메일 조회 하도록
+		EmpVO vo = SessionInfo.getInfo(session, "admin");
+		
+		// DB에 입력하는 서비스 호출
+		
+		
+		// DB에서 다시 조회한 뒤 화면에 뿌려주는 것
+		
+				
+		return null;
+		
+	}
+	
+	
+	
+	
+	
 	// 메일보기폼
 	@RequestMapping("view_mail")
 	public String send_mail(Model model, HttpSession session) {

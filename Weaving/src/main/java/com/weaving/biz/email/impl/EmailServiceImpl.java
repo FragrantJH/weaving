@@ -2,20 +2,23 @@ package com.weaving.biz.email.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.weaving.biz.email.EmailService;
 import com.weaving.biz.email.EmailVO;
 
 public class EmailServiceImpl implements EmailService {
 
+	@Autowired
+	EmailDAO dao;
+	
 	@Override
 	public void getWaitEmailList(EmailVO vo) {
-	
 		
 	}
 
 	@Override
-	public void insertEmail(EmailVO vo) {
-		// TODO Auto-generated method stub
+	public void insertEmail(EmailVO vo)  {
 		
 	}
 
@@ -56,25 +59,25 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public List<EmailVO> selectEmailListG(EmailVO vo) throws Exception {
+	public List<EmailVO> selectEmailListG(EmailVO vo)  {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<EmailVO> selectEmailListS(EmailVO vo) throws Exception {
+	public List<EmailVO> selectEmailListS(EmailVO vo)  {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int getEmailListTotalCountG(EmailVO vo) throws Exception {
+	public int getEmailListTotalCountG(EmailVO vo)  {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getEmailListTotalCountS(EmailVO vo) throws Exception {
+	public int getEmailListTotalCountS(EmailVO vo)  {
 		// TODO Auto-generated method stub
 		return 0;
 	}
