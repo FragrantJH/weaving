@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Email">
+
+
+<insert id="insertEmail" parameterType="com.weaving.biz.email.EmailVO" >
+insert into Email(
+email_id
+from_email
+to_email
+subject
+email_contents
+check_time
+read_check
+)
+values(
+#{emailId},
+#{fromEmail},
+#{toEmail},
+#{subject},
+#{emailContents},
+to_date(#{checkTime},'yyyy-mm-dd hh24:mi:ss'),
+#{readCheck}
+)
+
+</insert>
+<delete id="mailsDAO.deleteMails_S">
+		<![CDATA[
+			DELETE FROM Email WHERE MAIL_NO = #email_id#
+			]]>
+	</delete>
+</mapper>
