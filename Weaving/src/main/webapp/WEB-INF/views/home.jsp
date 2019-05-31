@@ -111,7 +111,27 @@
             </div>
           </div>
           <div class="card-body">
-              	게시판 미리보기 공간
+              		<table class="table">
+					<thead class=" text-primary">
+						<tr>
+							<th>No</th>
+							<th>작성자</th>
+							<th>제목</th>
+							<th>작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${boardList1}" var="board">
+							<tr>
+								<td>${board.boardId}</td>
+								<td>${board.empName}</td>
+								<td><a
+									href="${pageContext.request.contextPath}/boardOne/${board.boardId}">${board.title}</a></td>
+								<td>${board.time}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
           </div>
       </div>
   </div>
