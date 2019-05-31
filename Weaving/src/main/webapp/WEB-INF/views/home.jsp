@@ -15,7 +15,7 @@
       <div class="card">
           <div class="card-header card-header-icon card-header-rose">
             <div class="card-icon">
-              <i class="material-icons">language</i>
+              <i class="material-icons">library_books</i>
             </div>
           </div>
           <div class="card-body">
@@ -31,7 +31,7 @@
       <div class="card">
           <div class="card-header card-header-icon card-header-rose">
             <div class="card-icon">
-              <i class="material-icons">language</i>
+              <i class="material-icons">signal_cellular_no_sim</i>
             </div>
           </div>
           <div class="card-body">
@@ -46,7 +46,7 @@
       <div class="card">
           <div class="card-header card-header-icon card-header-rose">
             <div class="card-icon">
-              <i class="material-icons">language</i>
+              <i class="material-icons">mail_outline </i>
             </div>
           </div>
           <div class="card-body">
@@ -60,7 +60,7 @@
       <div class="card">
           <div class="card-header card-header-icon card-header-rose">
             <div class="card-icon">
-              <i class="material-icons">language</i>
+              <i class="material-icons">calendar_today</i>
             </div>
           </div>
           <div class="card-body">
