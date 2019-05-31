@@ -99,7 +99,7 @@ public class AdminAccountsMngService {
 											vo.setPosition(value);
 											break;
 										case 3: 
-											vo.setJoindate1(value);
+											vo.setJoinDate(value);
 											break;
 										case 4: 
 											vo.setEmail(value);
@@ -117,9 +117,6 @@ public class AdminAccountsMngService {
 											vo.setDeletedYn(value);
 											break;
 										case 9: 
-											vo.setDeleteDate(value);
-											break;
-										case 10: 
 											vo.setGmailAppKey(value);
 											break;
 										default:
@@ -230,7 +227,7 @@ public class AdminAccountsMngService {
 											vo.setPosition(value);
 											break;
 										case 3: 
-											vo.setJoindate1(value);
+											vo.setJoinDate(value);
 											break;
 										case 4: 
 											vo.setEmail(value);
@@ -248,9 +245,6 @@ public class AdminAccountsMngService {
 											vo.setDeletedYn(value);
 											break;
 										case 9: 
-											vo.setDeleteDate(value);
-											break;
-										case 10: 
 											vo.setGmailAppKey(value);
 											break;
 										default:

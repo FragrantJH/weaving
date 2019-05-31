@@ -8,7 +8,7 @@
 								,PASSWORD
 								<if test="position != null">
 								,POSITION
-								</if><if test="joindate1 != null">
+								</if><if test="joinDate != null">
 								,JOINDATE
 								</if>
 								,EMAIL
@@ -31,7 +31,7 @@
 				,#{password}
 				<if test="position != null">
 				,#{position}
-				</if><if test="joindate1 != null">
+				</if><if test="joinDate != null">
 				,#{joindate1}
 				</if>
 				,#{email}
@@ -96,7 +96,8 @@
     
     <!-- 사원 전체 조회 -->
     <select id="getEmpList" resultType="emp" parameterType="emp">
-		SELECT E.EMP_NO, E.EMP_NAME
+		SELECT E.EMP_NO
+        , E.EMP_NAME
 		,CASE WHEN POSITION = '0' THEN '사원'
 		WHEN POSITION = '1' THEN '대리'
 		WHEN POSITION = '2' THEN '과장'
@@ -104,7 +105,16 @@
 		WHEN POSITION = '4' THEN '부장'
         WHEN POSITION = '5' THEN '대표'
 		ELSE '없음' END AS POSITION
-		, D.DEPT_NAME
+		,E.JOINDATE
+		,E.EMAIL
+		,E.PHONE
+		,E.ADDRESS
+		,E.DEPT_ID
+		,E.DELETED_YN
+		,E.DELETE_DATE 
+		,E.GMAIL_APP_KEY
+		,E.ADMIN_YN 
+		,D.DEPT_NAME
 		FROM EMPLOYEES E
 		JOIN DEPARTMENT D
 		ON E.DEPT_ID = D.DEPT_ID(+)
@@ -146,7 +156,7 @@
 					,PASSWORD
 					<if test="item.position != null">
 					,POSITION
-					</if><if test="item.joindate1 != null">
+					</if><if test="item.joinDate != null">
 					,JOINDATE
 					</if>
 					,EMAIL
@@ -158,8 +168,6 @@
 					,DEPT_ID
 					</if><if test="item.deletedYn != null">
 					,DELETED_YN
-					</if><if test="item.deleteDate != null">
-					,DELETE_DATE
 					</if><if test="item.gmailAppKey != null">
 					,GMAIL_APP_KEY
 					</if>) 
@@ -170,7 +178,7 @@
 		,#{item.password}
 		<if test="item.position != null">
 		,#{item.position}
-		</if><if test="item.joindate1 != null">
+		</if><if test="item.joinDate != null">
 		,TO_DATE( #{item.joindate1},'yyyy-mm-dd')
 		</if>
 		,#{item.email}
@@ -181,9 +189,7 @@
 		</if><if test="item.deptId != null">
 		,#{item.deptId}
 		</if><if test="item.deletedYn != null">
-		,'N'
-		</if><if test="item.deleteDate != null">
-		,TO_DATE( #{item.deleteDate},'yyyy-mm-dd')
+		,#{item.deletedYn}
 		</if><if test="item.gmailAppKey != null">
 		,#{item.gmailAppKey}
 		</if>
