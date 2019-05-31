@@ -71,17 +71,23 @@ public class HomeController {
 		// 보드
 		BoardVO boardVo = new BoardVO();
 		// 공지사항
-		boardVo.setBoardType('1');
-		
+		boardVo.setBoardType('0');		
 		boardVo.setFirst(paging.getFirst());
-		boardVo.setLast(paging.getLast());
-		
+		boardVo.setLast(paging.getLast());		
 		//전체건수
 		paging.setTotalRecord(boardService.getBoardListTotalCount(boardVo));
-		List<BoardVO> list = boardService.getBoardListPaging(boardVo);
-		
+		List<BoardVO> list = boardService.getBoardListPaging(boardVo);		
 		model.addAttribute("boardList", list);
 		
+		
+		// 게시판
+		boardVo.setBoardType('1');
+		boardVo.setFirst(paging.getFirst());
+		boardVo.setLast(paging.getLast());
+		// 전체건수
+		paging.setTotalRecord(boardService.getBoardListTotalCount(boardVo));
+		List<BoardVO> list1 = boardService.getBoardListPaging(boardVo);
+		model.addAttribute("boardList1", list1);
 		
 		return "home";
 	}
