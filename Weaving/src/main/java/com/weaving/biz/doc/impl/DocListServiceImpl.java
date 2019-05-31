@@ -7,14 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.weaving.biz.doc.DocBaseVO;
 import com.weaving.biz.doc.DocListService;
+import com.weaving.biz.doc.DocReturnVO;
 import com.weaving.biz.doc.DocWaitVO;
 
 @Service
-public class DocListServiceImpl implements DocListService{
+public class DocListServiceImpl implements DocListService {
 
-	@Autowired 
+	@Autowired
 	DocListDAO dao;
-	
+
 	@Override
 	public List<DocBaseVO> getDoneDocList(int empNo) {
 		return dao.getDoneDocList(empNo);
@@ -26,7 +27,7 @@ public class DocListServiceImpl implements DocListService{
 	}
 
 	@Override
-	public int getWaitDocCount(int empNo) {
-		return dao.getWaitDocCount(empNo);
+	public List<DocReturnVO> getReturnDocList(int empNo) {
+		return dao.getReturnDocList(empNo);
 	}
 }

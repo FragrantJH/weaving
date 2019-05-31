@@ -19,7 +19,7 @@ public class DocListController {
 	
 	@RequestMapping("docDoneList")
 	public String getDocDoneList(Model model, HttpSession session) {
-		
+
 		EmpVO vo = SessionInfo.getInfo(session, "emp");		
 		model.addAttribute("doneList", service.getDoneDocList(vo.getEmpNo()));
 		
@@ -33,5 +33,14 @@ public class DocListController {
 		model.addAttribute("waitList", service.getWaitDocList(vo.getEmpNo()));
 		
 		return "approval/docWaitList";
+	}
+	
+	@RequestMapping("docReturnList")
+	public String getReturnList(Model model, HttpSession session) {
+		
+		EmpVO vo = SessionInfo.getInfo(session, "emp");		
+		model.addAttribute("returnList", service.getReturnDocList(vo.getEmpNo()));
+		
+		return "approval/docReturnList";
 	}
 }

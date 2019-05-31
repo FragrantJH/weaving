@@ -16,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
@@ -26,6 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weaving.biz.cal.CalTypeEnum;
 import com.weaving.biz.common.Paging;
 import com.weaving.biz.common.SessionInfo;
+import com.weaving.biz.dept.DeptVO;
 import com.weaving.biz.doc.DocApprovalVO;
 import com.weaving.biz.doc.DocBaseVO;
 import com.weaving.biz.doc.DocDetailVO;
@@ -36,6 +39,7 @@ import com.weaving.biz.docForm.DocFormService;
 import com.weaving.biz.docForm.DocFormVO;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
+import com.weaving.biz.reserv.ReservVO;
 
 import aj.org.objectweb.asm.TypeReference;
 
@@ -164,6 +168,19 @@ public class DocController {
 		model.addAttribute("docInfo",docService.getDocument(vo));
 		model.addAttribute("docDetailInfo",docService.getDocDetail(vo));
 		return "approval/docDetailView";
+	}
+	@RequestMapping(value="/updateDone"
+			, headers = {"Content-type=application/json"}
+			, method= RequestMethod.PUT
+	)
+	@ResponseBody
+	public DocApprovalVO updateDept(@RequestBody DocApprovalVO vo, Model model) {
+		System.out.println("******************************");
+		System.out.println(vo);
+		System.out.println(vo.getDocId());
+		System.out.println("******************************");
+		docService.updateApprovalDoc(vo);
+		return vo;
 	}
 	/*
 	@RequestMapping(value="/", method= RequestMethod.)	
