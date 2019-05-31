@@ -6,7 +6,7 @@ public interface EmailService{
 
 	public void getWaitEmailList(EmailVO vo);
 
-	void insertEmail(EmailVO vo);
+	String insertEmail(EmailVO vo) throws Exception;
 
 	// 메일 수정
 	void updateEmail(EmailVO vo);

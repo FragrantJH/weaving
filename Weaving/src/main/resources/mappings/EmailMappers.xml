@@ -4,23 +4,26 @@
 
 
 <insert id="insertEmail" parameterType="com.weaving.biz.email.EmailVO" >
-insert into email(
-					email_id,
-					from_email,
-					to_email,
-					subject,
-					email_contents,
-					check_time,
-					read_check
+INSERT INTO EMAIL(
+EMAIL_ID,
+FROM_EMAIL,
+TO_EMAIL,
+SUBJECT,
+EMAIL_CONTENTS,
+CHECK_TIME,
+READ_CHECK,
+EMP_NO
 )
-values(
-#{emailId},
+VALUES(
+(select nvl(max(EMAIL_ID),0)+1 from email) ,
 #{fromEmail},
 #{toEmail},
 #{subject},
 #{emailContents},
-to_date(#{checkTime},'yyyy-mm-dd hh24:mi:ss'),
-#{readCheck}
+sysdate,
+#{readCheck},
+#{empNo}
+
 )
 
 </insert>

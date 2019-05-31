@@ -91,54 +91,55 @@ public class FetchingEmail {
 	 */
 	public static void writePart(Part p) throws Exception {
 		if (p instanceof Message)
-			
-		
 			// Call methos writeEnvelope
 			writeEnvelope((Message) p);
 
+		EmailVO vo = new EmailVO();
+		vo.setContenttype(p.getContentType());
 	//	System.out.println("----------------------------");
 	//	System.out.println("CONTENT-TYPE: " + p.getContentType());
 		
-		// check if the content is plain text
+		// 그냥 텍스트 
 		if (p.isMimeType("text/plain")) {
 		//	System.out.println("This is plain text");
 		//	System.out.println("---------------------------");
 		//	System.out.println((String) p.getContent());
+			contentBody += (String) p.getContent();
+			//텍스트 HTML 
+		}else if (p.isMimeType("text/HTML")) {
+			System.out.println((String) p.getContent());
+			contentBody += (String) p.getContent();
 		}
-		// check if the content has attachment
+		
+		// 멀티파트  타입 체크( attachment)
 		else if (p.isMimeType("multipart/*")) {
-		//	System.out.println("This is a Multipart");
-		//	System.out.println("---------------------------");
 			Multipart mp = (Multipart) p.getContent();
 			int count = mp.getCount();
 			for (int i = 0; i < count; i++)
 				writePart(mp.getBodyPart(i));
 		}
-		// check if the content is a nested message
+		// 메세지 타입 
 		else if (p.isMimeType("message/rfc822")) {
 		//	System.out.println("This is a Nested Message");
 		//	System.out.println("---------------------------");
 			writePart((Part) p.getContent());
 		}
-		// check if the content is an inline image
+		// 이미지 
 		else if (p.isMimeType("image/jpeg")) {
 			//System.out.println("--------> image/jpeg");
 			Object o = p.getContent();
-
 			InputStream x = (InputStream) o;
-			// Construct the required byte array
+			//바이트 배열  
 		//	System.out.println("x.length = " + x.available());
 			int i = 0;
 			byte[] bArray = new byte[x.available()];
-
 			while ((i = (int) ((InputStream) x).available()) > 0) {
 				int result = (int) (((InputStream) x).read(bArray));
 				if (result == -1)
-
 					break;
-			}	
+				}	
 			String fileName = new Date().getTime() + ".jpg";
-			
+			//바이트 단위로 입력을 받음 
 			FileOutputStream f2 = new FileOutputStream(fileName);
 			f2.write(bArray);
 			
@@ -146,7 +147,8 @@ public class FetchingEmail {
 			
 		} else if (p.getContentType().contains("image/")) {
 			System.out.println("content type" + p.getContentType());
-			File f = new File(contentBody);
+			String fileName =new Date().getTime() + ".jpg";
+			File f = new File(fileName);
 			DataOutputStream output = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(f)));
 			com.sun.mail.util.BASE64DecoderStream test = (com.sun.mail.util.BASE64DecoderStream) p.getContent();
 			byte[] buffer = new byte[1024];
@@ -156,7 +158,7 @@ public class FetchingEmail {
 				output.write(buffer, 0, bytesRead);
 			}
 			
-			contentBody += "<img src=\""+contentBody+"\">";
+			contentBody += "<img src=\""+fileName+"\">";
 			
 			
 		} /*
@@ -182,6 +184,9 @@ public class FetchingEmail {
 		System.out.println("---------------------------");
 		Address[] a;
 		EmailVO vo = new EmailVO();
+		
+		
+		
 		// FROM
 		if ((a = m.getFrom()) != null) {
 			for (int j = 0; j < a.length; j++) {
@@ -223,8 +228,22 @@ public class FetchingEmail {
 		// SUBJECT
 		if (m.getSubject() != null) {
 			vo.setSubject(m.getSubject());
-			vo.setCheckTime((java.sql.Date) m.getSentDate());
 		}
 	}
+	
+	
+	
+
+	
+	
+	
+	
+
+	/*
+	 * emailContents to_date(#{checkTime},'YYYY-MM-DD HH24:MI:SS'), readCheck empNo
+	 * mailNo
+	 */
+	
+	
 
 }

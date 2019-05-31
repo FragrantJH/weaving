@@ -1,5 +1,6 @@
 package com.weaving.biz.email;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Properties;
 
@@ -19,19 +20,24 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.weaving.biz.board.BoardVO;
 import com.weaving.biz.doc.DocWaitVO;
+import com.weaving.biz.emp.EmpVO;
 
 @Service
 public class SendEmailService {
 	
-	public void send(EmailVO vo) {
+	@Autowired
+	EmailService sv;
+	
+	public void send(EmailVO vo, EmpVO empVo) throws Exception {
 		String to = vo.getToEmail();// change accordingly
 		String from = vo.getFromEmail(); // change accordingly
-		final String username ="dohy43@gmail.com"; // change accordingly
-		final String password = "uuioeaxjqhwqerno"; // change accordingly
+		final String username =empVo.getEmail(); // change accordingly
+		final String password = empVo.getGmailAppKey(); // change accordingly
 		
 		// Assuming you are sending email through relay.jangosmtp.net
 		String host = "smtp.gmail.com";
@@ -47,6 +53,7 @@ public class SendEmailService {
 				return new PasswordAuthentication(username, password);
 			}			
 		});
+		PrintWriter writer = null;
 		
 		try {
 			Message message = new MimeMessage(session);
@@ -55,18 +62,26 @@ public class SendEmailService {
 			message.setSubject(vo.getSubject());//제목
 			message.setText(vo.getEmailContents());//내용
 			Transport.send(message);
+			
+			sv.insertEmail(vo);
+			
 			System.out.println("Sent message successfully....");
+			
+			
+			
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
 	}
 	
-	public void sendAttatch(EmailVO vo) {
+	public void sendAttatch(EmailVO vo) throws Exception {
+		
+		
 		String to = vo.getToEmail();// change accordingly
 		String from = vo.getFromEmail(); // change accordingly
 		final String username ="dohy43@gmail.com"; // change accordingly
 		final String password = "uuioeaxjqhwqerno"; // change accordingly
-		
+	
 		// Assuming you are sending email through relay.jangosmtp.net
 		String host = "smtp.gmail.com";
 		Properties props = new Properties();
@@ -108,11 +123,17 @@ public class SendEmailService {
 	         
 	         message.setContent(multipart);	         
 	         Transport.send(message);
+	         
+	         sv.insertEmail(vo);
+	         
+	         
 	         System.out.println("Sent message successfully....");
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	
 	
 	
 }
