@@ -70,11 +70,7 @@ function menuMove() {
 	location.replace('${pageContext.request.contextPath}/docList?listType='+docType);	
 }
 function showDocTypeBtn() {
-	/*
-	$("#modifyBtn").hide();  
-	$("#approvalRecordBtn").hide();  
-	$("#approvalDoneBtn").hide();
-	*/
+
 	switch('${docType}') {
 		case 'WAIT':
 			$("#approvalRecordBtn").show();  
