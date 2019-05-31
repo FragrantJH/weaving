@@ -97,7 +97,14 @@ public class HomeController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String[] header = { "empNo"
 				, "empName"
-				, "position" };
+				, "position"
+				,"joinDate"
+				,"email"
+				,"phone"
+				,"address"
+				,"deptId"
+				,"deletedYn"
+				,"gmailAppKey"};
 		map.put("headers", header);
 		map.put("filename", "excel_dept");
 		map.put("datas", temp);
