@@ -38,8 +38,8 @@
 			var options = {
 				success : function(data) {
 					alert("업로드 완료");
-					for(i=0; i<data.length;i++)
-					$("#ajax-content").append(data[i].name);
+					/* for(i=0; i<data.length;i++)
+					$("#ajax-content").append(data[i].name); */
 				},
 				
 				type : "POST",

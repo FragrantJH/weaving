@@ -179,7 +179,7 @@
 		<if test="item.position != null">
 		,#{item.position}
 		</if><if test="item.joinDate != null">
-		,TO_DATE( #{item.joindate1},'yyyy-mm-dd')
+		,TO_DATE( #{item.joinDate},'yyyy-mm-dd')
 		</if>
 		,#{item.email}
 		<if test="item.phone != null">
