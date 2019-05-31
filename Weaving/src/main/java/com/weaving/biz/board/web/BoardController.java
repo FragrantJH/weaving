@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.weaving.biz.board.BoardService;
 import com.weaving.biz.board.BoardVO;
 import com.weaving.biz.common.Paging;
+import com.weaving.biz.common.SessionInfo;
+import com.weaving.biz.emp.EmpVO;
 
 @Controller
 public class BoardController {
@@ -35,6 +37,8 @@ public class BoardController {
 	@RequestMapping("/boardInsert")
 	public String boardInsert(BoardVO vo, HttpSession session) {
 		vo.setBoardType((Character)session.getAttribute("boardType"));
+		EmpVO empVO = SessionInfo.getInfo(session, "emp");
+		vo.setEmpNo(empVO.getEmpNo());
 		service.insertBoard(vo);
 		return "redirect:boardList?boardType="+ vo.getBoardType();
 	}
