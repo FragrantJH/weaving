@@ -89,34 +89,34 @@ public class AdminAccountsMngService {
 
 // 현재 colum index에 따라서 vo입력
 										switch (cellIndex) {
-										case 0: 
+										case 0:
 											vo.setEmpName(value);
 											break;
-										case 1: 
+										case 1:
 											vo.setPassword(value);
 											break;
-										case 2: 
+										case 2:
 											vo.setPosition(value);
 											break;
-										case 3: 
+										case 3:
 											vo.setJoinDate(value);
 											break;
-										case 4: 
+										case 4:
 											vo.setEmail(value);
 											break;
-										case 5: 
+										case 5:
 											vo.setPhone(value);
 											break;
-										case 6: 
+										case 6:
 											vo.setAddress(value);
 											break;
-										case 7: 
+										case 7:
 											vo.setDeptId(value);
 											break;
-										case 8: 
+										case 8:
 											vo.setDeletedYn(value);
 											break;
-										case 9: 
+										case 9:
 											vo.setGmailAppKey(value);
 											break;
 										default:
@@ -193,58 +193,58 @@ public class AdminAccountsMngService {
 									if (true) {
 										value = "";
 // cell 스타일이 다르더라도 String으로 반환 받음
-										if(curCell != null)
-										switch (curCell.getCellType()) {
-										case HSSFCell.CELL_TYPE_FORMULA:
-											value = curCell.getCellFormula();
-											break;
-										case HSSFCell.CELL_TYPE_NUMERIC:
-											value = curCell.getNumericCellValue() + "";
-											break;
-										case HSSFCell.CELL_TYPE_STRING:
-											value = curCell.getStringCellValue() + "";
-											break;
-										case HSSFCell.CELL_TYPE_BLANK:
-											value = curCell.getBooleanCellValue() + "";
-											break;
-										case HSSFCell.CELL_TYPE_ERROR:
-											value = curCell.getErrorCellValue() + "";
-											break;
-										default:
-											value = new String();
-											break;
-										} // end switch
+										if (curCell != null)
+											switch (curCell.getCellType()) {
+											case HSSFCell.CELL_TYPE_FORMULA:
+												value = curCell.getCellFormula();
+												break;
+											case HSSFCell.CELL_TYPE_NUMERIC:
+												value = curCell.getNumericCellValue() + "";
+												break;
+											case HSSFCell.CELL_TYPE_STRING:
+												value = curCell.getStringCellValue() + "";
+												break;
+											case HSSFCell.CELL_TYPE_BLANK:
+												value = curCell.getBooleanCellValue() + "";
+												break;
+											case HSSFCell.CELL_TYPE_ERROR:
+												value = curCell.getErrorCellValue() + "";
+												break;
+											default:
+												value = new String();
+												break;
+											} // end switch
 
 // 현재 colum index에 따라서 vo입력
 										switch (cellIndex) {
-										case 0: 
+										case 0:
 											vo.setEmpName(value);
 											break;
-										case 1: 
+										case 1:
 											vo.setPassword(value);
 											break;
-										case 2: 
+										case 2:
 											vo.setPosition(value);
 											break;
-										case 3: 
+										case 3:
 											vo.setJoinDate(value);
 											break;
-										case 4: 
+										case 4:
 											vo.setEmail(value);
 											break;
-										case 5: 
+										case 5:
 											vo.setPhone(value);
 											break;
-										case 6: 
+										case 6:
 											vo.setAddress(value);
 											break;
-										case 7: 
+										case 7:
 											vo.setDeptId(value);
 											break;
-										case 8: 
+										case 8:
 											vo.setDeletedYn(value);
 											break;
-										case 9: 
+										case 9:
 											vo.setGmailAppKey(value);
 											break;
 										default:
@@ -265,6 +265,9 @@ public class AdminAccountsMngService {
 		}
 
 // 디비에 insert
+		
+		System.out.println("list: " + list);
+		
 		empService.insertExcelTest(list);
 		return list;
 	}

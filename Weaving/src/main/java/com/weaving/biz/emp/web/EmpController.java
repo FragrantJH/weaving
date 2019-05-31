@@ -37,12 +37,14 @@ public class EmpController {
 	Empservice service;
 	@Inject
 	AdminAccountsMngService AdminAccountsMngService;
-	//엑셀 업로드 페이지 이동
+
+	// 엑셀 업로드 페이지 이동
 	@RequestMapping(value = "/excelUploadPage", method = RequestMethod.GET)
 	public String serviceMngForm(Model model, Principal principal) {
 		return "admin/emp/excelupload";
 	}
-	//엑셀 업로드 처리
+
+	// 엑셀 업로드 처리
 	@RequestMapping(value = "/compExcelUpload")
 	@ResponseBody
 	public List<EmpVO> excelUpload(MultipartHttpServletRequest req) {
