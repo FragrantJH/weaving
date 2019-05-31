@@ -152,7 +152,7 @@ public class DocController {
 
 		docService.insertDocHistory(hvo);
 		
-		return "redirect:docList";
+		return "redirect:docList?listType=ING";
 	}
 	
 	@RequestMapping(value="/docDetailView", method= RequestMethod.GET)	
