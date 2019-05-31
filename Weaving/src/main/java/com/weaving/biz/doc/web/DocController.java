@@ -84,7 +84,7 @@ public class DocController {
 		return "approval/docList";
 	}
 	*/
-	@RequestMapping("/docViewInsert")
+	@RequestMapping("/docInsertView")
 	//public String docViewInsert(@PathVariable String empName, @PathVariable int position, Model model) {
 	public String docViewInsert(Model model) {
 		EmpVO evo = new EmpVO(); 
@@ -199,6 +199,8 @@ public class DocController {
 		docService.updateApprovalNullDate(vo);
 		return vo;
 	}
+	
+
 }
 
 
