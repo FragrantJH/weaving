@@ -11,7 +11,7 @@ public interface ReplyService {
 	void updateReply(ReplyVO vo);
 	
 	//댓글 삭제
-	void deleteReply(ReplyVO vo);
+	void deleteReply(Integer replyId);
 	
 	//댓글 목록 조회
 	List<ReplyVO> getReplyList(ReplyVO vo);

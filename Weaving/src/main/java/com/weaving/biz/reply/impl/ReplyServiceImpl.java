@@ -23,12 +23,19 @@ public class ReplyServiceImpl implements ReplyService {
 	public void updateReply(ReplyVO vo) {
 		mybatis.update(vo);
 	}
-
+	
 	@Override
-	public void deleteReply(ReplyVO vo) {
-		mybatis.delete(vo);	
+	public void deleteReply(Integer replyId) {
+		mybatis.delete(replyId);	
 	}
 
+	@Override
+	public List<ReplyVO> getReplyList(ReplyVO vo) {
+		return mybatis.getReplyList(vo);
+	}
+
+
+	
 //	@Override
 //	public List<ReplyVO> getReplyListPaging(ReplyVO vo) {
 //		// TODO Auto-generated method stub
@@ -41,9 +48,4 @@ public class ReplyServiceImpl implements ReplyService {
 //		return 0;
 //	}
 
-	@Override
-	public List<ReplyVO> getReplyList(ReplyVO vo) {
-		return mybatis.getReplyList(vo);
-	}
-	
 }

@@ -31,70 +31,82 @@
 			});
 		});
 
-		//댓글 목록(json)
-		function getReplyList() {
-			var boardId = $('#boardId').val();
-			$
-					.ajax({
-						type : "get",
-						url : "${pageContext.request.contextPath}/reply/listJson.do?boardId="
-								+ boardId,
-						success : function(result) {
-							console.log(result);
-							var $table = $("<table/>");
-							var $row = $("<tr/>")
-									.append($("<th/>").text("작성자")).append(
-											$("<th/>").text("댓글 내용")).append(
-											$("<th/>").text("시간")).append(
-											$("<th/>").text("Delete"));
-							$table.append($row);
 
-							for (i in result) {
-								// 수정버튼
-								var $button = $("<button/>").html("수정");
-
-								var currentTime = new Date(
-										parseInt(result[i].time));
-								var month = currentTime.getMonth() + 1;
-								var day = currentTime.getDate();
-								var year = currentTime.getFullYear();
-								var hour = currentTime.getHours();
-								var minutes = currentTime.getMinutes();
-								var date = year + "/" + month + "/" + day + "/"
-										+ hour + ":" + minutes;
-
-								var $row = $(
-										"<tr id=" + result[i].replyId + ">")
-										.append(
-												$("<td/>").text(
-														result[i].empName),
-												$("<td/>").text(
-														result[i].repContents),
-												$("<td/>").text(result[i].date),
-												$("<td/>").html($button));
-
-								$table.append($row);
+	//댓글 목록(json)
+	function getReplyList() {
+		var boardId = $('#boardId').val();
+		$
+				.ajax({
+					type : "get",
+					url : "${pageContext.request.contextPath}/reply/listJson.do?boardId="
+							+ boardId,
+					success : function(result) {
+						console.log(result);
+						var output = "<table>";
+						for ( var i in result) {
+							var currentTime = new Date(
+									parseInt(result[i].time));
+							var month = currentTime.getMonth() + 1;
+							var day = currentTime.getDate();
+							var year = currentTime.getFullYear();
+							var hour = currentTime.getHours();
+							var minutes = currentTime.getMinutes();
+							var date = year + "/" + month + "/" + day + "/"
+									+ hour + ":" + minutes;
+								output += "<tr>";
+								output += "<td>" + result[i].empName;
+								output += "(" + date + ")<br>";
+								output += result[i].repContents + "</td>";
+								output += "<tr>";
 							}
-
-							$("#getReplyList").html($table);
+								output += "</table>";
+							$("#getReplyList").html(output);
 						}
 					});
+>>>>>>> branch 'master' of https://github.com/KimJinHee921/weaving.git
 		}
 
-		// 댓글 수정화면 생성 함수
-		function showReplyModify(replyId) {
+	// 댓글 수정화면 생성 함수
+	function showReplyModify(replyId) {
 			$.ajax({
-				type : "get",
-				url : "",
-				success : function(result) {
-					$("#modifyReply").html(result);
-					// 태그.css("속성", "값")
-					$("#modifyReply").css("visibility", "visible");
-				}
-			});
-		}
+			type : "get",
+			url : "",
+			success : function(result) {
+				$("#modifyReply").html(result);
+				// 태그.css("속성", "값")
+				$("#modifyReply").css("visibility", "visible");
+			}
+		});
+	}
+});
+
+	// 댓글 수정
+	$("#btnReplyUpdate")
+			.click(
+					function() {
+						var detailRepContents = $("#detailRepContents").val();
+						$
+								.ajax({
+									type : "put",
+									url : "${pageContext.request.contextPath}/reply/update/${row.replyId}",
+									data : param,
+									success : function(result) {
+										if (result == "success") {
+											$("#modifyReply").css("visibility",
+													"hidden");
+											//댓글 목록 갱신
+											listReplyRest("1");
+								}
+							}
+						});
+					});
+
+	// 댓글 상세화면 닫기
+	$("#btnReplyClose").click(function() {
+		$("#modifyReply").css("visibility", "hidden");
 	});
 
+<<<<<<< HEAD
 	// 댓글 수정
 	$("#btnReplyUpdate")
 			.click(
@@ -177,7 +189,7 @@
 					<br>
 					<div>${board.boardContents}</div>
 					<br> <br> <br> <br> <br> <br> <br>
-					<br> <br> <br> <br> <br>
+
 					<div>
 						<button type="button" class="btn btn-primary btn-sm"
 							onclick="location.href='${pageContext.request.contextPath}/boardList?boardType=${boardType}'">목록</button>
@@ -201,7 +213,7 @@
 					<button type="button" class="btn btn-primary btn-sm" id="btnReply">댓글
 						등록</button>
 				</div>
-				
+
 				<!-- 댓글 목록 -->
 				<div id="getReplyList">
 					<table style="width: 700px">

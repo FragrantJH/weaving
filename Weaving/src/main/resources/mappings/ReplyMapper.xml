@@ -21,9 +21,14 @@
 		WHERE R.BOARD_ID = #{boardId}
 		ORDER BY TIME
 	</select>
-	
+
 	<!-- 댓글 수정 -->
-	
+	<select id="updateReply">
+		UPDATE REPLY
+		SET REP_CONTENTS = #{repContents}
+		WHERE REPLY_ID = #{replyId}
+	</select>
+		
 	<!-- 댓글 삭제 -->
 	<delete id="deleteReply">
 		DELETE FROM REPLY
