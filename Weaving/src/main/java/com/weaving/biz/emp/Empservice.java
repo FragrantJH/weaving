@@ -19,6 +19,9 @@ public interface Empservice {
 		//로그인
 		EmpVO getEmp(EmpVO vo);
 		
+		//번호조회
+		EmpVO getReadyEmpNo(EmpVO vo);
+		
 		// 글 상세 조회
 		EmpVO getEmpl(EmpVO vo);
 
