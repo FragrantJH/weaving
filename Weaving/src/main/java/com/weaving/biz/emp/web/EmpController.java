@@ -62,8 +62,7 @@ public class EmpController {
 	// 일반 사원 페이지 이동
 	@RequestMapping("/pwcheck")
 	public String pwcheck(Model model, EmpVO vo, HttpSession session) {
-		vo.setEmpNo((Integer) (session.getAttribute("empNo")));
-		model.addAttribute("emp", service.getEmp(vo));
+		model.addAttribute("emp", SessionInfo.getInfo(session, "emp"));
 		return "emp/passwordCheck";
 	}
 
