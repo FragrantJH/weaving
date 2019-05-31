@@ -109,6 +109,18 @@
 		</where>
 		ORDER BY APPROVAL_ORDER ASC
 	</select>
+	
+	<update id="updateReturnEmpNo" parameterType="com.weaving.biz.doc.DocApprovalVO">
+		UPDATE DOCUMENTS SET RETURN_EMP_NO=#{empNo} WHERE DOC_ID=#{docId}
+	</update>
+
+	<update id="updateReturnDoc" parameterType="com.weaving.biz.doc.DocApprovalVO">
+		UPDATE DOCUMENTDETAIL SET STATUS='RETU', APPROVAL_COMMENTS=#{approvalComments} WHERE DOC_ID=#{docId} AND EMP_NO=#{writerEmpNo}
+	</update>
+		
+	<update id="updateApprovalNullDate" parameterType="com.weaving.biz.doc.DocApprovalVO">
+		UPDATE DOCUMENTDETAIL SET APPROVAL_DATE=NULL WHERE DOC_ID=#{docId}
+	</update>
 	<!-- 
 	<select id="getDocWaitList" parameterType="com.weaving.biz.doc.DocInsertVO"
 		resultType="com.weaving.biz.doc.DocInsertVO">					

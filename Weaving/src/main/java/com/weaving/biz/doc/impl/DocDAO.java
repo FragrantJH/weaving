@@ -26,6 +26,17 @@ public class DocDAO {
 	public void updateApprovalDoc(DocApprovalVO vo) {
 		mybatis.update("DocDAO.updateDoneDoc", vo);
 	}
+	public void updateReturnEmpNo(DocApprovalVO vo) {
+		mybatis.update("DocDAO.updateReturnEmpNo", vo);
+	}
+	
+	public void updateReturnDoc(DocApprovalVO vo) {
+		mybatis.update("DocDAO.updateReturnDoc", vo);
+	}
+	public void updateApprovalNullDate(DocApprovalVO vo) {
+		mybatis.update("DocDAO.updateApprovalNullDate", vo);
+	}	
+	
 	public DocDetailVO getDocument(DocDetailVO vo) {
 		return mybatis.selectOne("DocDAO.getDocument", vo);
 	}

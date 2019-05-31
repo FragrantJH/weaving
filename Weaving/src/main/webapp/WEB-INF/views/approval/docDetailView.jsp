@@ -48,7 +48,7 @@ $(function() {
 });
 	
 function approvalSendEvent() {
-
+	approvalReject
 	$('.modal-footer').on('click', '#approvalSend', function() {
 		$.ajax({ 
 		    url: "updateDone",
@@ -71,6 +71,30 @@ function approvalSendEvent() {
 		    }
 		});
 	});
+	
+	$('.modal-footer').on('click', '#approvalReject', function() {
+		$.ajax({ 
+		    url: "updateReturn",
+		    type: 'PUT',
+		    dataType: 'json', 
+		    data: JSON.stringify({
+		    	docId: ${docBaseInfo.docId},
+		    	empNo: ${empInfo.empNo},
+		    	writerEmpNo: ${docBaseInfo.empNo},
+		    	approvalComments: $('#approvalComment').val()
+		    	}),
+		    //서버에 데이터를 보낼 때 사용 content - type 헤더의 값
+		    contentType: 'application/json',
+		    //mimeType: 'application/json',
+		    success: function(data) {
+		    	console.log("succ");
+		    	//location.replace('${pageContext.request.contextPath}/docWaitList');
+		    },
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    }
+		});
+	});	
 }
 </script>
 <body>
@@ -84,6 +108,7 @@ function approvalSendEvent() {
 				</div>
 				<div class="card-body">
 					<div style="float:right;">
+						<button type="button" class="btn btn-primary">수정하기</button>
 						<button type="button" class="btn btn-primary">결재이력</button>
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#approvalModal">결재하기</button>
 					</div>
@@ -106,7 +131,7 @@ function approvalSendEvent() {
 									</div>									
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-primary">Reject</button>
+									<button type="button" class="btn btn-primary" id="approvalReject">Reject</button>
 									<button type="button" class="btn btn-primary" id="approvalSend">Approval</button>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 								</div>

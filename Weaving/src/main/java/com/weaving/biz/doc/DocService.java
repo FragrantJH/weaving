@@ -13,6 +13,12 @@ public interface DocService {
 	void updateDoc(DocInsertVO vo);
 	// 문서결재처리
 	void updateApprovalDoc(DocApprovalVO vo);
+	// 문서 반려자 입력
+	void updateReturnEmpNo(DocApprovalVO vo);
+	// 문서 반려 처리
+	void updateReturnDoc(DocApprovalVO vo);
+	// 문서 반려 날짜 처리
+	void updateApprovalNullDate(DocApprovalVO vo);
 	// 문서삭제	
 	void deleteDoc(DocInsertVO vo);
 	//문서 조회

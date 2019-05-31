@@ -153,9 +153,7 @@ public class DocController {
 		
 		return "redirect:docList";
 	}
-		
 	
-
 	@RequestMapping(value="/docDetailView", method= RequestMethod.GET)	
 	public String docDetailView(Model model, HttpSession session, HttpServletRequest request) {
 		int empNo = SessionInfo.getInfo(session, "empNo");
@@ -169,12 +167,13 @@ public class DocController {
 		model.addAttribute("docDetailInfo",docService.getDocDetail(vo));
 		return "approval/docDetailView";
 	}
+	
 	@RequestMapping(value="/updateDone"
 			, headers = {"Content-type=application/json"}
 			, method= RequestMethod.PUT
 	)
 	@ResponseBody
-	public DocApprovalVO updateDept(@RequestBody DocApprovalVO vo, Model model) {
+	public DocApprovalVO updateDone(@RequestBody DocApprovalVO vo, Model model) {
 		System.out.println("******************************");
 		System.out.println(vo);
 		System.out.println(vo.getDocId());
@@ -182,18 +181,23 @@ public class DocController {
 		docService.updateApprovalDoc(vo);
 		return vo;
 	}
-	/*
-	@RequestMapping(value="/", method= RequestMethod.)	
-	public String docApprovalUpdate(DocApprovalVO vo, HttpSession session) {
-		int empNo = SessionInfo.getInfo(session, "empNo");
-		
-		vo.setEmpNo(empNo);
-		vo.setDocId(8);
-		vo.setApprovalComments("call");
-		
-		return "approval/docDetailView";
+
+	@RequestMapping(value="/updateReturn"
+			, headers = {"Content-type=application/json"}
+			, method= RequestMethod.PUT
+	)
+	@ResponseBody
+	public DocApprovalVO updateReturn(@RequestBody DocApprovalVO vo, Model model) {
+		System.out.println("******************************R");
+		System.out.println(vo);
+		System.out.println(vo.getDocId());
+		System.out.println(vo.getWriterEmpNo());
+		System.out.println("******************************R");
+		docService.updateReturnEmpNo(vo);
+		docService.updateReturnDoc(vo);
+		docService.updateApprovalNullDate(vo);
+		return vo;
 	}
-	*/
 }
 
 
