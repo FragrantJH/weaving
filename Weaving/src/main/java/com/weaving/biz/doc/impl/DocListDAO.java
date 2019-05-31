@@ -28,4 +28,12 @@ public class DocListDAO {
 	public List<DocReturnVO> getReturnDocList(int empNo) {
 		return mybatis.selectList("DocListDAO.getReturnDocList", empNo);
 	}
+	
+	public List<DocBaseVO> getIngDocList(int empNo) {
+		return mybatis.selectList("DocListDAO.getIngDocList", empNo);
+	}
+	
+	public List<DocBaseVO> getTempDocList(int empNo) {
+		return mybatis.selectList("DocListDAO.getTempDocList", empNo);
+	}
 }

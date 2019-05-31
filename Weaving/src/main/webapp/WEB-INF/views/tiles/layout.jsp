@@ -144,20 +144,24 @@
 			      	<i class="material-icons">create</i>
               		<p>문서 작성하기</p>
 			      </a>            
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docWaitList">
-			      	<i class="material-icons">create</i>
-              		<p>대기 문서</p>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=TEMP">
+			      	<i class="material-icons">border_color</i>
+              		<p>임시 저장 문서</p>
 			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
-			      	<i class="material-icons">create</i>
-              		<p>진행 문서</p>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=WAIT">
+			      	<i class="material-icons">flag</i>
+              		<p>결재 대기 문서</p>
 			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docReturnList">
-			      	<i class="material-icons">create</i>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=RETURN">
+			      	<i class="material-icons">undo</i>
               		<p>반려 문서</p>
 			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docDoneList">
-			      	<i class="material-icons">list</i>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=ING">
+			      	<i class="material-icons">forward</i>
+              		<p>전체 진행 문서</p>
+			      </a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=DONE">
+			      	<i class="material-icons">done_outline</i>
               		<p>완료 문서</p>
 			      </a>			      			      
 			</div>

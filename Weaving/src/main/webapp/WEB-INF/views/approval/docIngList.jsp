@@ -12,8 +12,8 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header card-header-primary">
-					<h4 class="card-title ">결재 반려 문서</h4>
-					<p class="card-category">기안자가 작성된 반려된 문서를 조회할 수 있습니다</p>
+					<h4 class="card-title ">결재 진행 문서</h4>
+					<p class="card-category">결재가 진행 중인 문서를 조회할 수 있습니다</p>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -23,9 +23,9 @@
 									<th>문서 번호</th>
 									<th>문서 제목</th>
 									<th>문서 작성자</th>
+									<th>문서 작성 날짜</th>
 									<th>보안 등급</th>
-									<th>작성 날짜</th>
-									<th>반려 결재자</th>
+									<th>상태</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -34,9 +34,9 @@
 										<td>${doc.docNo}</td>
 										<td><a id="btnSelect" href="${pageContext.request.contextPath}/docDetailView?docId=${doc.docId}">${doc.docTitle}</a></td>
 										<td>${doc.writerEmpName}</td>
-										<td>${doc.secureLevel}</td>
 										<td>${doc.regDate}</td>
-										<td>${doc.returnEmpName}</td>
+										<td>${doc.secureLevel}</td>
+										<td>${doc.state}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

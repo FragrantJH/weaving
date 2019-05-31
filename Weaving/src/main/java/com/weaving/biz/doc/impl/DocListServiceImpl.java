@@ -30,4 +30,14 @@ public class DocListServiceImpl implements DocListService {
 	public List<DocReturnVO> getReturnDocList(int empNo) {
 		return dao.getReturnDocList(empNo);
 	}
+
+	@Override
+	public List<DocBaseVO> getIngDocList(int empNo) {
+		return dao.getIngDocList(empNo);
+	}
+
+	@Override
+	public List<DocBaseVO> getTempDocList(int empNo) {
+		return dao.getTempDocList(empNo);
+	}
 }

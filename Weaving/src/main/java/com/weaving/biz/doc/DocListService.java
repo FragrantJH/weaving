@@ -9,4 +9,7 @@ public interface DocListService {
 
 	List<DocReturnVO> getReturnDocList(int empNo);
 
+	List<DocBaseVO> getIngDocList(int empNo);
+
+	List<DocBaseVO> getTempDocList(int empNo);
 }

@@ -29,7 +29,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${waitList}" var="doc">
+								<c:forEach items="${docList}" var="doc">
 									<tr>
 										<td>${doc.docNo}</td>
 										<td><a id="btnSelect" href="${pageContext.request.contextPath}/docDetailView?docId=${doc.docId}">${doc.docTitle}</a></td>
