@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="empInfo" value="${emp}" scope="session" />
+<c:set var="docType" value="${listType}" scope="session" />
 <c:set var="docBaseInfo" value="${docInfo}"/>
 <c:set var="docDetailInfo" value="${docDetailInfo}"/>
 <!DOCTYPE html>
@@ -54,7 +55,7 @@ function showDocTypeBtn() {
 	$("#approvalRecordBtn").hide();  
 	$("#approvalDoneBtn").hide();
 	*/
-	switch('${docListType}') {
+	switch('${docType}') {
 		case 'WAIT':
 			$("#approvalRecordBtn").show();  
 			$("#approvalDoneBtn").show();		
