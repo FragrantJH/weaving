@@ -33,13 +33,14 @@
 		}
 		var fileFormat = file.split(".");
 		var fileType = fileFormat[1];
+
 		if (confirm("업로드 하시겠습니까?")) {
 			$("#excelUpForm").attr("action", "${pageContext.request.contextPath}/compExcelUpload");
 			var options = {
 				success : function(data) {
 					alert("업로드 완료");
-					for(i=0; i<data.length;i++)
-					$("#ajax-content").append(data[i].name);
+					/* for(i=0; i<data.length;i++)
+					$("#ajax-content").append(data[i].name); */
 				},
 				
 				type : "POST",
