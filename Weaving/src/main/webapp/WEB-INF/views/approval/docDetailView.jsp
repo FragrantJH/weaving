@@ -44,9 +44,38 @@
 </head>
 <script>
 $(function() {
+	showDocTypeBtn();
 	approvalSendEvent();
 });
-	
+
+function showDocTypeBtn() {
+	/*
+	$("#modifyBtn").hide();  
+	$("#approvalRecordBtn").hide();  
+	$("#approvalDoneBtn").hide();
+	*/
+	switch('${docListType}') {
+		case 'WAIT':
+			$("#approvalRecordBtn").show();  
+			$("#approvalDoneBtn").show();		
+			break;
+		case 'RETURN':
+			$("#modifyBtn").show();  
+			$("#approvalRecordBtn").show();  
+			$("#approvalDoneBtn").show();			
+			break;
+		case 'DONE':
+			$("#approvalRecordBtn").show();
+			break;
+		case 'ING':
+			$("#approvalRecordBtn").show();
+			break;
+		default:
+			alert("예외 상태가 발생했습니다.");
+			break;
+		}
+}
+
 function approvalSendEvent() {
 	approvalReject
 	$('.modal-footer').on('click', '#approvalSend', function() {
@@ -108,9 +137,9 @@ function approvalSendEvent() {
 				</div>
 				<div class="card-body">
 					<div style="float:right;">
-						<button type="button" class="btn btn-primary">수정하기</button>
-						<button type="button" class="btn btn-primary">결재이력</button>
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#approvalModal">결재하기</button>
+						<button type="button" class="btn btn-primary" id="modifyBtn" style="display:none;">수정하기</button>
+						<button type="button" class="btn btn-primary" id="approvalRecordBtn" style="display:none;">결재이력</button>
+						<button type="button" class="btn btn-primary" id="approvalDoneBtn" data-toggle="modal" data-target="#approvalModal" style="display:none;">결재하기</button>
 					</div>
 					<!-- 결재하기 모달 -->
 					<div class="modal fade" id="approvalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
