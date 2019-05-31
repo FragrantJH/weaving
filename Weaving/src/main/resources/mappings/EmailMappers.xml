@@ -24,6 +24,15 @@ to_date(#{checkTime},'yyyy-mm-dd hh24:mi:ss'),
 )
 
 </insert>
+
+<!-- 읽은 메일 갯수 체크 -->
+<select id="mailReadCheck" parameterType="int" resultType="int">
+		select count(decode(read_check,'0','1'))
+		from email
+		where emp_no = #{empNo}
+</select>
+
+
 <delete id="deleteMails_S">
 		<![CDATA[
 			DELETE FROM Email WHERE email_id = #{email_id}

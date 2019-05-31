@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="card-body">
-              <h6 class="card-title">사용자님의 반려된 문서는 <br> 건 입니다.</h6>
+              <h6 class="card-title">사용자님의 반려된 문서는 <br> ${returndoc}건 입니다.</h6>
 
           </div>
       </div>
@@ -50,7 +50,7 @@
             </div>
           </div>
           <div class="card-body">
-              <h6 class="card-title">사용자님이 아직 읽지 않은 메일은 <br> 건 입니다.</h6>
+              <h6 class="card-title">사용자님이 아직 읽지 않은 메일은 <br> ${countMail}건 입니다.</h6>
 
           </div>
       </div>

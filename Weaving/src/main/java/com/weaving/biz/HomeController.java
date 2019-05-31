@@ -39,6 +39,8 @@ public class HomeController {
 	Empservice service;
 	@Autowired
 	DocListService waitservice;
+	@Autowired
+	ReadMailCheckService mailservice;
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -50,8 +52,12 @@ public class HomeController {
 	public String home(Locale locale, Model model,  HttpSession session) {
 		
 		EmpVO vo = SessionInfo.getInfo(session, "emp");
+		//결재 대기중인 문서 카운트
 		model.addAttribute("count", waitservice.getWaitDocList(vo.getEmpNo()).toArray().length);
-
+		//읽지 않은 메일 카운트
+		model.addAttribute("countMail", mailservice.getUnReadMailCheck(vo.getEmpNo()));
+		//반려된 문서 카운트
+		model.addAttribute("returndoc", waitservice.getReturnDocList(vo.getEmpNo()).toArray().length);
 		return "home";
 	}
 
