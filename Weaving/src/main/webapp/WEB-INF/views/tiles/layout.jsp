@@ -41,13 +41,8 @@
 
 <body>
 
-  <div class="wrapper ">
+  <div class="wrapper">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-4.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
       <div class="logo">
         <a href="${pageContext.request.contextPath}/home" class="simple-text logo-normal">
           WEAVING
@@ -89,100 +84,144 @@
       
       <!-- 메뉴 -->
       <div class="sidebar-wrapper">
-        <ul class="nav">
+        <ul class="nav" style="overflow: scroll;">
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/home">
               <i class="material-icons">dashboard</i>
               <p>Home</p>
             </a>
           </li>
-          <li class="nav-item dropdown ">
-            <a class="nav-link" data-toggle="collapse" data-target="#email" role="button">
+          
+          <!-- 메일 -->
+		  <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" data-toggle="collapse" data-target="#mail">
               <i class="material-icons">email</i>
               <p>메일</p>
             </a>
-            <div id="email" class="collapse in">
-            	<a class="dropdown-item" href="${pageContext.request.contextPath}/mailForm">
-			      	<i class="material-icons">email</i>
-              		<p>메일보내기</p>
-			    </a>
-			    <a class="dropdown-item" href="${pageContext.request.contextPath}/view_mail">
-			      	<i class="material-icons">email</i>
-              		<p>받은메일함</p>
-			    </a>     
-            </div>
           </li>
-          <li class="nav-item dropdown ">
-            <a class="nav-link" data-toggle="collapse" data-target="#board" role="button">
-              <i class="material-icons">library_books</i>
-              <p>게시판  </p>
+		  <div class="collapse navbar-collapse" id="mail">
+		    <ul class="navbar-nav">
+				<li class="nav-item">
+				   	<a class="nav-link active" href="${pageContext.request.contextPath}/mailForm">
+					 	<i class="material-icons">email</i>
+					 	<p>메일보내기</p>
+					</a>
+				 </li>
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/view_mail">
+					 	<i class="material-icons">email</i>
+					 	<p>받은메일함</p>
+					</a>
+				 </li>				 
+		    </ul>
+		  </div>
+		  
+		  
+		  <!-- 결재 -->
+		  <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" data-target="#document">
+              <i class="material-icons">description</i>
+              <p>전자 결재</p>
             </a>
-            <div id="board" class="collapse in">
-            	<a class="dropdown-item" href="${pageContext.request.contextPath}/boardList?boardType=0">
-			      	<i class="material-icons">library_books</i>
-              		<p>공지사항</p>
-			    </a>
-			    <a class="dropdown-item" href="${pageContext.request.contextPath}/boardList?boardType=1">
-			      	<i class="material-icons">library_books</i>
-              		<p>게시판</p>
-			    </a>     
-            </div>
           </li>
-          <li class="nav-item ">
+		  <div class="collapse navbar-collapse" id="document">
+		    <ul class="navbar-nav">
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docViewInsert">
+					 	<i class="material-icons">create</i>
+              		<p>문서 작성하기</p>
+					</a>
+				 </li>
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=TEMP">
+					 	<i class="material-icons">border_color</i>
+              			<p>임시 저장 문서</p>
+					</a>
+				</li>				 
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=WAIT">
+					 	<i class="material-icons">flag</i>
+              			<p>결재 대기 문서</p>
+					</a>
+				</li>				 
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=RETURN">
+						<i class="material-icons">undo</i>
+	              		<p>반려 문서</p>
+					</a>
+				</li>				 
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=ING">
+				      	<i class="material-icons">forward</i>
+	              		<p>전체 진행 문서</p>
+					</a>
+				</li>
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=DONE">
+			      	<i class="material-icons">done_outline</i>
+              		<p>완료 문서</p>
+					</a>
+				</li>					 
+		    </ul>
+		  </div> 
+		    
+          
+          <!-- 게시판 -->
+		  <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" data-target="#board">
+              <i class="material-icons">library_books</i>
+              <p>게시판</p>
+            </a>
+          </li>
+		  <div class="collapse navbar-collapse" id="board">
+		    <ul class="navbar-nav">
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=0">
+					 	<i class="material-icons">library_books</i>
+					 	<p>공지사항</p>
+					</a>
+				 </li>
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=1">
+					 	<i class="material-icons">library_books</i>
+					 	<p>게시판</p>
+					</a>
+				 </li>				 
+		    </ul>
+		  </div> 
+        
+         <!-- 예약 -->
+          <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/roomlist">
               <i class="material-icons">meeting_room</i>
               <p>예약</p>
             </a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="collapse" data-target="#document" role="button">
-              <i class="material-icons">description</i>
-              <p>전자결재</p>
-            </a>
-            <div id=document class="collapse in">
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docViewInsert">
-			      	<i class="material-icons">create</i>
-              		<p>문서 작성하기</p>
-			      </a>            
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=TEMP">
-			      	<i class="material-icons">border_color</i>
-              		<p>임시 저장 문서</p>
-			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=WAIT">
-			      	<i class="material-icons">flag</i>
-              		<p>결재 대기 문서</p>
-			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=RETURN">
-			      	<i class="material-icons">undo</i>
-              		<p>반려 문서</p>
-			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=ING">
-			      	<i class="material-icons">forward</i>
-              		<p>전체 진행 문서</p>
-			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=DONE">
-			      	<i class="material-icons">done_outline</i>
-              		<p>완료 문서</p>
-			      </a>			      			      
-			</div>
-          </li>
-               
-          <li class="nav-item dropdown ">
-            <a class="nav-link" data-toggle="collapse" data-target="#cal" role="button">
+          
+          <!-- 일정 -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" data-target="#cal">
               <i class="material-icons">today</i>
               <p>일정</p>
             </a>
-            <div id="cal" class="collapse in">
-            	<a class="dropdown-item" href="${pageContext.request.contextPath}/getCal.do?calType=ALL">
-			      	<i class="material-icons">today</i>
-              		<p>전체일정</p>
-			    </a>
-			    <a class="dropdown-item" href="${pageContext.request.contextPath}/getCal.do?calType=USER">
-			      	<i class="material-icons">perm_contact_calendar</i>
-              		<p>개인일정</p>
-			    </a>     
-            </div>
           </li>
+		  <div class="collapse navbar-collapse" id="cal">
+		    <ul class="navbar-nav">
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=ALL">
+					 	<i class="material-icons">today</i>
+					 	<p>전체일정</p>
+					</a>
+				 </li>
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=USER">
+					 	<i class="material-icons">perm_contact_calendar</i>
+					 	<p>개인일정</p>
+					</a>
+				 </li>				 
+		    </ul>
+		  </div> 
+
         </ul>
       </div>
     </div>
