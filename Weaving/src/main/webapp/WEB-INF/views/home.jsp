@@ -13,7 +13,7 @@
 <div class="row" >
   <div class="col-md-3" style="display:inline; float:left;">
       <div class="card">
-          <div class="card-header card-header-icon card-header-rose">
+          <div class="card-header card-header-icon card-header-warning">
             <div class="card-icon">
               <i class="material-icons">library_books</i>
             </div>
@@ -29,7 +29,7 @@
 
   <div class="col-md-3" style="display:inline; float:left;"">
       <div class="card">
-          <div class="card-header card-header-icon card-header-rose">
+          <div class="card-header card-header-icon card-header-success">
             <div class="card-icon">
               <i class="material-icons">signal_cellular_no_sim</i>
             </div>
@@ -44,7 +44,7 @@
 
   <div class="col-md-3" style="display:inline; float:left;">
       <div class="card">
-          <div class="card-header card-header-icon card-header-rose">
+          <div class="card-header card-header-icon card-header-danger">
             <div class="card-icon">
               <i class="material-icons">mail_outline </i>
             </div>
@@ -58,7 +58,7 @@
 
   <div class="col-md-3" style="display:inline; float:left;">
       <div class="card">
-          <div class="card-header card-header-icon card-header-rose">
+          <div class="card-header card-header-icon card-header-info">
             <div class="card-icon">
               <i class="material-icons">calendar_today</i>
             </div>
@@ -105,7 +105,7 @@
 
   <div class="col-md-6" style="display:inline; float:right;">
       <div class="card">
-          <div class="card-header card-header-text card-header-primary">
+          <div class="card-header card-header-text card-header-warning">
             <div class="card-text">
               <h4 class="card-title">게시판</h4>
             </div>
