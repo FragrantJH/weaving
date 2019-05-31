@@ -24,6 +24,7 @@ public class DocListController {
 
 		mv.clear();
 		EmpVO vo = SessionInfo.getInfo(session, "emp");
+		session.setAttribute("docListType", docListType);
 		
 		switch (docListType) {
 		case TEMP:
