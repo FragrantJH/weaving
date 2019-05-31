@@ -35,6 +35,7 @@ import com.weaving.biz.doc.DocDetailVO;
 import com.weaving.biz.doc.DocHistoryVO;
 import com.weaving.biz.doc.DocService;
 import com.weaving.biz.doc.DocInsertVO;
+import com.weaving.biz.doc.DocListType;
 import com.weaving.biz.docForm.DocFormService;
 import com.weaving.biz.docForm.DocFormVO;
 import com.weaving.biz.emp.EmpVO;
@@ -161,8 +162,8 @@ public class DocController {
 		
 		vo.setEmpNo(empNo);
 		vo.setDocId(Integer.parseInt(request.getParameter("docId")));
-		
-		System.out.println(docService.getDocument(vo));
+
+		model.addAttribute("docListType",(String)request.getParameter("listType"));
 		model.addAttribute("docInfo",docService.getDocument(vo));
 		model.addAttribute("docDetailInfo",docService.getDocDetail(vo));
 		return "approval/docDetailView";
