@@ -82,8 +82,34 @@
 	
 	
 	<!-- 진행중인 문서 조회 (진행 중, 반려) -->
-	<select id="getIngDocList">
+	<select id="getIngDocList" parameterType="int" resultType="docBase">
+		SELECT A.DOC_ID,
+		       A.DOC_NO,
+		       A.DOC_TITLE,
+		       A.EMP_NO AS WRITER_EMP_NO,
+		       B.EMP_NAME AS WRITER_EMP_NAME,
+		       CASE WHEN RETURN_EMP_NO IS NOT NULL THEN '반려됨'
+		            ELSE '진행중' END AS STATE,
+		       A.REG_DATE,
+		       A.SECURE_LEVEL
+		  FROM DOCUMENTS A INNER JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO
+		                   INNER JOIN DOCUMENTDETAIL C ON A.DOC_ID = C.DOC_ID
+		 WHERE A.DONE_DATE IS NULL 
+		    AND C.EMP_NO = #{empNo}
+		 ORDER BY A.DOC_ID, C.APPROVAL_ORDER
+	</select>
 	
+	<select id="getTempDocList" parameterType="int" resultType="docBase">
+		SELECT A.DOC_ID,
+		       A.DOC_NO,
+		       A.DOC_TITLE,
+		       A.EMP_NO AS WRITER_EMP_NO,
+		       B.EMP_NAME AS WRITER_EMP_NAME,
+		       A.REG_DATE
+		  FROM DOCUMENTS A INNER JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO
+		 WHERE A.TEMP_YN = '1'
+		    AND A.EMP_NO = #{empNo}
+		 ORDER BY A.DOC_ID
 	</select>
 
 </mapper>
