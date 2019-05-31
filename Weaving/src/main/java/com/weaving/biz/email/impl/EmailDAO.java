@@ -21,6 +21,8 @@ public class EmailDAO {
 	 * */
 	public void insertEmail(EmailVO vo) throws Exception{
 		mybatis.insert("EmailDAO.insertEmail", vo);
+		vo.setEmailId(1);
+		
 	}
 	
 	/**

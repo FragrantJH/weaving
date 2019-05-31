@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<form action="mailSend" method="get">
+	<form action="mailSend" method="post">
 		<div class="bigpage">
 			<div class="send-button">
 				<input type="submit" value="보내기"/>
@@ -26,16 +26,16 @@
 				<table>
 					<tbody>
 						<tr class="Recipient">
-							<th class="row"><label> <a href="#">보내는사람</a>
+							<th class="row" ><label> <a href="#">보내는사람</a>
 						</label></th>
-							<td colspan="2"><input type="text" name="from"><br>
+							<td colspan="1"><input type="text" name="fromEmail" placeholder="dohy43@gmail.com"><br>
 							</td>
 						</tr>
 
 						<tr>
 							<th class="row"><label> <a href="#">받는사람 </a></label>
 							</th>
-							<td colspan="2"><input type="text" name="to"><br>
+							<td colspan="2"><input type="text" name="toEmail"><br>
 							</td>
 						</tr>
 
@@ -53,7 +53,7 @@
 
 			<div class="file-attachment"></div>
 			<div class="editer-textarea">
-				<textarea name="content" id="ir1" rows="10" cols="100"></textarea>
+				<textarea name=emailContents id="ir1" rows="10" cols="100"></textarea>
 
 				<script>
 var oEditors = [];

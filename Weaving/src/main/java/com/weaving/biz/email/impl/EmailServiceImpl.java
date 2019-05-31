@@ -20,8 +20,9 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public void insertEmail(EmailVO vo)  {
-		
+	public String insertEmail(EmailVO vo) throws Exception  {
+			dao.insertEmail(vo);
+			return null;
 	}
 
 	@Override
