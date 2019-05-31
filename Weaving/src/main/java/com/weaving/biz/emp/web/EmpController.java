@@ -37,12 +37,14 @@ public class EmpController {
 	Empservice service;
 	@Inject
 	AdminAccountsMngService AdminAccountsMngService;
-	//엑셀 업로드 페이지 이동
+
+	// 엑셀 업로드 페이지 이동
 	@RequestMapping(value = "/excelUploadPage", method = RequestMethod.GET)
 	public String serviceMngForm(Model model, Principal principal) {
 		return "admin/emp/excelupload";
 	}
-	//엑셀 업로드 처리
+
+	// 엑셀 업로드 처리
 	@RequestMapping(value = "/compExcelUpload")
 	@ResponseBody
 	public List<EmpVO> excelUpload(MultipartHttpServletRequest req) {
@@ -60,8 +62,7 @@ public class EmpController {
 	// 일반 사원 페이지 이동
 	@RequestMapping("/pwcheck")
 	public String pwcheck(Model model, EmpVO vo, HttpSession session) {
-		vo.setEmpNo((Integer) (session.getAttribute("empNo")));
-		model.addAttribute("emp", service.getEmp(vo));
+		model.addAttribute("emp", SessionInfo.getInfo(session, "emp"));
 		return "emp/passwordCheck";
 	}
 

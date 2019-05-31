@@ -8,7 +8,7 @@ public class EmpVO {
 	private String empName;
 	private String password;
 	private String position;
-	private String joindate1;
+	private String joinDate;
 	private String deptName;
 	private String email;
 	private String phone;
@@ -58,11 +58,11 @@ public class EmpVO {
 		this.position = position;
 	}
 
-	public String getJoindate1() {
-		return joindate1;
+	public String getJoinDate() {
+		return joinDate;
 	}
-	public void setJoindate1(String joindate1) {
-		this.joindate1 = joindate1;
+	public void setJoinDate(String joinDate) {
+		this.joinDate = joinDate;
 	}
 	public String getEmail() {
 		return email;
@@ -129,7 +129,7 @@ public class EmpVO {
 	@Override
 	public String toString() {
 		return "EmpVO [gmailAppKey=" + gmailAppKey + ", empNo=" + empNo + ", empName=" + empName + ", password="
-				+ password + ", position=" + position + ", joindate1=" + joindate1 + ", deptName=" + deptName
+				+ password + ", position=" + position + ", joindate1=" + joinDate + ", deptName=" + deptName
 				+ ", email=" + email + ", phone=" + phone + ", address=" + address + ", deptId=" + deptId
 				+ ", deletedYn=" + deletedYn + ", deleteDate=" + deleteDate + ", seq=" + seq + ", seqs="
 				+ Arrays.toString(seqs) + ", cnt=" + cnt + ", adminYn=" + adminYn + "]";
