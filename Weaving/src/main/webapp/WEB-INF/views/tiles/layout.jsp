@@ -90,10 +90,10 @@
       <!-- 메뉴 -->
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active  ">
+          <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/home">
               <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
+              <p>Home</p>
             </a>
           </li>
           <li class="nav-item dropdown ">
@@ -144,20 +144,24 @@
 			      	<i class="material-icons">create</i>
               		<p>문서 작성하기</p>
 			      </a>            
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docWaitList">
-			      	<i class="material-icons">create</i>
-              		<p>대기 문서</p>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=TEMP">
+			      	<i class="material-icons">border_color</i>
+              		<p>임시 저장 문서</p>
 			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList/${empName}/${position}">
-			      	<i class="material-icons">create</i>
-              		<p>진행 문서</p>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=WAIT">
+			      	<i class="material-icons">flag</i>
+              		<p>결재 대기 문서</p>
 			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docReturnList">
-			      	<i class="material-icons">create</i>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=RETURN">
+			      	<i class="material-icons">undo</i>
               		<p>반려 문서</p>
 			      </a>
-			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docDoneList">
-			      	<i class="material-icons">list</i>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=ING">
+			      	<i class="material-icons">forward</i>
+              		<p>전체 진행 문서</p>
+			      </a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/docList?listType=DONE">
+			      	<i class="material-icons">done_outline</i>
               		<p>완료 문서</p>
 			      </a>			      			      
 			</div>
@@ -198,24 +202,9 @@
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
+            
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Stats
-                  </p>
-                </a>
-              </li>
+              
               <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
@@ -232,6 +221,7 @@
                   <a class="dropdown-item" href="#">Another One</a>
                 </div>
               </li>
+              
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
@@ -240,10 +230,9 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
+                  <a class="dropdown-item" href="${pageContext.request.contextPath}/pwcheck">Profile</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Log out</a>
                 </div>
               </li>
             </ul>

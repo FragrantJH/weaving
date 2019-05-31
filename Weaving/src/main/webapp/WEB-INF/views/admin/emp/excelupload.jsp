@@ -33,13 +33,14 @@
 		}
 		var fileFormat = file.split(".");
 		var fileType = fileFormat[1];
+
 		if (confirm("업로드 하시겠습니까?")) {
 			$("#excelUpForm").attr("action", "${pageContext.request.contextPath}/compExcelUpload");
 			var options = {
 				success : function(data) {
 					alert("업로드 완료");
-					for(i=0; i<data.length;i++)
-					$("#ajax-content").append(data[i].name);
+					/* for(i=0; i<data.length;i++)
+					$("#ajax-content").append(data[i].name); */
 				},
 				
 				type : "POST",
@@ -68,18 +69,24 @@
 				</div>
 				<!-- END PAGE TITLE -->
 			</div>
-			<div class="col-lg-10 well">
-				<div class="row">
+			<div class="col-md-12" align="center">
+				<div class=card>
+				<div class="card-header card-header-text card-header-primary">
+					<div class="card-text">
+						<h4 class="card-title">엑셀 파일 등록</h4>
+					</div>
+				</div>
 					<form id="excelUpForm" method="post" action="" role="form" enctype="multipart/form-data">
-						<div class="col-sm-12">
+						<div class="col-sm-12" >
 							<div class="row" id="regGoodsImgArea">
-								<div class="col-sm-4">
-									<label>확장자명 : xlsx,<br> joindata 입력시 날짜앞에 `넣어서 텍스트 형식으로 입력해야함<br>  엑셀업로드 (업로드하고 디비에 INSERT)</label>
+								<div>
+								<br>
+									<p>확장자명 : xlsx,joindata 입력시 날짜 앞에 `넣어서 텍스트 형식으로 입력해야함 엑셀업로드 (업로드하고 디비에 INSERT)</p>
 									<input id="excel" name="excel" class="file" type="file" multiple data-show-upload="false" data-show-caption="true">
 								</div>
 							</div>
 						</div>
-						<button type="button" id="excelUp" onclick="check()">등록</button>
+						<button type="button" id="excelUp" onclick="check()" class="btn btn-primary">등록</button>
 					</form>
 				</div>
 			</div>

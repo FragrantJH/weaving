@@ -285,7 +285,7 @@ function formch() {
 								<label for="password"><b>비밀번호</b></label> 
 								<input type="text" name="password" id="password" onkeyup="pwche()" required>
 								<br>
-								<br> 
+								<br>
 								<!-- <label for="repassword"><b>비밀번호 확인</b></label> 
 								<input type="password" name="repassword" id="repassword" onkeyup="pwche()"><br>
 								<span id="same"></span>

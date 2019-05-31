@@ -15,8 +15,6 @@ public class BoardDAO {
 	SqlSessionTemplate mybatis;
    
 	public void insert(BoardVO vo) {
-		System.out.println(vo);
-		vo.setEmpNo(1);
 		mybatis.insert("BoardDAO.insertBoard", vo);
 	}
 		

@@ -15,7 +15,7 @@
       <div class="card">
           <div class="card-header card-header-icon card-header-rose">
             <div class="card-icon">
-              <i class="material-icons">language</i>
+              <i class="material-icons">library_books</i>
             </div>
           </div>
           <div class="card-body">
@@ -31,11 +31,11 @@
       <div class="card">
           <div class="card-header card-header-icon card-header-rose">
             <div class="card-icon">
-              <i class="material-icons">language</i>
+              <i class="material-icons">signal_cellular_no_sim</i>
             </div>
           </div>
           <div class="card-body">
-              <h6 class="card-title">사용자님의 반려된 문서는 <br> 건 입니다.</h6>
+              <h6 class="card-title">사용자님의 반려된 문서는 <br> ${returndoc}건 입니다.</h6>
 
           </div>
       </div>
@@ -46,11 +46,11 @@
       <div class="card">
           <div class="card-header card-header-icon card-header-rose">
             <div class="card-icon">
-              <i class="material-icons">language</i>
+              <i class="material-icons">mail_outline </i>
             </div>
           </div>
           <div class="card-body">
-              <h6 class="card-title">사용자님이 아직 읽지 않은 메일은 <br> 건 입니다.</h6>
+              <h6 class="card-title">사용자님이 아직 읽지 않은 메일은 <br> ${countMail}건 입니다.</h6>
 
           </div>
       </div>
@@ -60,7 +60,7 @@
       <div class="card">
           <div class="card-header card-header-icon card-header-rose">
             <div class="card-icon">
-              <i class="material-icons">language</i>
+              <i class="material-icons">calendar_today</i>
             </div>
           </div>
           <div class="card-body">
@@ -78,7 +78,27 @@
             </div>
           </div>
           <div class="card-body">
-              	공지사항 미리보기 공간
+              	<table class="table">
+					<thead class=" text-primary">
+						<tr>
+							<th>No</th>
+							<th>작성자</th>
+							<th>제목</th>
+							<th>작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${boardList}" var="board">
+							<tr>
+								<td>${board.boardId}</td>
+								<td>${board.empName}</td>
+								<td><a
+									href="${pageContext.request.contextPath}/boardOne/${board.boardId}">${board.title}</a></td>
+								<td>${board.time}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
           </div>
       </div>
   </div>
@@ -91,7 +111,27 @@
             </div>
           </div>
           <div class="card-body">
-              	게시판 미리보기 공간
+              		<table class="table">
+					<thead class=" text-primary">
+						<tr>
+							<th>No</th>
+							<th>작성자</th>
+							<th>제목</th>
+							<th>작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${boardList1}" var="board">
+							<tr>
+								<td>${board.boardId}</td>
+								<td>${board.empName}</td>
+								<td><a
+									href="${pageContext.request.contextPath}/boardOne/${board.boardId}">${board.title}</a></td>
+								<td>${board.time}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
           </div>
       </div>
   </div>

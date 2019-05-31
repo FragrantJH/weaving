@@ -13,6 +13,7 @@ public class DocBaseVO {
 	private String regDate;
 	private String doneDate;
 	private char secureLevel;
+	private String state;
 
 	public int getDocId() {
 		return docId;
@@ -78,11 +79,20 @@ public class DocBaseVO {
 		this.secureLevel = secureLevel;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	@Override
 	public String toString() {
 		return "DocBaseVO [docId=" + docId + ", writerEmpNo=" + writerEmpNo + ", writerEmpName=" + writerEmpName
 				+ ", docNo=" + docNo + ", docTitle=" + docTitle + ", regDate=" + regDate + ", doneDate=" + doneDate
 				+ ", secureLevel=" + secureLevel + "]";
 	}
+
 	
 }
