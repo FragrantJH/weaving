@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weaving.biz.board.BoardService;
+import com.weaving.biz.board.BoardVO;
+import com.weaving.biz.common.Paging;
 import com.weaving.biz.common.SessionInfo;
 import com.weaving.biz.doc.DocListService;
 import com.weaving.biz.emp.EmpVO;
@@ -41,6 +44,8 @@ public class HomeController {
 	DocListService waitservice;
 	@Autowired
 	ReadMailCheckService mailservice;
+	@Autowired
+	BoardService boardService;
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -58,6 +63,26 @@ public class HomeController {
 		model.addAttribute("countMail", mailservice.getUnReadMailCheck(vo.getEmpNo()));
 		//반려된 문서 카운트
 		model.addAttribute("returndoc", waitservice.getReturnDocList(vo.getEmpNo()).toArray().length);
+		
+		
+		Paging paging = new Paging();
+		paging.setPageUnit(5);
+		
+		// 보드
+		BoardVO boardVo = new BoardVO();
+		// 공지사항
+		boardVo.setBoardType('1');
+		
+		boardVo.setFirst(paging.getFirst());
+		boardVo.setLast(paging.getLast());
+		
+		//전체건수
+		paging.setTotalRecord(boardService.getBoardListTotalCount(boardVo));
+		List<BoardVO> list = boardService.getBoardListPaging(boardVo);
+		
+		model.addAttribute("boardList", list);
+		
+		
 		return "home";
 	}
 
