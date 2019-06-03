@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.weaving.biz.email.EmailService;
 import com.weaving.biz.email.EmailVO;
+import com.weaving.biz.email.MessageVO;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -23,6 +24,12 @@ public class EmailServiceImpl implements EmailService {
 	public String insertEmail(EmailVO vo) throws Exception  {
 			dao.insertEmail(vo);
 			return null;
+	}
+	
+	@Override
+	public String insertInbox(EmailVO vo) throws Exception {
+		dao.insertInbox(vo);
+		return null;
 	}
 
 	@Override
@@ -43,10 +50,9 @@ public class EmailServiceImpl implements EmailService {
 		return null;
 	}
 
-	@Override
-	public List<EmailVO> getEmailList(EmailVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<?> getEmailList(EmailVO vo) throws Exception {
+	
+		return dao.getEmailList(vo);
 	}
 
 	@Override
@@ -62,9 +68,9 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public List<EmailVO> selectEmailListG(EmailVO vo)  {
-		// TODO Auto-generated method stub
-		return null;
+	public List<?> selectEmailListG(MessageVO mvo) throws Exception  {
+	
+		return dao.selectEmailListG(mvo);
 	}
 
 	@Override
@@ -84,5 +90,19 @@ public class EmailServiceImpl implements EmailService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int mailReadCheck(EmailVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<?> getEmailList(MessageVO mvo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

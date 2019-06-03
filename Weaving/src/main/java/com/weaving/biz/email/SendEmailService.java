@@ -74,14 +74,13 @@ public class SendEmailService {
 		}
 	}
 	
-	public void sendAttatch(EmailVO vo) throws Exception {
+	public void sendAttatch(EmailVO vo, EmpVO empVo) throws Exception {
 		
 		
 		String to = vo.getToEmail();// change accordingly
 		String from = vo.getFromEmail(); // change accordingly
-		final String username ="dohy43@gmail.com"; // change accordingly
-		final String password = "uuioeaxjqhwqerno"; // change accordingly
-	
+		final String username =empVo.getEmail(); // change accordingly
+		final String password = empVo.getGmailAppKey(); // change accordingly
 		// Assuming you are sending email through relay.jangosmtp.net
 		String host = "smtp.gmail.com";
 		Properties props = new Properties();

@@ -24,20 +24,20 @@
 		
 <div>
 <table class="table">
-<c:forEach var="rEmail" items="${Emailreading}" >
+<c:forEach var="rEmail" items="${readingMail}" >
 								<thead class=" text-primary">
 									<tr>
-									<td>${rEmail.subject}</td>
+									<td><div class="subject">${rEmail.subject}</div></td>
 									</tr>
 									
 										<tr>
-										<td>${rEmail.from}</td>
+										<td><div class="fromEmail">${rEmail.fromEmail}</div></td>
 										</tr>
 										
 										<tr>
 											<td>
 												<div class="collreadmail"  >
-													<span >${rEmail.content}</span>
+													<span class="inboxContents">${rEmail.inboxContents}</span>
 												</div>
 											</td>
 										</tr>

@@ -12,6 +12,7 @@ public class EmailVO {
 	String toEmail;			//받는 사람 
 	String subject; 			//제목 
 	String emailContents;// 본문 내용 
+	String inboxContents;
 	Date checkTime;			//시간 체크 
 	int readCheck;				// 0안읽음 1 읽음 
 	
@@ -29,6 +30,14 @@ public class EmailVO {
 
 	 
 	 	
+	public String getInboxContents() {
+		return inboxContents;
+	}
+
+	public void setInboxContents(String inboxContents) {
+		this.inboxContents = inboxContents;
+	}
+
 	public int getEmpNo() {
 		return empNo;
 	}
@@ -153,11 +162,14 @@ public class EmailVO {
 	@Override
 	public String toString() {
 		return "EmailVO [emailId=" + emailId + ", fromEmail=" + fromEmail + ", toEmail=" + toEmail + ", subject="
-				+ subject + ", emailContents=" + emailContents + ", checkTime=" + checkTime + ", readCheck=" + readCheck
-				+ ", contenttype=" + contenttype + ", filename=" + filename + ", gmailAppKey=" + gmailAppKey
-				+ ", attachment=" + attachment + ", empNo=" + empNo + ", mailNoList=" + Arrays.toString(mailNoList)
-				+ ", uploadFile=" + uploadFile + ", toarr=" + Arrays.toString(toarr) + "]";
+				+ subject + ", emailContents=" + emailContents + ", inboxContents=" + inboxContents + ", checkTime="
+				+ checkTime + ", readCheck=" + readCheck + ", contenttype=" + contenttype + ", filename=" + filename
+				+ ", gmailAppKey=" + gmailAppKey + ", attachment=" + attachment + ", empNo=" + empNo + ", mailNoList="
+				+ Arrays.toString(mailNoList) + ", uploadFile=" + uploadFile + ", toarr=" + Arrays.toString(toarr)
+				+ "]";
 	}
+
+	
 
 	
 	

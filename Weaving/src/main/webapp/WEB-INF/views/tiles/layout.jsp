@@ -106,13 +106,14 @@
 					</a>
 				 </li>
 				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/view_mail">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/reading_mail">
 					 	<i class="material-icons">email</i>
 					 	<p>받은메일함</p>
 					</a>
 				 </li>				 
 		    </ul>
 		  </div>
+		  
 		  
 		  <!-- 결재 -->
 		  <li class="nav-item">
