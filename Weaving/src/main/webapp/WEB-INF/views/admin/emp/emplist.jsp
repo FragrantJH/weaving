@@ -28,7 +28,7 @@
 	//사용자 등록 요청
 	function empInsert(){
 		//등록 버튼 클릭
-		$('#btnInsert').on('click',function(){		
+		$('#btnInsert').on('click',function(){
 			var empName = $('input:text[name="empName"]').val();
 			var password = $('input:text[name="password"]').val();
 			var deptId = $('[name="deptId"]').val();
@@ -126,10 +126,8 @@
 	//초기화
 	function init() {
 		//초기화 버튼 클릭
-		$('#btnInit').on('click', function() {
-			$('#insertEmp').each(function() {
-				this.reset();
-			});
+		$('#btnInsertForm').on('click', function() {
+			$('#insertForm')[0].reset();
 		});
 	}//init
 
