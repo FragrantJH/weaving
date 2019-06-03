@@ -72,6 +72,11 @@
         WHERE EMP_NO =#{empNo} AND PASSWORD = #{password}
     </select>
     
+    <!-- EMPNO조회 -->
+    <select id ="getReadyEmpNo" resultType="emp" parameterType="emp">
+       SELECT NVL(MAX(EMP_NO), 0) + 1 FROM EMPLOYEES
+    </select>
+    
     <!-- 개인조회 -->
     <select id ="getEmpl" resultType="emp" parameterType="emp">
         SELECT E.EMP_NO

@@ -127,7 +127,7 @@
 		  <div class="collapse navbar-collapse" id="document">
 		    <ul class="navbar-nav">
 				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docViewInsert">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docInsertView">
 					 	<i class="material-icons">create</i>
               		<p>문서 작성하기</p>
 					</a>

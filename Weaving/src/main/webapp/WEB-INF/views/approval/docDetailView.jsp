@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="empInfo" value="${emp}" scope="session" />
-<c:set var="docType" value="${listType}" scope="session" />
+<c:set var="docType" value="${docListType}" scope="session" />
 <c:set var="docBaseInfo" value="${docInfo}"/>
 <c:set var="docDetailInfo" value="${docDetailInfo}"/>
 <!DOCTYPE html>
@@ -48,13 +48,29 @@ $(function() {
 	showDocTypeBtn();
 	approvalSendEvent();
 });
-
+function menuMove() {
+	var docType = "";
+	switch('${docType}') {
+		case 'WAIT':
+			docType="WAIT";	
+			break;
+		case 'RETURN':
+			docType="RETURN";			
+			break;
+		case 'DONE':
+			docType="DONE";
+			break;
+		case 'ING':
+			docType="ING";
+			break;
+		default:
+			alert("예외 문서 타입이 발생했습니다.");
+			break;
+		}
+	location.replace('${pageContext.request.contextPath}/docList?listType='+docType);	
+}
 function showDocTypeBtn() {
-	/*
-	$("#modifyBtn").hide();  
-	$("#approvalRecordBtn").hide();  
-	$("#approvalDoneBtn").hide();
-	*/
+
 	switch('${docType}') {
 		case 'WAIT':
 			$("#approvalRecordBtn").show();  
@@ -94,7 +110,7 @@ function approvalSendEvent() {
 		    //mimeType: 'application/json',
 		    success: function(data) {
 		    	//$('#approvalModal').modal("hide");
-		    	location.replace('${pageContext.request.contextPath}/docWaitList');
+		    	menuMove();
 		    },
 		    error:function(xhr, status, message) { 
 		        alert(" status: "+status+" er:"+message);
@@ -117,8 +133,7 @@ function approvalSendEvent() {
 		    contentType: 'application/json',
 		    //mimeType: 'application/json',
 		    success: function(data) {
-		    	console.log("succ");
-		    	//location.replace('${pageContext.request.contextPath}/docWaitList');
+		    	menuMove();
 		    },
 		    error:function(xhr, status, message) { 
 		        alert(" status: "+status+" er:"+message);
