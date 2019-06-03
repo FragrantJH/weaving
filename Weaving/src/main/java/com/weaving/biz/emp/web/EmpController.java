@@ -202,6 +202,7 @@ public class EmpController {
 		return "redirect:empselect";
 	}
 	
+	//email check
 	@RequestMapping("/emailcheck")
 	@ResponseBody
 	public int emailcheck(EmpVO vo, ModelAndView mav) {

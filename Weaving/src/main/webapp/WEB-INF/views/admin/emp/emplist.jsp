@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 	var echeck =0;
@@ -323,11 +322,11 @@
 								<label for="phone"><b>휴대 전화</b></label> 
 								<input type="text" name="phone" id="phone">
 								<br>
-								<br> 
+								<br>  
 								<label for="address"><b>자택주소</b></label> 
-								<input type="text" size="20" id="address" name="address"> 
+								<input type="text" size="20" id="address" name="address">
 								<br>
-								<br>
+								<br> 
 								<label for="gmailAppKey"><b>GMAILAPPKEY</b></label> 
 								<input type="text" size="20" id="gmailAppKey" name="gmailAppKey"> 
 								<br>
