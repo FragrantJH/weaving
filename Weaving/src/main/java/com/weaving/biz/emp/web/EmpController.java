@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.weaving.biz.common.SessionInfo;
 import com.weaving.biz.emp.EmpVO;
@@ -96,7 +97,7 @@ public class EmpController {
 	}
 
 	// 삭제
-	@RequestMapping(value = "/deleteEmp/{empNo}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/deleteEmp/{empNo}", method = {RequestMethod.DELETE, RequestMethod.GET})
 	@ResponseBody
 	public Map deleteEmp(@PathVariable int empNo, EmpVO vo, Model model) {
 		vo.setEmpNo(empNo);
@@ -200,4 +201,14 @@ public class EmpController {
 		service.updateEmp(vo);
 		return "redirect:empselect";
 	}
+	
+	@RequestMapping("/emailcheck")
+	@ResponseBody
+	public int emailcheck(EmpVO vo, ModelAndView mav) {
+		int result=0;
+		EmpVO emp = service.emailcheck(vo);
+		if(emp != null) result=1;
+		return result;
+	}
+	
 }

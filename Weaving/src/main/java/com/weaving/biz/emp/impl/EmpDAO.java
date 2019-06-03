@@ -55,5 +55,8 @@ public class EmpDAO {
 	public List<Map> insertExcelTest(List<EmpVO> list) {
 		return mybatis.selectList("EmpDAO.insertExcelTest", list);
 	}
+	public EmpVO emailcheck(EmpVO vo) {
+		return (EmpVO)mybatis.selectOne("EmpDAO.emailcheck",vo);
+	}
 
 }

@@ -9,6 +9,9 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+	var echeck =0;
+	
 	$(function() {
 		empList();
 
@@ -21,6 +24,8 @@
 		empUpdate();
 		
 		empDelUpdate();
+		
+		emailcheck();
 
 		init();
 	});
@@ -43,9 +48,8 @@
 			    dataType: 'json', 
 			    data: JSON.stringify({ empName: empName, password: password,deptId: deptId, position: position, email: email, phone: phone, address: address, gmailAppKey: gmailAppKey }),
 			    contentType: 'application/json',
-			    mimeType: 'application/json',
-			    success: function(response) {
-			    	console.log(response)
+			    success: function(data) {
+			    	console.log(data)
 			    	//if(response.result == true) {
 			    		$('#searchModel').modal("hide");
 			    		empList();
@@ -193,6 +197,35 @@
 		});//each
 	}//userListResult
 	
+	//email check
+	function emailcheck(){
+		$('#btnEcheck').on('click',function(){
+		var email = $("#email").val();
+		if(email != "")
+			
+		$.ajax({
+			data : {
+				email : email
+			},
+			url : "emailcheck",
+			success : function(data){
+				if(data=='1'){
+					$("#btnInsert").prop("disabled",true);
+					$("#email").css("background-color","#FFCECE");
+					$("#btnInsert").css("background-color","#aaaaaa");
+					echeck = 1;
+				}else {
+					echeck=0;
+					$("#btnInsert").prop("disabled",false);
+					$("#email").css("background-color","#B0F6AC");
+					
+					
+				}
+			}
+		});
+		});
+	}
+	
 </script>
 <style type="text/css">
 .submenu {
@@ -284,6 +317,7 @@
 								<br> 
 								<label for="email"><b>이메일</b></label> 
 								<input type="text" name="email" id="email" required>
+								<button type="button" class="btn btn-primary" id="btnEcheck">중복 확인</button>
 								<br>
 								<br> 
 								<label for="phone"><b>휴대 전화</b></label> 

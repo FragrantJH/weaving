@@ -102,5 +102,9 @@ public class EmpServiceImpl implements Empservice {
 	public List<Map> insertExcelTest(List<EmpVO> list) {
 		return dao.insertExcelTest(list);
 	}
+	@Override
+	public EmpVO emailcheck(EmpVO vo) {
+		return dao.emailcheck(vo);
+	}
 
 }
