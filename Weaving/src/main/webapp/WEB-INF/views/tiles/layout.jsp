@@ -19,8 +19,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="${pageContext.request.contextPath}/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
   <!-- full calendar style sheet -->
   <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/core/main.css' rel='stylesheet' />
   <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
@@ -39,7 +37,7 @@
 	}
 </style>
 
-<body>
+<body class="">
 
   <div class="wrapper">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-4.jpg">
@@ -84,7 +82,7 @@
       
       <!-- 메뉴 -->
       <div class="sidebar-wrapper">
-        <ul class="nav" style="overflow: scroll;">
+        <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/home">
               <i class="material-icons">dashboard</i>
@@ -115,7 +113,6 @@
 				 </li>				 
 		    </ul>
 		  </div>
-		  
 		  
 		  <!-- 결재 -->
 		  <li class="nav-item">
@@ -221,7 +218,6 @@
 				 </li>				 
 		    </ul>
 		  </div> 
-
         </ul>
       </div>
     </div>
@@ -326,8 +322,7 @@
   <script src="${pageContext.request.contextPath}/assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath}/assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="${pageContext.request.contextPath}/assets/demo/demo.js"></script>
+
   
   <!-- full calendar packages -->
   <script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/core/main.js'></script>
