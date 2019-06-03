@@ -34,5 +34,8 @@ public interface Empservice {
 		void updateDelEmp(EmpVO vo);
 		
 		public List<Map> insertExcelTest(List<EmpVO> list); 
+		
+		//중복체크
+		EmpVO emailcheck(EmpVO vo);
 
 }

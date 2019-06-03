@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.Properties;
 
-import javax.annotation.Resource;
 import javax.mail.Address;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -23,8 +22,9 @@ import javax.mail.Session;
 import javax.mail.Store;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
+@Service
 @SessionAttributes(types = EmailVO.class)
 public class FetchingEmail {
 
@@ -34,6 +34,8 @@ public class FetchingEmail {
 	  static String contentBody = "";
 
 	public void fetchEmailFromServer(String pop3Host, String storeType, String user, String password) {
+		
+			Message message = null;
 		try {
 			// create properties field
 			Properties properties = new Properties();
@@ -60,16 +62,17 @@ public class FetchingEmail {
 			System.out.println("messages.length---" + messages.length);
 
 			for (int i = 0; i < messages.length; i++) {
-
 				EmailVO vo = new EmailVO();
-				contentBody = "";
+				message = messages[i];
+				contentBody = " ";
 				System.out.println("---------------------------------");
-				writePart(messages[i]);
-				// TODO 필요한 정보 vo에 담기
-				vo.setEmailContents(contentBody);
-				emailService.insertEmail(vo);
+				writePart(message,vo);
+				vo.setInboxContents(contentBody);
+				
+				emailService.insertInbox(vo);	
 			}
-
+			 
+		
 			// close the store and folder objects
 			emailFolder.close(false);
 			store.close();
@@ -86,15 +89,14 @@ public class FetchingEmail {
 	}
 
 	/*
-	 * This method checks for content-type based on which, it processes and fetches
-	 * the content of the message
+	 *개인메일 본문 읽기 
 	 */
-	public static void writePart(Part p) throws Exception {
+	public static void writePart(Part p, EmailVO vo) throws Exception {
+		
 		if (p instanceof Message)
 			// Call methos writeEnvelope
-			writeEnvelope((Message) p);
+			writeEnvelope((Message) p,vo);
 
-		EmailVO vo = new EmailVO();
 		vo.setContenttype(p.getContentType());
 	//	System.out.println("----------------------------");
 	//	System.out.println("CONTENT-TYPE: " + p.getContentType());
@@ -116,13 +118,13 @@ public class FetchingEmail {
 			Multipart mp = (Multipart) p.getContent();
 			int count = mp.getCount();
 			for (int i = 0; i < count; i++)
-				writePart(mp.getBodyPart(i));
+				writePart(mp.getBodyPart(i),vo);
 		}
 		// 메세지 타입 
 		else if (p.isMimeType("message/rfc822")) {
 		//	System.out.println("This is a Nested Message");
 		//	System.out.println("---------------------------");
-			writePart((Part) p.getContent());
+			writePart((Part) p.getContent(),vo);
 		}
 		// 이미지 
 		else if (p.isMimeType("image/jpeg")) {
@@ -133,6 +135,7 @@ public class FetchingEmail {
 		//	System.out.println("x.length = " + x.available());
 			int i = 0;
 			byte[] bArray = new byte[x.available()];
+			
 			while ((i = (int) ((InputStream) x).available()) > 0) {
 				int result = (int) (((InputStream) x).read(bArray));
 				if (result == -1)
@@ -177,14 +180,12 @@ public class FetchingEmail {
 	}
 
 	/*
-	 * This method would print FROM,TO and SUBJECT of the message
+	 * 개인 메일 투 프롬 데이터 수브젴 읽기 
 	 */
-	public static void writeEnvelope(Message m) throws Exception {
+	public static void writeEnvelope(Message m, EmailVO vo) throws Exception {
 		System.out.println("This is the message envelope");
 		System.out.println("---------------------------");
 		Address[] a;
-		EmailVO vo = new EmailVO();
-		
 		
 		
 		// FROM

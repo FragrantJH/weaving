@@ -18,18 +18,18 @@ public class EmpServiceImpl implements Empservice {
 	
 	@Override
 	public void insertEmp(EmpVO vo) {
-		dao.insertEmp(vo);
-		/*
+		//dao.insertEmp(vo);
+	
 		String enpassword;
 		try {
-			enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), Integer.toString(vo.getEmpNo()));
+			enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), vo.getEmail());
 			vo.setPassword(enpassword);
 			dao.insertEmp(vo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+	
 	}
 	
 	@Override
@@ -40,18 +40,18 @@ public class EmpServiceImpl implements Empservice {
 
 	@Override
 	public void updateEmp(EmpVO vo) {
-		dao.updateEmp(vo);
-		/*
+		//dao.updateEmp(vo);
+	
 		String enpassword;
 		try {
-			enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), Integer.toString(vo.getEmpNo()));
+			enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), vo.getEmail());
 			vo.setPassword(enpassword);
 			dao.updateEmp(vo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+
 
 	}
 
@@ -63,11 +63,11 @@ public class EmpServiceImpl implements Empservice {
 
 	@Override
 	public EmpVO getEmp(EmpVO vo) {
-		return dao.getEmp(vo); 
-		/*
+		//return dao.getEmp(vo); 
+	
 		 String enpassword; 
 		 try { 
-			 enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), Integer.toString(vo.getEmpNo())); 
+			 enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), vo.getEmail()); 
 			 vo.setPassword(enpassword); 
 			 return dao.getEmp(vo); 
 			 } 
@@ -76,8 +76,7 @@ public class EmpServiceImpl implements Empservice {
 		 e.printStackTrace(); 
 		 return null; 
 		 }
-		 */
-		 
+	
 	}
 	@Override
 	public EmpVO getReadyEmpNo(EmpVO vo) {
@@ -101,6 +100,10 @@ public class EmpServiceImpl implements Empservice {
 	@Override
 	public List<Map> insertExcelTest(List<EmpVO> list) {
 		return dao.insertExcelTest(list);
+	}
+	@Override
+	public EmpVO emailcheck(EmpVO vo) {
+		return dao.emailcheck(vo);
 	}
 
 }

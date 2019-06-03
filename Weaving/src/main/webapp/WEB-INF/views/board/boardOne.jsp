@@ -30,101 +30,64 @@
 				}
 			});
 		});
-		
-		// 댓글 수정
-		$("#btnReplyUpdate")
-				.click(
-						function() {
-							var detailRepContents = $("#detailRepContents").val();
-							$
-									.ajax({
-										type : "put",
-										url : "${pageContext.request.contextPath}/reply/update/${row.replyId}",
-										data : param,
-										success : function(result) {
-											if (result == "success") {
-												$("#modifyReply").css("visibility",
-														"hidden");
-												//댓글 목록 갱신
-												listReplyRest("1");
-									}
-								}
-							});
-						});
+	})
+		//댓글 목록(json)
+		function getReplyList() {
+			var boardId = $('#boardId').val();
+			$
+					.ajax({
+						type : "get",
+						url : "${pageContext.request.contextPath}/reply/listJson.do?boardId="
+								+ boardId,
+						success : function(result) {
+							console.log(result);
+							var output = "<table>";
+							for ( var i in result) {
+								var currentTime = new Date(
+										parseInt(result[i].time));
+								var month = currentTime.getMonth() + 1;
+								var day = currentTime.getDate();
+								var year = currentTime.getFullYear();
+								var hour = currentTime.getHours();
+								var minutes = currentTime.getMinutes();
+								var date = year + "/" + month + "/" + day + "/"
+										+ hour + ":" + minutes;
 
-		
-		// 댓글 상세화면 닫기
-		$("#btnReplyClose").click(function() {
-			$("#modifyReply").css("visibility", "hidden");
-		});
-
-	});
-
-	//댓글 목록(json)
-	function getReplyList() {
-		var boardId = $('#boardId').val();
-		$
-				.ajax({
-					type : "get",
-					url : "${pageContext.request.contextPath}/reply/listJson.do?boardId="
-							+ boardId,
-					success : function(result) {
-						console.log(result);
-						var $table = $("<table/>");
-						var $row = $("<tr/>").append($("<th/>").text("작성자"))
-									.append($("<th/>").text("댓글 내용")).append($("<th/>").text("시간")).append($("<th/>").text("수정"));
-						$table.append($row);
-						
-						
-						for(i in result) {
-							// 수정버튼
-							var $button = $("<button/>").html("수정");
-							
-							var currentTime = new Date(parseInt(result[i].time));
-							var month = currentTime.getMonth() + 1;
-							var day = currentTime.getDate();
-							var year = currentTime.getFullYear();
-							var hour = currentTime.getHours();
-							var minutes = currentTime.getMinutes();
-							var date = year + "/" + month + "/" + day + "/" + hour + ":" + minutes;
-							
-							var $row = $("<tr id=" + result[i].replyId + ">").append($("<td/>").text(result[i].empName)
-												  , $("<td/>").text(result[i].repContents)
-												  , $("<td/>").text(date)
-												  , $("<td/>").html($button));
-							
-							$table.append($row);
-						}
-						
-						$("#getReplyList").html($table);
+								output += "<tr id='"+result[i].replyId+"'>";
+								output += "<td>" + result[i].empName;
+								output += "(" + date + ")<br>";
+								output += result[i].repContents 
+								output += '<button type="button" class="btn btn-primary btn-sm" onclick="deleteReply(event)">삭제</button>'+ "</td>";
+								output += "</tr>";
+							}
+							output += "</table>";
+							$("#getReplyList").html(output);
 						}
 					});
-		}
+				}
 
-	// 댓글 수정화면 생성 함수
-	function showReplyModify(replyId) {
+	
+
+	// 댓글 삭제
+	function deleteReply(event) {
+		if(confirm("삭제하시겠습니까?")){
+			var replyId = $(event.target).parent().parent().attr("id");
 			$.ajax({
-			type : "get",
-			url : "",
-			success : function(result) {
-				$("#modifyReply").html(result);
-				// 태그.css("속성", "값")
-				$("#modifyReply").css("visibility", "visible");
+			type: "delete",
+			url: "${pageContext.request.contextPath}/reply/delete/"+replyId,
+			success: function(result){
+				if(result == "success"){
+					alert("삭제되었습니다.");
+					$("#" + replyId).remove();
+				
+				}
 			}
 		});
-	}
+	}	
+}
 
 
 </script>
-<style>
-#modifyReply {
-	width: 600px;
-	height: 130pxl background-color: silver;
-	padding: 10px;
-	z-index: 10;
-	visibility: hidden;
-}
-</style>
 </head>
 <body>
 	<div class="col-md-12">
@@ -152,7 +115,34 @@
 					<br>
 					<div>${board.boardContents}</div>
 					<br> <br> <br> <br> <br> <br> <br>
+					<br>
 
+					<!--댓글 입력  -->
+					<div>
+						<br>
+						<div class="form-group">
+							Comment <input type="text" id="repContents" class="form-control">
+						</div>
+						<br>
+						<button type="button" class="btn btn-primary btn-sm" id="btnReply">댓글
+							등록</button>
+					</div>
+					<!-- 댓글 목록 -->
+					<div id="getReplyList">
+						<table style="width: 700px">
+							<c:forEach var="row" items="${list}">
+								<tr>
+									<td>${row.empName}(${row.time})<br>
+										${row.repContents}
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+
+	
+
+					<br> <br> <br> <br>
 					<div>
 						<button type="button" class="btn btn-primary btn-sm"
 							onclick="location.href='${pageContext.request.contextPath}/boardList?boardType=${boardType}'">목록</button>
@@ -164,49 +154,9 @@
 						</c:if>
 					</div>
 				</form>
-
-
-				<!--댓글 입력  -->
-				<div>
-					<br>
-					<div class="form-group">
-						Comment <input type="text" id="repContents" class="form-control">
-					</div>
-					<br>
-					<button type="button" class="btn btn-primary btn-sm" id="btnReply">댓글
-						등록</button>
-				</div>
-
-				<!-- 댓글 목록 -->
-				<div id="getReplyList">
-					<table style="width: 700px">
-						<c:forEach var="row" items="${list}">
-							<tr>
-								<td>${row.empName}(${row.time})${row.repContents}</td>
-								<td>${row.replyId}${emp.empNo}<!-- 본인 댓글만 수정 버튼 생성되도록 처리 -->
-									<c:if test="${row.empNo == emp.empNo}">
-										<input type="button" id="btnModify" value="수정"
-											onclick="showReplyModify('${row.replyId}')">
-									</c:if>
-								</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
-
-				<!-- 댓글 수정 화면 -->
-				<div id="editReply" style="display: none">
-					<textarea id="detailRepContents" rows="5" cols="82">
-							<!-- 댓글 내용 들어가야 함 -->
-						</textarea>
-
-					<button type="button" id="btnReplyUpdate">수정</button>
-					<button type="button" id="btnReplyDelete">삭제</button>
-					<button type="button" id="btnReplyClose">닫기</button>
-				</div>
-
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

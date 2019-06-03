@@ -19,7 +19,16 @@ body {
 <body>
 	
 
-	<div></div>
+	<div>
+	
+	<div>
+	<a class="fromEmail" ></a>
+	<a class="toEmail"></a>
+	<a class="checkTime"></a>
+	</div>
+	
+	
+	</div>
 	<div>
 		<table class="table">
 			<thead class=" text-primary">
@@ -30,10 +39,10 @@ body {
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="Email" items="${EmailList}">
+				<c:forEach var="Email" items="${reading_mail}">
 					<tr>
 						<td>${Email.subject}</td>
-						<td>${Email.from}</td>
+						<td>${Email.fromEmail}</td>
 						<td>
 							<div class="collreadmail">
 								<span>${fn:substring(Email.content, 0, 80) }</span>
