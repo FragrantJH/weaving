@@ -29,12 +29,9 @@
 </head>
 
 <style>
-	.avatar {
-	  vertical-align: middle;
-	  width: 100px;
-	  height: 100px;
-	  border-radius: 50%;
-	}
+.nav-item {
+	cursor: pointer;
+}
 </style>
 
 <body class="">
@@ -91,7 +88,7 @@
           </li>
           
           <!-- 메일 -->
-		  <li class="nav-item" style="cursor: pointer;">
+		  <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" data-target="#mail">
               <i class="material-icons">email</i>
               <p>메일</p>
@@ -189,7 +186,7 @@
 		  </div> 
         
          <!-- 예약 -->
-          <li class="nav-item">
+          <li class="nav-link">
             <a class="nav-link" href="${pageContext.request.contextPath}/roomlist">
               <i class="material-icons">meeting_room</i>
               <p>예약</p>
