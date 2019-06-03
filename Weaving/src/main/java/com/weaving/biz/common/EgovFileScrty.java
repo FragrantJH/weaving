@@ -248,7 +248,7 @@ public class EgovFileScrty {
      * @return
      * @throws Exception
      */
-    public static String encryptPassword(String password, String empNo) throws Exception {
+    public static String encryptPassword(String password, String email) throws Exception {
 
 		if (password == null) {
 		    return "";
@@ -259,7 +259,7 @@ public class EgovFileScrty {
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
 		
 		md.reset();
-		md.update(empNo.getBytes());
+		md.update(email.getBytes());
 		
 		hashValue = md.digest(password.getBytes());
 	

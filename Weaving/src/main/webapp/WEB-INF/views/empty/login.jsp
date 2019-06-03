@@ -67,8 +67,8 @@ body, html {
 		  <div class="col-6">
 		  		<form action="${pageContext.request.contextPath}/login" method="post">
 					<div class="form-group">
-						<label for="empNo">ID</label> 
-						<input type="text" class="form-control" id="empNo" name="empNo" value="${EmpVO.empNo}">
+						<label for="email">ID</label> 
+						<input type="text" class="form-control" id="email" name="email" value="${EmpVO.email}">
 					</div>
 					<div class="form-group">
 						<label for="pwd">Password</label> 
