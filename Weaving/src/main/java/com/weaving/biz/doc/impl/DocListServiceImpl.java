@@ -40,4 +40,24 @@ public class DocListServiceImpl implements DocListService {
 	public List<DocBaseVO> getTempDocList(int empNo) {
 		return dao.getTempDocList(empNo);
 	}
+
+	@Override
+	public int getTotalIngCount() {
+		return dao.getTotalIngCount();
+	}
+
+	@Override
+	public int getTotalDoneCount() {
+		return dao.getTotalDoneCount();
+	}
+
+	@Override
+	public int getTotalReturnCount() {
+		return dao.getTotalReturnCount();
+	}
+
+	@Override
+	public int getTotalTempCount() {
+		return dao.getTotalTempCount();
+	}
 }

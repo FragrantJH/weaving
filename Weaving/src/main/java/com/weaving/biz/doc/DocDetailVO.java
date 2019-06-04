@@ -78,6 +78,10 @@ public class DocDetailVO extends DocBaseVO{
 		return "DocDetailVO [rowNum=" + rowNum + ", empNo=" + empNo + ", approvalOrder=" + approvalOrder
 				+ ", docContents=" + docContents + ", empName=" + empName + ", deptName=" + deptName + ", approvalDate="
 				+ approvalDate + ", approvalComments=" + approvalComments + ", status=" + status + ", position="
-				+ position + "]";
+				+ position + ", getDocId()=" + getDocId() + ", getWriterEmpNo()=" + getWriterEmpNo()
+				+ ", getWriterEmpName()=" + getWriterEmpName() + ", getDocNo()=" + getDocNo() + ", getDocTitle()="
+				+ getDocTitle() + ", getRegDate()=" + getRegDate() + ", getDoneDate()=" + getDoneDate()
+				+ ", getSecureLevel()=" + getSecureLevel() + ", getState()=" + getState() + "]";
 	}
+
 }

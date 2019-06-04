@@ -97,7 +97,7 @@
 		  <div class="collapse navbar-collapse" id="mail">
 		    <ul class="navbar-nav">
 				<li class="nav-item">
-				   	<a class="nav-link active" href="${pageContext.request.contextPath}/mailForm">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/mailForm">
 					 	<i class="material-icons">email</i>
 					 	<p>메일보내기</p>
 					</a>
@@ -186,7 +186,7 @@
 		  </div> 
         
          <!-- 예약 -->
-          <li class="nav-link">
+          <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/roomlist">
               <i class="material-icons">meeting_room</i>
               <p>예약</p>

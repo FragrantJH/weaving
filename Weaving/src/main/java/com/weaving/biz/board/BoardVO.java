@@ -3,18 +3,37 @@ package com.weaving.biz.board;
 import java.sql.Date;
 
 public class BoardVO {
+
+	private int rowNum;
 	private int boardId;
 	private int empNo;
 	private String empName;
 	private String title;
 	private String boardContents;
 	private Date time;
-	private char boardType;
+	private String boardType;
 	private int first;
 	private int last;
 	private String searchCondition;
 	private String searchKeyword;
-	
+	private int recnt;
+			
+	public int getRecnt() {
+		return recnt;
+	}
+
+	public void setRecnt(int recnt) {
+		this.recnt = recnt;
+	}
+
+	public int getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
+
 	public String getSearchCondition() {
 		return searchCondition;
 	}
@@ -95,11 +114,11 @@ public class BoardVO {
 		this.time = time;
 	}
 
-	public char getBoardType() {
+	public String getBoardType() {
 		return boardType;
 	}
 
-	public void setBoardType(char boardType) {
+	public void setBoardType(String boardType) {
 		this.boardType = boardType;
 	}
 

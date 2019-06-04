@@ -46,21 +46,20 @@ public class ReplyController {
 	}
 	
 	//댓글 수정
-	@RequestMapping(value="/update/{replyId}", method={RequestMethod.PUT, RequestMethod.PATCH})
-	public ResponseEntity<String> replyUpdate(@PathVariable("replyId") Integer replyId, @RequestBody ReplyVO vo){
+	@RequestMapping(value="/updateReply")
+	public ReplyVO replyUpdate(ReplyVO vo){
 		ResponseEntity<String> entity = null;
 		try {
-			vo.setReplyId(replyId);
 			service.updateReply(vo);
 			// 댓글 수정이 성공하면 성공 상태메시지 저장
-			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+			//entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// 댓글 수정이 실패하면 실패 상태메시지 저장
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			//entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		// 수정 처리 http 상태 메시지 리턴
-		return entity;
+		return vo;
 	} 
 			
 	//댓글 삭제

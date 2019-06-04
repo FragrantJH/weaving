@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="empInfo" value="${emp}" scope="session" />
 <c:set var="docBaseInfo" value="${docInfo}"/>
+<c:set var="docDetailInfo" value="${docDetailInfo}"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,6 +69,7 @@ $(function(){
 	checkSum();
 	
 	loadDocInfo();
+	loadApprovalListTable();
 });
 
 function loadDocInfo() {
@@ -142,18 +145,20 @@ function checkSum() {
 			CKEDITOR.instances.docContents.focus();
 			return false;
 		}
-		
+
+		if ($(this).hasClass('tempSave')) {
+			$("form").attr("action", "${pageContext.request.contextPath}/docTemp");
+		} else {
+			$("form").attr("action", "${pageContext.request.contextPath}/docUpdate");
+		}
+
 		$('form').submit();
 	});
 }
 
 function loadDocPreview() {
 	$('#docPreview').on('show.bs.modal', function (e) {
-		/*
-		if (!$('input[name=docType]').val()) {
-			alert("문서 종류를 선택하세요.");
-		}
-		*/
+
 		var date = new Date(); 
 		var year = date.getFullYear(); 
 		var month = new String(date.getMonth()+1); 
@@ -171,15 +176,15 @@ function loadDocPreview() {
 		var doc_info =	"<table border='0' style='all:none;'>" +
 							"<tr>" +
 								"<td>문서번호</td>" +
-								"<td>"+$('input[name=docType]').val()+"-"+year + "" + month+"-xxxx</td>" +
+								"<td>${docBaseInfo.docNo}</td>" +
 							"</tr>"+
 							"<tr>" +
 								"<td>기안부서</td>" +
-								"<td>${empInfo.deptName}</td>" +							
+								"<td>${docBaseInfo.deptName}</td>" +							
 							"</tr>"+
 							"<tr>" +
 								"<td>기안자</td>" +
-								"<td>${empName}</td>" +							
+								"<td>${docBaseInfo.empName}</td>" +							
 							"</tr>"+
 							"<tr>" +
 								"<td>기안일자</td>" +
@@ -187,7 +192,7 @@ function loadDocPreview() {
 							"</tr>"+
 							"<tr>" +
 								"<td>보안등급</td>" +
-								"<td>"+$('#secureLevelMenu').text()+"</td>" +
+								"<td>${docBaseInfo.secureLevel}등급</td>" +
 							"</tr>"+							
 						"</table>";
 						
@@ -223,7 +228,6 @@ function selectSecureLevel() {
 	});
 }
 
-
 function makeApprovalListTable() {
 	$('.modal-footer').on('click', '#rs-approval-list', function() {
 		
@@ -252,40 +256,83 @@ function makeApprovalListTable() {
 
 			DataArray.push(writerData);
 			for (var i = 0; i < empCnt; i++) {
-				var ApprovalData = {};
+				var approvalData = {};
 				var str = approvalEmp[i].text.split('(');
 				
 				tb +="<th scope='col' class='team name' data-order='" + (i + 2) + "' data-empNo='"+approvalEmp[i].value+"'>"+str[0]+"</th>";
 
-				ApprovalData['empNo'] = approvalEmp[i].value;
-				ApprovalData['approvalOrder'] = ''+(i + 2)+'';
-				ApprovalData['status'] = 'wait';
+				approvalData['empNo'] = approvalEmp[i].value;
+				approvalData['approvalOrder'] = ''+(i + 2)+'';
+				approvalData['status'] = 'WAIT';
 				
-				DataArray.push(ApprovalData);
+				DataArray.push(approvalData);
 			}
 			
 			
 			tb += "</tr>"+
 				  "<tr>" +
-				  	"<td class='stamp'>승인</td>";
+				  	"<td class='stamp'></td>";
 			for (var i = 0; i < empCnt; i++) {
 				tb += "<td class='stamp'></td>";
 			}
 			tb +="</tr>"+
 				 "</table>";
 			$('.approval-line').append(tb);
-		
+			console.log(DataArray);		
 			var jsonString = JSON.stringify(DataArray);
 		    var jsonData = JSON.parse(jsonString);
  
 		   $("input[name=approvalList]").val(jsonString);
 		}
 		
-		
+
     	$('#approvalLineModel').modal('hide');
 	});
 
 	
+}
+
+function loadApprovalListTable() {
+	$('.approval-line-title').on('click', '#loadApprovalList', function() {
+		$('.approval-line').empty();
+		
+		console.log('${docDetailInfo}');
+
+		var tb = "<table class='approval-table' border='1' bordercolor='#cdcdcd'>"+
+		"<tr>" +
+			"<th rowspan='2' scope='col'>"+
+				"<div style='height: 162px; display: table-cell; width: 116px; vertical-align: middle; text-align: center;'>"+
+					"결재"+
+				"</div>"+
+			"</th>";
+		var dataArray = new Array();
+		
+		<c:forEach items="${docDetailInfo}" var="docDetailInfo">
+			var approvalData = {};
+			tb +="<th scope='col' class='team name' data-order='${docDetailInfo.approvalOrder}' data-empNo='${docDetailInfo.empNo}'>${docDetailInfo.empName}</th>";
+			
+			approvalData['empNo'] = '${docDetailInfo.empNo}';
+			approvalData['approvalOrder'] = '${docDetailInfo.approvalOrder}';
+			approvalData['status'] = 'WAIT';
+			
+			dataArray.push(approvalData);
+		</c:forEach>
+
+		tb +="</tr>"+
+		  		"<tr>";		
+		<c:forEach items="${docDetailInfo}" var="docDetailInfo">
+			tb += "<td class='stamp'></td>";
+		</c:forEach>
+
+		tb +="</tr>"+
+		 	"</table>";
+		$('.approval-line').append(tb);
+		
+		var jsonString = JSON.stringify(dataArray);
+	    var jsonData = JSON.parse(jsonString);
+
+	   $("input[name=approvalList]").val(jsonString);		
+	});
 }
 
 function toLeftMove() {
@@ -320,12 +367,6 @@ function toRightMove() {
 </script>
 </head>
 <body>
-
-********************
-${docInfo}
-===================
-${docDetailInfo}
-
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header card-header-text card-header-primary">
@@ -415,8 +456,9 @@ ${docDetailInfo}
 					<h3 style="display: inline;">
 						<small class="text-muted">결재선</small>
 					</h3>
+					<small><a href="#0" id="loadApprovalList" class="card-link">기존설정 불러오기</a></small>
 					<small><a href="#0" id="approvalConfigBtn" class="card-link" data-toggle="modal"
-						data-target="#approvalLineModel">결재선설정</a></small>
+						data-target="#approvalLineModel">결재선설정</a></small>						
 				</div>
 				<div class="approval-line">결재선 설정되면 노출됩니다.</div>
 				<!-- modal 페이지 -->
@@ -497,7 +539,7 @@ ${docDetailInfo}
 						<input name="secureLevel" type="hidden" value="">
 						<input name="approvalList" type="hidden" value="">
 					</div>
-					<button type="button" class="btn btn-primary">Save</button>
+					<button type="button" class="btn btn-primary tempSave">Save</button>
 					<button type="button" class="btn btn-primary">Update</button>
 				</form>
 			</div>

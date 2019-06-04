@@ -1,5 +1,6 @@
 package com.weaving.biz.reserv.web;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weaving.biz.cal.CalVO;
+import com.weaving.biz.common.CommonDateParser;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.reserv.ReservService;
 import com.weaving.biz.reserv.ReservVO;
@@ -36,17 +38,34 @@ public class ReservController {
 	public String roomInsertReserv(Model model, ReservVO vo, HttpSession session) {
 		System.out.println(vo.getReservDate());
 		vo.setReservId(0);
-		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
-		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
+		
+		SimpleDateFormat fromFormat = new SimpleDateFormat("MM-dd-yyyy");
+		SimpleDateFormat toFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String reservDate = CommonDateParser.parseFormat(vo.getReservDate(), fromFormat, toFormat);
+		
+		vo.setStartDate(reservDate + " " + vo.getStartTime());
+		vo.setEndDate(reservDate + " " + vo.getEndTime());
+		
+		System.out.println(vo);
+		
 		// 현재 접속한 사용자 정보
+		
 		Object emp = session.getAttribute("emp");
 		if (emp != null) {
 			vo.setEmpNo(((EmpVO) emp).getEmpNo());
 		} else {
 			vo.setEmpNo(1);
 		}
-
-		service.insertReserv(vo);
+		System.out.println(vo);
+		int duplicateCheck = service.getDuplicateCheck(vo);
+		boolean b = false;
+		if (duplicateCheck > 0) {
+			b = true;
+		} else {
+			service.insertReserv(vo);
+		}
+		model.addAttribute("check", b);
 		model.addAttribute("list", service.getReservList());
 		return "room/roomReserv";
 	}
@@ -76,4 +95,7 @@ public class ReservController {
 		service.updateReserv(vo);
 		return vo;
 	}
+
+	// 중복체크
+
 }

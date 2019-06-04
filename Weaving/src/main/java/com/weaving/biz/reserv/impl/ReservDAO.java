@@ -1,6 +1,7 @@
 package com.weaving.biz.reserv.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +11,28 @@ import com.weaving.biz.reserv.ReservVO;
 
 @Repository
 public class ReservDAO {
-	
+
 	@Autowired
 	public SqlSessionTemplate rss;
 
 	public void insert(ReservVO vo) {
 		System.out.println(vo);
-		rss.insert("ReservDAO.insertReserv",vo);
+		rss.insert("ReservDAO.insertReserv", vo);
 	}
+
 	public void update(ReservVO vo) {
-		rss.update("ReservDAO.updateReserv",vo);
+		rss.update("ReservDAO.updateReserv", vo);
 	}
-	public List<ReservVO> getReservList(){
+
+	public List<ReservVO> getReservList() {
 		return rss.selectList("ReservDAO.selectReservList");
+	}
+
+	public List<Map<String, Object>> getResultState() {
+		return rss.selectList("ReservDAO.getReserveCount");
+	}
+	
+	public int getDuplicateCheck(ReservVO vo){
+		return rss.selectOne("ReservDAO.duplicatecheck", vo);
 	}
 }

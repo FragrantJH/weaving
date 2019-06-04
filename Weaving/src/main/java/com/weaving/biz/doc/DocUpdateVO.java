@@ -6,6 +6,7 @@ public class DocUpdateVO extends DocBaseVO{
 	
 	private int docTypeSeq;
 	private int empNo;
+	private int tempYn; 
 	private int approvalOrder;
 	private String docType;
 	private String docContents;
@@ -30,6 +31,12 @@ public class DocUpdateVO extends DocBaseVO{
 	}
 	public int getApprovalOrder() {
 		return approvalOrder;
+	}
+	public int getTempYn() {
+		return tempYn;
+	}
+	public void setTempYn(int tempYn) {
+		this.tempYn = tempYn;
 	}
 	public void setApprovalOrder(int approvalOrder) {
 		this.approvalOrder = approvalOrder;
@@ -66,5 +73,12 @@ public class DocUpdateVO extends DocBaseVO{
 	}
 	public void setApprovalComments(String approvalComments) {
 		this.approvalComments = approvalComments;
-	}	
+	}
+	@Override
+	public String toString() {
+		return "DocUpdateVO [rowNum=" + rowNum + ", docTypeSeq=" + docTypeSeq + ", empNo=" + empNo + ", tempYn="
+				+ tempYn + ", approvalOrder=" + approvalOrder + ", docType=" + docType + ", docContents=" + docContents
+				+ ", status=" + status + ", approvalDate=" + approvalDate + ", approvalComments=" + approvalComments
+				+ "]";
+	}
 }
