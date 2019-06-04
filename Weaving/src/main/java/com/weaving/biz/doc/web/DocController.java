@@ -31,10 +31,13 @@ import com.weaving.biz.common.SessionInfo;
 import com.weaving.biz.dept.DeptVO;
 import com.weaving.biz.doc.DocApprovalVO;
 import com.weaving.biz.doc.DocBaseVO;
+import com.weaving.biz.doc.DocDeleteVO;
 import com.weaving.biz.doc.DocDetailVO;
 import com.weaving.biz.doc.DocHistoryVO;
 import com.weaving.biz.doc.DocService;
+import com.weaving.biz.doc.DocUpdateVO;
 import com.weaving.biz.doc.DocInsertVO;
+import com.weaving.biz.doc.DocListType;
 import com.weaving.biz.docForm.DocFormService;
 import com.weaving.biz.docForm.DocFormVO;
 import com.weaving.biz.emp.EmpVO;
@@ -83,9 +86,9 @@ public class DocController {
 		return "approval/docList";
 	}
 	*/
-	@RequestMapping("/docViewInsert")
+	@RequestMapping("/docInsertView")
 	//public String docViewInsert(@PathVariable String empName, @PathVariable int position, Model model) {
-	public String docViewInsert(Model model) {
+	public String docInsertView(Model model) {
 		EmpVO evo = new EmpVO(); 
 		model.addAttribute("empList", empService.getEmpList(evo));
 		model.addAttribute("list", docFormService.getDocFormList());
@@ -127,6 +130,9 @@ public class DocController {
 					v.setStatus("WAIT");	
 				}
 				v.setDocType(vo.getDocType());
+				System.out.println("insertttttttttttttttttttttttttt");
+				System.out.println(vo.getDocTypeSeq());
+				System.out.println("insertttttttttttttttttttttttttt");
 				v.setDocTypeSeq(vo.getDocTypeSeq());
 						
 				docService.insertDocDetail(v);
@@ -151,7 +157,7 @@ public class DocController {
 
 		docService.insertDocHistory(hvo);
 		
-		return "redirect:docList";
+		return "redirect:docList?listType=ING";
 	}
 	
 	@RequestMapping(value="/docDetailView", method= RequestMethod.GET)	
@@ -161,8 +167,8 @@ public class DocController {
 		
 		vo.setEmpNo(empNo);
 		vo.setDocId(Integer.parseInt(request.getParameter("docId")));
-		
-		System.out.println(docService.getDocument(vo));
+
+		model.addAttribute("docListType",(String)request.getParameter("listType"));
 		model.addAttribute("docInfo",docService.getDocument(vo));
 		model.addAttribute("docDetailInfo",docService.getDocDetail(vo));
 		return "approval/docDetailView";
@@ -198,35 +204,99 @@ public class DocController {
 		docService.updateApprovalNullDate(vo);
 		return vo;
 	}
-}
-
-
-/*
- * 	//등록폼
-	//boardInsertForm URL이 실행된다.
-	//BoardWeb에서 Run하고 그다음 /boardInsert 또는 /boardInsertForm 실행하면 페이지가 나온다.
-	// boardInsertForm url로 지정하면 boardInsert.jsp로 향하게 된다.
-	@RequestMapping("/boardList")
-	//검색메뉴를 위해서 BoardVO를 매개변수를 넣음
-	//@RequestParam에서 변수가 searchCondition이 아닐 경우 value로 searchCondition로 지정해줘야한다
-	//cond로 변수명을 변경할 경우 value로 value로 searchCondition로 지정해줘야한다
-	public String boardList(Model model, Paging paging,
-			@RequestParam(required=false, defaultValue="TITLE", value="searchCondition") String cond,
-			@RequestParam(required=false) String searchKeyword) {
+	
+	@RequestMapping("/docUpdateView")
+	public String docUpdateView(Model model, HttpSession session, HttpServletRequest request) {
+		int empNo = SessionInfo.getInfo(session, "empNo");
+		DocDetailVO vo = new DocDetailVO();
 		
-		// String searchCondition = request.getParameter("searchCondition");
-		// @RequestParam String searchCondition는 위의 주석의 getParameter와 같은 의미이다.
-		// 즉 위의 getParameter대신 @RequestParam쓴 것이다. 
-		// 어노테이션에 값은 항상 있어야한다. 값이 null이나 타입이 틀리면 에러가 발생한다. 400에러
-		BoardVO vo = new BoardVO();
-		vo.setSearchCondition(cond);
-		vo.setSearchKeyword(searchKeyword);
-		//페이징 처리
+		vo.setEmpNo(empNo);
+		vo.setDocId(Integer.parseInt(request.getParameter("docId")));
+ 
+		EmpVO evo = new EmpVO(); 
 		
-		//전체 건수
-		paging.setTotalRecord(service.getBoardCount(vo));
+		/*
+		System.out.println("=====================================");
+		System.out.println(evo);
+		System.out.println(empService.getEmpList(evo));
+		System.out.println("=====================================d");
+		*/
+		model.addAttribute("empList", empService.getEmpList(evo));
+		model.addAttribute("list", docFormService.getDocFormList());
 		
-		model.addAttribute("list", service.getBoardList(vo));
-		return "board";
+		model.addAttribute("docListType", (String)request.getParameter("listType"));
+		model.addAttribute("docInfo", docService.getDocument(vo));
+		model.addAttribute("docDetailInfo", docService.getDocDetail(vo));
+		
+		return "approval/docUpdate";
 	}
- */
+	
+	@RequestMapping(value="/docUpdate", method=RequestMethod.POST)
+	public String docUpdate(DocUpdateVO vo, HttpServletRequest request) {
+		System.out.println("=======#######==============");
+		System.out.println(vo);
+		System.out.println(vo.getDocNo());
+		System.out.println("=======#######==============");
+		
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		Date date = new Date();
+		String curTime = f.format(date);
+		String[] d  = curTime.split(" ");
+		String[] dateArr = d[0].split("-");
+		
+		//'문서타입-년월일-'
+		String docType = request.getParameter("docType") +"-" + dateArr[0] + dateArr[1] + dateArr[2]+"-";
+		
+		vo.setDocType(docType);
+		docService.updateDoc(vo);
+
+		DocDeleteVO delVo = new DocDeleteVO();
+		delVo.setDocId(vo.getDocId());
+		//실행잘됨
+		docService.deleteDocDetail(delVo);
+		
+		String jsonString = request.getParameter("approvalList");
+		System.out.println("=======^^^^^^^==============");
+		System.out.println(jsonString);
+		System.out.println("=======^^^^^^^==============");
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String writerStatus = "";
+		try {
+			List<DocInsertVO> docObj = Arrays.asList(mapper.readValue(jsonString, DocInsertVO[].class));
+			
+			boolean b = true;
+			for (DocInsertVO v : docObj) {
+				
+				if (b) {
+					writerStatus = v.getStatus();	
+					b = false;
+				} else {
+					v.setStatus("WAIT");	
+				}
+				v.setDocId(vo.getDocId());
+				System.out.println("llllllllllllllllllllllllllllllllll");
+				System.out.println(v);
+				System.out.println("llllllllllllllllllllllllllllllllll");
+				docService.insertDocDetail(v);
+				//docId = v.getDocId();
+			}		
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return "redirect:docList?listType=ING";
+	}
+	
+	@RequestMapping(value="/docTemp", method=RequestMethod.POST)
+	public String docTemp(DocUpdateVO vo, HttpServletRequest request) {
+		return "redirect:docList?listType=TEMP";
+	}
+}

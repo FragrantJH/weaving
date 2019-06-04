@@ -82,12 +82,83 @@
               <p>RTL Support</p>
             </a>
           </li>
-          <li class="nav-item active-pro ">
-            <a class="nav-link" href="./upgrade.html">
-              <i class="material-icons">unarchive</i>
-              <p>Upgrade to PRO</p>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="${pageContext.request.contextPath}/home">
+              <i class="material-icons">dashboard</i>
+              <p>Home</p>
             </a>
           </li>
+          
+          <!-- 메일 -->
+		  <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" data-toggle="collapse" data-target="#mail">
+              <i class="material-icons">email</i>
+              <p>m</p>
+            </a>
+          </li>
+		  <div class="collapse navbar-collapse" id="mail">
+		    <ul class="navbar-nav">
+				<li class="nav-item">
+				   	<a class="nav-link active" href="${pageContext.request.contextPath}/mailForm">
+					 	<i class="material-icons">email</i>
+					 	<p>m</p>
+					</a>
+				 </li>
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/view_mail">
+					 	<i class="material-icons">email</i>
+					 	<p>m</p>
+					</a>
+				 </li>				 
+		    </ul>
+		  </div>
+		  
+		  <!-- 결재 -->
+		  <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" data-target="#document">
+              <i class="material-icons">description</i>
+              <p>a</p>
+            </a>
+          </li>
+		  <div class="collapse navbar-collapse" id="document">
+		    <ul class="navbar-nav">
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docInsertView">
+					 	<i class="material-icons">create</i>
+              		<p>a</p>
+					</a>
+				 </li>
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=TEMP">
+					 	<i class="material-icons">border_color</i>
+              			<p>a</p>
+					</a>
+				</li>				 
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=WAIT">
+					 	<i class="material-icons">flag</i>
+              			<p>a</p>
+					</a>
+				</li>				 
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=RETURN">
+						<i class="material-icons">undo</i>
+	              		<p>a</p>
+					</a>
+				</li>				 
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=ING">
+				      	<i class="material-icons">forward</i>
+	              		<p>a</p>
+					</a>
+				</li>
+				<li class="nav-item">
+				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=DONE">
+			      	<i class="material-icons">done_outline</i>
+              		<p>a</p>
+					</a>
+				</li>		
         </ul>
       </div>
     </div>

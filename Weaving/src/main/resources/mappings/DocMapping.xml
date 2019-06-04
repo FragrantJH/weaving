@@ -2,7 +2,68 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DocDAO">
 	<insert id="insertDoc" parameterType="com.weaving.biz.doc.DocInsertVO">
-
+		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocInsertVO" order="BEFORE">
+			<!-- select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'  -->
+			SELECT MAX(SUBSTR(DOC_NO, INSTR(DOC_NO,'-', 1, 2)+1)) + 1 AS DOC_TYPE_SEQ FROM DOCUMENTS WHERE DOC_NO LIKE #{docType}||'%'
+		</selectKey> 
+		insert into DOCUMENTS (
+			DOC_ID,
+			EMP_NO,
+			DOC_NO,
+			DOC_TITLE,
+			DOC_CONTENTS,
+			REG_DATE,
+			SECURE_LEVEL
+			)
+		  values((select NVL(MAX(DOC_ID), 0) + 1 FROM DOCUMENTS),
+		  	#{writerEmpNo},
+		  	#{docType}||#{docTypeSeq},
+		  	#{docTitle},
+		  	#{docContents},
+		  	to_date(#{regDate},'yyyy-mm-dd hh24:mi:ss'),
+		  	#{secureLevel}
+		   ) 
+	</insert>
+  
+	<insert id="insertDocDeatil" parameterType="com.weaving.biz.doc.DocInsertVO">
+		<selectKey keyProperty="docId" resultType="com.weaving.biz.doc.DocInsertVO" order="BEFORE">
+			<choose>
+				<when test="docType != null and docTypeSeq != null">
+					SELECT DOC_ID FROM DOCUMENTS WHERE DOC_NO = #{docType} || #{docTypeSeq}
+				</when>
+				<otherwise>
+					SELECT #{docId} DOC_ID FROM DUAL
+				</otherwise>
+			</choose>
+		</selectKey>				
+		
+		insert into DOCUMENTDETAIL (
+			DOC_ID
+			, EMP_NO
+			, APPROVAL_ORDER
+		  <if test="approvalDate != null">
+		  	, APPROVAL_DATE
+		  </if>		
+			, STATUS			
+		  <if test="approvalComments != null">
+		  	, APPROVAL_COMMENTS
+		  </if>							
+			)
+		  values(
+		  	#{docId}
+		  	, #{empNo}
+		  	, #{approvalOrder}
+		  <if test="approvalDate != null">
+		  	, sysdate
+		  </if>
+		  	, #{status}
+		  <if test="approvalComments != null">
+		  	, #{approvalComments}
+		  </if>
+		   )
+	</insert>
+<!--
+	<insert id="insertDoc" parameterType="com.weaving.biz.doc.DocInsertVO">
 		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocInsertVO" order="BEFORE">
 			select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'
 		</selectKey> 
@@ -23,39 +84,25 @@
 		  	to_date(#{regDate},'yyyy-mm-dd hh24:mi:ss'),
 		  	#{secureLevel}
 		   ) 
-  
-	</insert>
-  
-	<insert id="insertDocDeatil" parameterType="com.weaving.biz.doc.DocInsertVO">
-		<selectKey keyProperty="docId" resultType="com.weaving.biz.doc.DocInsertVO" order="BEFORE">
-			select DOC_ID from documents where doc_no = #{docType} || #{docTypeSeq}
+	</insert> 
+ -->
+ 	<update id="updateDoc" parameterType="com.weaving.biz.doc.DocUpdateVO">
+		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocUpdateVO" order="BEFORE">
+			<!--select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'-->
+			SELECT MAX(SUBSTR(DOC_NO, INSTR(DOC_NO,'-', 1, 2)+1)) + 1 AS DOC_TYPE_SEQ FROM DOCUMENTS WHERE DOC_NO LIKE #{docType}||'%'
 		</selectKey>
-		insert into DOCUMENTDETAIL (
-			DOC_ID
-			, EMP_NO
-			, APPROVAL_ORDER
-		  <if test="approvalDate != null">
-		  	, APPROVAL_DATE
-		  </if>		
-			, STATUS			
-		  <if test="approvalComments != null">
-		  	, APPROVAL_COMMENTS
-		  </if>							
-			)
-		  values(
-		  	#{docId}
-		  	, #{empNo}
-		  	, #{approvalOrder}
-		  <if test="approvalDate != null">
-		  	, to_date(#{approvalDate},'yyyy-mm-dd hh24:mi:ss')
-		  </if>
-		  	, #{status}
-		  <if test="approvalComments != null">
-		  	, #{approvalComments}
-		  </if>
-		   )
-	</insert>
-
+		UPDATE DOCUMENTS SET 
+			DOC_NO = #{docType}||#{docTypeSeq},
+			DOC_TITLE = #{docTitle},
+			DOC_CONTENTS = #{docContents},
+			REG_DATE = SYSDATE,
+			SECURE_LEVEL = #{secureLevel},
+			RETURN_EMP_NO = NULL
+		<where>
+			DOC_ID=#{docId}
+		</where> 			
+ 	</update>
+ 	
 	<update id="updateDoneDoc" parameterType="com.weaving.biz.doc.DocApprovalVO">
 		UPDATE DOCUMENTDETAIL SET STATUS='DONE', APPROVAL_COMMENTS=#{approvalComments}, APPROVAL_DATE=sysdate
 		<where>
@@ -121,6 +168,9 @@
 	<update id="updateApprovalNullDate" parameterType="com.weaving.biz.doc.DocApprovalVO">
 		UPDATE DOCUMENTDETAIL SET APPROVAL_DATE=NULL WHERE DOC_ID=#{docId}
 	</update>
+	<delete id="delteDocDetail" parameterType="com.weaving.biz.doc.DocDeleteVO">
+		DELETE FROM DOCUMENTDETAIL WHERE DOC_ID=#{docId}
+	</delete>
 	<!-- 
 	<select id="getDocWaitList" parameterType="com.weaving.biz.doc.DocInsertVO"
 		resultType="com.weaving.biz.doc.DocInsertVO">					

@@ -6,9 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+	var echeck =0;
+	
 	$(function() {
 		empList();
 
@@ -21,6 +23,8 @@
 		empUpdate();
 		
 		empDelUpdate();
+		
+		emailcheck();
 
 		init();
 	});
@@ -28,7 +32,7 @@
 	//사용자 등록 요청
 	function empInsert(){
 		//등록 버튼 클릭
-		$('#btnInsert').on('click',function(){		
+		$('#btnInsert').on('click',function(){
 			var empName = $('input:text[name="empName"]').val();
 			var password = $('input:text[name="password"]').val();
 			var deptId = $('[name="deptId"]').val();
@@ -43,9 +47,8 @@
 			    dataType: 'json', 
 			    data: JSON.stringify({ empName: empName, password: password,deptId: deptId, position: position, email: email, phone: phone, address: address, gmailAppKey: gmailAppKey }),
 			    contentType: 'application/json',
-			    mimeType: 'application/json',
-			    success: function(response) {
-			    	console.log(response)
+			    success: function(data) {
+			    	console.log(data)
 			    	//if(response.result == true) {
 			    		$('#searchModel').modal("hide");
 			    		empList();
@@ -126,10 +129,8 @@
 	//초기화
 	function init() {
 		//초기화 버튼 클릭
-		$('#btnInit').on('click', function() {
-			$('#insertEmp').each(function() {
-				this.reset();
-			});
+		$('#btnInsertForm').on('click', function() {
+			$('#insertForm')[0].reset();
 		});
 	}//init
 
@@ -194,36 +195,35 @@
 			.appendTo('tbody');
 		});//each
 	}//userListResult
-<!--
-	var pwch1 = 'N'
-
-	//비밀번호, 비밀번호확인 확인하기
-	function pwche() {
-		var pw = document.twin.password.value;
-		var pwch = document.twin.repassword.value;
-		if (document.getElementById('password').value != '' && document.getElementById('repassword').value != '') {
-			if (document.getElementById('password').value == document.getElementById('repassword').value) {
-				document.getElementById('same').innerHTML = '비밀번호 일치합니다.';
-				document.getElementById('same').style.color = 'blue';
-				pwch1 = 'Y'
-			} else {
-				document.getElementById('same').innerHTML = '비밀번호가 일치하지 않습니다.';
-				document.getElementById('same').style.color = 'red';
-				pwch1 = 'N'
+	
+	//email check
+	function emailcheck(){
+		$('#btnEcheck').on('click',function(){
+		var email = $("#email").val();
+		if(email != "")
+			
+		$.ajax({
+			data : {
+				email : email
+			},
+			url : "emailcheck",
+			success : function(data){
+				if(data=='1'){
+					$("#btnInsert").prop("disabled",true);
+					$("#email").css("background-color","#FFCECE");
+					$("#btnInsert").css("background-color","#aaaaaa");
+					echeck = 1;
+				}else {
+					echeck=0;
+					$("#btnInsert").prop("disabled",false);
+					$("#email").css("background-color","#B0F6AC");
+					
+					
+				}
 			}
-		}
+		});
+		});
 	}
-
-//비밀번호 불일치시 알림창
-function formch() {
-	if (pwch1 == "N") {
-		alert("비밀번호가 일치하지 않습니다.");
-		return false;
-
-	}
-	return true;
-}
--->
 	
 </script>
 <style type="text/css">
@@ -283,24 +283,9 @@ function formch() {
 								<br>
 								<br> 
 								<label for="password"><b>비밀번호</b></label> 
-								<input type="text" name="password" id="password" onkeyup="pwche()" required>
+								<input type="text" name="password" id="password" required>
 								<br>
 								<br>
-								<!-- <label for="repassword"><b>비밀번호 확인</b></label> 
-								<input type="password" name="repassword" id="repassword" onkeyup="pwche()"><br>
-								<span id="same"></span>
-								<br>
-								<br>
-								 -->
-								
-								<!-- 
-								<label for="passwordcheck"><b>비밀번호 확인</b></label>
-								<input type="text" name="passwordcheck"><br><br>
-								 -->
-															<!-- 
-								<label for="joindate1"><b>입사일</b></label>
-								<input type="text" name="joindate1" id="joindate1"><br><br>
-								 -->
 								 
 								<label for="deptId"><b>소속부서</b></label>
 								<select 
@@ -331,16 +316,17 @@ function formch() {
 								<br> 
 								<label for="email"><b>이메일</b></label> 
 								<input type="text" name="email" id="email" required>
+								<button type="button" class="btn btn-primary" id="btnEcheck">중복 확인</button>
 								<br>
 								<br> 
 								<label for="phone"><b>휴대 전화</b></label> 
 								<input type="text" name="phone" id="phone">
 								<br>
-								<br> 
+								<br>  
 								<label for="address"><b>자택주소</b></label> 
-								<input type="text" size="20" id="address" name="address"> 
+								<input type="text" size="20" id="address" name="address">
 								<br>
-								<br>
+								<br> 
 								<label for="gmailAppKey"><b>GMAILAPPKEY</b></label> 
 								<input type="text" size="20" id="gmailAppKey" name="gmailAppKey"> 
 								<br>

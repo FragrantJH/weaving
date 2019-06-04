@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.weaving.biz.common.EgovFileScrty;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
 
@@ -17,9 +18,20 @@ public class EmpServiceImpl implements Empservice {
 	
 	@Override
 	public void insertEmp(EmpVO vo) {
-		dao.insertEmp(vo);
-
+		//dao.insertEmp(vo);
+	
+		String enpassword;
+		try {
+			enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), vo.getEmail());
+			vo.setPassword(enpassword);
+			dao.insertEmp(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
+	
 	@Override
 	public void updateDelEmp(EmpVO vo) {
 		dao.updateDelEmp(vo);
@@ -28,7 +40,18 @@ public class EmpServiceImpl implements Empservice {
 
 	@Override
 	public void updateEmp(EmpVO vo) {
-		dao.updateEmp(vo);
+		//dao.updateEmp(vo);
+	
+		String enpassword;
+		try {
+			enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), vo.getEmail());
+			vo.setPassword(enpassword);
+			dao.updateEmp(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 
 	}
 
@@ -40,7 +63,24 @@ public class EmpServiceImpl implements Empservice {
 
 	@Override
 	public EmpVO getEmp(EmpVO vo) {
-		return dao.getEmp(vo);
+		//return dao.getEmp(vo); 
+	
+		 String enpassword; 
+		 try { 
+			 enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), vo.getEmail()); 
+			 vo.setPassword(enpassword); 
+			 return dao.getEmp(vo); 
+			 } 
+		 catch (Exception e) {
+			 // TODO Auto-generated catch block
+		 e.printStackTrace(); 
+		 return null; 
+		 }
+	
+	}
+	@Override
+	public EmpVO getReadyEmpNo(EmpVO vo) {
+		return dao.getReadyEmpNo(vo);
 	}
 	
 	@Override
@@ -60,6 +100,10 @@ public class EmpServiceImpl implements Empservice {
 	@Override
 	public List<Map> insertExcelTest(List<EmpVO> list) {
 		return dao.insertExcelTest(list);
+	}
+	@Override
+	public EmpVO emailcheck(EmpVO vo) {
+		return dao.emailcheck(vo);
 	}
 
 }

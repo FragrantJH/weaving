@@ -36,6 +36,10 @@ public class EmpDAO {
 		return (EmpVO)mybatis.selectOne("EmpDAO.getEmp",vo);
 	}
 	
+	public EmpVO getReadyEmpNo(EmpVO vo) {
+		return (EmpVO)mybatis.selectOne("EmpDAO.getReadyEmpNo",vo);
+	}
+	
 	public EmpVO getEmpl(EmpVO vo) {
 		return (EmpVO)mybatis.selectOne("EmpDAO.getEmpl",vo);
 	}
@@ -50,6 +54,9 @@ public class EmpDAO {
 	
 	public List<Map> insertExcelTest(List<EmpVO> list) {
 		return mybatis.selectList("EmpDAO.insertExcelTest", list);
+	}
+	public EmpVO emailcheck(EmpVO vo) {
+		return (EmpVO)mybatis.selectOne("EmpDAO.emailcheck",vo);
 	}
 
 }

@@ -28,6 +28,31 @@ sysdate,
 
 </insert>
 
+<insert id="insertInbox" parameterType="com.weaving.biz.email.EmailVO" >
+INSERT INTO INBOXEMAIL(
+INBOXID,
+FROM_INBOX,
+TO_INBOX,
+TITLE,
+INBOX_CONTENTS,
+CHECK_TIME,
+READ_CHECK,
+EMP_NO
+)
+VALUES(
+(select nvl(max(EMAIL_ID),0)+1 from email) ,
+#{fromEmail},
+#{toEmail},
+#{subject},
+#{inboxContents},
+sysdate,
+#{readCheck},
+#{empNo}
+
+)
+
+</insert>
+
 <!-- 읽은 메일 갯수 체크 -->
 <select id="mailReadCheck" parameterType="int" resultType="int">
 		select count(decode(read_check,'0','1'))
@@ -36,9 +61,126 @@ sysdate,
 </select>
 
 
-<delete id="deleteMails_S">
+<delete id="deleteEmail">
 		<![CDATA[
 			DELETE FROM Email WHERE email_id = #{email_id}
 			]]>
 	</delete>
+	
+
+<!--업데이트 -->
+<update id="updateEmail">
+UPDATE EMAIL
+SET 
+FROM_EMAIL=#fromEmail#,
+TO_EMAIL=#toEmail#,
+SUBJECT=#subject#,
+EMAIL_CONTENTS=#emailContents#,
+CHECK_TIME=#checkTime#,
+READ_CHECK=#readCheck#,
+EMPNO=#empNo#
+
+</update>	
+	
+	<!-- 단건 조회--> 
+<select id="getEmailOne">
+
+	<![CDATA[
+SELECT
+
+EMAIL_ID,
+FROM_EMAIL,
+TO_EMAIL,
+SUBJECT,
+EMAIL_CONTENTS,
+CHECK_TIME,
+READ_CHECK,
+EMPNO
+FROM EMAIL
+WHERE EMAIL_ID =#EMAILID#
+	]]>
+</select>
+
+<select id="getINBOXOne">
+<![CDATA[
+SELECT
+
+INBOXID,
+FROM_INBOX,
+TO_INBOX,
+TITLE,
+INBOX_CONTENTS,
+CHECK_TIME,
+READ_CHECK,
+EMP_NO,
+
+FROM INBOX
+WHERE INBOXID = #INBOXID#
+
+]]>
+</select>
+
+<select id="getEmailList">
+SELECT * FROM (
+SELECT A.*, ROWNUM RNUM FROM (
+	SELECT
+EMAIL_ID,								 
+FROM_EMAIL,
+TO_EMAIL,
+SUBJECT,
+EMAIL_CONTENTS,
+CHECK_TIME,
+READ_CHECK,
+EMPNO
+FROM EMAIL
+WHERE TO_EMAIL=(select email from employees where emp_no = #empId#)
+
+<choose>
+ <when test="searchCondition =0">
+                SUBJECT = #searchKeyword#
+</when>
+<otherwise>
+                  MESSAGECONTENT LIKE '%' || #searchKeyword# || '%'
+</otherwise>
+                
+</choose>
+ORDER BY EMAIL_ID DESC
+
+<![CDATA[					
+) A WHERE ROWNUM <= #lastIndex#
+)WHERE RNUM > #firstIndex#
+]]>
+ 
+	</select>
+	
+	<select id="selectEmailListG">
+	
+		
+SELECT * FROM (
+	SELECT A.*, ROWNUM RNUM FROM (
+SELECT *
+FROM INBOXEMAIL
+WHERE toImbox = 'dohy43@gmail.com'
+				
+				<choose>
+ <when test="searchCondition =0">
+                SUBJECT = #searchKeyword#
+</when>
+<otherwise>
+                  MESSAGECONTENT LIKE '%' || #searchKeyword# || '%'
+</otherwise>
+                
+</choose>
+					ORDER BY MAIL_NO DESC
+	
+		<![CDATA[					
+	) A WHERE ROWNUM <= #lastIndex#
+)WHERE RNUM > #firstIndex#
+]]>
+	
+	
+	</select>
+	
+	
+	
 </mapper>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="empInfo" value="${emp}" scope="session" />
+<c:set var="docType" value="${docListType}" scope="session" />
 <c:set var="docBaseInfo" value="${docInfo}"/>
 <c:set var="docDetailInfo" value="${docDetailInfo}"/>
 <!DOCTYPE html>
@@ -44,11 +45,56 @@
 </head>
 <script>
 $(function() {
+	showDocTypeBtn();
 	approvalSendEvent();
 });
-	
+//
+function menuMove() {
+	var docType = "";
+	switch('${docType}') {
+		case 'WAIT':
+			docType="WAIT";	
+			break;
+		case 'RETURN':
+			docType="RETURN";			
+			break;
+		case 'DONE':
+			docType="DONE";
+			break;
+		case 'ING':
+			docType="ING";
+			break;
+		default:
+			alert("예외 문서 타입이 발생했습니다.");
+			break;
+		}
+	location.replace('${pageContext.request.contextPath}/docList?listType='+docType);	
+}
+function showDocTypeBtn() {
+
+	switch('${docType}') {
+		case 'WAIT':
+			$("#approvalRecordBtn").show();  
+			$("#approvalDoneBtn").show();		
+			break;
+		case 'RETURN':
+			$("#modifyBtn").show();  
+			$("#approvalRecordBtn").show();  
+			$("#approvalDoneBtn").show();			
+			break;
+		case 'DONE':
+			$("#approvalRecordBtn").show();
+			break;
+		case 'ING':
+			$("#approvalRecordBtn").show();
+			break;
+		default:
+			alert("예외 상태가 발생했습니다.");
+			break;
+		}
+}
+
 function approvalSendEvent() {
-	approvalReject
 	$('.modal-footer').on('click', '#approvalSend', function() {
 		$.ajax({ 
 		    url: "updateDone",
@@ -64,7 +110,7 @@ function approvalSendEvent() {
 		    //mimeType: 'application/json',
 		    success: function(data) {
 		    	//$('#approvalModal').modal("hide");
-		    	location.replace('${pageContext.request.contextPath}/docWaitList');
+		    	menuMove();
 		    },
 		    error:function(xhr, status, message) { 
 		        alert(" status: "+status+" er:"+message);
@@ -87,17 +133,23 @@ function approvalSendEvent() {
 		    contentType: 'application/json',
 		    //mimeType: 'application/json',
 		    success: function(data) {
-		    	console.log("succ");
-		    	//location.replace('${pageContext.request.contextPath}/docWaitList');
+		    	menuMove();
 		    },
 		    error:function(xhr, status, message) { 
 		        alert(" status: "+status+" er:"+message);
 		    }
 		});
-	});	
+	});
+	
+	$('.card-body').on('click', '#modifyBtn', function() {
+		
+		location.replace('${pageContext.request.contextPath}/docUpdateView?docId='+${docBaseInfo.docId});
+	});
+	
 }
 </script>
 <body>
+'${docType}'
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
@@ -108,9 +160,9 @@ function approvalSendEvent() {
 				</div>
 				<div class="card-body">
 					<div style="float:right;">
-						<button type="button" class="btn btn-primary">수정하기</button>
-						<button type="button" class="btn btn-primary">결재이력</button>
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#approvalModal">결재하기</button>
+						<button type="button" class="btn btn-primary" id="modifyBtn" style="display:none;">수정하기</button>
+						<button type="button" class="btn btn-primary" id="approvalRecordBtn" style="display:none;">결재이력</button>
+						<button type="button" class="btn btn-primary" id="approvalDoneBtn" data-toggle="modal" data-target="#approvalModal" style="display:none;">결재하기</button>
 					</div>
 					<!-- 결재하기 모달 -->
 					<div class="modal fade" id="approvalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -19,19 +19,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="${pageContext.request.contextPath}/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
   <script src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js"></script>
 </head>
 
-<style>
-	.avatar {
-	  vertical-align: middle;
-	  width: 100px;
-	  height: 100px;
-	  border-radius: 50%;
-	}
-</style>
 
   <div class="wrapper ">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-1.jpg">

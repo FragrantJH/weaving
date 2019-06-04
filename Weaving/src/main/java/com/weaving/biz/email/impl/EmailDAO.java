@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.weaving.biz.board.BoardVO;
 import com.weaving.biz.email.EmailVO;
+import com.weaving.biz.email.MessageVO;
 
 @Repository
 public class EmailDAO {
@@ -21,6 +22,16 @@ public class EmailDAO {
 	 * */
 	public void insertEmail(EmailVO vo) throws Exception{
 		mybatis.insert("EmailDAO.insertEmail", vo);
+		vo.setEmailId(1);
+		
+	}
+	
+	/**
+	 * Email을 등록한다.
+	 * @param vo - 등록할 정보가 담긴 EmailVO
+	 * */
+	public void insertInbox(EmailVO vo) throws Exception{
+		mybatis.insert("EmailDAO.insertInbox", vo);
 		vo.setEmailId(1);
 		
 	}
@@ -52,19 +63,19 @@ public class EmailDAO {
 	/**
 	 * Email을  목록 여럿 조회한다.
 	 * */
-    public List<EmailVO> getEmailList(EmailVO vo) throws Exception{
+    public List<?> getEmailList(EmailVO vo) throws Exception{
     	return mybatis.selectList("EmailDAO.selectEmailList", vo);
     }
     /**
 	 * Email을  목록 여럿 조회한다.  G
 	 * */
-	public List<EmailVO> selectEmailListG(EmailVO vo) throws Exception  {
-		return mybatis.selectList("EmailDAO.selectEmailList_G", vo);
+	public List<?> selectEmailListG(MessageVO mvo) throws Exception  {
+		return mybatis.selectList("EmailDAO.selectEmailList_G", mvo);
 		 /**
 		 * Email을  목록 여럿 조회한다. S
 		 * */
 	}  ;
-	public List<EmailVO> selectEmailListS(EmailVO vo) throws Exception {
+	public List<?> selectEmailListS(EmailVO vo) throws Exception {
 		 return   mybatis.selectList("EmailDAO.selectEmailList_S", vo);
 		
 	};

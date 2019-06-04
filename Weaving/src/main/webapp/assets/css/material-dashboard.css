@@ -15,6 +15,14 @@
 
 /*     brand Colors              */
 
+.avatar {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+
 .card {
   font-size: .875rem;
 }
@@ -13354,6 +13362,7 @@ fieldset[disabled] .form-group .form-control {
   border-radius: 3px;
   color: #fff;
   margin: 0 15px;
+
 }
 
 .off-canvas-sidebar .navbar .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
@@ -14499,7 +14508,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .sidebar .sidebar-wrapper {
   position: relative;
-  height: calc(100vh - 75px);
+  height: calc(100vh - 400px);
   overflow: auto;
   width: 260px;
   z-index: 4;

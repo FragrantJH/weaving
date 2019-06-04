@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.weaving.biz.doc.DocApprovalVO;
+import com.weaving.biz.doc.DocDeleteVO;
 import com.weaving.biz.doc.DocDetailVO;
 import com.weaving.biz.doc.DocInsertVO;
+import com.weaving.biz.doc.DocUpdateVO;
 
 @Repository
 public class DocDAO {
@@ -22,7 +24,9 @@ public class DocDAO {
 	public void insertDocDetail(DocInsertVO vo) {
 		mybatis.insert("DocDAO.insertDocDeatil", vo);
 	}
-	
+	public void updateDoc(DocUpdateVO vo) {
+		mybatis.update("DocDAO.updateDoc", vo);
+	}
 	public void updateApprovalDoc(DocApprovalVO vo) {
 		mybatis.update("DocDAO.updateDoneDoc", vo);
 	}
@@ -35,7 +39,10 @@ public class DocDAO {
 	}
 	public void updateApprovalNullDate(DocApprovalVO vo) {
 		mybatis.update("DocDAO.updateApprovalNullDate", vo);
-	}	
+	}
+	public void delteDocDetail(DocDeleteVO vo) {
+		mybatis.delete("DocDAO.delteDocDetail", vo);
+	}
 	
 	public DocDetailVO getDocument(DocDetailVO vo) {
 		return mybatis.selectOne("DocDAO.getDocument", vo);

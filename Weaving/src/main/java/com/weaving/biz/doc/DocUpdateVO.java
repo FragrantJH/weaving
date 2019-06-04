@@ -1,7 +1,7 @@
 package com.weaving.biz.doc;
 
 
-public class DocInsertVO extends DocBaseVO{
+public class DocUpdateVO extends DocBaseVO{
 	private int rowNum;
 	
 	private int docTypeSeq;
@@ -66,14 +66,5 @@ public class DocInsertVO extends DocBaseVO{
 	}
 	public void setApprovalComments(String approvalComments) {
 		this.approvalComments = approvalComments;
-	}
-	@Override
-	public String toString() {
-		return "DocInsertVO [rowNum=" + rowNum + ", docTypeSeq=" + docTypeSeq + ", empNo=" + empNo + ", approvalOrder="
-				+ approvalOrder + ", docType=" + docType + ", docContents=" + docContents + ", status=" + status
-				+ ", approvalDate=" + approvalDate + ", approvalComments=" + approvalComments + ", getDocId()="
-				+ getDocId() + ", getDocNo()=" + getDocNo() + "]";
-	}
-
-	
+	}	
 }

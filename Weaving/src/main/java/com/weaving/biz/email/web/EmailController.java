@@ -31,12 +31,15 @@ import com.weaving.biz.emp.EmpVO;
 @Controller
 public class EmailController {
 
+	@Autowired
+	FetchingEmail fetch;
 	
 	@Autowired
 	EmailService service;
 	
 	@Autowired
 	SendEmailService emailService;
+	
 
 	// 메일보내기폼
 	@RequestMapping("mailForm")
@@ -71,41 +74,58 @@ public class EmailController {
 
 		
 		PrintWriter out = response.getWriter();
-		out.println("<script>alert('메일을 전송하였습니다.'); location.href='../mailSend';</script>");
+		out.println("<script>alert('메일을 전송하였습니다.'); location.href='mailSend';</script>");
 
 	}
 
 	@RequestMapping("getMailList")
-	public String getMail(HttpSession session) { 
+	public void getMail(EmpVO empvo, EmailVO vo ,HttpSession session,HttpServletResponse response
+			, @ModelAttribute("searchVO") MessageVO searchVO,
+			SessionStatus status, HttpSession hsession) throws Exception  { 
+		
+		String to = vo.getToEmail();// change accordingly
+		String from = vo.getFromEmail(); // change accordingly
+		final String username =empvo.getEmail(); // change accordingly
+		final String password = empvo.getGmailAppKey(); // change accordingly
+		
+		
+		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		empvo =SessionInfo.getInfo(hsession, "emp");
+		vo.setCheckTime(new Date());
+		vo.setFromEmail(empvo.getEmail());
+		vo.setEmpNo(empvo.getEmpNo());
+		
+		service.insertInbox(vo);
+		status.setComplete();
+		
+		
+
 		
 		// 메일 서버에서 조회
 		// Session에 저장되어 있는 사용자의 이메일과 이메일 인증키로 메일 조회 하도록
-		EmpVO vo = SessionInfo.getInfo(session, "admin");
-		
-		// DB에 입력하는 서비스 호출
-			
+		// DB에 입력하는 서비스 호출		
 		// DB에서 다시 조회한 뒤 화면에 뿌려주는 것	
-				
-		return null;
 		
 	}
 	
-	
-	// 메일보기폼
-	@RequestMapping("view_mail")
-	public String send_mail(Model model, HttpSession session) {
-		String host = "pop.gmail.com";// change accordingly
-		String mailStoreType = "pop3";
-		String username = "dohy43@gmail.com";// change accordingly
-		String password = "uuioeaxjqhwqerno";// change accordingly
-		
-		CheckingMails checkingMail = new CheckingMails();
-		
-		List<EmailVO> list =  checkingMail.check(host, mailStoreType, username, password);
-		
+//	// 메일보기폼
+//	@RequestMapping("view_mail")
+//	public String send_mail(Model model, HttpSession session) {
+//		String host = "pop.gmail.com";// change accordingly
+//		String mailStoreType = "pop3";
+//		String username = "dohy43@gmail.com";// change accordingly
+//		String password = "uuioeaxjqhwqerno";// change accordingly
+//		
+//		CheckingMails checkingMail = new CheckingMails();
+//		
+//		List<EmailVO> list =  checkingMail.check(host, mailStoreType, username, password);
+//		model.addAttribute("", list);		
 		//insert
-		
-		EmailVO vo = SessionInfo.getInfo(session, "email");
+	//	EmpVO vo = SessionInfo.getInfo(session, "emp");		
+	//	model.addAttribute("waitList", service.getWaitEmailList(vo.getEmpNo()));
+	//	EmailVO vo = SessionInfo.getInfo(session, "email");
 		
 //		model.addAttribute("email_id", vo.getEmailId());
 //		model.addAttribute("from_email",vo.getFromEmail());
@@ -114,41 +134,48 @@ public class EmailController {
 		
 
 		// 다시 select ?
-		
-		return "email/view_mail";
-	}
-	
-	//	EmpVO vo = SessionInfo.getInfo(session, "emp");		
-		//model.addAttribute("waitList", service.getWaitDocList(vo.getEmpNo()));
-	
+//		
+//		return "email/view_mail";
+//	}
 
 	
 	  @RequestMapping("reading_mail") 
-	  public String reading_mail(Model model) {
-	  
+	  public String reading_mail(Model model, 
+			  EmpVO empvo, 
+			  EmailVO vo ,
+			  HttpSession session,
+			 MessageVO messagevo) throws Exception {
 		  
-	  String host = "pop.gmail.com";// change accordingly 
-	  String mailStoreType ="pop3"; 
-	  String username = "dohy43@gmail.com";// change accordingly 
-	  String  password = "uuioeaxjqhwqerno";// change accordingly FetchingEmail
-	  FetchingEmail Fetch= new FetchingEmail();
+	  String pop3Host = "pop.gmail.com";// change accordingly 
+	  String storeType ="pop3"; 
 	  
+	  empvo=SessionInfo.getInfo(session, "emp");	
 	  
-	  
-	  Fetch.fetchEmailFromServer(host, mailStoreType, username, password);
-	  //디비에서 불러와서 
-	  
-	  return "email/reading_mail"; }
+	  final String user =empvo.getEmail(); // change accordingly
+	  final String password = empvo.getGmailAppKey(); // change accordingly
 	 
+	  
+		fetch.fetchEmailFromServer(pop3Host, storeType, user, password);
+  
+	  	model.addAttribute("readingMail", service.getEmailList(messagevo));
+	  return "email/reading_mail" ;
+	  
+	  }
+	 
+	  
 	  /*
 		 * 개인메일 목록 출력하는 핸들러
 		 */
-		@RequestMapping(value = "/mail/MailsList.do")
-		public String selectMailsList(@ModelAttribute("searchVO") 
-		MessageVO searchVO,HttpSession hsession, ModelMap model) throws Exception {
+		@RequestMapping("readone")
+		public String selectMailsList(
+				@ModelAttribute("searchVO") 
+		MessageVO searchVO,HttpSession hsession, ModelMap model, MessageVO mvo) throws Exception {
 			
 			EmpVO empvo = (EmpVO) hsession.getAttribute("employees");
 			searchVO.setEmpNo(empvo.getEmpNo());
+			
+			List<?> emailList=service.getEmailList(mvo);
+			model.addAttribute("resultList", emailList);
 			
 			return "/mail/mailGet";
 			}
