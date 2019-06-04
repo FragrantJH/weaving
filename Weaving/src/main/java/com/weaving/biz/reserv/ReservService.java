@@ -1,6 +1,7 @@
 package com.weaving.biz.reserv;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ReservService {
 	
@@ -14,5 +15,7 @@ public interface ReservService {
 	
 	List<ReservVO> getReservList();
 
-
-}
+	List<Map<String, Object>> getResultState();
+	
+	int getDuplicateCheck(ReservVO vo);
+	}

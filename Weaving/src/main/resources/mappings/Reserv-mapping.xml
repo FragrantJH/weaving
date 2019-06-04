@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReservDAO">
 
+	 <resultMap type="hashMap" id="reserveState">
+        <result javaType="java.lang.String" column="ROOM_NAME" property="roomName"></result>
+        <result javaType="int" column="CNT" property="cnt"></result>
+    </resultMap>
+    
 	<insert id="insertReserv" parameterType="reserv">
 		INSERT INTO RESERVATION (
 							  RESERV_ID,
@@ -66,9 +71,24 @@
 		  FROM RESERVATION
 	</select>
 	
-	<select id="idcheck" parameterType="String" resultType="Integer">
+	<select id="idcheck" parameterType="string" resultType="int">
       SELECT COUNT(*) FROM RESERVATION
       WHERE START_TIME = #{startTime}
+	</select>
+	
+	<!-- Room별 예약 건수 -->
+	<select id="getReserveCount" resultMap="reserveState">
+	SELECT B.ROOM_NAME, 
+		   COUNT(*) AS CNT
+	  FROM RESERVATION A INNER JOIN ROOM B ON A.ROOM_ID = B.ROOM_ID
+	 WHERE TO_CHAR(START_TIME, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	 GROUP BY B.ROOM_NAME
+	</select>
+	
+	<!-- 중복체크 -->
+	<select id="duplicatecheck" resultType="int">
+	select count(*) as duplicateCheck from reservation where to_char(start_time,'yyyy/mm/dd hh24:mi')|| ' '||
+to_char(end_time, 'hh24:mi') = #{duplicateCheck} and room_id = #{roomId}
 	</select>
 	
 	
