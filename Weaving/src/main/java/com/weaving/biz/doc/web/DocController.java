@@ -270,6 +270,8 @@ public class DocController {
 			for (DocInsertVO v : docObj) {
 				
 				if (b) {
+					v.setStatus("DONE");
+					v.setApprovalDate(curTime);	
 					writerStatus = v.getStatus();	
 					b = false;
 				} else {
@@ -297,6 +299,62 @@ public class DocController {
 	
 	@RequestMapping(value="/docTemp", method=RequestMethod.POST)
 	public String docTemp(DocUpdateVO vo, HttpServletRequest request) {
+		System.out.println("=======#######==============");
+		System.out.println(vo);
+		System.out.println(vo.getDocNo());
+		System.out.println("=======#######==============");
+
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		Date date = new Date();
+		String curTime = f.format(date);
+		String[] d  = curTime.split(" ");
+		String[] dateArr = d[0].split("-");
+		
+		//'문서타입-년월일-'
+		String docType = request.getParameter("docType") +"-" + dateArr[0] + dateArr[1] + dateArr[2]+"-";
+		System.out.println(docType);
+
+		vo.setDocType(docType);
+		vo.setTempYn(1);
+		docService.updateDoc(vo);
+
+		DocDeleteVO delVo = new DocDeleteVO();
+		delVo.setDocId(vo.getDocId());
+		//실행잘됨
+		docService.deleteDocDetail(delVo);
+		
+		String jsonString = request.getParameter("approvalList");
+		System.out.println("=======^^^^^^^==============");
+		System.out.println(jsonString);
+		System.out.println("=======^^^^^^^==============");
+
+		ObjectMapper mapper = new ObjectMapper();
+		String writerStatus = "";
+		try {
+			List<DocInsertVO> docObj = Arrays.asList(mapper.readValue(jsonString, DocInsertVO[].class));
+			
+			for (DocInsertVO v : docObj) {
+				
+				v.setDocId(vo.getDocId());
+				v.setStatus("WAIT");
+				System.out.println("llllllllllllllllllllllllllllllllll");
+				System.out.println(v);
+				System.out.println("llllllllllllllllllllllllllllllllll");
+				docService.insertDocDetail(v);
+				//docId = v.getDocId();
+			}		
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		return "redirect:docList?listType=TEMP";
+		//return null;
 	}
 }

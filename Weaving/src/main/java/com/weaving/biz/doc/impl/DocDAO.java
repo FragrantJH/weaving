@@ -22,7 +22,7 @@ public class DocDAO {
 	}
 	
 	public void insertDocDetail(DocInsertVO vo) {
-		mybatis.insert("DocDAO.insertDocDeatil", vo);
+		mybatis.insert("DocDAO.insertDocDetail", vo);
 	}
 	public void updateDoc(DocUpdateVO vo) {
 		mybatis.update("DocDAO.updateDoc", vo);

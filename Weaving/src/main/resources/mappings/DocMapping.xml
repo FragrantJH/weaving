@@ -27,7 +27,7 @@
 		   ) 
 	</insert>
   
-	<insert id="insertDocDeatil" parameterType="com.weaving.biz.doc.DocInsertVO">
+	<insert id="insertDocDetail" parameterType="com.weaving.biz.doc.DocInsertVO">
 		<selectKey keyProperty="docId" resultType="com.weaving.biz.doc.DocInsertVO" order="BEFORE">
 			<choose>
 				<when test="docType != null and docTypeSeq != null">
@@ -99,9 +99,18 @@
 			DOC_NO = #{docType}||#{docTypeSeq},
 			DOC_TITLE = #{docTitle},
 			DOC_CONTENTS = #{docContents},
-			REG_DATE = SYSDATE,
-			SECURE_LEVEL = #{secureLevel},
-			RETURN_EMP_NO = NULL
+			SECURE_LEVEL = #{secureLevel}
+			<choose>
+				<when test="tempYn.equals(1)">
+					, REG_DATE = NULL				
+					, TEMP_YN = 1
+				</when>
+				<otherwise>
+					, REG_DATE = SYSDATE
+					, RETURN_EMP_NO = NULL
+					, TEMP_YN = 0
+				</otherwise>
+			</choose>			
 		<where>
 			DOC_ID=#{docId}
 		</where> 			
