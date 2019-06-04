@@ -38,6 +38,7 @@ public class ReservController {
 		vo.setReservId(0);
 		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
 		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
+		vo.setDuplicateCheck(vo.getReservDate() + " " + vo.getStartTime() + " " + vo.getEndTime());
 		// 현재 접속한 사용자 정보
 		Object emp = session.getAttribute("emp");
 		if (emp != null) {
@@ -45,8 +46,15 @@ public class ReservController {
 		} else {
 			vo.setEmpNo(1);
 		}
-
-		service.insertReserv(vo);
+		System.out.println(vo);
+		int duplicateCheck = service.getDuplicateCheck(vo);
+		boolean b = false;
+		if (duplicateCheck > 0) {
+			b = true;
+		} else {
+			service.insertReserv(vo);
+		}
+		model.addAttribute("check", b);
 		model.addAttribute("list", service.getReservList());
 		return "room/roomReserv";
 	}
@@ -76,4 +84,7 @@ public class ReservController {
 		service.updateReserv(vo);
 		return vo;
 	}
+
+	// 중복체크
+
 }

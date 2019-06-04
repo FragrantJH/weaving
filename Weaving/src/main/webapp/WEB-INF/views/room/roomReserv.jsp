@@ -14,8 +14,17 @@
 
 <!-- 예약현황 tr 클릭시 값을 받아와서 입력시키는 페이지 -->
 
+
+
 <script>
-	$(function() {
+	$("#reserv").on('click', function() {
+		if( ${check} == true) {
+			alert("중복된 시간입니다.");
+		}else{
+			alert("예약되었습니다.");
+		}
+		
+				
 		$("#reservation tr").on('click', function() {
 			var str = ""
 			var td = $(this).children();

@@ -44,5 +44,9 @@ public class ReservServiceImpl implements ReservService {
 		return rss.getReservList();
 	}
 
-
+	@Override
+	public int getDuplicateCheck(ReservVO vo) {
+		// TODO Auto-generated method stub
+		return rss.getDuplicateCheck(vo);
+	}
 }

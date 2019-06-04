@@ -66,9 +66,15 @@
 		  FROM RESERVATION
 	</select>
 	
-	<select id="idcheck" parameterType="String" resultType="Integer">
+	<select id="idcheck" parameterType="string" resultType="int">
       SELECT COUNT(*) FROM RESERVATION
       WHERE START_TIME = #{startTime}
+	</select>
+	
+	<!-- 중복체크 -->
+	<select id="duplicatecheck" resultType="int">
+	select count(*) as duplicateCheck from reservation where to_char(start_time,'yyyy/mm/dd hh24:mi')|| ' '||
+to_char(end_time, 'hh24:mi') = #{duplicateCheck} and room_id = #{roomId}
 	</select>
 	
 	

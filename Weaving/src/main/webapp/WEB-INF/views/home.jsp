@@ -92,7 +92,7 @@
 	<div class="container-fluid">
 		<!-- 상단1 -->
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-3" OnClick="location.href ='docList?listType=WAIT'" style="cursor:pointer;">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-warning">
 						<div class="card-icon">
@@ -110,7 +110,7 @@
 
 			<!-- 상단2 -->
 
-			<div class="col-md-3">
+			<div class="col-md-3" OnClick="location.href ='docList?listType=RETURN'" style="cursor:pointer;">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-success">
 						<div class="card-icon">
@@ -127,7 +127,7 @@
 			</div>
 
 
-			<div class="col-md-3">
+			<div class="col-md-3" OnClick="location.href ='reading_mail'" style="cursor:pointer;">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-danger">
 						<div class="card-icon">
@@ -232,7 +232,7 @@
 			<!-- todo list -->
 			<div class="col-md-6">
 				<div class="card">
-					<div class="card-header card-header-text card-header-default">
+					<div class="card-header card-header-text card-header-danger">
 						<div class="card-text">
 							<h4 class="card-title">TO-DO LIST</h4>
 						</div>

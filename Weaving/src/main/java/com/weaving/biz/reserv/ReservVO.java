@@ -11,6 +11,17 @@ public class ReservVO {
 	private String description;
 	private String startDate;
 	private String endDate;
+	private String duplicateCheck;
+	
+	
+
+	public String getDuplicateCheck() {
+		return duplicateCheck;
+	}
+
+	public void setDuplicateCheck(String duplicateCheck) {
+		this.duplicateCheck = duplicateCheck;
+	}
 
 	public String getEmpName() {
 		return empName;
@@ -95,6 +106,7 @@ public class ReservVO {
 	public String toString() {
 		return "ReservVO [reservId=" + reservId + ", roomId=" + roomId + ", empNo=" + empNo + ", empName=" + empName
 				+ ", reservDate=" + reservDate + ", startTime=" + startTime + ", endTime=" + endTime + ", description="
-				+ description + ", startDate=" + startDate + ", endDate=" + endDate + "]";
-	}
+				+ description + ", startDate=" + startDate + ", endDate=" + endDate + ", duplicateCheck="
+				+ duplicateCheck + "]";
+	}	
 }

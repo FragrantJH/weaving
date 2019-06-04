@@ -14,5 +14,5 @@ public interface ReservService {
 	
 	List<ReservVO> getReservList();
 
-
-}
+	int getDuplicateCheck(ReservVO vo);
+	}

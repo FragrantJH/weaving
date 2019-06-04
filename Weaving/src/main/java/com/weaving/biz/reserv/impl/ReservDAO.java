@@ -24,4 +24,8 @@ public class ReservDAO {
 	public List<ReservVO> getReservList(){
 		return rss.selectList("ReservDAO.selectReservList");
 	}
+	
+	public int getDuplicateCheck(ReservVO vo){
+		return rss.selectOne("ReservDAO.duplicatecheck", vo);
+	}
 }
