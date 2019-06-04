@@ -3,6 +3,8 @@ package com.weaving.biz.board;
 import java.sql.Date;
 
 public class BoardVO {
+
+	private int rowNum;
 	private int boardId;
 	private int empNo;
 	private String empName;
@@ -14,7 +16,24 @@ public class BoardVO {
 	private int last;
 	private String searchCondition;
 	private String searchKeyword;
-	
+	private int recnt;
+			
+	public int getRecnt() {
+		return recnt;
+	}
+
+	public void setRecnt(int recnt) {
+		this.recnt = recnt;
+	}
+
+	public int getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
+
 	public String getSearchCondition() {
 		return searchCondition;
 	}

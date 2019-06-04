@@ -47,8 +47,10 @@ public class BoardController {
 	@RequestMapping("/boardList")
 	public ModelAndView getBoardList(ModelAndView mav, Paging paging, BoardVO vo, HttpSession session) {
 		//페이지 번호 파라미터
+
 		if (paging.getPage() == 0) {
 			paging.setPage(1);
+			
 		}
 		System.out.println(vo);
 		if (vo.getBoardType() == ' '  ) {
