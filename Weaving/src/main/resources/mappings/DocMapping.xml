@@ -4,7 +4,9 @@
 	<insert id="insertDoc" parameterType="com.weaving.biz.doc.DocInsertVO">
 		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocInsertVO" order="BEFORE">
 			<!-- select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'  -->
-			SELECT MAX(SUBSTR(DOC_NO, INSTR(DOC_NO,'-', 1, 2)+1)) + 1 AS DOC_TYPE_SEQ FROM DOCUMENTS WHERE DOC_NO LIKE #{docType}||'%'
+			SELECT COUNT( NVL( SUBSTR( DOC_NO, INSTR( DOC_NO,'-', 1, 2 ) + 1 ), 0 ) ) + 1 AS DOC_TYPE_SEQ 
+			FROM DOCUMENTS 
+			WHERE DOC_NO LIKE #{docType}||'%'
 		</selectKey> 
 		insert into DOCUMENTS (
 			DOC_ID,
@@ -89,7 +91,9 @@
  	<update id="updateDoc" parameterType="com.weaving.biz.doc.DocUpdateVO">
 		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocUpdateVO" order="BEFORE">
 			<!--select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'-->
-			SELECT MAX(SUBSTR(DOC_NO, INSTR(DOC_NO,'-', 1, 2)+1)) + 1 AS DOC_TYPE_SEQ FROM DOCUMENTS WHERE DOC_NO LIKE #{docType}||'%'
+			SELECT COUNT( NVL( SUBSTR( DOC_NO, INSTR( DOC_NO,'-', 1, 2 ) + 1 ), 0 ) ) + 1 AS DOC_TYPE_SEQ
+			FROM DOCUMENTS 
+			WHERE DOC_NO LIKE #{docType}||'%'
 		</selectKey>
 		UPDATE DOCUMENTS SET 
 			DOC_NO = #{docType}||#{docTypeSeq},
