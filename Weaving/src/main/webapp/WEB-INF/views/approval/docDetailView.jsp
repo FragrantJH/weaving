@@ -89,7 +89,8 @@ function showDocTypeBtn() {
 			$("#approvalRecordBtn").show();
 			break;
 		default:
-			alert("예외 상태가 발생했습니다.");
+			console.log('${docType}');
+			alert("예외 코드 ${docType}가 발생했습니다.");
 			break;
 		}
 }

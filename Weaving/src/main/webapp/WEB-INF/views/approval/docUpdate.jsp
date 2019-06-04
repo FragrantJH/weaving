@@ -180,15 +180,15 @@ function loadDocPreview() {
 		var doc_info =	"<table border='0' style='all:none;'>" +
 							"<tr>" +
 								"<td>문서번호</td>" +
-								"<td>"+$('input[name=docType]').val()+"-"+year + "" + month+"-xxxx</td>" +
+								"<td>${docBaseInfo.docNo}</td>" +
 							"</tr>"+
 							"<tr>" +
 								"<td>기안부서</td>" +
-								"<td>${empInfo.deptName}</td>" +							
+								"<td>${docBaseInfo.deptName}</td>" +							
 							"</tr>"+
 							"<tr>" +
 								"<td>기안자</td>" +
-								"<td>${empName}</td>" +							
+								"<td>${docBaseInfo.empName}</td>" +							
 							"</tr>"+
 							"<tr>" +
 								"<td>기안일자</td>" +
@@ -196,7 +196,7 @@ function loadDocPreview() {
 							"</tr>"+
 							"<tr>" +
 								"<td>보안등급</td>" +
-								"<td>"+$('#secureLevelMenu').text()+"</td>" +
+								"<td>${docBaseInfo.secureLevel}등급</td>" +
 							"</tr>"+							
 						"</table>";
 						
