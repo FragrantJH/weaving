@@ -137,9 +137,16 @@
 		<div class="card">
 			<div class="card-header card-header-text card-header-primary">
 				<div class="card-text">
-					<h4 class="card-title">${boardType}</h4>
-				</div>
-			</div>
+					<h4 class="card-title">
+						<c:if test="${boardType == '0'}">
+								공지사항
+							</c:if>
+							<c:if test="${boardType == '1'}">
+								게시판
+							</c:if>
+							</h4>
+						</div>
+					</div>
 			<br> <br>
 			<div class="card-body">
 				<form name="board" method="post">
