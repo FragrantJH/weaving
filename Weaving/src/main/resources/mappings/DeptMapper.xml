@@ -4,37 +4,37 @@
 
 	<!-- 부서 리스트 조회 -->
 	<select id="getDeptList" resultType="dept" parameterType="dept">
-		SELECT LPAD('-', 6*(LEVEL-1)) || dept_name dept_name, dept_id, UPPER_DEPT_ID
-		FROM department
-		START WITH dept_name='회사'
-		CONNECT BY PRIOR dept_id=UPPER_DEPT_ID
+		SELECT LPAD('-', 6*(LEVEL-1)) || DEPT_NAME DEPT_NAME, DEPT_ID, UPPER_DEPT_ID
+		FROM DEPARTMENT
+		START WITH DEPT_NAME='회사'
+		CONNECT BY PRIOR DEPT_ID=UPPER_DEPT_ID
 	</select>
 	
 	<!-- 부서 조회 -->
     <select id ="getDept" resultType="dept" parameterType="dept">
-        select dept_id, dept_name, upper_dept_id 
-        from department 
-        where dept_id = #{deptId}
+        SELECT DEPT_ID, DEPT_NAME, UPPER_DEPT_ID 
+        FROM DEPARTMENT 
+        WHERE DEPT_ID = #{deptId}
     </select>
 	
 	<!-- 수정 -->
 	<update id="updateDept" parameterType="dept">
-		update department set
-		dept_id = #{deptId}
-		,dept_name = #{deptName}
-		,upper_dept_id = #{upperDeptId}
-		where dept_id = #{deptId}
+		UPDATE DEPARTMENT SET
+		DEPT_ID = #{deptId}
+		,DEPT_NAME = #{deptName}
+		,UPPER_DEPT_ID = #{upperDeptId}
+		WHERE DEPT_ID = #{deptId}
 	</update>
 	
 	<!--부서 등록 -->
 	<insert id="insertDept" parameterType="dept">
-		insert into department(
-								dept_id
-								,dept_name
+		INSERT INTO DEPARTMENT(
+								DEPT_ID
+								,DEPT_NAME
 								<if test="upperDeptId != null">
-								,upper_dept_id)
+								,UPPER_DEPT_ID)
 								</if>
-		values ( (SELECT NVL(MAX(DEPT_ID), 0) + 1 FROM DEPARTMENT )
+		VALUES ( (SELECT NVL(MAX(DEPT_ID), 0) + 1 FROM DEPARTMENT )
 				,#{deptName}
 				<if test="upperDeptId != null">
 				,#{upperDeptId}
