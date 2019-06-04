@@ -1,5 +1,6 @@
 package com.weaving.biz.reserv.web;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weaving.biz.cal.CalVO;
+import com.weaving.biz.common.CommonDateParser;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.reserv.ReservService;
 import com.weaving.biz.reserv.ReservVO;
@@ -37,8 +39,13 @@ public class ReservController {
 		System.out.println(vo.getReservDate());
 		vo.setReservId(0);
 		
-		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
-		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
+		SimpleDateFormat fromFormat = new SimpleDateFormat("MM-dd-yyyy");
+		SimpleDateFormat toFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String reservDate = CommonDateParser.parseFormat(vo.getReservDate(), fromFormat, toFormat);
+		
+		vo.setStartDate(reservDate + " " + vo.getStartTime());
+		vo.setEndDate(reservDate + " " + vo.getEndTime());
 		
 		System.out.println(vo);
 		
