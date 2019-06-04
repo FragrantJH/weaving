@@ -53,7 +53,6 @@ public class ReservServiceImpl implements ReservService {
 
 	@Override
 	public List<Map<String, Object>> getResultState() {
-		// TODO Auto-generated method stub
-		return null;
+		return rss.getResultState();
 	}
 }

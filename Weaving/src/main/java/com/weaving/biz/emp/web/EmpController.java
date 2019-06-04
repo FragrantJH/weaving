@@ -38,11 +38,7 @@ public class EmpController {
 
 	@Autowired
 	Empservice service;
-	@Autowired
-	DocListService docListService;
-	@Autowired
-	ReservService reserveService;
-	
+
 	@Inject
 	AdminAccountsMngService AdminAccountsMngService;
 
@@ -104,7 +100,7 @@ public class EmpController {
 	}
 
 	// 삭제
-	@RequestMapping(value = "/deleteEmp/{empNo}", method = {RequestMethod.DELETE, RequestMethod.GET})
+	@RequestMapping(value = "/deleteEmp/{empNo}", method = { RequestMethod.DELETE, RequestMethod.GET })
 	@ResponseBody
 	public Map deleteEmp(@PathVariable int empNo, EmpVO vo, Model model) {
 		vo.setEmpNo(empNo);
@@ -181,15 +177,8 @@ public class EmpController {
 
 			if (emp.getAdminYn()) {
 				session.setAttribute("emp", emp);
-				
-				// TODO : adminHome 처리
-				model.addAttribute("totalIngCount", docListService.getTotalIngCount());
-				model.addAttribute("totalReturnCount", docListService.getTotalReturnCount());
-				model.addAttribute("totalDoneCount", docListService.getTotalDoneCount());
-				model.addAttribute("totalTempCount", docListService.getTotalTempCount());
-				model.addAttribute("reserveState", reserveService.getResultState());
-				
-				return "admin/adminHome";
+
+				return "redirect:adminHome";
 			} else {
 				session.setAttribute("emp", emp);
 
@@ -216,15 +205,16 @@ public class EmpController {
 		service.updateEmp(vo);
 		return "redirect:empselect";
 	}
-	
-	//email check
+
+	// email check
 	@RequestMapping("/emailcheck")
 	@ResponseBody
 	public int emailcheck(EmpVO vo, ModelAndView mav) {
-		int result=0;
+		int result = 0;
 		EmpVO emp = service.emailcheck(vo);
-		if(emp != null) result=1;
+		if (emp != null)
+			result = 1;
 		return result;
 	}
-	
+
 }

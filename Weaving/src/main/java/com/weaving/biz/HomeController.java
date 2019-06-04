@@ -33,6 +33,7 @@ import com.weaving.biz.common.SessionInfo;
 import com.weaving.biz.doc.DocListService;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
+import com.weaving.biz.reserv.ReservService;
 
 
 /**
@@ -44,13 +45,15 @@ public class HomeController {
 	@Autowired
 	Empservice service;
 	@Autowired
-	DocListService waitservice;
+	DocListService docListService;
 	@Autowired
 	ReadMailCheckService mailservice;
 	@Autowired
 	BoardService boardService;
 	@Autowired
 	CalService calservice;
+	@Autowired
+	ReservService reserveService;
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -63,11 +66,11 @@ public class HomeController {
 		
 		EmpVO vo = SessionInfo.getInfo(session, "emp");
 		//결재 대기중인 문서 카운트
-		model.addAttribute("count", waitservice.getWaitDocList(vo.getEmpNo()).toArray().length);
+		model.addAttribute("count", docListService.getWaitDocList(vo.getEmpNo()).toArray().length);
 		//읽지 않은 메일 카운트
 		model.addAttribute("countMail", mailservice.getUnReadMailCheck(vo.getEmpNo()));
 		//반려된 문서 카운트
-		model.addAttribute("returndoc", waitservice.getReturnDocList(vo.getEmpNo()).toArray().length);
+		model.addAttribute("returndoc", docListService.getReturnDocList(vo.getEmpNo()).toArray().length);
 		
 		
 		Paging paging = new Paging();
@@ -111,6 +114,13 @@ public class HomeController {
 		EmpVO emp = SessionInfo.getInfo(session, "emp");
 		
 		if (emp != null && emp.getAdminYn()) {
+			
+			model.addAttribute("totalIngCount", docListService.getTotalIngCount());
+			model.addAttribute("totalReturnCount", docListService.getTotalReturnCount());
+			model.addAttribute("totalDoneCount", docListService.getTotalDoneCount());
+			model.addAttribute("totalTempCount", docListService.getTotalTempCount());
+			model.addAttribute("reserveState", reserveService.getResultState());
+			
 			return "/admin/adminHome";
 		} else {
 			PrintWriter out = response.getWriter();
