@@ -25,8 +25,11 @@
 		empDelUpdate();
 		
 		emailcheck();
-
-		init();
+		
+		$('#searchModel').on('show.bs.modal', function (e) {
+			$('#insertForm')[0].reset();
+		})
+		//init();
 	});
 	
 	//사용자 등록 요청
@@ -125,14 +128,6 @@
 			});
 		});//수정 버튼 클릭
 	}//userUpdate
-	
-	//초기화
-	function init() {
-		//초기화 버튼 클릭
-		$('#btnInsertForm').on('click', function() {
-			$('#insertForm')[0].reset();
-		});
-	}//init
 
 	//사용자 조회 요청
 	function empSelect() {
@@ -171,6 +166,7 @@
 	function empList() {
 		$.ajax({
 			url : 'emplist1',
+			data : {deptId : '${param.deptId}'},
 			type : 'GET',
 			contentType : 'application/json;charset=utf-8',
 			dataType : 'json',
@@ -195,6 +191,10 @@
 			.appendTo('tbody');
 		});//each
 	}//userListResult
+	
+	function echeckinit(){
+		echeck=0;
+	}
 	
 	//email check
 	function emailcheck(){
@@ -227,6 +227,16 @@
 	
 </script>
 <style type="text/css">
+
+input[type=text] {
+  width: 80%;
+  height: 15px;
+  padding: 12px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
 .submenu {
 	display: none;
 	background: #ccc;
@@ -274,34 +284,34 @@
 						<div class="modal-body">
 							<form action="insertEmp" method="post" id="insertForm">
 								<br> 
-								<label for="empNo"><b>사번</b></label> 
+								<label for="empNo"><b>사번</b></label><br>
 								<input type="text" name="empNo" id="empNo" readonly>
-								<br>
+								
 								<br> 
-								<label for="empName"><b>이름</b></label> 
+								<label for="empName"><b>이름</b></label><br> 
 								<input type="text" name="empName" id="empName" required>
-								<br>
+								
 								<br> 
-								<label for="password"><b>비밀번호</b></label> 
+								<label for="password"><b>비밀번호</b></label><br> 
 								<input type="text" name="password" id="password" required>
-								<br>
+								
 								<br>
 								 
-								<label for="deptId"><b>소속부서</b></label>
+								<label for="deptId" class="dropdown-menu"><b>소속부서</b></label><br>
 								<select 
 									name="deptId" size="1" id="deptId">
-									<option value="7">회사</option>
-									<option value="1">경영지원팀</option>
-									<option value="2">회계</option>
-									<option value="3">인사</option>
-									<option value="4">연구관리팀</option>
-									<option value="5">개발</option>
-									<option value="6">테스트</option>
+									<option value="7" class="dropdown-item">회사</option>
+									<option value="1" class="dropdown-item">경영지원팀</option>
+									<option value="2" class="dropdown-item">회계</option>
+									<option value="3" class="dropdown-item">인사</option>
+									<option value="4" class="dropdown-item">연구관리팀</option>
+									<option value="5" class="dropdown-item">개발</option>
+									<option value="6" class="dropdown-item">테스트</option>
 									
 								</select>
-								<br>
+								
 								<br> 
-								<label for="position"><b>직위</b></label> 
+								<label for="position"><b>직위</b></label><br> 
 								<select 
 									name="position" size="1" id="position">
 									<option value="">선택</option>
@@ -312,24 +322,24 @@
 									<option value="4">부장</option>
 									<option value="5">대표</option>
 								</select>
-								<br>
+								
 								<br> 
-								<label for="email"><b>이메일</b></label> 
-								<input type="text" name="email" id="email" required>
+								<label for="email"><b>이메일</b></label><br> 
+								<input type="text" name="email" id="email" required onchange="echeckinit()">
 								<button type="button" class="btn btn-primary" id="btnEcheck">중복 확인</button>
-								<br>
+								
 								<br> 
-								<label for="phone"><b>휴대 전화</b></label> 
+								<label for="phone"><b>휴대 전화</b></label><br> 
 								<input type="text" name="phone" id="phone">
-								<br>
+								
 								<br>  
-								<label for="address"><b>자택주소</b></label> 
+								<label for="address"><b>자택주소</b></label><br> 
 								<input type="text" size="20" id="address" name="address">
-								<br>
+								
 								<br> 
-								<label for="gmailAppKey"><b>GMAILAPPKEY</b></label> 
+								<label for="gmailAppKey"><b>GMAILAPPKEY</b></label><br> 
 								<input type="text" size="20" id="gmailAppKey" name="gmailAppKey"> 
-								<br>
+								
 								<br>
 								<hr>
 							</form>

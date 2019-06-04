@@ -21,10 +21,14 @@
 	
 		deptUpdate();
 		
+		empSelect();
+		
 		//init();
 		$('#searchModal').on('show.bs.modal', function (e) {
 			$('#InsertDeptForm')[0].reset();
 		})
+		
+		
 	});
 	
 	//사용자 삭제 요청
@@ -96,6 +100,14 @@
 			});
 		}); //조회 버튼 클릭
 	}//deptSelect
+	
+	function empSelect() {
+		//조회 버튼 클릭
+		$('body').on('click', '.btnSelEmp', function() {
+			var deptId = $(this).parent().parent().children().eq(0).text();
+			location='${pageContext.request.contextPath}/adminemplist?deptId='+deptId;
+		}); //조회 버튼 클릭
+	}//deptSelect
 
 	//사용자 조회 응답
 	function deptSelectResult(data) {
@@ -150,11 +162,13 @@
 		$("#dept").empty();
 		$.each(data,function(idx,item){
 			$('<tr>')
+			
 			.append($('<td>').html(item.deptId))
 			.append($('<td>').html(item.deptName))
 			.append($('<td>').html(item.upperDeptId))
 			.append($('<td>').html('<button id=\'btnSelect\' data-toggle=\'modal\' data-target=\'#searchModal\'>상세보기</button>'))
-			.append($('<input type=\'hidden\' deptId=\'hidden_deptId\'>').val(item.deptId))
+			.append($('<td>').html('<button class= \'btnSelEmp\' type="button" >조회</button>'))
+			.append($('<input type="hidden" deptId="hidden_deptId">').val(item.deptId))
 			.appendTo('#dept');
 		});//each
 	}//deptListResult

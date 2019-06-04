@@ -103,7 +103,7 @@
         WHERE EMP_NO =#{empNo}
     </select>
     
-    <!-- 사원 전체 조회 -->
+    <!-- 사원 전체 조회 
     <select id="getEmpList" resultType="emp" parameterType="emp">
 		SELECT E.EMP_NO
         , E.EMP_NAME
@@ -130,7 +130,26 @@
 		WHERE DELETED_YN ='N' OR DELETED_YN IS NULL
 		ORDER BY E.EMP_NO DESC
 	</select>
+	-->
+	 
 	
+	 <select id="getEmpList" resultType="emp" parameterType="emp">
+	 select * from(
+        select DISTINCT e.emp_no, e.emp_name,e.password,e.position,e.joindate,e.email,e.phone,e.address,e.deleted_yn,e.delete_date,e.dept_id,e.gmail_app_key,d.dept_name
+        from employees e
+        join department d
+        on e.dept_id = d.dept_id(+)
+        START WITH d.upper_dept_id = #{deptId}
+        CONNECT BY PRIOR d.dept_id = d.upper_dept_id
+        union
+        select e.emp_no, e.emp_name,e.password,e.position,e.joindate,e.email,e.phone,e.address,e.deleted_yn,e.delete_date,e.dept_id,e.gmail_app_key,d.dept_name
+        from employees e
+        join department d
+        on e.dept_id = d.dept_id(+)
+        where d.dept_id=#{deptId} )
+        order by position   
+      </select>
+      
 	<!-- 수정 -->
 	<update id="updateEmp" parameterType="emp">
 		UPDATE EMPLOYEES SET
