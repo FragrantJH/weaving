@@ -158,11 +158,7 @@ function checkSum() {
 
 function loadDocPreview() {
 	$('#docPreview').on('show.bs.modal', function (e) {
-		/*
-		if (!$('input[name=docType]').val()) {
-			alert("문서 종류를 선택하세요.");
-		}
-		*/
+
 		var date = new Date(); 
 		var year = date.getFullYear(); 
 		var month = new String(date.getMonth()+1); 
