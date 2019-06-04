@@ -20,7 +20,7 @@
   <!-- CSS Files -->
   <link href="${pageContext.request.contextPath}/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <script src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js"></script>
-</head>
+</head>+
 
 
   <div class="wrapper ">
@@ -142,8 +142,7 @@
   <script src="${pageContext.request.contextPath}/assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath}/assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="${pageContext.request.contextPath}/assets/demo/demo.js"></script>
+
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -301,15 +300,15 @@
             }, 300);
           }
 
-          // we simulate the window Resize so the charts will get updated in realtime.
+         /*  // we simulate the window Resize so the charts will get updated in realtime.
           var simulateWindowResize = setInterval(function() {
             window.dispatchEvent(new Event('resize'));
-          }, 180);
+          }, 180); */
 
-          // we stop the simulation of Window Resize after the animations are completed
+         /*  // we stop the simulation of Window Resize after the animations are completed
           setTimeout(function() {
             clearInterval(simulateWindowResize);
-          }, 1000);
+          }, 1000); */
 
         });
       });

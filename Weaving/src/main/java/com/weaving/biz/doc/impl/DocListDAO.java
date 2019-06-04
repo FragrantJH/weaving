@@ -36,4 +36,20 @@ public class DocListDAO {
 	public List<DocBaseVO> getTempDocList(int empNo) {
 		return mybatis.selectList("DocListDAO.getTempDocList", empNo);
 	}
+	
+	public int getTotalIngCount() {
+		return mybatis.selectOne("DocListDAO.getTotalIngCount");
+	}
+
+	public int getTotalDoneCount() {
+		return mybatis.selectOne("DocListDAO.getTotalDoneCount");
+	}
+
+	public int getTotalReturnCount() {
+		return mybatis.selectOne("DocListDAO.getTotalReturnCount");
+	}
+	
+	public int getTotalTempCount() {
+		return mybatis.selectOne("DocListDAO.getTotalTempCount");
+	}
 }

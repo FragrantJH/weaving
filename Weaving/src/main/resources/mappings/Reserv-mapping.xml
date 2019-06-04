@@ -78,17 +78,23 @@
 	
 	<!-- Room별 예약 건수 -->
 	<select id="getReserveCount" resultMap="reserveState">
-	SELECT B.ROOM_NAME, 
-		   COUNT(*) AS CNT
-	  FROM RESERVATION A INNER JOIN ROOM B ON A.ROOM_ID = B.ROOM_ID
-	 WHERE TO_CHAR(START_TIME, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
-	 GROUP BY B.ROOM_NAME
+		SELECT B.ROOM_NAME, 
+			   COUNT(*) AS CNT
+		  FROM RESERVATION A INNER JOIN ROOM B ON A.ROOM_ID = B.ROOM_ID
+		 WHERE TO_CHAR(START_TIME, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		 GROUP BY B.ROOM_NAME
 	</select>
 	
+
 	<!-- 중복체크 -->
 	<select id="duplicatecheck" resultType="int">
-	select count(*) as duplicateCheck from reservation where to_char(start_time,'yyyy/mm/dd hh24:mi')|| ' '||
-to_char(end_time, 'hh24:mi') = #{duplicateCheck} and room_id = #{roomId}
+		<![CDATA[
+		SELECT COUNT(*) cnt
+		  FROM RESERVATION
+		 WHERE END_TIME > TO_DATE('#{startDate}', 'YYYY-MM-DD HH24:MI')
+		   AND START_TIME < TO_DATE('#{endDate}', 'YYYY-MM-DD HH24:MI')
+		   AND ROWNUM = 1
+		]]>
 	</select>
 	
 	

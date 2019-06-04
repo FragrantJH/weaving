@@ -232,7 +232,7 @@
 			<!-- todo list -->
 			<div class="col-md-6">
 				<div class="card">
-					<div class="card-header card-header-text card-header-default">
+					<div class="card-header card-header-text card-header-danger">
 						<div class="card-text">
 							<h4 class="card-title">TO-DO LIST</h4>
 						</div>

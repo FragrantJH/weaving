@@ -27,15 +27,22 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weaving.biz.common.SessionInfo;
+import com.weaving.biz.doc.DocListService;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
 import com.weaving.biz.emp.impl.AdminAccountsMngService;
+import com.weaving.biz.reserv.ReservService;
 
 @Controller
 public class EmpController {
 
 	@Autowired
 	Empservice service;
+	@Autowired
+	DocListService docListService;
+	@Autowired
+	ReservService reserveService;
+	
 	@Inject
 	AdminAccountsMngService AdminAccountsMngService;
 
@@ -156,7 +163,7 @@ public class EmpController {
 	// 로그인 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("Emp") EmpVO vo, HttpServletRequest request, HttpSession session,
-			HttpServletResponse response) throws IOException {
+			HttpServletResponse response, Model model) throws IOException {
 		// 커맨드 객체는 자동으로 model.addAttribute("emp"vo)
 
 		// 일반 사용자 계정 체크
@@ -174,6 +181,14 @@ public class EmpController {
 
 			if (emp.getAdminYn()) {
 				session.setAttribute("emp", emp);
+				
+				// TODO : adminHome 처리
+				model.addAttribute("totalIngCount", docListService.getTotalIngCount());
+				model.addAttribute("totalReturnCount", docListService.getTotalReturnCount());
+				model.addAttribute("totalDoneCount", docListService.getTotalDoneCount());
+				model.addAttribute("totalTempCount", docListService.getTotalTempCount());
+				model.addAttribute("reserveState", reserveService.getResultState());
+				
 				return "admin/adminHome";
 			} else {
 				session.setAttribute("emp", emp);
