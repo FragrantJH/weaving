@@ -10,7 +10,7 @@ public interface DocService {
 	void insertDocDetail(DocInsertVO vo);
 	
 	// 문서수정
-	void updateDoc(DocInsertVO vo);
+	void updateDoc(DocUpdateVO vo);
 	// 문서결재처리
 	void updateApprovalDoc(DocApprovalVO vo);
 	// 문서 반려자 입력
@@ -21,6 +21,8 @@ public interface DocService {
 	void updateApprovalNullDate(DocApprovalVO vo);
 	// 문서삭제	
 	void deleteDoc(DocInsertVO vo);
+	// 결재자문서 삭제
+	void deleteDocDetail(DocDeleteVO vo);
 	//문서 조회
 	DocDetailVO getDocument(DocDetailVO vo);
 	// 문서상세조회

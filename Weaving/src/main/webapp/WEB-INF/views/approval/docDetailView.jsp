@@ -48,6 +48,7 @@ $(function() {
 	showDocTypeBtn();
 	approvalSendEvent();
 });
+//
 function menuMove() {
 	var docType = "";
 	switch('${docType}') {
@@ -94,7 +95,6 @@ function showDocTypeBtn() {
 }
 
 function approvalSendEvent() {
-	approvalReject
 	$('.modal-footer').on('click', '#approvalSend', function() {
 		$.ajax({ 
 		    url: "updateDone",
@@ -139,10 +139,17 @@ function approvalSendEvent() {
 		        alert(" status: "+status+" er:"+message);
 		    }
 		});
-	});	
+	});
+	
+	$('.card-body').on('click', '#modifyBtn', function() {
+		
+		location.replace('${pageContext.request.contextPath}/docUpdateView?docId='+${docBaseInfo.docId});
+	});
+	
 }
 </script>
 <body>
+'${docType}'
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">

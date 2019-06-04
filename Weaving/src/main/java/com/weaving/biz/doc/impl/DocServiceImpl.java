@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.weaving.biz.doc.DocApprovalVO;
+import com.weaving.biz.doc.DocDeleteVO;
 import com.weaving.biz.doc.DocDetailVO;
 import com.weaving.biz.doc.DocHistoryVO;
 import com.weaving.biz.doc.DocService;
+import com.weaving.biz.doc.DocUpdateVO;
 import com.weaving.biz.doc.DocInsertVO;
 @Service("docService")
 public class DocServiceImpl implements DocService {
@@ -43,9 +45,9 @@ public class DocServiceImpl implements DocService {
 	}
 	
 	@Override
-	public void updateDoc(DocInsertVO vo) {
+	public void updateDoc(DocUpdateVO vo) {
 		// TODO Auto-generated method stub
-
+		dao.updateDoc(vo);
 	}
 	
 	@Override
@@ -78,6 +80,11 @@ public class DocServiceImpl implements DocService {
 		
 	}
 	@Override
+	public void deleteDocDetail(DocDeleteVO vo) {
+		// TODO Auto-generated method stub
+		dao.delteDocDetail(vo);
+	}	
+	@Override
 	public DocDetailVO getDocument(DocDetailVO vo) {
 		// TODO Auto-generated method stub
 		return dao.getDocument(vo);
@@ -99,6 +106,5 @@ public class DocServiceImpl implements DocService {
 		// TODO Auto-generated method stub
 		hdao.insertDocHistory(vo);
 	}
-
 
 }
