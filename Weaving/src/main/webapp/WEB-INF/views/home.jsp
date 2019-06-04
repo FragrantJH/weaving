@@ -92,11 +92,11 @@
 	<div class="container-fluid">
 		<!-- 상단1 -->
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-3" OnClick="location.href ='docList?listType=WAIT'" style="cursor:pointer;">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-warning">
 						<div class="card-icon">
-							<i class="material-icons">library_books</i>
+							<i class="material-icons">flag</i>
 						</div>
 					</div>
 					<div class="card-body">
@@ -110,11 +110,11 @@
 
 			<!-- 상단2 -->
 
-			<div class="col-md-3">
+			<div class="col-md-3" OnClick="location.href ='docList?listType=RETURN'" style="cursor:pointer;">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-success">
 						<div class="card-icon">
-							<i class="material-icons">signal_cellular_no_sim</i>
+							<i class="material-icons">undo</i>
 						</div>
 					</div>
 					<div class="card-body">
@@ -127,7 +127,7 @@
 			</div>
 
 
-			<div class="col-md-3">
+			<div class="col-md-3" OnClick="location.href ='reading_mail'" style="cursor:pointer;">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-danger">
 						<div class="card-icon">
