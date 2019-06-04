@@ -2,8 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+
+//페이징 기능(처음/끝 값을 보내준다.)
+function goList(p){
+	form2.page.value = p;
+	form2.submit();
+}
+
+</script>
 
 <body>
+<!-- 페이징 값 보내는 폼(form2) -->
+<form action="boardList" name="form2">
+	<input type="hidden" name="page" value="1"></input>
+</form>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -63,7 +77,7 @@
 								</tbody>
 							</table>
 						<div style="text-align:center">
-							<my:paging paging="${paging}" jsFunc="boardList" />
+							<my:paging paging="${paging}" jsFunc="goList" />
 						</div>
 						<div style="float:right;">
 						<button type="button" class="btn btn-primary btn-sm"

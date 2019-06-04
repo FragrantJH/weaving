@@ -20,14 +20,14 @@
   <!-- CSS Files -->
   <link href="${pageContext.request.contextPath}/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <script src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js"></script>
-</head>+
+</head>
 
 
   <div class="wrapper ">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-1.jpg">
     <!-- Logo -->      
     <div class="logo">
-        <a href="${pageContext.request.contextPath}/home" class="simple-text logo-normal">
+        <a href="${pageContext.request.contextPath}/adminHome" class="simple-text logo-normal">
           WEAVING
         </a>
         <br>
@@ -94,6 +94,24 @@
 			      </a>
 			</div>
           </li>
+          
+          <!-- 공지사항 -->
+          <li class="nav-item">
+            <a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=0">
+              <i class="material-icons">library_books</i>
+              <p>공지사항</p>
+            </a>
+          </li>
+          
+          <!-- 전체 일정 -->
+          <li class="nav-item">
+            <a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=ALL">
+              <i class="material-icons">today</i>
+              <p>전체 일정</p>
+            </a>
+          </li>
+          
+          
         </ul>
       </div>
     </div>
@@ -300,15 +318,15 @@
             }, 300);
           }
 
-         /*  // we simulate the window Resize so the charts will get updated in realtime.
+         // we simulate the window Resize so the charts will get updated in realtime.
           var simulateWindowResize = setInterval(function() {
             window.dispatchEvent(new Event('resize'));
-          }, 180); */
+          }, 180);
 
-         /*  // we stop the simulation of Window Resize after the animations are completed
+         // we stop the simulation of Window Resize after the animations are completed
           setTimeout(function() {
             clearInterval(simulateWindowResize);
-          }, 1000); */
+          }, 1000);
 
         });
       });

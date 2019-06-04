@@ -11,7 +11,7 @@ public class BoardVO {
 	private String title;
 	private String boardContents;
 	private Date time;
-	private char boardType;
+	private String boardType;
 	private int first;
 	private int last;
 	private String searchCondition;
@@ -114,11 +114,11 @@ public class BoardVO {
 		this.time = time;
 	}
 
-	public char getBoardType() {
+	public String getBoardType() {
 		return boardType;
 	}
 
-	public void setBoardType(char boardType) {
+	public void setBoardType(String boardType) {
 		this.boardType = boardType;
 	}
 

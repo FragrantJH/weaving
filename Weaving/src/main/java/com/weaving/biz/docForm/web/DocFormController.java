@@ -77,7 +77,7 @@ public class DocFormController {
 		vo.setLast(paging.getLast());
 
 		// 전체 건수
-		paging.setTotalRecord(service.getDocFormTotalCount());
+		paging.setTotalPageCount(service.getDocFormTotalCount());
 		List<DocFormVO> list = service.getDocFormListPaging(vo);
 
 		mv.addObject("paging", paging);
