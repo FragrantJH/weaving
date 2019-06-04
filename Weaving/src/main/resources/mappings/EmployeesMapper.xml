@@ -135,18 +135,31 @@
 	
 	 <select id="getEmpList" resultType="emp" parameterType="emp">
 	 select * from(
-        select DISTINCT e.emp_no, e.emp_name,e.password,e.position,e.joindate,e.email,e.phone,e.address,e.deleted_yn,e.delete_date,e.dept_id,e.gmail_app_key,d.dept_name
+        select DISTINCT e.emp_no, e.emp_name,e.password,CASE WHEN POSITION = '0' THEN '사원'
+		WHEN POSITION = '1' THEN '대리'
+		WHEN POSITION = '2' THEN '과장'
+		WHEN POSITION = '3' THEN '차장'
+		WHEN POSITION = '4' THEN '부장'
+        WHEN POSITION = '5' THEN '대표'
+		ELSE '없음' END AS POSITION,e.joindate,e.email,e.phone,e.address,e.deleted_yn,e.delete_date,e.dept_id,e.gmail_app_key,d.dept_name
         from employees e
         join department d
         on e.dept_id = d.dept_id(+)
         START WITH d.upper_dept_id = #{deptId}
         CONNECT BY PRIOR d.dept_id = d.upper_dept_id
         union
-        select e.emp_no, e.emp_name,e.password,e.position,e.joindate,e.email,e.phone,e.address,e.deleted_yn,e.delete_date,e.dept_id,e.gmail_app_key,d.dept_name
+        select e.emp_no, e.emp_name,e.password,CASE WHEN POSITION = '0' THEN '사원'
+		WHEN POSITION = '1' THEN '대리'
+		WHEN POSITION = '2' THEN '과장'
+		WHEN POSITION = '3' THEN '차장'
+		WHEN POSITION = '4' THEN '부장'
+        WHEN POSITION = '5' THEN '대표'
+		ELSE '없음' END AS POSITION,e.joindate,e.email,e.phone,e.address,e.deleted_yn,e.delete_date,e.dept_id,e.gmail_app_key,d.dept_name
         from employees e
         join department d
         on e.dept_id = d.dept_id(+)
         where d.dept_id=#{deptId} )
+        where DELETED_YN ='N' OR DELETED_YN IS NULL
         order by position   
       </select>
       
