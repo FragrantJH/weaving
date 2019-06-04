@@ -17,7 +17,7 @@
 					<th class="th-description">위치</th>
 					<th class="th-description">크기</th>
 					<th class="th-description">수용인원</th>
-					<th class="th-description">액션</th>
+					<th class="th-description">예약</th>
 					<th></th>
 				</tr>
 			</thead>

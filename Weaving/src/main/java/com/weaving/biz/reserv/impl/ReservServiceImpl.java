@@ -1,6 +1,7 @@
 package com.weaving.biz.reserv.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,15 @@ public class ReservServiceImpl implements ReservService {
 		return rss.getReservList();
 	}
 
+	@Override
+	public int getDuplicateCheck(ReservVO vo) {
+		// TODO Auto-generated method stub
+		return rss.getDuplicateCheck(vo);
+	}
 
+	@Override
+	public List<Map<String, Object>> getResultState() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

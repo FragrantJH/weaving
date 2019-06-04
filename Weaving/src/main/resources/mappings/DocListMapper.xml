@@ -113,5 +113,36 @@
 		    AND A.EMP_NO = #{empNo}
 		 ORDER BY A.DOC_ID
 	</select>
+	
+	<select id="getTotalIngCount" resultType="int">
+		SELECT COUNT(*) AS ING_COUNT
+		  FROM DOCUMENTS
+     	 WHERE DONE_DATE IS NULL
+           AND RETURN_EMP_NO IS NULL
+           AND TO_CHAR(REG_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
+	
+	<select id="getTotalDoneCount" resultType="int">
+		SELECT COUNT(*) AS DONE_COUNT
+		  FROM DOCUMENTS
+	     WHERE DONE_DATE IS NOT NULL
+	       AND TO_CHAR(REG_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
+	
+	<select id="getTotalReturnCount" resultType="int">
+		SELECT COUNT(*) AS RETURN_COUNT
+		  FROM DOCUMENTS
+     	 WHERE DONE_DATE IS NULL
+           AND RETURN_EMP_NO IS NOT NULL
+           AND TO_CHAR(REG_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
+	
+		<select id="getTotalTempCount" resultType="int">
+		SELECT COUNT(*) AS TEMP_COUNT
+		  FROM DOCUMENTS
+     	 WHERE DONE_DATE IS NULL
+           AND TEMP_YN = '1'
+           AND TO_CHAR(REG_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
 
 </mapper>

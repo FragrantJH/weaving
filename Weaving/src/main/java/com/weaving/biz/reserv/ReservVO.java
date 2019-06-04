@@ -11,6 +11,7 @@ public class ReservVO {
 	private String description;
 	private String startDate;
 	private String endDate;
+	
 
 	public String getEmpName() {
 		return empName;
@@ -96,5 +97,5 @@ public class ReservVO {
 		return "ReservVO [reservId=" + reservId + ", roomId=" + roomId + ", empNo=" + empNo + ", empName=" + empName
 				+ ", reservDate=" + reservDate + ", startTime=" + startTime + ", endTime=" + endTime + ", description="
 				+ description + ", startDate=" + startDate + ", endDate=" + endDate + "]";
-	}
+	}	
 }

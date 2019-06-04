@@ -59,4 +59,5 @@
 		SELECT COUNT(*)
 		FROM ROOM
 	</select>
+	
 </mapper>

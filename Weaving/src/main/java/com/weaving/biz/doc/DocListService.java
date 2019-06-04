@@ -12,4 +12,12 @@ public interface DocListService {
 	List<DocBaseVO> getIngDocList(int empNo);
 
 	List<DocBaseVO> getTempDocList(int empNo);
+	
+	int getTotalIngCount();
+	
+	int getTotalDoneCount();
+	
+	int getTotalReturnCount();
+	
+	int getTotalTempCount();
 }

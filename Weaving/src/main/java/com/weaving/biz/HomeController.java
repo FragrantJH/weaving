@@ -25,6 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weaving.biz.board.BoardService;
 import com.weaving.biz.board.BoardVO;
+import com.weaving.biz.cal.CalService;
+import com.weaving.biz.cal.CalTypeEnum;
+import com.weaving.biz.cal.CalVO;
 import com.weaving.biz.common.Paging;
 import com.weaving.biz.common.SessionInfo;
 import com.weaving.biz.doc.DocListService;
@@ -46,6 +49,8 @@ public class HomeController {
 	ReadMailCheckService mailservice;
 	@Autowired
 	BoardService boardService;
+	@Autowired
+	CalService calservice;
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -88,6 +93,13 @@ public class HomeController {
 		paging.setTotalRecord(boardService.getBoardListTotalCount(boardVo));
 		List<BoardVO> list1 = boardService.getBoardListPaging(boardVo);
 		model.addAttribute("boardList1", list1);
+		
+		//개인일정
+		CalVO calVo = new CalVO();
+		calVo.setCalType(CalTypeEnum.ALL);
+		List<CalVO> callist = calservice.getCalList(calVo);
+		model.addAttribute("usercal", callist);
+
 		
 		return "home";
 	}
