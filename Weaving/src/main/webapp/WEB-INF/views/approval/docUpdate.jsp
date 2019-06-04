@@ -367,12 +367,6 @@ function toRightMove() {
 </script>
 </head>
 <body>
-
-********************
-${docInfo}
-===================
-${docDetailInfo}
-
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header card-header-text card-header-primary">

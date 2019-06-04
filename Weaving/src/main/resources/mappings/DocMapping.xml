@@ -64,30 +64,7 @@
 		  </if>
 		   )
 	</insert>
-<!--
-	<insert id="insertDoc" parameterType="com.weaving.biz.doc.DocInsertVO">
-		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocInsertVO" order="BEFORE">
-			select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'
-		</selectKey> 
-		insert into DOCUMENTS (
-			DOC_ID,
-			EMP_NO,
-			DOC_NO,
-			DOC_TITLE,
-			DOC_CONTENTS,
-			REG_DATE,
-			SECURE_LEVEL
-			)
-		  values((select NVL(MAX(DOC_ID), 0) + 1 FROM DOCUMENTS),
-		  	#{writerEmpNo},
-		  	#{docType}||#{docTypeSeq},
-		  	#{docTitle},
-		  	#{docContents},
-		  	to_date(#{regDate},'yyyy-mm-dd hh24:mi:ss'),
-		  	#{secureLevel}
-		   ) 
-	</insert> 
- -->
+	
  	<update id="updateDoc" parameterType="com.weaving.biz.doc.DocUpdateVO">
 		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocUpdateVO" order="BEFORE">
 			<!--select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'-->
@@ -184,33 +161,5 @@
 	<delete id="delteDocDetail" parameterType="com.weaving.biz.doc.DocDeleteVO">
 		DELETE FROM DOCUMENTDETAIL WHERE DOC_ID=#{docId}
 	</delete>
-	<!-- 
-	<select id="getDocWaitList" parameterType="com.weaving.biz.doc.DocInsertVO"
-		resultType="com.weaving.biz.doc.DocInsertVO">					
-		SELECT ROWNUM ROW_NUM,
-			DT.DOC_ID,
-			D.DOC_NO,
-			DT.STATUS,	
-			D.DOC_TITLE,
-			D.EMP_NO,
-			E.EMP_NAME,
-			D.REG_DATE
-		  FROM DOCUMENTDETAIL DT 
-		  JOIN DOCUMENTS D ON DT.DOC_ID = D.DOC_ID 
-		  JOIN EMPLOYEES E ON D.EMP_NO = E.EMP_NO
-		    <where> 
-		    	DT.EMP_NO= #{empNo} AND DT.STATUS='WAIT' AND 
-		    	ROWNUM between #{first} and #{last}
-	    	</where>
-	</select>
 	
-	<select id="getDocWaitTotalCount" parameterType="com.weaving.biz.doc.DocInsertVO"
-		resultType="int">					
-		SELECT COUNT(*)
-		  FROM DOCUMENTDETAIL 
-		    <where> 
-		    	EMP_NO= #{empNo} AND STATUS='WAIT'
-	    	</where>
-	</select>
-	 -->	
 </mapper>

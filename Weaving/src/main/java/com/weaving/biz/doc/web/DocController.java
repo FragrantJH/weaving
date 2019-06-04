@@ -56,38 +56,8 @@ public class DocController {
 
 	@Autowired
 	Empservice empService;
-	//검색메뉴를 위해서 BoardVO를 매개변수를 넣음
-	//@RequestParam에서 변수가 searchCondition이 아닐 경우 value로 searchCondition로 지정해줘야한다
-	//cond로 변수명을 변경할 경우 value로 value로 searchCondition로 지정해줘야한다
-	//@RequestMapping("/docList")
-	//public String docList(Model model) {
-	/*
-	@RequestMapping("/docList")
-	public String docList(Model model, HttpSession session) {
-		System.out.println(session.getAttribute("emp"));
-	
-		int position = Integer.parseInt((String)session.getAttribute("position"));
-		System.out.println(position);
-		String lv = "C";
-		if (position > 2 ) {
-			lv = "S";
-		} else if (position == 2 ) {
-			lv = "A";
-		} else if (position == 1) {
-			lv = "B";
-		} else {
-			lv = "C";
-		}
 
-		DocInsertVO vo = new DocInsertVO();
-		//vo.setSecureLevel(lv);
-
-		//model.addAttribute("list", docService.getDocList(vo));
-		return "approval/docList";
-	}
-	*/
 	@RequestMapping("/docInsertView")
-	//public String docViewInsert(@PathVariable String empName, @PathVariable int position, Model model) {
 	public String docInsertView(Model model) {
 		EmpVO evo = new EmpVO(); 
 		model.addAttribute("empList", empService.getEmpList(evo));
@@ -130,9 +100,11 @@ public class DocController {
 					v.setStatus("WAIT");	
 				}
 				v.setDocType(vo.getDocType());
+				/*
 				System.out.println("insertttttttttttttttttttttttttt");
 				System.out.println(vo.getDocTypeSeq());
 				System.out.println("insertttttttttttttttttttttttttt");
+				*/
 				v.setDocTypeSeq(vo.getDocTypeSeq());
 						
 				docService.insertDocDetail(v);
@@ -180,10 +152,12 @@ public class DocController {
 	)
 	@ResponseBody
 	public DocApprovalVO updateDone(@RequestBody DocApprovalVO vo, Model model) {
+		/*
 		System.out.println("******************************");
 		System.out.println(vo);
 		System.out.println(vo.getDocId());
 		System.out.println("******************************");
+		*/
 		docService.updateApprovalDoc(vo);
 		return vo;
 	}
@@ -194,11 +168,13 @@ public class DocController {
 	)
 	@ResponseBody
 	public DocApprovalVO updateReturn(@RequestBody DocApprovalVO vo, Model model) {
+		/*
 		System.out.println("******************************R");
 		System.out.println(vo);
 		System.out.println(vo.getDocId());
 		System.out.println(vo.getWriterEmpNo());
 		System.out.println("******************************R");
+		*/
 		docService.updateReturnEmpNo(vo);
 		docService.updateReturnDoc(vo);
 		docService.updateApprovalNullDate(vo);
@@ -233,11 +209,12 @@ public class DocController {
 	
 	@RequestMapping(value="/docUpdate", method=RequestMethod.POST)
 	public String docUpdate(DocUpdateVO vo, HttpServletRequest request) {
+		/*
 		System.out.println("=======#######==============");
 		System.out.println(vo);
 		System.out.println(vo.getDocNo());
 		System.out.println("=======#######==============");
-		
+		*/
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		Date date = new Date();
@@ -257,10 +234,11 @@ public class DocController {
 		docService.deleteDocDetail(delVo);
 		
 		String jsonString = request.getParameter("approvalList");
+		/*
 		System.out.println("=======^^^^^^^==============");
 		System.out.println(jsonString);
 		System.out.println("=======^^^^^^^==============");
-		
+		*/
 		ObjectMapper mapper = new ObjectMapper();
 		String writerStatus = "";
 		try {
@@ -278,9 +256,11 @@ public class DocController {
 					v.setStatus("WAIT");	
 				}
 				v.setDocId(vo.getDocId());
+				/*
 				System.out.println("llllllllllllllllllllllllllllllllll");
 				System.out.println(v);
 				System.out.println("llllllllllllllllllllllllllllllllll");
+				*/
 				docService.insertDocDetail(v);
 				//docId = v.getDocId();
 			}		
@@ -299,11 +279,12 @@ public class DocController {
 	
 	@RequestMapping(value="/docTemp", method=RequestMethod.POST)
 	public String docTemp(DocUpdateVO vo, HttpServletRequest request) {
+		/*
 		System.out.println("=======#######==============");
 		System.out.println(vo);
 		System.out.println(vo.getDocNo());
 		System.out.println("=======#######==============");
-
+		 */
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		Date date = new Date();
@@ -313,7 +294,7 @@ public class DocController {
 		
 		//'문서타입-년월일-'
 		String docType = request.getParameter("docType") +"-" + dateArr[0] + dateArr[1] + dateArr[2]+"-";
-		System.out.println(docType);
+		//System.out.println(docType);
 
 		vo.setDocType(docType);
 		vo.setTempYn(1);
@@ -325,12 +306,14 @@ public class DocController {
 		docService.deleteDocDetail(delVo);
 		
 		String jsonString = request.getParameter("approvalList");
+		/*
+		//
 		System.out.println("=======^^^^^^^==============");
 		System.out.println(jsonString);
 		System.out.println("=======^^^^^^^==============");
-
+		 */
 		ObjectMapper mapper = new ObjectMapper();
-		String writerStatus = "";
+		//String writerStatus = "";
 		try {
 			List<DocInsertVO> docObj = Arrays.asList(mapper.readValue(jsonString, DocInsertVO[].class));
 			
@@ -338,9 +321,11 @@ public class DocController {
 				
 				v.setDocId(vo.getDocId());
 				v.setStatus("WAIT");
+				/*
 				System.out.println("llllllllllllllllllllllllllllllllll");
 				System.out.println(v);
 				System.out.println("llllllllllllllllllllllllllllllllll");
+				*/
 				docService.insertDocDetail(v);
 				//docId = v.getDocId();
 			}		
@@ -355,6 +340,5 @@ public class DocController {
 			e.printStackTrace();
 		}		
 		return "redirect:docList?listType=TEMP";
-		//return null;
 	}
 }
