@@ -80,7 +80,7 @@
       <!-- 메뉴 -->
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item">
+          <li class="nav-item ">
             <a class="nav-link" href="${pageContext.request.contextPath}/home">
               <i class="material-icons">dashboard</i>
               <p>Home</p>
@@ -98,13 +98,13 @@
 		    <ul class="navbar-nav">
 				<li class="nav-item">
 				   	<a class="nav-link" href="${pageContext.request.contextPath}/mailForm">
-					 	<i class="material-icons">email</i>
+					 	<i class="material-icons">contact_mail</i>
 					 	<p>메일보내기</p>
 					</a>
 				 </li>
 				<li class="nav-item">
 				   	<a class="nav-link" href="${pageContext.request.contextPath}/reading_mail">
-					 	<i class="material-icons">email</i>
+					 	<i class="material-icons">drafts</i>
 					 	<p>받은메일함</p>
 					</a>
 				 </li>				 
@@ -164,7 +164,7 @@
           <!-- 게시판 -->
 		  <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" data-target="#board">
-              <i class="material-icons">library_books</i>
+              <i class="material-icons">list</i>
               <p>게시판</p>
             </a>
           </li>
@@ -172,13 +172,13 @@
 		    <ul class="navbar-nav">
 				<li class="nav-item">
 				   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=0">
-					 	<i class="material-icons">library_books</i>
+					 	<i class="material-icons">notifications</i>
 					 	<p>공지사항</p>
 					</a>
 				 </li>
 				<li class="nav-item">
 				   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=1">
-					 	<i class="material-icons">library_books</i>
+					 	<i class="material-icons">forum</i>
 					 	<p>게시판</p>
 					</a>
 				 </li>				 
@@ -204,7 +204,7 @@
 		    <ul class="navbar-nav">
 				<li class="nav-item">
 				   	<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=ALL">
-					 	<i class="material-icons">today</i>
+					 	<i class="material-icons">group</i>
 					 	<p>전체일정</p>
 					</a>
 				 </li>
