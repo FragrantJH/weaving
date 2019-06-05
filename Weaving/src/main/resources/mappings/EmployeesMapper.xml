@@ -155,7 +155,7 @@
 		FROM EMPLOYEES E
 		JOIN DEPARTMENT D
 		ON E.DEPT_ID = D.DEPT_ID(+)
-		WHERE DELETED_YN ='N' OR DELETED_YN IS NULL AND ADMIN_YN ='0'
+		WHERE ADMIN_YN ='0' AND DELETED_YN ='N' OR DELETED_YN IS NULL AND ADMIN_YN ='0'
 		ORDER BY E.EMP_NO DESC
 	</select>
 	
@@ -272,4 +272,9 @@
 	</foreach>
 	SELECT * FROM DUAL
 </insert>
+
+<select id ="checkPw" resultType="int">
+	SELECT 
+		COUNT(*)
+</select>
 </mapper>
