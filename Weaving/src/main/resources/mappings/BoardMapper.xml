@@ -59,6 +59,9 @@
 					<when test="searchCondition == 'BOARD_CONTENTS'">
 						AND BOARD_CONTENTS LIKE '%' || #{searchKeyword} || '%'
 					</when>
+					<when test="searchCondition == 'EMP_NAME'">
+						AND EMP_NAME LIKE '%' || #{searchKeyword} || '%' 
+					</when>
 				</choose>
 			</if>
 		

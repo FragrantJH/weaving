@@ -5,7 +5,7 @@ public class ToDoVO {
 	private int todoId;
 	private int empNo;
 	private String content;
-	private char done;
+	private String done;
 
 	public int getTodoId() {
 		return todoId;
@@ -31,11 +31,11 @@ public class ToDoVO {
 		this.content = content;
 	}
 
-	public char getDone() {
+	public String getDone() {
 		return done;
 	}
 
-	public void setDone(char done) {
+	public void setDone(String done) {
 		this.done = done;
 	}
 
