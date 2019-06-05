@@ -137,7 +137,7 @@ public class HomeController {
 	@RequestMapping("/empExcelView.do")
 	public ModelAndView excelView(HttpServletResponse response) throws IOException {
 		
-		List<EmpVO> list = service.getEmpList(null);
+		List<EmpVO> list = service.getExEmpList(null);
 		List<Map<String, Object>> temp = new ArrayList<Map<String,Object>>();
 		
 		ObjectMapper oMapper = new ObjectMapper();

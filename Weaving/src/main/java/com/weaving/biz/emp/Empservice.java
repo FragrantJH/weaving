@@ -28,6 +28,8 @@ public interface Empservice {
 		// 글 목록 조회
 		List<EmpVO> getEmpList(EmpVO vo);
 		
+		List<EmpVO> getExEmpList(EmpVO vo);
+		
 		public int getEmpCount(EmpVO vo);
 		
 		//퇴사처리
