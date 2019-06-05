@@ -92,6 +92,11 @@ public class EmpServiceImpl implements Empservice {
 	public List<EmpVO> getEmpList(EmpVO vo) {
 		return dao.getEmpList(vo);
 	}
+	
+	@Override
+	public List<EmpVO> getExEmpList(EmpVO vo) {
+		return dao.getExEmpList(vo);
+	}
 
 	@Override
 	public int getEmpCount(EmpVO vo) {

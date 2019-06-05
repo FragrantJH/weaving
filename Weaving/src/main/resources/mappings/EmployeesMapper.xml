@@ -103,8 +103,8 @@
         WHERE EMP_NO =#{empNo}
     </select>
     
-    <!-- 사원 전체 조회 
-    <select id="getEmpList" resultType="emp" parameterType="emp">
+    <!-- 사원 전체 조회 -->
+    <select id="getExEmpList" resultType="emp" parameterType="emp">
 		SELECT E.EMP_NO
         , E.EMP_NAME
 		,CASE WHEN POSITION = '0' THEN '사원'
@@ -130,7 +130,7 @@
 		WHERE DELETED_YN ='N' OR DELETED_YN IS NULL
 		ORDER BY E.EMP_NO DESC
 	</select>
-	-->
+	
 	 
 	
 	 <select id="getEmpList" resultType="emp" parameterType="emp">

@@ -48,6 +48,10 @@ public class EmpDAO {
 		return mybatis.selectList("EmpDAO.getEmpList",vo);
 	}
 	
+	public List<EmpVO> getExEmpList(EmpVO vo) {
+		return mybatis.selectList("EmpDAO.getExEmpList",vo);
+	}
+	
 	public int getEmpCount(EmpVO vo) {
 		return mybatis.selectOne("EmpDAO.getEmpCount", vo);
 	}

@@ -2,8 +2,10 @@
 - [ ] TO-DO LIST 추가
 - [ ] 날씨 추가 (Admin 화면에도 표시할까?)
 
+
 - DB
 - [ ] EMAIL 테이블 ERD에 반영
+- [ ] Email 조회 화면
 - [ ] 샘플 데이터
 
 - LAYOUT
