@@ -40,12 +40,12 @@ READ_CHECK,
 EMP_NO
 )
 VALUES(
-(select nvl(max(EMAIL_ID),0)+1 from email) ,
+(select nvl(max(INBOXID),0)+1 from INBOXEMAIL) ,
 #{fromEmail},
 #{toEmail},
 #{subject},
 #{inboxContents},
-sysdate,
+
 #{readCheck},
 #{empNo}
 
@@ -154,10 +154,9 @@ ORDER BY EMAIL_ID DESC
 	</select>
 	
 	<select id="selectEmailListG">
-	
 		
 SELECT * FROM (
-	SELECT A.*, ROWNUM RNUM FROM (
+SELECT A.*, ROWNUM RNUM FROM (
 SELECT *
 FROM INBOXEMAIL
 WHERE toImbox = 'dohy43@gmail.com'

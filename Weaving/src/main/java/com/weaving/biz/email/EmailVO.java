@@ -25,6 +25,10 @@ public class EmailVO {
 	int empNo;
 	int mailNoList[];
 	MultipartFile uploadFile;
+	
+//	private String searchCondition;
+//	private String searchKeyword;
+//	private int rowNum;
 	    
 	 String[] toarr;
 

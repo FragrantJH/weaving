@@ -146,17 +146,18 @@ public class EmailController {
 			  HttpSession session,
 			 MessageVO messagevo) throws Exception {
 		  
-	  String pop3Host = "pop.gmail.com";// change accordingly 
-	  String storeType ="pop3"; 
+		  	String host = "pop.gmail.com";// change accordingly
+		  	//String pop3Host = "pop.gmail.com";// change accordingly 
+		  	String mailStoreType ="pop3"; 
 	  
-	  empvo=SessionInfo.getInfo(session, "emp");	
+		  	empvo=SessionInfo.getInfo(session, "emp");	
 	  
-	  final String user =empvo.getEmail(); // change accordingly
-	  final String password = empvo.getGmailAppKey(); // change accordingly
+		  final String user =empvo.getEmail(); // change accordingly
+		  final String password = empvo.getGmailAppKey(); // change accordingly
 	 
 	  
-		fetch.fetchEmailFromServer(pop3Host, storeType, user, password);
-  
+		fetch.fetchEmailFromServer(host, mailStoreType, user, password);
+		
 	  	model.addAttribute("readingMail", service.getEmailList(messagevo));
 	  return "email/reading_mail" ;
 	  
@@ -173,6 +174,7 @@ public class EmailController {
 			
 			EmpVO empvo = (EmpVO) hsession.getAttribute("employees");
 			searchVO.setEmpNo(empvo.getEmpNo());
+			
 			
 			List<?> emailList=service.getEmailList(mvo);
 			model.addAttribute("resultList", emailList);
