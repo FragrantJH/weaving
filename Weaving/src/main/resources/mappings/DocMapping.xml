@@ -111,6 +111,7 @@
 			DOC_ID=#{docId} AND EMP_NO = #{empNo}
 		</where>
 	</update>
+	
 	<select id="getDocument" parameterType="com.weaving.biz.doc.DocDetailVO"
 		resultType="com.weaving.biz.doc.DocDetailVO">		
 		SELECT 

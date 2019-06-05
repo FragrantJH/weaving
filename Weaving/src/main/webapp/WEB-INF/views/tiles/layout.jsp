@@ -29,21 +29,17 @@
 </head>
 
 <style>
-.nav-item {
-	cursor: pointer;
-}
-
 
 .container-fluid{
 	width: 87%;
 	height: 75%;
-
+}
 </style>
 
 <body class="">
 
   <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-4.jpg">
+    <div class="sidebar" data-color="green" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-4.jpg">
       <div class="logo">
         <a href="${pageContext.request.contextPath}/home" class="simple-text logo-normal">
           WEAVING
@@ -86,7 +82,7 @@
       <!-- 메뉴 -->
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item ">
+          <li class="nav-item active ">
             <a class="nav-link" href="${pageContext.request.contextPath}/home">
               <i class="material-icons">dashboard</i>
               <p>Home</p>
@@ -99,24 +95,23 @@
               <i class="material-icons">email</i>
               <p>메일</p>
             </a>
+            <div class="collapse navbar-collapse" id="mail">
+			    <ul class="navbar-nav">
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/mailForm">
+						 	<i class="material-icons">contact_mail</i>
+						 	<p>메일보내기</p>
+						</a>
+					 </li>
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/reading_mail">
+						 	<i class="material-icons">drafts</i>
+						 	<p>받은메일함</p>
+						</a>
+					 </li>				 
+			    </ul>
+		  	</div>
           </li>
-		  <div class="collapse navbar-collapse" id="mail">
-		    <ul class="navbar-nav">
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/mailForm">
-					 	<i class="material-icons">contact_mail</i>
-					 	<p>메일보내기</p>
-					</a>
-				 </li>
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/reading_mail">
-					 	<i class="material-icons">drafts</i>
-					 	<p>받은메일함</p>
-					</a>
-				 </li>				 
-		    </ul>
-		  </div>
-		  
 		  
 		  <!-- 결재 -->
 		  <li class="nav-item">
@@ -124,47 +119,48 @@
               <i class="material-icons">description</i>
               <p>전자 결재</p>
             </a>
+            <div class="collapse navbar-collapse" id="document">
+			    <ul class="navbar-nav">
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docInsertView">
+						 	<i class="material-icons">create</i>
+	              		<p>문서 작성하기</p>
+						</a>
+					 </li>
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=TEMP">
+						 	<i class="material-icons">border_color</i>
+	              			<p>임시 저장 문서</p>
+						</a>
+					</li>				 
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=WAIT">
+						 	<i class="material-icons">flag</i>
+	              			<p>결재 대기 문서</p>
+						</a>
+					</li>				 
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=RETURN">
+							<i class="material-icons">undo</i>
+		              		<p>반려 문서</p>
+						</a>
+					</li>				 
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=ING">
+					      	<i class="material-icons">forward</i>
+		              		<p>전체 진행 문서</p>
+						</a>
+					</li>
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=DONE">
+				      	<i class="material-icons">done_outline</i>
+	              		<p>완료 문서</p>
+						</a>
+					</li>					 
+			    </ul>
+		  	</div> 
           </li>
-		  <div class="collapse navbar-collapse" id="document">
-		    <ul class="navbar-nav">
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docInsertView">
-					 	<i class="material-icons">create</i>
-              		<p>문서 작성하기</p>
-					</a>
-				 </li>
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=TEMP">
-					 	<i class="material-icons">border_color</i>
-              			<p>임시 저장 문서</p>
-					</a>
-				</li>				 
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=WAIT">
-					 	<i class="material-icons">flag</i>
-              			<p>결재 대기 문서</p>
-					</a>
-				</li>				 
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=RETURN">
-						<i class="material-icons">undo</i>
-	              		<p>반려 문서</p>
-					</a>
-				</li>				 
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=ING">
-				      	<i class="material-icons">forward</i>
-	              		<p>전체 진행 문서</p>
-					</a>
-				</li>
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=DONE">
-			      	<i class="material-icons">done_outline</i>
-              		<p>완료 문서</p>
-					</a>
-				</li>					 
-		    </ul>
-		  </div> 
+		  
 		    
           
           <!-- 게시판 -->
@@ -173,23 +169,24 @@
               <i class="material-icons">list</i>
               <p>게시판</p>
             </a>
+            <div class="collapse navbar-collapse" id="board">
+			    <ul class="navbar-nav">
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=0">
+						 	<i class="material-icons">notifications</i>
+						 	<p>공지사항</p>
+						</a>
+					 </li>
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=1">
+						 	<i class="material-icons">forum</i>
+						 	<p>게시판</p>
+						</a>
+					 </li>				 
+			    </ul>
+			  </div> 
           </li>
-		  <div class="collapse navbar-collapse" id="board">
-		    <ul class="navbar-nav">
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=0">
-					 	<i class="material-icons">notifications</i>
-					 	<p>공지사항</p>
-					</a>
-				 </li>
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=1">
-					 	<i class="material-icons">forum</i>
-					 	<p>게시판</p>
-					</a>
-				 </li>				 
-		    </ul>
-		  </div> 
+		  
         
          <!-- 예약 -->
           <li class="nav-item">
@@ -205,23 +202,23 @@
               <i class="material-icons">today</i>
               <p>일정</p>
             </a>
+            <div class="collapse navbar-collapse" id="cal">
+			    <ul class="navbar-nav">
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=ALL">
+						 	<i class="material-icons">group</i>
+						 	<p>전체일정</p>
+						</a>
+					 </li>
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=USER">
+						 	<i class="material-icons">perm_contact_calendar</i>
+						 	<p>개인일정</p>
+						</a>
+					 </li>				 
+			    </ul>
+			  </div> 
           </li>
-		  <div class="collapse navbar-collapse" id="cal">
-		    <ul class="navbar-nav">
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=ALL">
-					 	<i class="material-icons">group</i>
-					 	<p>전체일정</p>
-					</a>
-				 </li>
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=USER">
-					 	<i class="material-icons">perm_contact_calendar</i>
-					 	<p>개인일정</p>
-					</a>
-				 </li>				 
-		    </ul>
-		  </div> 
         </ul>
       </div>
     </div>
@@ -284,6 +281,9 @@
     		<tiles:insertAttribute name="content" />
       </div>
       
+      <div class="text-center" style="margin-bottom: 0; background-color: #d3d3d3;">
+		<p style="color: white;">Copyright ⓒ 2019 WEAVING All Rights Reserved.</p>
+		</div>
     </div>
   </div>
   

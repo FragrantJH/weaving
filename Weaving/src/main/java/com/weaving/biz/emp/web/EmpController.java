@@ -217,5 +217,17 @@ public class EmpController {
 			result = 1;
 		return result;
 	}
+	
+	@RequestMapping(value = "/checkPw", method = {RequestMethod.POST,RequestMethod.GET})
+	public String checkPw(@ModelAttribute("Emp") EmpVO vo, HttpServletRequest request, HttpSession session,
+			HttpServletResponse response, Model model) {
+		EmpVO emp = service.getEmp(vo);
+
+		if (emp == null) {
+			return "empty/login";
+		} else {
+				return "emp/emp";
+		}
+	}
 
 }
