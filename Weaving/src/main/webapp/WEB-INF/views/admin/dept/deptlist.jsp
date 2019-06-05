@@ -192,7 +192,7 @@
 				<div class="card-text">
 					<h4 class="card-title">부서 관리</h4>
 				</div>
-				<button id="btnInsertDept" data-toggle="modal" data-target="#searchModal">등록</button>
+				<button id="btnInsertDept" data-toggle="modal" data-target="#searchModal" class="btn btn-primary">등록</button>
 			</div>
 			<table class="table text-center">
 				<thead>

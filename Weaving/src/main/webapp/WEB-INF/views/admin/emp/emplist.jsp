@@ -245,6 +245,7 @@ input[type=text] {
 #menuBtn:checked ~ .submenu {
 	display: block;
 }
+
 </style>
 </head>
 <body>
@@ -294,10 +295,9 @@ input[type=text] {
 								<br> 
 								<label for="password"><b>비밀번호</b></label><br> 
 								<input type="text" name="password" id="password" required>
-								
 								<br>
 								 
-								<label for="deptId" class="dropdown-menu"><b>소속부서</b></label><br>
+								<label for="deptId"><b>소속부서</b></label><br>
 								<select 
 									name="deptId" size="1" id="deptId">
 									<option value="7" class="dropdown-item">회사</option>
