@@ -34,7 +34,7 @@
 				<if test="position != null">
 				,#{position}
 				</if><if test="joinDate != null">
-				,#{joindate1}
+				,#{joindate}
 				</if>
 				,#{email}
 				<if test="phone != null">
@@ -131,8 +131,36 @@
 		ORDER BY E.EMP_NO DESC
 	</select>
 	
-	 
+	  <!-- 사원 전체 조회 -->
+    <select id="getExEmpList1" resultType="emp" parameterType="emp">
+		SELECT E.EMP_NO
+        , E.EMP_NAME
+		,CASE WHEN POSITION = '0' THEN '사원'
+		WHEN POSITION = '1' THEN '대리'
+		WHEN POSITION = '2' THEN '과장'
+		WHEN POSITION = '3' THEN '차장'
+		WHEN POSITION = '4' THEN '부장'
+        WHEN POSITION = '5' THEN '대표'
+		ELSE '없음' END AS POSITION
+		,E.JOINDATE
+		,E.EMAIL
+		,E.PHONE
+		,E.ADDRESS
+		,E.DEPT_ID
+		,E.DELETED_YN
+		,E.DELETE_DATE 
+		,E.GMAIL_APP_KEY
+		,E.ADMIN_YN 
+		,D.DEPT_NAME
+		FROM EMPLOYEES E
+		JOIN DEPARTMENT D
+		ON E.DEPT_ID = D.DEPT_ID(+)
+		WHERE DELETED_YN ='N' OR DELETED_YN IS NULL AND ADMIN_YN ='0'
+		ORDER BY E.EMP_NO DESC
+	</select>
 	
+	 
+	<!-- 사원 전체 조회 Dept -> Emp -->
 	 <select id="getEmpList" resultType="emp" parameterType="emp">
 	 SELECT * FROM(
         SELECT DISTINCT E.EMP_NO, E.EMP_NAME,E.PASSWORD,CASE WHEN POSITION = '0' THEN '사원'
@@ -187,10 +215,13 @@
 		DELETE FROM EMPLOYEES
 		WHERE EMP_NO = #{empNo}
 	</delete>
+	
 	<!-- 메일 중복체크 -->
 	<select id ="emailcheck" parameterType="emp"  resultType="emp">
 		SELECT EMAIL FROM EMPLOYEES WHERE EMAIL = #{email}
 	</select>
+	
+	<!-- 엑셀 다중 입력 -->
 	<insert id="insertExcelTest" parameterType="emp">
 	INSERT ALL 
 	<foreach collection="list" item="item" index="index" separator="">

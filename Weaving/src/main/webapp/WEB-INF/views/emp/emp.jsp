@@ -24,8 +24,7 @@
 			<input type="password" name="password" id="password"  readonly value="${emp.password}">
 			<br><br>
 
-			<label for="deptId"><b>소속부서</b></label> 
-			<select name="deptId" size="1" id="deptId">
+			<select name="deptId" size="1" id="deptId" style="display:none">
 				<option value="7">회사</option>
 				<option value="1">경영지원팀</option>
 				<option value="2">회계</option>
@@ -34,9 +33,8 @@
 				<option value="5">개발</option>
 				<option value="6">테스트</option>
 			</select> 
-			<br><br> 
-			<label for="position"><b>직위</b></label> 
-			<select name="position" size="1" id="position">
+			
+			<select name="position" size="1" id="position" style="display:none">
 				<option value="">선택</option>
 				<option value="0">사원</option>
 				<option value="1">대리</option>
