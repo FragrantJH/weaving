@@ -16,15 +16,13 @@
 
 
 
-<script>
-	$("#reserv").on('click', function() {
-		if( ${check} == true) {
-			alert("중복된 시간입니다.");
-		}else{
-			alert("예약되었습니다.");
+<script>		
+
+		if("${check}" == 'true'){
+			alert("중복된 시간입니다");
 		}
 		
-				
+	$(function(){	
 		$("#reservation tr").on('click', function() {
 			var str = ""
 			var td = $(this).children();
@@ -86,8 +84,8 @@
 				td.eq(0).html(result.reservId);  
 				td.eq(1).html(result.roomId);
 				td.eq(2).html(result.empName);
-				td.eq(3).html(result.startTime);
-				td.eq(4).html(result.endTime);
+				td.eq(3).html(result.startDate);
+				td.eq(4).html(result.endDate);
 				td.eq(5).html(result.description);			
 				
 			}
@@ -126,7 +124,8 @@
 							id="datepicker" placeholder="예약일을 지정해주세요.">
 						<script>
 							$("#datepicker").datepicker({
-								dateFormat : 'mm-dd-yy'
+								dateFormat : 'yy-mm-dd'
+								//dateFormat : 'yyyy-mm-dd'
 							});
 						</script>
 					<p>
@@ -170,12 +169,7 @@
 						</select>
 					<p>
 						사용용도
-						<textarea name="description" rows="8" cols="40">
-
-
-
-
-	</textarea>
+						<textarea name="description" rows="8" cols="40"></textarea>
 					<p>
 					<div id="btn_group">
 						<button type="submit" id="reserv" class="btn btn-primary btn-sm">예약</button>

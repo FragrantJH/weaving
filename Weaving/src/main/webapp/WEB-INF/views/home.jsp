@@ -92,7 +92,9 @@
 	<div class="container-fluid">
 		<!-- 상단1 -->
 		<div class="row">
-			<div class="col-md-3" OnClick="location.href ='docList?listType=WAIT'" style="cursor:pointer;">
+			<div class="col-md-3"
+				OnClick="location.href ='docList?listType=WAIT'"
+				style="cursor: pointer;">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-warning">
 						<div class="card-icon">
@@ -110,7 +112,9 @@
 
 			<!-- 상단2 -->
 
-			<div class="col-md-3" OnClick="location.href ='docList?listType=RETURN'" style="cursor:pointer;">
+			<div class="col-md-3"
+				OnClick="location.href ='docList?listType=RETURN'"
+				style="cursor: pointer;">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-success">
 						<div class="card-icon">
@@ -127,7 +131,8 @@
 			</div>
 
 
-			<div class="col-md-3" OnClick="location.href ='reading_mail'" style="cursor:pointer;">
+			<div class="col-md-3" OnClick="location.href ='reading_mail'"
+				style="cursor: pointer;">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-danger">
 						<div class="card-icon">
@@ -142,6 +147,7 @@
 					</div>
 				</div>
 			</div>
+
 
 			<div class="col-md-3">
 				<div class="card">
@@ -164,7 +170,7 @@
 				<div class="card">
 					<div class="card-header card-header-text card-header-primary">
 						<div class="card-text">
-							<h4 class="card-title">공지사항</h4>
+							<h4 class="card-title">Notice</h4>
 						</div>
 					</div>
 					<div class="card-body">
@@ -197,7 +203,7 @@
 				<div class="card">
 					<div class="card-header card-header-text card-header-warning">
 						<div class="card-text">
-							<h4 class="card-title">게시판</h4>
+							<h4 class="card-title">Board</h4>
 						</div>
 					</div>
 					<div class="card-body">
@@ -228,7 +234,7 @@
 		</div>
 
 		<div class="row">
-		
+
 			<!-- todo list -->
 			<div class="col-md-6">
 				<div class="card">
@@ -287,7 +293,7 @@
 				<div class="card">
 					<div class="card-header card-header-text card-header-success">
 						<div class="card-text">
-							<h4 class="card-title">WEAVING 일정</h4>
+							<h4 class="card-title">Schedule</h4>
 						</div>
 					</div>
 					<div class="card-body">
@@ -296,6 +302,11 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="jumbotron text-center"
+		style="margin-bottom: 0; background-color: #d3d3d3;">
+		<p style="color: white;">Copyright ⓒ 2019 WEAVING All Rights
+			Reserved.</p>
 	</div>
 </body>
 </html>

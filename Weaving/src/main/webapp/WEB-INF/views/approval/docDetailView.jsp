@@ -228,13 +228,18 @@ function approvalSendEvent() {
 								</c:forEach>
 							</tr>
 				  			<tr>
-								<c:forEach items="${docDetailInfo}" var="docDetailInfo">
-									<c:if test="${docDetailInfo.status eq 'DONE'}">
-										<td class='stamp'>승인</td>
-									</c:if>
-									<c:if test="${docDetailInfo.status ne 'DONE'}">
-										<td class='stamp'></td>
-									</c:if>									
+								<c:forEach items="${docDetailInfo}" var="docDetailInfo">					
+									<c:choose>
+										<c:when test="${docDetailInfo.status eq 'DONE'}">
+											<td class='stamp'>승인</td>
+										</c:when>
+										<c:when test="${docDetailInfo.status eq 'RETU'}">
+											<td class='stamp'>반려</td>
+										</c:when>
+										<c:otherwise>
+										    <td class='stamp'></td>
+										</c:otherwise>
+									</c:choose>				
 								</c:forEach>				  			
 							</tr>
 							<tr>
