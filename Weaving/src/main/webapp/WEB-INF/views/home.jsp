@@ -44,7 +44,7 @@
 			var myPlugins;
 
 			calendar = new FullCalendar.Calendar(calendarEl, {
-				plugins : [ 'interaction', 'dayGrid', 'timeGrid', 'list' ], // 적용할 plugin
+				plugins : [ 'dayGrid' ], // 적용할 plugin
 				defaultDate : moment().format('YYYY-MM-DD' + 'T' + 'HH:00:00'), // 현재 날짜
 				navLinks : true,
 				selectable : true,
@@ -143,6 +143,7 @@
 				</div>
 			</div>
 
+
 			<div class="col-md-3">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-info">
@@ -151,7 +152,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<h6 class="card-title">하기 싫다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</h6>
+						<h6 class="card-title">D-16</h6>
 					</div>
 				</div>
 			</div>
