@@ -169,4 +169,9 @@ public class HomeController {
 		return "sample/uiGuide";
 	}
 	
+	@RequestMapping("chat")
+	public String socketTest() {
+		return "sample/chat";
+	}
+	
 }
