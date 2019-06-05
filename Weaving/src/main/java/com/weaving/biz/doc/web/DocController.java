@@ -60,7 +60,9 @@ public class DocController {
 	@RequestMapping("/docInsertView")
 	public String docInsertView(Model model) {
 		EmpVO evo = new EmpVO(); 
-		model.addAttribute("empList", empService.getEmpList(evo));
+		
+		model.addAttribute("empList", empService.getExEmpList(evo));
+		//model.addAttribute("empList", empService.getEmpList(evo));
 		model.addAttribute("list", docFormService.getDocFormList());
 		return "approval/docInsert";
 	}
@@ -197,7 +199,8 @@ public class DocController {
 		System.out.println(empService.getEmpList(evo));
 		System.out.println("=====================================d");
 		*/
-		model.addAttribute("empList", empService.getEmpList(evo));
+		//model.addAttribute("empList", empService.getEmpList(evo));
+		model.addAttribute("empList", empService.getExEmpList(evo));
 		model.addAttribute("list", docFormService.getDocFormList());
 		
 		model.addAttribute("docListType", (String)request.getParameter("listType"));

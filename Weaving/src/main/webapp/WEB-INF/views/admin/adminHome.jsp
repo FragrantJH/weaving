@@ -9,7 +9,7 @@
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
-		// 캘린더 화면에 출력
+		
 		var labels = [];
 		var series = [];
 		
@@ -19,6 +19,7 @@
 			labels.push('${item.roomName}');
 			series.push(${item.cnt});
 			
+			// 최대 값 설정
 			if(${item.cnt} > max) {
 				max = ${item.cnt};
 			}
