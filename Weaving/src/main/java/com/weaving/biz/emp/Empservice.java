@@ -28,12 +28,16 @@ public interface Empservice {
 		// 글 목록 조회
 		List<EmpVO> getEmpList(EmpVO vo);
 		
+		List<EmpVO> getExEmpList(EmpVO vo);
+		
+		List<EmpVO> getExEmpList1(EmpVO vo);
+		
 		public int getEmpCount(EmpVO vo);
 		
 		//퇴사처리
 		void updateDelEmp(EmpVO vo);
 		
-		public List<Map> insertExcelTest(List<EmpVO> list); 
+		public void insertExcelTest(List<EmpVO> list); 
 		
 		//중복체크
 		EmpVO emailcheck(EmpVO vo);

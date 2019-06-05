@@ -93,7 +93,7 @@
 		  FROM RESERVATION
 		 WHERE END_TIME > TO_DATE(#{startDate}, 'YYYY-MM-DD HH24:MI')
 		   AND START_TIME < TO_DATE(#{endDate}, 'YYYY-MM-DD HH24:MI')
-		   AND ROWNUM = 1
+		   AND ROOM_ID = #{roomId}
 		]]>
 	</select>
 	

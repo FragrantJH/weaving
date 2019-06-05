@@ -48,11 +48,19 @@ public class EmpDAO {
 		return mybatis.selectList("EmpDAO.getEmpList",vo);
 	}
 	
+	public List<EmpVO> getExEmpList(EmpVO vo) {
+		return mybatis.selectList("EmpDAO.getExEmpList",vo);
+	}
+	
+	public List<EmpVO> getExEmpList1(EmpVO vo) {
+		return mybatis.selectList("EmpDAO.getExEmpList1",vo);
+	}
+	
 	public int getEmpCount(EmpVO vo) {
 		return mybatis.selectOne("EmpDAO.getEmpCount", vo);
 	}
 	
-	public List<Map> insertExcelTest(List<EmpVO> list) {
+	public List<EmpVO> insertExcelTest(List<EmpVO> list) {
 		return mybatis.selectList("EmpDAO.insertExcelTest", list);
 	}
 	public EmpVO emailcheck(EmpVO vo) {

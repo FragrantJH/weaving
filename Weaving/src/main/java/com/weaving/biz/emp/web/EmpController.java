@@ -74,7 +74,7 @@ public class EmpController {
 	@RequestMapping("/empselect")
 	public String empselect(Model model, EmpVO vo, HttpSession session) {
 		vo.setEmpNo((Integer) (session.getAttribute("empNo")));
-		model.addAttribute("emp", service.getEmp(vo));
+		model.addAttribute("emp", service.getEmpl(vo));
 		return "emp/emp";
 	}
 
@@ -179,7 +179,6 @@ public class EmpController {
 
 			if (emp.getAdminYn()) {
 				session.setAttribute("emp", emp);
-
 				return "redirect:adminHome";
 			} else {
 				session.setAttribute("emp", emp);

@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weaving.biz.cal.CalVO;
 import com.weaving.biz.common.CommonDateParser;
+import com.weaving.biz.common.SessionInfo;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.reserv.ReservService;
 import com.weaving.biz.reserv.ReservVO;
@@ -29,8 +32,10 @@ public class ReservController {
 
 	// 예약현황
 	@RequestMapping("/roomReserv")
-	public String roomReserv(Model model) {
+	public String roomReserv(Model model, @RequestParam(value="check",
+							defaultValue="false", required=false)String check) {
 		model.addAttribute("list", service.getReservList());
+		model.addAttribute("check", check);
 		return "room/roomReserv";
 	}
 
@@ -39,15 +44,18 @@ public class ReservController {
 		System.out.println(vo.getReservDate());
 		vo.setReservId(0);
 		
-		SimpleDateFormat fromFormat = new SimpleDateFormat("MM-dd-yyyy");
-		SimpleDateFormat toFormat = new SimpleDateFormat("yyyy-MM-dd");
+		/*
+		 * SimpleDateFormat fromFormat = new SimpleDateFormat("MM-dd-yyyy");
+		 * SimpleDateFormat toFormat = new SimpleDateFormat("yyyy-MM-dd");
+		 * 
+		 * String reservDate = CommonDateParser.parseFormat(vo.getReservDate(),
+		 * fromFormat, toFormat);
+		 */
 		
-		String reservDate = CommonDateParser.parseFormat(vo.getReservDate(), fromFormat, toFormat);
+		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
+		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
 		
-		vo.setStartDate(reservDate + " " + vo.getStartTime());
-		vo.setEndDate(reservDate + " " + vo.getEndTime());
-		
-		System.out.println(vo);
+		System.out.println("rrrtest: " + vo);
 		
 		// 현재 접속한 사용자 정보
 		
@@ -65,9 +73,7 @@ public class ReservController {
 		} else {
 			service.insertReserv(vo);
 		}
-		model.addAttribute("check", b);
-		model.addAttribute("list", service.getReservList());
-		return "room/roomReserv";
+		return "redirect:/roomReserv?check="+b;
 	}
 
 	@RequestMapping("/updateReserv")
@@ -78,18 +84,14 @@ public class ReservController {
 		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
 		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
 		System.out.println("********************************************************");
-		System.out.println(vo.getStartDate());
-		System.out.println(vo.getEndDate());
-		System.out.println(vo.getReservDate());
-		System.out.println(vo.getDescription());
+		System.out.println(vo);
 		System.out.println("********************************************************");
+		
 		// 현재 접속한 사용자 정보
-		// TODO 임시로 1번 넣은 것 수정 필요
-		Object emp = session.getAttribute("emp");
+		EmpVO emp = SessionInfo.getInfo(session, "emp");
 		if (emp != null) {
-			vo.setEmpNo(((EmpVO) emp).getEmpNo());
-		} else {
-			vo.setEmpNo(1);
+			vo.setEmpNo(emp.getEmpNo());
+			vo.setEmpName(emp.getEmpName());
 		}
 
 		service.updateReserv(vo);

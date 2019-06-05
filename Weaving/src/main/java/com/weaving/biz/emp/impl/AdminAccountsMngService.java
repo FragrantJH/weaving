@@ -267,7 +267,6 @@ public class AdminAccountsMngService {
 // 디비에 insert
 		
 		System.out.println("list: " + list);
-		
 		empService.insertExcelTest(list);
 		return list;
 	}
