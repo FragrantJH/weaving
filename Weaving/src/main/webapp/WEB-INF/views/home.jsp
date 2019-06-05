@@ -12,6 +12,12 @@
 	max-width: 500px;
 	margin: 0 auto;
 }
+
+
+.container-fluid{
+	width: 87%;
+	height: 75%;
+}
 </style>
 <body>
 	<script
