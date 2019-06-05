@@ -179,7 +179,6 @@ public class EmpController {
 
 			if (emp.getAdminYn()) {
 				session.setAttribute("emp", emp);
-
 				return "redirect:adminHome";
 			} else {
 				session.setAttribute("emp", emp);

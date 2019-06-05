@@ -50,10 +50,14 @@ function goList(p){
 								</c:forEach>
 							</tbody>
 						</table>
-						<my:paging paging="${paging}" jsFunc="goList" />
+						
+						<!-- paging -->
+						<div>
+							<my:paging paging="${paging}" jsFunc="goList" />
+						</div>
 					</div>
 				</div>
-				<button class="btn btn-default btn btn-primary col-md-2" onclick="location='${pageContext.request.contextPath}/docFormInsertForm'"> 결재폼 등록 </button>
+				<button class="btn btn-default btn btn-primary" onclick="location='${pageContext.request.contextPath}/docFormInsertForm'"> 결재폼 등록 </button>
 			</div>
 		</div>
 	</div>

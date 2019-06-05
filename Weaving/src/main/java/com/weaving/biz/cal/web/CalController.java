@@ -30,6 +30,13 @@ public class CalController {
 		session.setAttribute("calType", vo.getCalType());
 		return "cal/calendar";
 	}
+	
+	@RequestMapping("getCalAdmin.do")
+	public String getCalAdmin(@ModelAttribute("cal") CalVO vo, HttpSession session) {
+		
+		session.setAttribute("calType", vo.getCalType());
+		return "admin/cal/calendar";
+	}
 
 	@RequestMapping(value="calendar", method= RequestMethod.GET)
 	@ResponseBody

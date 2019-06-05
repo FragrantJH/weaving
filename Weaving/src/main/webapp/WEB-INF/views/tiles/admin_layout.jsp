@@ -27,6 +27,14 @@
 	rel="stylesheet" />
 <script
 	src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js"></script>
+	
+  <!-- full calendar style sheet -->
+  <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/core/main.css' rel='stylesheet' />
+  <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+  <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/timegrid/main.css' rel='stylesheet' />
+  <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/list/main.css' rel='stylesheet' />
+  <link href='${pageContext.request.contextPath}/resources/fullcalendar/packages/bootstrap/main.css' rel='stylesheet' />
+  <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
 </head>
 
 
@@ -126,7 +134,7 @@
 				
 				<!-- 공지사항 -->
 				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=0">
+					<a class="nav-link" href="${pageContext.request.contextPath}/boardListAdmin?boardType=0">
 						<i class="material-icons">notifications</i>
 						<p>공지사항</p>
 					</a>
@@ -134,7 +142,7 @@
 
 				<!-- 전체 일정 -->
 				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=ALL">
+					<a class="nav-link" href="${pageContext.request.contextPath}/getCalAdmin.do?calType=ALL">
 						<i class="material-icons">group</i>
 						<p>전체 일정</p>
 					</a>
@@ -208,7 +216,14 @@
 <script
 	src="${pageContext.request.contextPath}/assets/js/material-dashboard.js?v=2.1.1"
 	type="text/javascript"></script>
-
+ 
+<!-- full calendar packages -->
+<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/core/main.js'></script>
+<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/interaction/main.js'></script>
+<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/daygrid/main.js'></script>
+<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/timegrid/main.js'></script>
+<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/list/main.js'></script>
+<script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/bootstrap/main.js'></script>
 <script>
 	$(document)
 			.ready(

@@ -36,11 +36,36 @@ public class BoardController {
 	// 등록 처리
 	@RequestMapping("/boardInsert")
 	public String boardInsert(BoardVO vo, HttpSession session) {
-		vo.setBoardType((String)session.getAttribute("boardType"));
+		vo.setBoardType((String) session.getAttribute("boardType"));
 		EmpVO empVO = SessionInfo.getInfo(session, "emp");
 		vo.setEmpNo(empVO.getEmpNo());
 		service.insertBoard(vo);
 		return "redirect:boardList?boardType=" + vo.getBoardType();
+	}
+
+	// 글 목록 조회
+	@RequestMapping("/boardListAdmin")
+	public ModelAndView getBoardListAdmin(ModelAndView mav, Paging paging, BoardVO vo, HttpSession session) {
+
+		// 페이지 번호 파라미터
+		if (paging.getPage() == 0) {
+			paging.setPage(1);
+		}
+		// 공지사항
+		vo.setBoardType("0");
+		
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+
+		// 전체건수
+		paging.setTotalPageCount(service.getBoardListTotalCount(vo));
+		List<BoardVO> list = service.getBoardListPaging(vo);
+
+		mav.addObject("paging", paging);
+		mav.addObject("boardList", list);
+		mav.setViewName("admin/board/boardList");
+
+		return mav;
 	}
 
 	// 글 목록 조회
@@ -51,13 +76,13 @@ public class BoardController {
 		if (paging.getPage() == 0) {
 			paging.setPage(1);
 		}
-		
+
 		System.out.println("boardType --" + vo.getBoardType() + "=");
-		
+
 		if (vo.getBoardType() == null) {
 			vo.setBoardType((String) session.getAttribute("boardType"));
-		} 
-		
+		}
+
 		session.setAttribute("boardType", vo.getBoardType());
 
 		vo.setFirst(paging.getFirst());

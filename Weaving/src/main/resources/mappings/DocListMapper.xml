@@ -79,6 +79,7 @@
 		                   INNER JOIN EMPLOYEES C ON A.EMP_NO = C.EMP_NO
 		 WHERE RETURN_EMP_NO IS NOT NULL 
 		   AND A.EMP_NO = #{empNo}
+		   AND A.TEMP_YN = '0'		  
 		 ORDER BY A.DOC_ID
 	</select>
 	
@@ -98,6 +99,7 @@
 		                   INNER JOIN DOCUMENTDETAIL C ON A.DOC_ID = C.DOC_ID
 		 WHERE A.DONE_DATE IS NULL 
 		    AND C.EMP_NO = #{empNo}
+		    AND A.TEMP_YN = '0'
 		 ORDER BY A.DOC_ID, C.APPROVAL_ORDER
 	</select>
 	
@@ -110,7 +112,7 @@
 		       A.REG_DATE
 		  FROM DOCUMENTS A INNER JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO
 		 WHERE A.TEMP_YN = '1'
-		    AND A.EMP_NO = #{empNo}
+		   AND A.EMP_NO = #{empNo}
 		 ORDER BY A.DOC_ID
 	</select>
 	
@@ -119,13 +121,14 @@
 		  FROM DOCUMENTS
      	 WHERE DONE_DATE IS NULL
            AND RETURN_EMP_NO IS NULL
+		   AND TEMP_YN = '0'           
            AND TO_CHAR(REG_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 	
 	<select id="getTotalDoneCount" resultType="int">
 		SELECT COUNT(*) AS DONE_COUNT
 		  FROM DOCUMENTS
-	     WHERE DONE_DATE IS NOT NULL
+	     WHERE DONE_DATE IS NOT NULL 	     
 	       AND TO_CHAR(REG_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 	
@@ -134,6 +137,7 @@
 		  FROM DOCUMENTS
      	 WHERE DONE_DATE IS NULL
            AND RETURN_EMP_NO IS NOT NULL
+		   AND TEMP_YN = '0'              
            AND TO_CHAR(REG_DATE, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 	
