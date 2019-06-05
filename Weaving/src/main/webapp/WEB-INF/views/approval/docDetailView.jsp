@@ -74,7 +74,7 @@ function showDocTypeBtn() {
 
 	switch('${docType}') {
 		case 'WAIT':
-			$("#approvalRecordBtn").show();  
+			//$("#approvalRecordBtn").show();  
 			$("#approvalDoneBtn").show();		
 			break;
 		case 'RETURN':
@@ -83,10 +83,10 @@ function showDocTypeBtn() {
 			$("#approvalDoneBtn").show();			
 			break;
 		case 'DONE':
-			$("#approvalRecordBtn").show();
+			//$("#approvalRecordBtn").show();
 			break;
 		case 'ING':
-			$("#approvalRecordBtn").show();
+			//$("#approvalRecordBtn").show();
 			break;
 		default:
 			console.log('${docType}');

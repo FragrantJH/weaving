@@ -30,6 +30,9 @@ public class DocDAO {
 	public void updateApprovalDoc(DocApprovalVO vo) {
 		mybatis.update("DocDAO.updateDoneDoc", vo);
 	}
+	public void updateReturnEmpNoNull(DocApprovalVO vo) {
+		mybatis.update("DocDAO.updateReturnEmpNoNull", vo);
+	}	
 	public void updateReturnEmpNo(DocApprovalVO vo) {
 		mybatis.update("DocDAO.updateReturnEmpNo", vo);
 	}

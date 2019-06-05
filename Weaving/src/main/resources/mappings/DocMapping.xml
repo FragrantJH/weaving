@@ -4,9 +4,11 @@
 	<insert id="insertDoc" parameterType="com.weaving.biz.doc.DocInsertVO">
 		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocInsertVO" order="BEFORE">
 			<!-- select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'  -->
-			SELECT COUNT( NVL( SUBSTR( DOC_NO, INSTR( DOC_NO,'-', 1, 2 ) + 1 ), 0 ) ) + 1 AS DOC_TYPE_SEQ 
+			<!-- SELECT MAX( NVL( SUBSTR( DOC_NO, INSTR( DOC_NO,'-', 1, 2 ) + 1 ), 0 ) ) + 1 AS DOC_TYPE_SEQ 
 			FROM DOCUMENTS 
-			WHERE DOC_NO LIKE #{docType}||'%'
+			WHERE DOC_NO LIKE #{docType}||'%' -->			
+			SELECT NVL( MAX( SUBSTR( DOC_NO, INSTR( NVL( MAX( DOC_NO ), 0 ), '-', 1, 2 ) +1 ) ), 0 ) + 1 AS DOC_TYPE_SEQ 
+			FROM DOCUMENTS WHERE DOC_NO LIKE #{docType}||'%' GROUP BY DOC_NO
 		</selectKey> 
 		insert into DOCUMENTS (
 			DOC_ID,
@@ -68,9 +70,14 @@
  	<update id="updateDoc" parameterType="com.weaving.biz.doc.DocUpdateVO">
 		<selectKey keyProperty="docTypeSeq" resultType="com.weaving.biz.doc.DocUpdateVO" order="BEFORE">
 			<!--select count(*) + 1 as DOC_TYPE_SEQ from documents where doc_no like #{docType}||'%'-->
-			SELECT COUNT( NVL( SUBSTR( DOC_NO, INSTR( DOC_NO,'-', 1, 2 ) + 1 ), 0 ) ) + 1 AS DOC_TYPE_SEQ
+			<!--
+ 			SELECT COUNT( NVL( SUBSTR( DOC_NO, INSTR( DOC_NO,'-', 1, 2 ) + 1 ), 0 ) ) + 1 AS DOC_TYPE_SEQ
 			FROM DOCUMENTS 
 			WHERE DOC_NO LIKE #{docType}||'%'
+			 -->
+			SELECT NVL( MAX( SUBSTR( DOC_NO, INSTR( NVL( MAX( DOC_NO ), 0 ), '-', 1, 2 ) +1 ) ), 0 ) + 1 AS DOC_TYPE_SEQ 
+			FROM DOCUMENTS
+			WHERE DOC_NO LIKE #{docType}||'%' GROUP BY DOC_NO
 		</selectKey>
 		UPDATE DOCUMENTS SET 
 			DOC_NO = #{docType}||#{docTypeSeq},
@@ -92,7 +99,12 @@
 			DOC_ID=#{docId}
 		</where> 			
  	</update>
- 	
+ 	<update id="updateReturnEmpNoNull" parameterType="com.weaving.biz.doc.DocApprovalVO">
+ 		UPDATE DOCUMENTS SET RETURN_EMP_NO = NULL 
+		<where>
+			DOC_ID=#{docId}
+		</where> 		 
+ 	</update>
 	<update id="updateDoneDoc" parameterType="com.weaving.biz.doc.DocApprovalVO">
 		UPDATE DOCUMENTDETAIL SET STATUS='DONE', APPROVAL_COMMENTS=#{approvalComments}, APPROVAL_DATE=sysdate
 		<where>

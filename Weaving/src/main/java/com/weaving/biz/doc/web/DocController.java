@@ -61,7 +61,7 @@ public class DocController {
 	public String docInsertView(Model model) {
 		EmpVO evo = new EmpVO(); 
 		
-		model.addAttribute("empList", empService.getExEmpList(evo));
+		model.addAttribute("empList", empService.getExEmpList1(evo));
 		//model.addAttribute("empList", empService.getEmpList(evo));
 		model.addAttribute("list", docFormService.getDocFormList());
 		return "approval/docInsert";
@@ -200,7 +200,7 @@ public class DocController {
 		System.out.println("=====================================d");
 		*/
 		//model.addAttribute("empList", empService.getEmpList(evo));
-		model.addAttribute("empList", empService.getExEmpList(evo));
+		model.addAttribute("empList", empService.getExEmpList1(evo));
 		model.addAttribute("list", docFormService.getDocFormList());
 		
 		model.addAttribute("docListType", (String)request.getParameter("listType"));
