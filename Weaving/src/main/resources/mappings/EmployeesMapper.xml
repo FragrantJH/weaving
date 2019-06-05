@@ -272,9 +272,4 @@
 	</foreach>
 	SELECT * FROM DUAL
 </insert>
-
-<select id ="checkPw" resultType="int">
-	SELECT 
-		COUNT(*)
-</select>
 </mapper>
