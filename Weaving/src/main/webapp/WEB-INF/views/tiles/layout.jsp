@@ -32,6 +32,12 @@
 .nav-item {
 	cursor: pointer;
 }
+
+
+.container-fluid{
+	width: 87%;
+	height: 75%;
+
 </style>
 
 <body class="">
