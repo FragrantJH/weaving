@@ -53,6 +53,7 @@ public class DocServiceImpl implements DocService {
 	@Override
 	public void updateApprovalDoc(DocApprovalVO vo) {
 		// TODO Auto-generated method stub
+		dao.updateReturnEmpNoNull(vo);
 		dao.updateApprovalDoc(vo);
 	}
 
