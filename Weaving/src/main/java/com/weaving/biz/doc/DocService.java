@@ -17,6 +17,8 @@ public interface DocService {
 	void updateReturnEmpNo(DocApprovalVO vo);
 	// 문서 반려 처리
 	void updateReturnDoc(DocApprovalVO vo);
+	//문서 반려자의 코맨트 입력
+	void updateReturnComment(DocApprovalVO vo);
 	// 문서 반려 날짜 처리
 	void updateApprovalNullDate(DocApprovalVO vo);
 	// 문서삭제	
@@ -25,6 +27,8 @@ public interface DocService {
 	void deleteDocDetail(DocDeleteVO vo);
 	//문서 조회
 	DocDetailVO getDocument(DocDetailVO vo);
+	//반려자 코맨트 불러오기
+	DocDetailVO getReturnComment(DocDetailVO vo);
 	// 문서상세조회
 	List<DocInsertVO> getDocDetail(DocDetailVO vo);
 	// 문서 수
