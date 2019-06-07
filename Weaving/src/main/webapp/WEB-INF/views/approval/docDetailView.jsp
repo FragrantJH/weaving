@@ -97,7 +97,7 @@ function showDocTypeBtn() {
 
 function approvalSendEvent() {
 	$('.modal-footer').on('click', '#approvalSend', function() {
-		$.ajax({ 
+		$.ajax({
 		    url: "updateDone",
 		    type: 'PUT', 
 		    dataType: 'json', 
@@ -150,7 +150,7 @@ function approvalSendEvent() {
 }
 </script>
 <body>
-	<div class="container-fluid">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
@@ -263,6 +263,6 @@ function approvalSendEvent() {
 			</div>
 		</div>
 	</div>
-	</div>
+</div>
 </body>
 </html>

@@ -11,6 +11,8 @@
 #calendar {
 	max-width: 500px;
 	margin: 0 auto;
+	
+	.card-title{ font-family: impact}
 }
 </style>
 <body>
@@ -22,8 +24,27 @@
 
 		$(function() {
 			calList();
+			//weather();
 		})
-
+		
+		function weather() {
+			$.ajax({	
+				headers: {"X-My-Custom-Header": "some value"},
+				url :"http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?serviceKey=xqHzr37we%2FaF0H%2BNu%2BJLEylN189HdNBwgfQqsZuUQ5F3eSiowxzg7eBr43jBK19B4kuBKcjeRyxKhWsup7C2WA%3D%3D&base_date=20190605&base_time=0500&nx=60&ny=127&numOfRows=10&pageNo=1&_type=json", 
+				data : {serviceKey:"xqHzr37we%2FaF0H%2BNu%2BJLEylN189HdNBwgfQqsZuUQ5F3eSiowxzg7eBr43jBK19B4kuBKcjeRyxKhWsup7C2WA%3D%3D",
+						base_date:"20190605", baseTime:"0500", nx:"60", ny:"127", _type:"json"},
+				dataType : 'json',
+				contentType : 'application/json;charset=utf-8',
+				success : function(data){
+					console.log(data);
+										
+				},
+				error : function(){
+					alert('날씨정보 로드에 실패했습니다.')
+				}
+			})			
+		}
+		
 		//캘린더 목록 조회
 		function calList() {
 			$.ajax({

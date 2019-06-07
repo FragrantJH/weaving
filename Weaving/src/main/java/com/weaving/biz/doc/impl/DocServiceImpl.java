@@ -53,10 +53,10 @@ public class DocServiceImpl implements DocService {
 	@Override
 	public void updateApprovalDoc(DocApprovalVO vo) {
 		// TODO Auto-generated method stub
-		dao.updateReturnEmpNoNull(vo);
 		dao.updateApprovalDoc(vo);
+		dao.updateReturnEmpNoNull(vo);
 	}
-
+	
 	@Override
 	public void updateReturnEmpNo(DocApprovalVO vo) {
 		// TODO Auto-generated method stub
@@ -107,5 +107,6 @@ public class DocServiceImpl implements DocService {
 		// TODO Auto-generated method stub
 		hdao.insertDocHistory(vo);
 	}
+
 
 }

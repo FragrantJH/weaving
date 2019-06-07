@@ -102,11 +102,7 @@ public class DocController {
 					v.setStatus("WAIT");	
 				}
 				v.setDocType(vo.getDocType());
-				/*
-				System.out.println("insertttttttttttttttttttttttttt");
-				System.out.println(vo.getDocTypeSeq());
-				System.out.println("insertttttttttttttttttttttttttt");
-				*/
+
 				v.setDocTypeSeq(vo.getDocTypeSeq());
 						
 				docService.insertDocDetail(v);
@@ -154,12 +150,6 @@ public class DocController {
 	)
 	@ResponseBody
 	public DocApprovalVO updateDone(@RequestBody DocApprovalVO vo, Model model) {
-		/*
-		System.out.println("******************************");
-		System.out.println(vo);
-		System.out.println(vo.getDocId());
-		System.out.println("******************************");
-		*/
 		docService.updateApprovalDoc(vo);
 		return vo;
 	}
@@ -170,13 +160,6 @@ public class DocController {
 	)
 	@ResponseBody
 	public DocApprovalVO updateReturn(@RequestBody DocApprovalVO vo, Model model) {
-		/*
-		System.out.println("******************************R");
-		System.out.println(vo);
-		System.out.println(vo.getDocId());
-		System.out.println(vo.getWriterEmpNo());
-		System.out.println("******************************R");
-		*/
 		docService.updateReturnEmpNo(vo);
 		docService.updateReturnDoc(vo);
 		docService.updateApprovalNullDate(vo);
@@ -193,13 +176,6 @@ public class DocController {
  
 		EmpVO evo = new EmpVO(); 
 		
-		/*
-		System.out.println("=====================================");
-		System.out.println(evo);
-		System.out.println(empService.getEmpList(evo));
-		System.out.println("=====================================d");
-		*/
-		//model.addAttribute("empList", empService.getEmpList(evo));
 		model.addAttribute("empList", empService.getExEmpList1(evo));
 		model.addAttribute("list", docFormService.getDocFormList());
 		
@@ -212,12 +188,7 @@ public class DocController {
 	
 	@RequestMapping(value="/docUpdate", method=RequestMethod.POST)
 	public String docUpdate(DocUpdateVO vo, HttpServletRequest request) {
-		/*
-		System.out.println("=======#######==============");
-		System.out.println(vo);
-		System.out.println(vo.getDocNo());
-		System.out.println("=======#######==============");
-		*/
+
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		Date date = new Date();
@@ -233,15 +204,11 @@ public class DocController {
 
 		DocDeleteVO delVo = new DocDeleteVO();
 		delVo.setDocId(vo.getDocId());
-		//실행잘됨
+
 		docService.deleteDocDetail(delVo);
 		
 		String jsonString = request.getParameter("approvalList");
-		/*
-		System.out.println("=======^^^^^^^==============");
-		System.out.println(jsonString);
-		System.out.println("=======^^^^^^^==============");
-		*/
+
 		ObjectMapper mapper = new ObjectMapper();
 		String writerStatus = "";
 		try {
@@ -259,13 +226,9 @@ public class DocController {
 					v.setStatus("WAIT");	
 				}
 				v.setDocId(vo.getDocId());
-				/*
-				System.out.println("llllllllllllllllllllllllllllllllll");
-				System.out.println(v);
-				System.out.println("llllllllllllllllllllllllllllllllll");
-				*/
+
 				docService.insertDocDetail(v);
-				//docId = v.getDocId();
+
 			}		
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
@@ -282,12 +245,7 @@ public class DocController {
 	
 	@RequestMapping(value="/docTemp", method=RequestMethod.POST)
 	public String docTemp(DocUpdateVO vo, HttpServletRequest request) {
-		/*
-		System.out.println("=======#######==============");
-		System.out.println(vo);
-		System.out.println(vo.getDocNo());
-		System.out.println("=======#######==============");
-		 */
+
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		Date date = new Date();
@@ -297,7 +255,7 @@ public class DocController {
 		
 		//'문서타입-년월일-'
 		String docType = request.getParameter("docType") +"-" + dateArr[0] + dateArr[1] + dateArr[2]+"-";
-		//System.out.println(docType);
+
 
 		vo.setDocType(docType);
 		vo.setTempYn(1);
@@ -305,18 +263,13 @@ public class DocController {
 
 		DocDeleteVO delVo = new DocDeleteVO();
 		delVo.setDocId(vo.getDocId());
-		//실행잘됨
+
 		docService.deleteDocDetail(delVo);
 		
 		String jsonString = request.getParameter("approvalList");
-		/*
-		//
-		System.out.println("=======^^^^^^^==============");
-		System.out.println(jsonString);
-		System.out.println("=======^^^^^^^==============");
-		 */
+
 		ObjectMapper mapper = new ObjectMapper();
-		//String writerStatus = "";
+
 		try {
 			List<DocInsertVO> docObj = Arrays.asList(mapper.readValue(jsonString, DocInsertVO[].class));
 			
@@ -324,13 +277,9 @@ public class DocController {
 				
 				v.setDocId(vo.getDocId());
 				v.setStatus("WAIT");
-				/*
-				System.out.println("llllllllllllllllllllllllllllllllll");
-				System.out.println(v);
-				System.out.println("llllllllllllllllllllllllllllllllll");
-				*/
+
 				docService.insertDocDetail(v);
-				//docId = v.getDocId();
+
 			}		
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
