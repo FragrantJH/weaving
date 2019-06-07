@@ -157,7 +157,6 @@ function approvalSendEvent() {
 }
 </script>
 <body>
-${docComment}
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -184,14 +183,6 @@ ${docComment}
 									</button>
 								</div>
 								<div class="modal-body">
-								<!--
-									<div class="input-group">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><label>의견</label></span>
-										</div>
-										<input type="text" id="approvalComment" class="form-control" size="100" placeholder="의견을 입력하세요" style="margin-bottom: 8px;">
-									</div>
-								-->
 									<table class="table">
 									    <thead>
 									        <tr>
