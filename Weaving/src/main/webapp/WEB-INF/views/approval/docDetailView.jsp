@@ -97,7 +97,7 @@ function showDocTypeBtn() {
 
 function approvalSendEvent() {
 	$('.modal-footer').on('click', '#approvalSend', function() {
-		$.ajax({ 
+		$.ajax({
 		    url: "updateDone",
 		    type: 'PUT', 
 		    dataType: 'json', 
