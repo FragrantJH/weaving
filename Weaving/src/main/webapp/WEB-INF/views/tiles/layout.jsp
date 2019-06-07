@@ -516,9 +516,37 @@
     });
   </script>
   <script>
+  	var webSocket = new WebSocket('ws://localhost/weaving/broadcast.do');
+  	var chatWindow;
+  	
+  	webSocket.onerror = function(event) {
+		onError(event);
+	};
+	webSocket.onopen = function(event) {
+		onOpen(event);
+	};
+	webSocket.onmessage = function(event) {
+		onMessage(event);
+	};
+	
+	function onMessage(event) {
+		chatWindow = window.open(this.href, '_blank', 'width=400,height=600,toolbars=no,scrollbars=no');
+		chatWindow.$('#chatView').show();
+		chatWindow.$('#empList').hide();
+	}
+	function onOpen(event) {
+		// TODO: 채팅 연결 되었을 때 어떻게 할지..
+		console.log("chat is open!!!!");
+	}
+	function onError(event) {
+		console.log(event);
+		alert(event.data);
+	}
+  
     $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
+      
+    	// TODO : 이거 demo에서만 처리되는거면 제거
+    	//md.initDashboardPageCharts();
 
     });
   </script>

@@ -39,14 +39,15 @@
 			alert(event.data);
 		}
 		function send() {
-			var name = ${emp.empNo};
-			var name2 = '${emp.empName}';
-			console.log(name);
+			var empNo = ${emp.empNo};
+			var empName = '${emp.empName}';
+			console.log(empName + '');
 			console.log(name2);
 			var msg = {
 				cmd : "message",
-				tmsg : document.getElementById("inputMessage").value,
-				id : name2
+				msg : $('#inputMessage').value,
+				empNo : empNo,
+				empName : empName
 			};
 			// Send the msg object as a JSON-formatted string.
 			webSocket.send(JSON.stringify(msg));
