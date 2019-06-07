@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -176,7 +178,15 @@ public class EmpController {
 			 */
 			return "empty/login";
 		} else {
-
+			
+			/*
+			 * Set<HttpSession> loginEmp =
+			 * (Set<HttpSession>)context.getAttribute("loginEmp");
+			 * 
+			 * for(HttpSession s: loginEmp){ if(s.getId().equals(session.getId())) {
+			 * System.out.println("same session : " + session.getId()); } }
+			 */	
+			
 			if (emp.getAdminYn()) {
 				session.setAttribute("emp", emp);
 				return "redirect:adminHome";

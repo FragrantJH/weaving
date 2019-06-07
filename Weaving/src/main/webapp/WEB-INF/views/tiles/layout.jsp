@@ -31,7 +31,7 @@
 <style>
 
 .container-fluid{
-	width: 87%;
+	width: 95%;
 	height: 75%;
 }
 </style>
@@ -39,7 +39,7 @@
 <body class="">
 
   <div class="wrapper">
-    <div class="sidebar" data-color="green" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-4.jpg">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-4.jpg">
       <div class="logo">
         <a href="${pageContext.request.contextPath}/home" class="simple-text logo-normal">
           WEAVING
@@ -82,7 +82,7 @@
       <!-- 메뉴 -->
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active ">
+          <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/home">
               <i class="material-icons">dashboard</i>
               <p>Home</p>
@@ -241,6 +241,14 @@
             
             <ul class="navbar-nav">
               
+              <li class="nav-item">
+              	<a class="nav-link" href="${pageContext.request.contextPath}/getChatEmpList" 
+              	onclick="window.open(this.href, '_blank', 'width=400,height=600,toolbars=no,scrollbars=no');  return false;" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">chat</i>
+                </a>
+              </li>
+              
+              
               <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
@@ -283,7 +291,7 @@
       
       <div class="text-center" style="margin-bottom: 0; background-color: #d3d3d3;">
 		<p style="color: white;">Copyright ⓒ 2019 WEAVING All Rights Reserved.</p>
-		</div>
+	  </div>
     </div>
   </div>
   
