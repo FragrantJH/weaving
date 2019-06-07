@@ -45,6 +45,42 @@
 			console.log(changeDateFormat);
 
 		});
+		
+		//입력값 체크
+		$('#reserv').on('click', function() {
+			
+			if ($('#roomr option:selected').text() == "회의실선택") {
+				alert("회의실을 선택하세요");
+				return false;
+			}
+			
+			if ($('#selectStime option:selected').text() == "선택") {
+				alert("시작시간을 선택하세요");
+				return false;
+			}
+			
+			if ($('#selectEtime option:selected').text() == "선택") {
+				alert("종료시간을 선택하세요");
+				return false;
+			}
+			
+			if ($('[name="description"]').val() == "") {
+				alert("사용용도를 입력하세요");
+				console.log
+				return false;
+			}
+			
+			if ($('#selectEtime option:selected').text() == "선택") {
+				alert("종료시간을 선택하세요");
+				return false;
+			}		
+			
+			if ($('[name=reservDate]').val() == "") {
+				alert("날짜를 입력하세요");
+				return false;
+			}
+			
+		});	
 	});
 
 	function modifyReserv() {
@@ -80,18 +116,17 @@
 			}),
 			contentType : 'application/json',
 			success : function(result) {
-				var td = $("#"+result.reservId).children();
-				td.eq(0).html(result.reservId);  
+				var td = $("#" + result.reservId).children();
+				td.eq(0).html(result.reservId);
 				td.eq(1).html(result.roomId);
 				td.eq(2).html(result.empName);
 				td.eq(3).html(result.startDate);
 				td.eq(4).html(result.endDate);
-				td.eq(5).html(result.description);			
-				
+				td.eq(5).html(result.description);
+
 			}
 		});
 	}
-
 	//회의실 예약 페이지
 </script>
 <meta charset="UTF-8">
@@ -108,7 +143,8 @@
 			</div>
 			<div class="card-body">
 				<form name="frm" action="roomInsertReserv" method="POST">
-					<input type="hidden" id="resId"> 회의실 <select name="roomId">
+					<input type="hidden" id="resId"> 회의실 
+					<select id="roomr" name="roomId">
 						<option value="">회의실선택</option>
 						<option value="1">1번회의실</option>
 						<option value="2">2번회의실</option>
@@ -130,7 +166,7 @@
 						</script>
 					<p>
 
-						예약시간 <select name="startTime">
+						예약시간 <select name="startTime" id="selectStime">
 							<option value="">선택</option>
 							<option value="10:00">10:00</option>
 							<option value="10:30">10:30</option>
@@ -148,7 +184,7 @@
 							<option value="16:30">16:30</option>
 							<option value="17:00">17:00</option>
 							<option value="17:30">17:30</option>
-						</select> ~ <select name="endTime">
+						</select> ~ <select name="endTime" id="selectEtime">
 							<option value="">선택</option>
 							<option value="10:30">10:30</option>
 							<option value="11:00">11:00</option>
@@ -169,7 +205,7 @@
 						</select>
 					<p>
 						사용용도
-						<textarea name="description" rows="8" cols="40"></textarea>
+						<textarea name="description" id="des" rows="8" cols="40"></textarea>
 					<p>
 					<div id="btn_group">
 						<button type="submit" id="reserv" class="btn btn-primary btn-sm">예약</button>
