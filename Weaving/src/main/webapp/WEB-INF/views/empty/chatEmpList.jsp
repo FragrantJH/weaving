@@ -17,17 +17,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <script>
+	
+	var textarea = document.getElementById("messageWindow");
+	var inputMessage = document.getElementById('inputMessage');
+	var toEmpNo;
+
 	$(function() {
 		
 		empList();
 		
-		chat();
+		startChat();
 	});
 	
 	//사용자 목록 조회 요청
 	function empList() {
 		$.ajax({
-			url : 'emplist1',
+			url : 'getOnlineEmp',
 			type : 'GET',
 			contentType : 'application/json;charset=utf-8',
 			dataType : 'json',
@@ -53,13 +58,51 @@
 		});
 	}
 	
-	function chat() {
+	function startChat() {
+		
 		$('body').on('click', '#chatButton', function() {
-			
+			toEmpNo = $(this).closest('tr').find('#hidden_empNo').val();
+			$('#chatView').show();
+			$('#empList').hide();
 		});
 	}
 	
+	function onMessage(event) {
+		textarea.value += /*"상대 : " +*/event.data + "\n";
+		chatAreaScroll();
+	}
 	
+	function onOpen(event) {
+		textarea.value += "연결 성공\n";
+	}
+	
+	function onError(event) {
+		console.log(event);
+		alert(event.data);
+	}
+	
+	function send() {
+		var empNo = ${emp.empNo};
+		var empName = '${emp.empName}';
+		var msg = {
+			cmd : "message",
+			msg : $('#inputMessage').value,
+			empNo : empNo,
+			empName : empName,
+			toEmpNo : toEmpNo
+		};
+		// Send the msg object as a JSON-formatted string.
+		webSocket.send(JSON.stringify(msg));
+		inputMessage.value = "";
+	}
+	
+	function chatAreaScroll() {
+		//using jquery
+		var textArea = $('#messageWindow');
+		textArea.scrollTop(textArea[0].scrollHeight - textArea.height());
+		textArea.scrollTop(textArea[0].scrollHeight);
+	}			
+
 
 </script>
 
@@ -78,12 +121,17 @@
 					<th class="text-center">채팅</th>
 				</tr>
 			</thead>
-			<tbody id="user"></tbody>
+			<tbody id="empList"></tbody>
 		</table>
 	</div>
 	
 	<div id="chatView" style="display: none;">
-	
+		<fieldset>
+			<textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
+			<br/> 
+			<input id="inputMessage" type="text" /> 
+			<input type="submit" value="send" onclick="send()" />
+		</fieldset>
 	</div>
 </body>
 </html>
