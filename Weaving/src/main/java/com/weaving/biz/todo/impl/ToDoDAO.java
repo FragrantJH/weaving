@@ -23,7 +23,7 @@ public class ToDoDAO {
 	}
 	
 	public List<ToDoVO> getTodoList(int empNo) {
-		return mybatis.selectList("TodoDAO.selectTodoList", empNo);
+		return mybatis.selectList("ToDoDAO.selectTodo", empNo);
 		
 	}
 

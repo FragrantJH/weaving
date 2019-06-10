@@ -292,6 +292,7 @@
 
 						<table class="table" id="todoList">
 							<tbody>
+								<c:forEach items="${todolist}" var="todo">
 								<tr id="item_1">
 									<!-- TODO 리스트 목록 반복 영역 -->
 									<td>
@@ -305,16 +306,16 @@
 										</div>
 									</td>
 
-									<td id="item_content_1">Sign contract for "What are
-										conference organizers afraid of?"</td>
+									<td id="item_content_1">${todo.content}</td>
 
 									<td class="td-actions text-right">
-										<button type="button" class="btn btn-danger btn-link btn-sm">
+										<button type="button" class="btn btn-danger btn-link btn-sm" 
+											onclick="location='${pageContext.request.contextPath}/todoDelete?todoId=${todo.todoId}'">
 											<i class="material-icons">close</i>
 										</button>
 									</td>
 								</tr>
-
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>
