@@ -170,13 +170,23 @@ function loadDocPreview() {
 		} 
 		if(day.length == 1){ 
 		  day = "0" + day; 
-		} 
-
+		}
+		var docNum = '${docBaseInfo.docNo}';
+		var strArr = docNum.split('-');
+		var curDocType = strArr[0];
+		var selectDocType = $("[name=docType]").val();
+		var changDocType = "";
+		if (curDocType == selectDocType) {
+			changDocType = docNum;
+		} else {
+			changDocType = $("[name=docType]").val()+ "-" + year + month + day + "-xxxx";
+		}
+		
 		$("#doc-title").html($("[name=docTitle]").val());
 		var doc_info =	"<table border='0' style='all:none;'>" +
 							"<tr>" +
 								"<td>문서번호</td>" +
-								"<td>${docBaseInfo.docNo}</td>" +
+								"<td>"+changDocType+"</td>" +
 							"</tr>"+
 							"<tr>" +
 								"<td>기안부서</td>" +

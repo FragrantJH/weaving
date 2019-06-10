@@ -142,7 +142,7 @@ function loadDocPreview() {
 		var doc_info =	"<table border='0' style='all:none;'>" +
 							"<tr>" +
 								"<td>문서번호</td>" +
-								"<td>"+$('input[name=docType]').val()+"-"+year + "" + month+"-xxxx</td>" +
+								"<td>"+$('input[name=docType]').val() + "-" + year + month + day + "-xxxx</td>" +
 							"</tr>"+
 							"<tr>" +
 								"<td>기안부서</td>" +
