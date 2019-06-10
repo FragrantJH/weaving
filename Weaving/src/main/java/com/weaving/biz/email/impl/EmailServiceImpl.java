@@ -39,7 +39,7 @@ public class EmailServiceImpl implements EmailService {
 
 	@Override
 	public void deleteEmail(EmailVO vo) {
-		// TODO Auto-generated method stub
+		dao.deleteEmail(vo);
 		
 	}
 
@@ -60,6 +60,23 @@ public class EmailServiceImpl implements EmailService {
 	public List<EmailVO> getEmailListtPaging(EmailVO vo) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void deleteInbox(EmailVO vo) {
+		dao.deleteInbox(vo);
+	}
+
+	@Override
+	public void updateRCR(EmailVO vo) {
+		dao.updateRCR(vo);
+		
+	}
+
+	@Override
+	public void updateRCNR(EmailVO vo) {
+		dao.updateRCNR(vo);
+		
 	}
 	}
 

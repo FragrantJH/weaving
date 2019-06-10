@@ -14,6 +14,8 @@ public interface ReservService {
 	ReservVO getReserv(ReservVO vo);
 
 	List<ReservVO> getReservList();
+	
+	List<ReservVO> getReservList(String cmd);
 
 	List<Map<String, Object>> getResultState();
 

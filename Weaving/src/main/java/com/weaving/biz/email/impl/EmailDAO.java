@@ -49,6 +49,11 @@ public class EmailDAO {
 		mybatis.delete("EmailDAO.deleteEmail", vo);
 	}
 	
+	public void deleteInbox(EmailVO vo) {
+		mybatis.delete("EmailDAO.deleteInbox", vo);
+	}
+	
+	
 	/**
 	 * Email을 목록 하나 조회한다.
 	 * @param vo - 등록할 정보가 담긴 EmailVO 
@@ -70,4 +75,14 @@ public class EmailDAO {
 	public List<EmailVO> getEmailListtPaging(EmailVO vo) throws Exception{
 		return mybatis.selectList("EmailDAO.selectEmailListPaging", vo);
 	}
+	
+	public void updateRCR(EmailVO vo) {
+		mybatis.update("EmailDAO.updateRCR", vo);
+	}
+	
+	public void updateRCNR(EmailVO vo) {
+		mybatis.update("EmailDAO.updateRCNR", vo);
+	}
+	
+	
 }

@@ -11,7 +11,7 @@
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script type="text/javascript">
 
-	var echeck =0;
+	var echeck =1;
 	
 	$(function() {
 		empInsert11();
@@ -36,7 +36,7 @@
 		//init();
 	});
 	function empInsert11(){
-		//등록 버튼 클릭
+		//등록폼 버튼 클릭
 		$('#btnInsertForm').on('click',function(){
 		$('#searchModel').modal("show");
 		});
@@ -54,6 +54,35 @@
 			var phone = $('input:text[name="phone"]').val();
 			var address = $('input:text[name="address"]').val();
 			var gmailAppKey = $('input:text[name="gmailAppKey"]').val();
+			
+			if($("#empName").val() == ""){
+		        alert("아이디를 입력하세요");
+		        $("#empName").focus();
+		        return false;
+		      }
+			
+			if($("#password").val() == ""){
+		        alert("비밀번호를 입력하세요");
+		        $("#password").focus();
+		        return false;
+		      }
+			
+			if($("#email").val() == ""){
+		        alert("이메일을 입력하세요");
+		        $("#email").focus();
+		        return false;
+		      }
+			
+			if($("#gmailAppKey").val() == ""){
+		        alert("gmailAppKey 입력하세요");
+		        $("#gmailAppKey").focus();
+		        return false;
+		      }
+			
+			if(echeck== 1){
+		        alert("email 중복체크하세요");
+		        return false;
+		      }
 			$.ajax({ 
 			    url: "insertEmp",  
 			    type: 'POST',
@@ -177,6 +206,7 @@
 
 	//사용자 목록 조회 요청
 	function empList() {
+		$('#foo-table').DataTable().destroy();
 		$.ajax({
 			url : 'emplist1',
 			data : {deptId : '${param.deptId}'},
@@ -206,7 +236,7 @@
 	}//userListResult
 	
 	function echeckinit(){
-		echeck=0;
+		echeck=1;
 	}
 	
 	//email check
@@ -230,6 +260,7 @@
 					echeck=0;
 					$("#btnInsert").prop("disabled",false);
 					$("#email").css("background-color","#B0F6AC");
+					$("#btnInsert").css("background-color","#9C27B0");
 					
 					
 				}
@@ -250,8 +281,16 @@ input[type=text] {
   padding: 12px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: none;
   background: #f1f1f1;
+}
+
+select {
+  width: 80%;
+  height: 15px;
+  padding: 12px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  background: #f1f1f2;
 }
 .submenu {
 	display: none;
@@ -298,7 +337,7 @@ input[type=text] {
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Information</h5>
+							<h5 class="modal-title">회원정보</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -348,8 +387,10 @@ input[type=text] {
 								
 								<br> 
 								<label for="email"><b>이메일</b></label><br> 
-								<input type="text" name="email" id="email" required onchange="echeckinit()">
-								<button type="button" class="btn btn-primary" id="btnEcheck">중복 확인</button>
+								<input type="text" name="email" id="email" required onkeydown="echeckinit()">
+								<br>
+								<button type="button" class="btn btn-primary" id="btnEcheck" >중복 확인</button>
+								<br>
 								
 								<br> 
 								<label for="phone"><b>휴대 전화</b></label><br> 

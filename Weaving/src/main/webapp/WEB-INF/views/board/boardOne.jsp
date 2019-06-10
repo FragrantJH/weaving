@@ -51,15 +51,24 @@
 		//댓글 쓰기 버튼 클릭 이벤트
 		$("#btnReply").click(function() {
 			var repContents = $("#repContents").val();
+			 if( !repContents )
+		   		{
+		   	 	alert( "댓글을 입력해주세요" );
+		    	form.reply.focus();
+		    	return;
+			   }
+			 
 			var boardId = "${board.boardId}"
 			var param = "repContents=" + repContents + "&boardId=" + boardId;
 			console.log(param);
+			
 			$.ajax({
 				type : "post",
 				url : "${pageContext.request.contextPath}/reply/insert.do",
 				data : param,
 				success : function() {
 					alert("댓글이 등록되었습니다.");
+					$("#repContents").val("");
 					getReplyList();
 				}
 			});
@@ -128,7 +137,7 @@
 		});
 	}	
 }
-
+  
 	
 </script>
 </head>
@@ -175,19 +184,19 @@
 								onclick="location='${pageContext.request.contextPath}/boardDelete?boardId=${board.boardId}'">삭제</button>
 						</c:if>
 					</div>
+				</form>
 					<!--댓글 입력  -->
 					<div>
 						<br>
-						<div class="form-group">
-							Comment <input type="text" id="repContents" class="form-control">
-						</div>
-						<br>
-						<button type="button" class="btn btn-primary btn-sm" id="btnReply">댓글
-							등록</button>
-					</div>
-				</form>
-	
-							
+						<form name="writeform" method="post">
+							<div class="form-group">
+								Comment <input type="text" id="repContents" class="form-control" name="reply">
+							</div>
+						<button type="button" class="btn btn-primary btn-sm" id="btnReply"
+							onclick="writeCheck();">댓글 등록</button>
+						</form>	
+					</div>	
+					<br>		
 			<!-- 댓글 목록 -->
 			<div id="getReplyList"></div>
 

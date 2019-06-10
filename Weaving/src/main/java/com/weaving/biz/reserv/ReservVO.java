@@ -11,7 +11,18 @@ public class ReservVO {
 	private String description;
 	private String startDate;
 	private String endDate;
+	private String roomButton;
 	
+
+
+
+	public String getRoomButton() {
+		return roomButton;
+	}
+
+	public void setRoomButton(String roomButton) {
+		this.roomButton = roomButton;
+	}
 
 	public String getEmpName() {
 		return empName;
@@ -96,6 +107,9 @@ public class ReservVO {
 	public String toString() {
 		return "ReservVO [reservId=" + reservId + ", roomId=" + roomId + ", empNo=" + empNo + ", empName=" + empName
 				+ ", reservDate=" + reservDate + ", startTime=" + startTime + ", endTime=" + endTime + ", description="
-				+ description + ", startDate=" + startDate + ", endDate=" + endDate + "]";
-	}	
+				+ description + ", startDate=" + startDate + ", endDate=" + endDate + ", roomButton=" + roomButton
+				+ "]";
+	}
+
+
 }

@@ -12,9 +12,13 @@ public interface EmailService{
 
 	// 메일 수정
 	void updateEmail(EmailVO vo);
+	void updateRCR(EmailVO vo); 	 //읽음 처리 
+	void updateRCNR(EmailVO vo);//안읽음 처리 
 
 	// 메일 삭제
 	void deleteEmail(EmailVO vo);
+	
+	void deleteInbox(EmailVO vo);
 
 	// 메일 상세 조회
 	EmailVO getINBOXOne(EmailVO vo) throws Exception;

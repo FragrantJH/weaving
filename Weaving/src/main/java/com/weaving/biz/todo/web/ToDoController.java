@@ -30,19 +30,11 @@ public class ToDoController {
 		service.insertTodo(vo);
 		return vo;
 	}
-	
-	//목록조회
-	@RequestMapping("/todoList")
-	public List <ToDoVO> todoList(HttpSession session) {
-		Integer empNo = (Integer) session.getAttribute("empNo");
-		List<ToDoVO> list = service.getTodoList(empNo);
-		return list;
-	}
-	
+
 	//삭제
 	@RequestMapping(value = "/todoDelete", method = RequestMethod.GET)
 	public String todoDelete(ToDoVO vo, HttpSession session, HttpServletRequest request) {
 		service.deleteTodo(vo);
-		return "";
+		return "redirect:/home";
 	}
 }
