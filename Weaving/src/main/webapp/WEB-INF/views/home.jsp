@@ -66,6 +66,11 @@
 
 			calendar = new FullCalendar.Calendar(calendarEl, {
 				plugins : [ 'dayGrid' ], // 적용할 plugin
+				header : {
+					left : 'prev,next today',
+					center : 'title',
+					right : 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+				},
 				defaultDate : moment().format('YYYY-MM-DD' + 'T' + 'HH:00:00'), // 현재 날짜
 				navLinks : true,
 				selectable : true,

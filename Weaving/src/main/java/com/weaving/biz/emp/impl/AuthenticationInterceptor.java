@@ -25,7 +25,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
 		if (emp == null || (strurl.matches(".*admin.*") && emp.getAdminYn() == false)) {
 			// 로그인 정보 없으면 로그인 페이지로 이동
-			response.sendRedirect("/weaving/login");
+			response.sendRedirect(request.getContextPath() + "/login");
 			return false;
 		} else {
 			return true;
