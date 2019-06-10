@@ -42,21 +42,28 @@ public class ReservServiceImpl implements ReservService {
 
 	@Override
 	public List<ReservVO> getReservList(String cmd) {
-		if (cmd == "1") {
+		if ("1".equals(cmd)) {
+			System.out.println("ddddddddddddddddddddddddddddddddddddddddddddd");
+			System.out.println(cmd);
+			System.out.println("dddddddddddddddddddddddddddddddddddddasdfsadfsdafsadddddddddddddddddddddddd");
 			return rss.getBeforeList();
-		} else if (cmd == "2") {
+			
+		} else if ("2".equals(cmd)) {
 			return rss.getTodayList();
 
-		} else if (cmd == "3") {
+		} else if ("3".equals(cmd)) {
 			return rss.getRoomOneList();
 
-		} else if (cmd == "4") {
+		} else if ("4".equals(cmd)) {
 			return rss.getRoomTwoList();
 
-		} else if (cmd == "5") {
+		} else if ("5".equals(cmd)) {
 			return rss.getRoomThreeList();
 		} else {
-			return null;
+			System.out.println("ddddddddddddddddddelseelseddddddddddddddddddddddddddd");
+			System.out.println(cmd);
+			System.out.println("dddddddddddddddddddddddddddddddddddddasdfsadfsdafsadddddddddddddddddddddddd");
+			return rss.getReservList();
 		}
 	}
 
