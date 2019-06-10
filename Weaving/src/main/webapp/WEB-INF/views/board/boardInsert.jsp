@@ -7,6 +7,30 @@
 <script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
 </head>
 
+<script>
+
+function writeCheck()
+  {
+   var form = document.writeform;
+   
+  if( !form.title.value )
+   {
+    alert( "제목을 입력해주세요" );
+    form.title.focus();
+    return;
+   }
+	var data = CKEDITOR.instances.editor.getData();
+  if( !data )
+   {
+    alert( "내용을 입력해주세요" );
+    //form.boardContents.focus();
+    return;
+   }
+ 
+  form.submit();
+  }
+ </script>
+
 <body>
 	<div class="container-fluid">
 		<div class="row">
@@ -19,7 +43,7 @@
 					</div>
 					<br> <br>
 					<div class="card-body">
-						<form action="boardInsert" method="get">
+						<form name="writeform" action="boardInsert" method="post">
 							<div class="form-group">
 								<label for="usr">제목</label> <input type="text"
 									class="form-control" id="title" name="title">
@@ -31,8 +55,8 @@
 								CKEDITOR.replace('editor');
 							</script>
 							<br> <br>
-							<button type="submit" class="btn btn-primary btn-sm"
-								onclick="location.href='../boardList?boardType=${boardType}'">등록</button>
+							<button type="button" class="btn btn-primary btn-sm"
+								onclick="writeCheck();">등록</button>
 						</form>
 					</div>
 				</div>

@@ -70,22 +70,20 @@
 				<!-- END PAGE TITLE -->
 			</div>
 			<div class="col-md-12" align="center">
-				<div class=card>
+				<div class=card >
 				<div class="card-header card-header-text card-header-primary">
 					<div class="card-text">
 						<h4 class="card-title">엑셀 파일 등록</h4>
 					</div>
 				</div>
 					<form id="excelUpForm" method="post" action="" role="form" enctype="multipart/form-data">
-						<div class="col-sm-12" >
 							<div class="row" id="regGoodsImgArea">
-								<div>
+								<div class ="card-body">
 								<br>
 									<p>확장자명 : xlsx,joindata 입력시 날짜 앞에 `넣어서 텍스트 형식으로 입력해야함 엑셀업로드 (업로드하고 디비에 INSERT)</p>
 									<input id="excel" name="excel" class="file" type="file" multiple data-show-upload="false" data-show-caption="true">
 								</div>
 							</div>
-						</div>
 						<button type="button" id="excelUp" onclick="check()" class="btn btn-primary">등록</button>
 					</form>
 				</div>

@@ -192,8 +192,8 @@
 				<div class="card-text">
 					<h4 class="card-title">부서 관리</h4>
 				</div>
-				<button id="btnInsertDept" data-toggle="modal" data-target="#searchModal" class="btn btn-primary">등록</button>
 			</div>
+			<div class ="card-body">
 			<table class="table text-center">
 				<thead>
 					<tr>
@@ -204,8 +204,14 @@
 				</thead>
 				<tbody id="dept"></tbody>
 			</table>
-
-			<div id="searchModal" class="modal" tabindex="-1" role="dialog">
+			<div style="float:right;">
+			<button id="btnInsertDept" data-toggle="modal" data-target="#searchModal" class="btn btn-primary btn-sm">등록</button>
+			</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="searchModal" class="modal" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -251,8 +257,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 
 </body>
 </html>

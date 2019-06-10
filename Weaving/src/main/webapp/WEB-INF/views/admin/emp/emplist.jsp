@@ -7,11 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
+<script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script type="text/javascript">
 
 	var echeck =0;
 	
 	$(function() {
+		empInsert11();
+		 
 		empList();
 
 		empSelect();
@@ -31,6 +35,12 @@
 		})
 		//init();
 	});
+	function empInsert11(){
+		//등록 버튼 클릭
+		$('#btnInsertForm').on('click',function(){
+		$('#searchModel').modal("show");
+		});
+	}
 	
 	//사용자 등록 요청
 	function empInsert(){
@@ -133,7 +143,8 @@
 	function empSelect() {
 		//조회 버튼 클릭
 		$('body').on('click', '#btnSelect', function() {
-			var empNo = $(this).closest('tr').find('#hidden_empNo').val();
+			var empNo = $(this).closest('tr').find('td').first().text();
+			console.log(empNo);
 			//특정 사용자 조회
 			$.ajax({
 				url : 'getEmpl/' + empNo,
@@ -151,6 +162,7 @@
 	//사용자 조회 응답
 	function empSelectResult(data) {
 		var emp = data;
+		$('#searchModel').modal("show");
 		$('input:text[name="empNo"]').val(emp.empNo);
 		$('input:text[name="empName"]').val(emp.empName);
 		$('input:text[name="password"]').val(emp.password);
@@ -160,6 +172,7 @@
 		$('input:text[name="phone"]').val(emp.phone);
 		$('input:text[name="address"]').val(emp.address);
 		$('input:text[name="gmailAppKey"]').val(emp.gmailAppKey);
+		
 	}//userSelectResult
 
 	//사용자 목록 조회 요청
@@ -187,9 +200,9 @@
 			.append($('<td>').html(item.deptName))
 			.append($('<td>').html(item.position))
 			.append($('<td>').html('<button id=\'btnSelect\' data-toggle=\'modal\' data-target=\'#searchModel\'>조회</button>'))
-			.append($('<input type=\'hidden\' id=\'hidden_empNo\'>').val(item.empNo))
 			.appendTo('tbody');
 		});//each
+		 $("#foo-table").DataTable();
 	}//userListResult
 	
 	function echeckinit(){
@@ -228,14 +241,25 @@
 </script>
 <style type="text/css">
 
+th { font-size: 15px; }
+td { font-size: 15px; }
+
 input[type=text] {
   width: 80%;
   height: 15px;
   padding: 12px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: none;
   background: #f1f1f1;
+}
+
+select {
+  width: 80%;
+  height: 15px;
+  padding: 12px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  background: #f1f1f2;
 }
 .submenu {
 	display: none;
@@ -255,27 +279,34 @@ input[type=text] {
 				<div class="card-text">
 					<h4 class="card-title">직원 관리</h4>
 				</div>
-				<button id="btnInsertForm" data-toggle="modal" data-target="#searchModel" class="btn btn-primary">등록</button>
-				<button id="btnExcelUpForm" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/excelUploadPage'">엑셀 등록</button>
-				 <button id="btnExceldown" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/empExcelView.do'">회원목록 엑셀파일 다운</button>
 			</div>
-			<table class="table text-center">
+			<div class ="card-body">
+			<table class="table text-center" id="foo-table">
 				<thead>
 					<tr>
 						<th class="text-center">사번</th>
 						<th class="text-center">이름</th>
 						<th class="text-center">부서</th>
 						<th class="text-center">직책</th>
+						<th class="text-center">조회</th>
 					</tr>
 				</thead>
 				<tbody id="user"></tbody>
-			</table>
+			</table> 
+			</div>
+		</div>
+		<div>
+				<button id="btnInsertForm" data-toggle="modal" data-target="#searchModel" class="btn btn-primary">등록</button>
+				<button id="btnExcelUpForm" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/excelUploadPage'">엑셀 등록</button>
+				<button id="btnExceldown" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/empExcelView.do'">회원목록 엑셀파일 다운</button>
+				</div>
+	</div>
 
-			<div id="searchModel" class="modal" tabindex="-1" role="dialog">
+<div id="searchModel" class="modal" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Information</h5>
+							<h5 class="modal-title">회원정보</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -326,7 +357,9 @@ input[type=text] {
 								<br> 
 								<label for="email"><b>이메일</b></label><br> 
 								<input type="text" name="email" id="email" required onchange="echeckinit()">
-								<button type="button" class="btn btn-primary" id="btnEcheck">중복 확인</button>
+								<br>
+								<button type="button" class="btn btn-primary" id="btnEcheck" >중복 확인</button>
+								<br>
 								
 								<br> 
 								<label for="phone"><b>휴대 전화</b></label><br> 
@@ -353,9 +386,7 @@ input[type=text] {
 						</div>
 					</div>
 				</div>
+				
 			</div>
-		</div>
-	</div>
-
 </body>
 </html>
