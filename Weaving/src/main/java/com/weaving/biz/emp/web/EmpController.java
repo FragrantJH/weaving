@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weaving.biz.common.SessionInfo;
+import com.weaving.biz.common.SessionListener;
 import com.weaving.biz.doc.DocListService;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
@@ -90,7 +91,7 @@ public class EmpController {
 	@RequestMapping(value = "/emplist1", method = RequestMethod.GET)
 	@ResponseBody
 	public List<EmpVO> getUserList(Model model, EmpVO vo) {
-		if(vo.getDeptId() == null || vo.getDeptId() == "")
+		if (vo.getDeptId() == null || vo.getDeptId() == "")
 			vo.setDeptId("7");
 		return service.getEmpList(vo);
 	}
@@ -178,15 +179,7 @@ public class EmpController {
 			 */
 			return "empty/login";
 		} else {
-			
-			/*
-			 * Set<HttpSession> loginEmp =
-			 * (Set<HttpSession>)context.getAttribute("loginEmp");
-			 * 
-			 * for(HttpSession s: loginEmp){ if(s.getId().equals(session.getId())) {
-			 * System.out.println("same session : " + session.getId()); } }
-			 */	
-			
+
 			if (emp.getAdminYn()) {
 				session.setAttribute("emp", emp);
 				return "redirect:adminHome";
@@ -197,6 +190,8 @@ public class EmpController {
 				session.setAttribute("empNo", emp.getEmpNo());
 				session.setAttribute("empName", emp.getEmpName());
 				session.setAttribute("position", emp.getPosition());
+				
+				SessionListener.checkSession(session);
 
 				return "redirect:home";
 			}
@@ -227,8 +222,8 @@ public class EmpController {
 			result = 1;
 		return result;
 	}
-	
-	@RequestMapping(value = "/checkPw", method = {RequestMethod.POST,RequestMethod.GET})
+
+	@RequestMapping(value = "/checkPw", method = { RequestMethod.POST, RequestMethod.GET })
 	public String checkPw(@ModelAttribute("Emp") EmpVO vo, HttpServletRequest request, HttpSession session,
 			HttpServletResponse response, Model model) {
 		EmpVO emp = service.getEmp(vo);
@@ -236,7 +231,7 @@ public class EmpController {
 		if (emp == null) {
 			return "empty/login";
 		} else {
-				return "emp/emp";
+			return "emp/emp";
 		}
 	}
 

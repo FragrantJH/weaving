@@ -160,16 +160,50 @@
 		ORDER BY APPROVAL_ORDER ASC
 	</select>
 	
+	<select id="getReturnComment" parameterType="com.weaving.biz.doc.DocDetailVO"
+		resultType="com.weaving.biz.doc.DocDetailVO">
+		SELECT 
+		    A.DOC_ID, 
+		    A.EMP_NO, 
+		    B.EMP_NAME,
+		    A.APPROVAL_ORDER, 
+		    A.APPROVAL_DATE, 
+		    A.STATUS, 
+		    A.APPROVAL_COMMENTS, 
+			CASE WHEN POSITION = '0' THEN '사원'
+				WHEN POSITION = '1' THEN '대리'
+				WHEN POSITION = '2' THEN '과장'
+				WHEN POSITION = '3' THEN '차장'
+				WHEN POSITION = '4' THEN '부장'
+		        WHEN POSITION = '5' THEN '대표'
+				ELSE '없음' END AS POSITION
+				,
+		    C.DEPT_NAME
+		FROM DOCUMENTDETAIL  A 
+		JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO 
+		JOIN DEPARTMENT C ON B.DEPT_ID = C.DEPT_ID
+		<where>
+			A.DOC_ID = #{docId}  
+			AND A.EMP_NO = 
+			(SELECT RETURN_EMP_NO FROM DOCUMENTS WHERE DOC_ID=#{docId})
+		</where>
+		ORDER BY APPROVAL_ORDER ASC		
+	</select>
+	
 	<update id="updateReturnEmpNo" parameterType="com.weaving.biz.doc.DocApprovalVO">
 		UPDATE DOCUMENTS SET RETURN_EMP_NO=#{empNo} WHERE DOC_ID=#{docId}
 	</update>
 
 	<update id="updateReturnDoc" parameterType="com.weaving.biz.doc.DocApprovalVO">
-		UPDATE DOCUMENTDETAIL SET STATUS='RETU', APPROVAL_COMMENTS=#{approvalComments} WHERE DOC_ID=#{docId} AND EMP_NO=#{writerEmpNo}
+		UPDATE DOCUMENTDETAIL SET STATUS='RETU' WHERE DOC_ID=#{docId} AND EMP_NO=#{writerEmpNo}
 	</update>
-		
+	
+	<update id="updateReturnComment" parameterType="com.weaving.biz.doc.DocApprovalVO">
+		UPDATE DOCUMENTDETAIL SET APPROVAL_COMMENTS=#{approvalComments} WHERE DOC_ID=#{docId} AND EMP_NO=#{empNo}
+	</update>
+			
 	<update id="updateApprovalNullDate" parameterType="com.weaving.biz.doc.DocApprovalVO">
-		UPDATE DOCUMENTDETAIL SET APPROVAL_DATE=NULL WHERE DOC_ID=#{docId}
+		UPDATE DOCUMENTDETAIL SET STATUS='WAIT', APPROVAL_DATE=NULL WHERE DOC_ID=#{docId}
 	</update>
 	<delete id="delteDocDetail" parameterType="com.weaving.biz.doc.DocDeleteVO">
 		DELETE FROM DOCUMENTDETAIL WHERE DOC_ID=#{docId}

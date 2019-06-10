@@ -49,10 +49,8 @@
 
 	<!-- Transaction AOP 설정 -->
 	<aop:config>
-		<aop:pointcut expression="execution(public * com..*(..))"
-			id="txPointCut" />
-		<aop:advisor advice-ref="txAdvice"
-			pointcut-ref="txPointCut" />
+		<aop:pointcut expression="execution(public * com..*(..))" id="txPointCut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut" />
 	</aop:config>
 
 </beans>

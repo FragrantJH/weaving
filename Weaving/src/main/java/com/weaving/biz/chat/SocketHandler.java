@@ -1,5 +1,6 @@
 package com.weaving.biz.chat;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -19,7 +20,7 @@ import com.weaving.biz.emp.EmpVO;
 public class SocketHandler extends TextWebSocketHandler implements InitializingBean {
 
 	private static final Logger logger = LoggerFactory.getLogger(SocketHandler.class);
-	private Set<WebSocketSession> sessionSet = new HashSet<WebSocketSession>();
+	private Map<Integer, WebSocketSession> sessionSet = new HashMap<Integer, WebSocketSession>();
 
 	public SocketHandler() {
 		super();
@@ -30,7 +31,12 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	// onClose
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		super.afterConnectionClosed(session, status);
-		sessionSet.remove(session);
+
+		Map<String, Object> map = session.getAttributes();
+		EmpVO emp = (EmpVO) map.get("empVO");
+		if (emp != null) {
+			sessionSet.remove(emp.getEmpNo());
+		}
 		this.logger.info("remove session!");
 	}
 
@@ -38,12 +44,12 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	// onOpen
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		super.afterConnectionEstablished(session);
-		sessionSet.add(session);
-		
+
 		Map<String, Object> attrs = session.getAttributes();
-		EmpVO empVo = (EmpVO)attrs.get("empVO");
+		EmpVO empVo = (EmpVO) attrs.get("empVO");
 		System.out.println("접속한 사용자 정보: " + empVo);
-		
+
+		sessionSet.put(empVo.getEmpNo(), session);
 		this.logger.info("add session!");
 	}
 
@@ -52,11 +58,18 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
 		super.handleMessage(session, message);
 		this.logger.info("receive message:" + message.toString());
-		
+
 		// json string을 vo로 변환
 		ObjectMapper mapper = new ObjectMapper(); // "{cmd: sss, tmsg:'sss', id:'ddd'}"
 		MsgVO msgvo = mapper.readValue((String) message.getPayload(), MsgVO.class);
-		sendMessage(msgvo.getId() + ":" + msgvo.getTmsg());
+
+		switch (msgvo.getCmd()) {
+		case "message":
+			sendMessage(msgvo, (String) message.getPayload());
+			break;
+		default:
+			break;
+		}
 	}
 
 	@Override
@@ -70,14 +83,14 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 		return super.supportsPartialMessages();
 	}
 
-	public void sendMessage(String message) {
-		for (WebSocketSession session : this.sessionSet) {
-			if (session.isOpen()) {
-				try {
-					session.sendMessage(new TextMessage(message));
-				} catch (Exception ignored) {
-					this.logger.error("fail to send message!", ignored);
-				}
+	public void sendMessage(MsgVO msgVo, String message) {
+		WebSocketSession toSession = sessionSet.get(msgVo.getEmpNo());
+
+		if (toSession != null && toSession.isOpen()) {
+			try {
+				toSession.sendMessage(new TextMessage(message));
+			} catch (Exception ignored) {
+				this.logger.error("fail to send message!", ignored);
 			}
 		}
 	}
@@ -92,7 +105,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 				while (true) {
 					try {
 						// 1초마다 보낸다
-						sendMessage("send message index " + i++);
+						// sendMessage("send message index " + i++);
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();

@@ -66,6 +66,11 @@
 
 			calendar = new FullCalendar.Calendar(calendarEl, {
 				plugins : [ 'dayGrid' ], // 적용할 plugin
+				header : {
+					left : 'prev,next today',
+					center : 'title',
+					right : 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+				},
 				defaultDate : moment().format('YYYY-MM-DD' + 'T' + 'HH:00:00'), // 현재 날짜
 				navLinks : true,
 				selectable : true,
@@ -84,29 +89,37 @@
 				return;
 			}
 			
-			var check_item = '<div class="form-check">';
-			check_item += '<label class="form-check-label">';
-			check_item += '<input id="item_check_2" class="form-check-input" type="checkbox">';
-			check_item += '<span class="form-check-sign"> <span class="check"></span>';
-			check_item += '</span>';
-			check_item += '</label>';
-			check_item += '</div>';
-			
-			
-			$('#todoList').append(
-					$('<tr>').attr('id', 'item_2').append(
-						$('<td>').html(check_item),
-						$('<td>').attr('id', 'item_content_2').append($('#todo_input').val()),
-						$('<td>').addClass('td-actions text-right').append(
-							$('<button>').addClass('btn btn-danger btn-link btn-sm').append(
-								$('<i>').addClass('material-icons').append('close')		
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/todoInsert",
+				data : "content=" + $('#todo_input').val(),
+				success : function() {
+					var check_item = '<div class="form-check">';
+					check_item += '<label class="form-check-label">';
+					check_item += '<input id="item_check_2" class="form-check-input" type="checkbox">';
+					check_item += '<span class="form-check-sign"> <span class="check"></span>';
+					check_item += '</span>';
+					check_item += '</label>';
+					check_item += '</div>';
+					
+					
+					$('#todoList').append(
+							$('<tr>').attr('id', 'item_2').append(
+								$('<td>').html(check_item),
+								$('<td>').attr('id', 'item_content_2').append($('#todo_input').val()),
+								$('<td>').addClass('td-actions text-right').append(
+									$('<button>').addClass('btn btn-danger btn-link btn-sm').append(
+										$('<i>').addClass('material-icons').append('close')		
+									)
+								)
 							)
-						)
-					)
-			);
+					);
+					
+					// reset
+					$('#todo_input').val('');
+				}
+			});
 			
-			// reset
-			$('#todo_input').val('');
 		}
 	</script>
 

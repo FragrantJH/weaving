@@ -138,9 +138,11 @@ public class DocController {
 		vo.setEmpNo(empNo);
 		vo.setDocId(Integer.parseInt(request.getParameter("docId")));
 
-		model.addAttribute("docListType",(String)request.getParameter("listType"));
-		model.addAttribute("docInfo",docService.getDocument(vo));
-		model.addAttribute("docDetailInfo",docService.getDocDetail(vo));
+		model.addAttribute("docListType", (String)request.getParameter("listType"));
+		model.addAttribute("docInfo", docService.getDocument(vo));
+		model.addAttribute("docDetailInfo", docService.getDocDetail(vo));
+		model.addAttribute("docDetailInfo", docService.getDocDetail(vo));
+		model.addAttribute("docCommentInfo", docService.getReturnComment(vo));
 		return "approval/docDetailView";
 	}
 	
@@ -160,9 +162,13 @@ public class DocController {
 	)
 	@ResponseBody
 	public DocApprovalVO updateReturn(@RequestBody DocApprovalVO vo, Model model) {
+		System.out.println("===================");
+		//System.out.println(vo.);
+		System.out.println("===================");
 		docService.updateReturnEmpNo(vo);
-		docService.updateReturnDoc(vo);
 		docService.updateApprovalNullDate(vo);
+		docService.updateReturnDoc(vo);
+		docService.updateReturnComment(vo);
 		return vo;
 	}
 	
