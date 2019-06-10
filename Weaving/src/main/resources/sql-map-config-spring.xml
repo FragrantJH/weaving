@@ -16,6 +16,7 @@
 		<typeAlias alias="reply" type="com.weaving.biz.reply.ReplyVO" />
 		<typeAlias alias="docForm" type="com.weaving.biz.docForm.DocFormVO"/>
 		<typeAlias alias="room" type="com.weaving.biz.room.RoomVO"/>
+		<typeAlias alias="email" type="com.weaving.biz.email.EmailVO"/>
 		<typeAlias alias="reserv" type="com.weaving.biz.reserv.ReservVO"/>
 		<typeAlias alias="emp" type="com.weaving.biz.emp.EmpVO"/>
 		<typeAlias alias="dept" type="com.weaving.biz.dept.DeptVO"/>

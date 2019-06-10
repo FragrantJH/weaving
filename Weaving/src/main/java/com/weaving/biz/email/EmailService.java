@@ -6,7 +6,7 @@ public interface EmailService{
 
 	public void getWaitEmailList(EmailVO vo);
 
-	String insertEmail(EmailVO vo) throws Exception;
+	void insertEmail(EmailVO vo) throws Exception;
 	
 	String insertInbox(EmailVO vo) throws Exception;
 
@@ -17,29 +17,11 @@ public interface EmailService{
 	void deleteEmail(EmailVO vo);
 
 	// 메일 상세 조회
-	EmailVO getEmailOne(EmailVO vo);
-
-	//메일 목록 조회
-	List<?> getEmailList(MessageVO mvo) throws Exception;
-
-	//메일 목록 조회  get
-	List<?>selectEmailListG(MessageVO mvo) throws Exception;
+	EmailVO getINBOXOne(EmailVO vo) throws Exception;
 	
-	//메일 목록 조회 set
-	List<EmailVO>selectEmailListS(EmailVO vo);
+	List<EmailVO> getEmailList(EmailVO vo) throws Exception ;
 	
-	// 페이징 처리
-	List<EmailVO> getEmailListPaging(EmailVO vo);
-		
-	int mailReadCheck(EmailVO vo);
-	// 전체 건수
-	int getEmailListTotalCount(EmailVO vo);
-	
-	// 전체 건수get
-	int getEmailListTotalCountG(EmailVO vo);
-	
-	// 전체 건수 set 
-	int getEmailListTotalCountS(EmailVO vo);
+	 List<EmailVO> getEmailListtPaging(EmailVO vo);
 	
 }
 

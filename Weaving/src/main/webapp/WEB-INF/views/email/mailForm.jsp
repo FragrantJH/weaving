@@ -10,14 +10,26 @@
 	src="./resources/workspace/js/service/HuskyEZCreator.js"
 	charset="utf-8"></script>
 <!-- 메일보내기 -->
+<script type="text/javascript">
 
+function checkform() {
+	
+	oEditors.getById["emailContents"].exec("UPDATE_CONTENTS_FIELD", []);
+	if(frm.subject.value==""){
+		alert("제목을 입력");
+		return ;
+	}
+
+	frm.submit();
+}
+</script>
 </head>
 
 <body>
-	<form action="mailSend" method="post">
+	<form action="mailSend" method="post" name="frm">
 		<div class="bigpage">
 			<div class="send-button">
-				<input type="submit" value="보내기"/>
+				<input type="button" value="보내기" onclick="checkform()"/>
 				<button>미리보기</button>
 				<button>저장하기</button>
 				<button>옵션</button>
@@ -28,7 +40,7 @@
 						<tr class="Recipient">
 							<th class="row" ><label> <a href="#">보내는사람</a>
 						</label></th>
-							<td colspan="1"><input type="text" name="fromEmail" placeholder="dohy43@gmail.com"><br>
+							<td colspan="1"><input type="text" name="fromEmail" placeholder="${emp.email}"><br>
 							</td>
 						</tr>
 
@@ -53,13 +65,13 @@
 
 			<div class="file-attachment"></div>
 			<div class="editer-textarea">
-				<textarea name=emailContents id="ir1" rows="10" cols="100"></textarea>
+				<textarea name=emailContents id="emailContents" rows="10" cols="100"></textarea>
 
-				<script>
+		<script>
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
  oAppRef: oEditors,
- elPlaceHolder: "ir1",
+ elPlaceHolder: "emailContents",
  sSkinURI:"./resources/workspace/SmartEditor2Skin.html" ,
  fCreator: "createSEditor2"
 });

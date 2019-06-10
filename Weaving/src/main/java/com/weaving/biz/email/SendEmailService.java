@@ -123,7 +123,7 @@ public class SendEmailService {
 	         message.setContent(multipart);	         
 	         Transport.send(message);
 	         
-	         sv.insertEmail(vo);
+	        sv.insertEmail(vo);
 	         
 	         
 	         System.out.println("Sent message successfully....");
