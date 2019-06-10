@@ -51,9 +51,73 @@
 			   START_TIME,
 			   END_TIME,
 			   DESCRIPTION
-		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO ORDER BY RESERV_ID
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO ORDER BY START_TIME
 		
 	</select>
+	
+	<select id="beforeReservList" resultType="reserv">
+	<![CDATA[
+		SELECT RESERV_ID,
+		       ROOM_ID,
+			   A.EMP_NO,
+               B.EMP_NAME,
+			   START_TIME,
+			   END_TIME,
+			   DESCRIPTION
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO 
+		  WHERE START_TIME < TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI')
+		  ORDER BY START_TIME
+	]]>
+	</select>
+	
+	<select id="todayReservList" resultType="reserv">
+		SELECT RESERV_ID,
+		       ROOM_ID,
+			   A.EMP_NO,
+               B.EMP_NAME,
+			   START_TIME,
+			   END_TIME,
+			   DESCRIPTION
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO ORDER BY START_TIME
+		
+	</select>
+	
+	<select id="roomOneReservList" resultType="reserv">
+		SELECT RESERV_ID,
+		       ROOM_ID,
+			   A.EMP_NO,
+               B.EMP_NAME,
+			   START_TIME,
+			   END_TIME,
+			   DESCRIPTION
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO ORDER BY START_TIME
+		
+	</select>
+	
+	<select id="roomTwoReservList" resultType="reserv">
+		SELECT RESERV_ID,
+		       ROOM_ID,
+			   A.EMP_NO,
+               B.EMP_NAME,
+			   START_TIME,
+			   END_TIME,
+			   DESCRIPTION
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO ORDER BY START_TIME
+		
+	</select>
+	
+	<select id="roomThreeReservList" resultType="reserv">
+		SELECT RESERV_ID,
+		       ROOM_ID,
+			   A.EMP_NO,
+               B.EMP_NAME,
+			   START_TIME,
+			   END_TIME,
+			   DESCRIPTION
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO ORDER BY START_TIME
+		
+	</select>
+	
 	
 	<select id="selectReserv" parameterType="reserv" resultType="reserv">
 		SELECT RESERV_ID,

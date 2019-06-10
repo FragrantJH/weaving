@@ -14,7 +14,15 @@
 
 <!-- 예약현황 tr 클릭시 값을 받아와서 입력시키는 페이지 -->
 
+<style>
+div.statusbutton
+{
 
+	margin : auto;
+	width : 50%;
+
+}
+</style>
 
 <script>		
 
@@ -221,14 +229,31 @@
 		</div>
 
 	</div>
-
-
+<script>
+	function show(view){
+		
+		//location = "roomReserv?roombutton="+view
+		frm1.roombutton.value=view;
+		frm1.submit();
+	}
+</script>
+	
 	<div class="col-md-6">
 		<div class="card">
 			<div class="card-header card-header-text card-header-primary">
 				<div class="card-text">
 					<h4 class="card-title">예약현황</h4>
 				</div>
+				<form action="roomReserv" name="frm1">
+				<input type="hidden" name="roombutton">
+				<div class="statusbutton">
+				<button type="button" id="before" onclick="show('1')">지난예약</button>
+				<button type="button" id="today" onclick="show('2')">금일예약</button>
+				<button type="button" id="roomone" onclick="show('3')">1번룸</button>
+				<button type="button" id="roomtwo" onclick="show('4')">2번룸</button>
+				<button type="button" id="roomthree" onclick="show('5')">3번룸</button>
+				</div>
+				</form>
 			</div>
 			<div class="card-body">
 				<table id="reservation" class="table">

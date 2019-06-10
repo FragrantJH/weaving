@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.weaving.biz.reserv.ReservService;
 import com.weaving.biz.reserv.ReservVO;
+
 @Service("reservService")
 public class ReservServiceImpl implements ReservService {
 
 	@Autowired
 	ReservDAO rss;
-	
+
 	@Override
 	public void insertReserv(ReservVO vo) {
 		// TODO Auto-generated method stub
@@ -37,6 +38,26 @@ public class ReservServiceImpl implements ReservService {
 	public ReservVO getReserv(ReservVO vo) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<ReservVO> getReservList(String cmd) {
+		if (cmd == "1") {
+			return rss.getBeforeList();
+		} else if (cmd == "2") {
+			return rss.getTodayList();
+
+		} else if (cmd == "3") {
+			return rss.getRoomOneList();
+
+		} else if (cmd == "4") {
+			return rss.getRoomTwoList();
+
+		} else if (cmd == "5") {
+			return rss.getRoomThreeList();
+		} else {
+			return null;
+		}
 	}
 
 	@Override
