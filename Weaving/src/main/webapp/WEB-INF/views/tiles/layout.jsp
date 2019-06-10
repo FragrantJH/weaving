@@ -29,15 +29,11 @@
 </head>
 
 <style>
-.nav-item {
-	cursor: pointer;
-}
-
 
 .container-fluid{
-	width: 87%;
+	width: 95%;
 	height: 75%;
-
+}
 </style>
 
 <body class="">
@@ -86,7 +82,7 @@
       <!-- 메뉴 -->
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item ">
+          <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/home">
               <i class="material-icons">dashboard</i>
               <p>Home</p>
@@ -99,7 +95,7 @@
               <i class="material-icons">email</i>
               <p>메일</p>
             </a>
-          </li>
+          
 		  <div class="collapse navbar-collapse" id="mail">
 		    <ul class="navbar-nav">
 				<li class="nav-item">
@@ -116,7 +112,7 @@
 				 </li>				 
 		    </ul>
 		  </div>
-		  
+		  </li>
 		  
 		  <!-- 결재 -->
 		  <li class="nav-item">
@@ -124,47 +120,48 @@
               <i class="material-icons">description</i>
               <p>전자 결재</p>
             </a>
+            <div class="collapse navbar-collapse" id="document">
+			    <ul class="navbar-nav">
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docInsertView">
+						 	<i class="material-icons">create</i>
+	              		<p>문서 작성하기</p>
+						</a>
+					 </li>
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=TEMP">
+						 	<i class="material-icons">border_color</i>
+	              			<p>임시 저장 문서</p>
+						</a>
+					</li>				 
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=WAIT">
+						 	<i class="material-icons">flag</i>
+	              			<p>결재 대기 문서</p>
+						</a>
+					</li>				 
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=RETURN">
+							<i class="material-icons">undo</i>
+		              		<p>반려 문서</p>
+						</a>
+					</li>				 
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=ING">
+					      	<i class="material-icons">forward</i>
+		              		<p>전체 진행 문서</p>
+						</a>
+					</li>
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=DONE">
+				      	<i class="material-icons">done_outline</i>
+	              		<p>완료 문서</p>
+						</a>
+					</li>					 
+			    </ul>
+		  	</div> 
           </li>
-		  <div class="collapse navbar-collapse" id="document">
-		    <ul class="navbar-nav">
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docInsertView">
-					 	<i class="material-icons">create</i>
-              		<p>문서 작성하기</p>
-					</a>
-				 </li>
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=TEMP">
-					 	<i class="material-icons">border_color</i>
-              			<p>임시 저장 문서</p>
-					</a>
-				</li>				 
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=WAIT">
-					 	<i class="material-icons">flag</i>
-              			<p>결재 대기 문서</p>
-					</a>
-				</li>				 
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=RETURN">
-						<i class="material-icons">undo</i>
-	              		<p>반려 문서</p>
-					</a>
-				</li>				 
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=ING">
-				      	<i class="material-icons">forward</i>
-	              		<p>전체 진행 문서</p>
-					</a>
-				</li>
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/docList?listType=DONE">
-			      	<i class="material-icons">done_outline</i>
-              		<p>완료 문서</p>
-					</a>
-				</li>					 
-		    </ul>
-		  </div> 
+		  
 		    
           
           <!-- 게시판 -->
@@ -173,23 +170,24 @@
               <i class="material-icons">list</i>
               <p>게시판</p>
             </a>
+            <div class="collapse navbar-collapse" id="board">
+			    <ul class="navbar-nav">
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=0">
+						 	<i class="material-icons">notifications</i>
+						 	<p>공지사항</p>
+						</a>
+					 </li>
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=1">
+						 	<i class="material-icons">forum</i>
+						 	<p>게시판</p>
+						</a>
+					 </li>				 
+			    </ul>
+			  </div> 
           </li>
-		  <div class="collapse navbar-collapse" id="board">
-		    <ul class="navbar-nav">
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=0">
-					 	<i class="material-icons">notifications</i>
-					 	<p>공지사항</p>
-					</a>
-				 </li>
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/boardList?boardType=1">
-					 	<i class="material-icons">forum</i>
-					 	<p>게시판</p>
-					</a>
-				 </li>				 
-		    </ul>
-		  </div> 
+		  
         
          <!-- 예약 -->
           <li class="nav-item">
@@ -205,23 +203,23 @@
               <i class="material-icons">today</i>
               <p>일정</p>
             </a>
+            <div class="collapse navbar-collapse" id="cal">
+			    <ul class="navbar-nav">
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=ALL">
+						 	<i class="material-icons">group</i>
+						 	<p>전체일정</p>
+						</a>
+					 </li>
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=USER">
+						 	<i class="material-icons">perm_contact_calendar</i>
+						 	<p>개인일정</p>
+						</a>
+					 </li>				 
+			    </ul>
+			  </div> 
           </li>
-		  <div class="collapse navbar-collapse" id="cal">
-		    <ul class="navbar-nav">
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=ALL">
-					 	<i class="material-icons">group</i>
-					 	<p>전체일정</p>
-					</a>
-				 </li>
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/getCal.do?calType=USER">
-					 	<i class="material-icons">perm_contact_calendar</i>
-					 	<p>개인일정</p>
-					</a>
-				 </li>				 
-		    </ul>
-		  </div> 
         </ul>
       </div>
     </div>
@@ -244,21 +242,11 @@
             
             <ul class="navbar-nav">
               
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
-                  <p class="d-lg-none d-md-block">
-                    Some Actions
-                  </p>
+              <li class="nav-item">
+              	<a class="nav-link" href="${pageContext.request.contextPath}/getChatEmpList" 
+              	onclick="window.open(this.href, '_blank', 'width=400,height=600,toolbars=no,scrollbars=no');  return false;" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">chat</i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                  <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                  <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                  <a class="dropdown-item" href="#">Another Notification</a>
-                  <a class="dropdown-item" href="#">Another One</a>
-                </div>
               </li>
               
               <li class="nav-item dropdown">
@@ -284,6 +272,9 @@
     		<tiles:insertAttribute name="content" />
       </div>
       
+      <div class="text-center" style="margin-bottom: 0; background-color: #d3d3d3;">
+		<p style="color: white;">Copyright ⓒ 2019 WEAVING All Rights Reserved.</p>
+	  </div>
     </div>
   </div>
   
@@ -508,9 +499,37 @@
     });
   </script>
   <script>
+  	var webSocket = new WebSocket('ws://localhost/weaving/broadcast.do');
+  	var chatWindow;
+  	
+  	webSocket.onerror = function(event) {
+		onError(event);
+	};
+	webSocket.onopen = function(event) {
+		onOpen(event);
+	};
+	webSocket.onmessage = function(event) {
+		onMessage(event);
+	};
+	
+	function onMessage(event) {
+		chatWindow = window.open(this.href, '_blank', 'width=400,height=600,toolbars=no,scrollbars=no');
+		chatWindow.$('#chatView').show();
+		chatWindow.$('#empList').hide();
+	}
+	function onOpen(event) {
+		// TODO: 채팅 연결 되었을 때 어떻게 할지..
+		console.log("chat is open!!!!");
+	}
+	function onError(event) {
+		console.log(event);
+		alert(event.data);
+	}
+  
     $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
+      
+    	// TODO : 이거 demo에서만 처리되는거면 제거
+    	//md.initDashboardPageCharts();
 
     });
   </script>
