@@ -250,8 +250,16 @@ input[type=text] {
   padding: 12px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: none;
   background: #f1f1f1;
+}
+
+select {
+  width: 80%;
+  height: 15px;
+  padding: 12px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  background: #f1f1f2;
 }
 .submenu {
 	display: none;
@@ -298,7 +306,7 @@ input[type=text] {
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Information</h5>
+							<h5 class="modal-title">회원정보</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -349,7 +357,9 @@ input[type=text] {
 								<br> 
 								<label for="email"><b>이메일</b></label><br> 
 								<input type="text" name="email" id="email" required onchange="echeckinit()">
-								<button type="button" class="btn btn-primary" id="btnEcheck">중복 확인</button>
+								<br>
+								<button type="button" class="btn btn-primary" id="btnEcheck" >중복 확인</button>
+								<br>
 								
 								<br> 
 								<label for="phone"><b>휴대 전화</b></label><br> 
