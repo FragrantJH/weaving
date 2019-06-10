@@ -20,7 +20,21 @@ public class EmpVO {
 	private String[] seqs;
 	private int cnt;
 	private boolean adminYn;
+	private int first;
+	private int last;
 	
+	public int getFirst() {
+		return first;
+	}
+	public void setFirst(int first) {
+		this.first = first;
+	}
+	public int getLast() {
+		return last;
+	}
+	public void setLast(int last) {
+		this.last = last;
+	}
 	public String getGmailAppKey() {
 		return gmailAppKey;
 	}
@@ -129,11 +143,12 @@ public class EmpVO {
 	@Override
 	public String toString() {
 		return "EmpVO [gmailAppKey=" + gmailAppKey + ", empNo=" + empNo + ", empName=" + empName + ", password="
-				+ password + ", position=" + position + ", joindate1=" + joinDate + ", deptName=" + deptName
-				+ ", email=" + email + ", phone=" + phone + ", address=" + address + ", deptId=" + deptId
-				+ ", deletedYn=" + deletedYn + ", deleteDate=" + deleteDate + ", seq=" + seq + ", seqs="
-				+ Arrays.toString(seqs) + ", cnt=" + cnt + ", adminYn=" + adminYn + "]";
+				+ password + ", position=" + position + ", joinDate=" + joinDate + ", deptName=" + deptName + ", email="
+				+ email + ", phone=" + phone + ", address=" + address + ", deptId=" + deptId + ", deletedYn="
+				+ deletedYn + ", deleteDate=" + deleteDate + ", seq=" + seq + ", seqs=" + Arrays.toString(seqs)
+				+ ", cnt=" + cnt + ", adminYn=" + adminYn + ", first=" + first + ", last=" + last + "]";
 	}
+	
 	
 	
 }

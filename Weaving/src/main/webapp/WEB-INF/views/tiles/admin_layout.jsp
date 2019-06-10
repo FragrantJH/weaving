@@ -45,7 +45,7 @@
 		<div class="logo">
 			<a href="${pageContext.request.contextPath}/adminHome"
 				class="simple-text logo-normal"> WEAVING </a> <br>
-			<div class="container">
+			<div>
 				<div align="center">
 					<img
 						src="${pageContext.request.contextPath}/images/no_login_avatar.png"
