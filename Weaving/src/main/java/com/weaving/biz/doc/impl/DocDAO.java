@@ -40,6 +40,9 @@ public class DocDAO {
 	public void updateReturnDoc(DocApprovalVO vo) {
 		mybatis.update("DocDAO.updateReturnDoc", vo);
 	}
+	public void updateReturnComment(DocApprovalVO vo) {
+		mybatis.update("DocDAO.updateReturnComment", vo);
+	}
 	public void updateApprovalNullDate(DocApprovalVO vo) {
 		mybatis.update("DocDAO.updateApprovalNullDate", vo);
 	}
@@ -50,6 +53,9 @@ public class DocDAO {
 	public DocDetailVO getDocument(DocDetailVO vo) {
 		return mybatis.selectOne("DocDAO.getDocument", vo);
 	}
+	public DocDetailVO getReturnComment(DocDetailVO vo) {
+		return mybatis.selectOne("DocDAO.getReturnComment", vo);
+	}	
 	public List<DocInsertVO> getDocDetail(DocDetailVO vo) {
 		//
 		return mybatis.selectList("DocDAO.getDocDetail", vo);
