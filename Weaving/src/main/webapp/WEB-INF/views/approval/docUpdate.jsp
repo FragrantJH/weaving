@@ -429,7 +429,7 @@ function toRightMove() {
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary"
-													data-dismiss="modal">Close</button>
+													data-dismiss="modal">닫기</button>
 											</div>
 										</div>
 									</div>
@@ -504,9 +504,9 @@ function toRightMove() {
 							</div>
 							<div class="modal-footer justify-content-center">
 								<button type="button" id="rs-approval-list"
-									class="btn btn-primary">Save changes</button>							
+									class="btn btn-primary">확인</button>							
 								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">Close</button>
+									data-dismiss="modal">닫기</button>
 							</div>
 						</div>
 					</div>
@@ -540,8 +540,8 @@ function toRightMove() {
 						<input name="secureLevel" type="hidden" value="">
 						<input name="approvalList" type="hidden" value="">
 					</div>
-					<button type="button" class="btn btn-primary tempSave">Save</button>
-					<button type="button" class="btn btn-primary">Update</button>
+					<button type="button" class="btn btn-primary tempSave">임시저장</button>
+					<button type="button" class="btn btn-primary">결재</button>
 				</form>
 			</div>
 		</div>
