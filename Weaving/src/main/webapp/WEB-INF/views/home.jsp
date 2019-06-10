@@ -136,9 +136,11 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<h6 class="card-title">
-							사용자님의 결재 대기중인 <br> 문서는 ${count}건 입니다.
-						</h6>
+						<p class="h6 card-title">
+							사용자님의 결재 대기중인 문서는 <br> 
+							<small class="text-muted" style="font-size:x-large;">${count}</small>
+							건 입니다.
+						</p>
 
 					</div>
 				</div>
@@ -156,10 +158,11 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<h6 class="card-title">
-							사용자님의 반려된 문서는 <br> ${returndoc}건 입니다.
-						</h6>
-
+						<p class="h6 card-title">
+							사용자님의 반려된 문서는 <br> 
+							<small class="text-muted" style="font-size:x-large;">${returndoc}</small>
+							건 입니다.
+						</p>
 					</div>
 				</div>
 			</div>
@@ -174,10 +177,10 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<h6 class="card-title">
-							사용자님이 아직 읽지 않은 메일은 <br> ${countMail}건 입니다.
-						</h6>
-
+						<p class="h6 card-title">사용자님이 아직 읽지 않은 메일은 <br>
+						  <small class="text-muted" style="font-size:x-large;">${countMail}</small>
+						  건 입니다.
+						</p>
 					</div>
 				</div>
 			</div>
