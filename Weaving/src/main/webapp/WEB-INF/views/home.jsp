@@ -165,7 +165,7 @@
 			</div>
 
 
-			<div class="col-md-3" OnClick="location.href ='reading_mail'"
+			<div class="col-md-3" OnClick="location.href ='email_List'"
 				style="cursor: pointer;">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-danger">
