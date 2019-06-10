@@ -223,10 +223,15 @@
 							<tbody>
 								<c:forEach items="${boardList}" var="board">
 									<tr>
-										<td>${board.boardId}</td>
+										<td>${board.rowNum}</td>
 										<td>${board.empName}</td>
 										<td><a
-											href="${pageContext.request.contextPath}/boardOne/${board.boardId}">${board.title}</a></td>
+											href="${pageContext.request.contextPath}/boardOne/${board.boardId}">${board.title}
+											<!-- 댓글 갯수 출력 -->
+											<c:if test="${board.recnt > 0 }">
+											<span style="color: green;">(${board.recnt})</span>
+											</c:if>	
+										</a></td>
 										<td>${board.time}</td>
 									</tr>
 								</c:forEach>
@@ -256,10 +261,15 @@
 							<tbody>
 								<c:forEach items="${boardList1}" var="board">
 									<tr>
-										<td>${board.boardId}</td>
+										<td>${board.rowNum}</td>
 										<td>${board.empName}</td>
 										<td><a
-											href="${pageContext.request.contextPath}/boardOne/${board.boardId}">${board.title}</a></td>
+											href="${pageContext.request.contextPath}/boardOne/${board.boardId}">${board.title}
+											<!-- 댓글 갯수 출력 -->
+											<c:if test="${board.recnt > 0 }">
+											<span style="color: green;">(${board.recnt})</span>
+											</c:if>	
+										</a></td>
 										<td>${board.time}</td>
 									</tr>
 								</c:forEach>
