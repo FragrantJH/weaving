@@ -104,7 +104,7 @@
 						</a>
 					 </li>
 					<li class="nav-item">
-					   	<a class="nav-link" href="${pageContext.request.contextPath}/reading_mail">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/email_List">
 						 	<i class="material-icons">drafts</i>
 						 	<p>받은메일함</p>
 						</a>
@@ -512,17 +512,25 @@
 	};
 	
 	function onMessage(event) {
-		chatWindow = window.open(this.href, '_blank', 'width=400,height=600,toolbars=no,scrollbars=no');
-		chatWindow.$('#chatView').show();
-		chatWindow.$('#empList').hide();
+		console.log("onMessage: " + event.data);
+		var data = JSON.parse(event.data);	
+		
+		if(data.cmd == 'start') {
+			chatWindow = window.open('${pageContext.request.contextPath}/startChat', '새로운이름', 'width=400, height=600');
+			$(chatWindow.document).find('#toEmpNo').val(data.empNo);
+			$(chatWindow.document).find('#toEmpName').val(data.empName);
+		} else {
+			var chatList = $(chatWindow.document).find('#messageWindow');
+			chatList.val(chatList.val() + "\n" + data.empName + ": " + data.msg);
+		}
 	}
+	
 	function onOpen(event) {
-		// TODO: 채팅 연결 되었을 때 어떻게 할지..
 		console.log("chat is open!!!!");
 	}
+	
 	function onError(event) {
 		console.log(event);
-		alert(event.data);
 	}
   
     $(document).ready(function() {
