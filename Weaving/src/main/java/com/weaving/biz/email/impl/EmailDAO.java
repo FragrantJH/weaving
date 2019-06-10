@@ -22,10 +22,7 @@ public class EmailDAO {
 	 * */
 	public void insertEmail(EmailVO vo) throws Exception{
 		mybatis.insert("EmailDAO.insertEmail", vo);
-		vo.setEmailId(1);
-		
 	}
-	
 	/**
 	 * Email을 등록한다.
 	 * @param vo - 등록할 정보가 담긴 EmailVO
@@ -56,49 +53,16 @@ public class EmailDAO {
 	 * Email을 목록 하나 조회한다.
 	 * @param vo - 등록할 정보가 담긴 EmailVO 
 	 * */
-	public EmailVO getEmailOne(EmailVO vo)throws Exception {
-		return(EmailVO)mybatis.selectOne("EmailDAO.selectEmail", vo);
+	public EmailVO getINBOXOne(EmailVO vo)throws Exception {
+		return (EmailVO) mybatis.selectOne("EmailDAO.getINBOXOne", vo);
 	}
 	
 	/**
 	 * Email을  목록 여럿 조회한다.
 	 * */
-    public List<?> getEmailList(EmailVO vo) throws Exception{
-    	return mybatis.selectList("EmailDAO.selectEmailList", vo);
+    public List<EmailVO> getEmailList(EmailVO vo) throws Exception{
+    	return mybatis.selectList("EmailDAO.getEmailList", vo);
     }
-    /**
-	 * Email을  목록 여럿 조회한다.  G
-	 * */
-	public List<?> selectEmailListG(MessageVO mvo) throws Exception  {
-		return mybatis.selectList("EmailDAO.selectEmailList_G", mvo);
-		 /**
-		 * Email을  목록 여럿 조회한다. S
-		 * */
-	}  ;
-	public List<?> selectEmailListS(EmailVO vo) throws Exception {
-		 return   mybatis.selectList("EmailDAO.selectEmailList_S", vo);
-		
-	};
-	 /**
-		 * Email을  총 갯수 조회한다.
-		 * */
-	public List<EmailVO> getEmailListToTalCount(EmailVO vo)throws Exception {
-		return mybatis.selectList("EmailDAO.selectEmailListToTalCnt", vo);
-	}
-	 /**
-	 * Email을  총 갯수 조회한다.
-	 * */
-	public List<EmailVO> getEmailListTotalCountG(EmailVO vo) throws Exception {
-		return  mybatis.selectList("EmailDAO.selectEmailListToTalCnt_G", vo);
-		
-	};
-	 /**
-	 * Email을  총 갯수 조회한다.
-	 * */
-	public List<EmailVO> getEmailListTotalCountS(EmailVO vo) throws Exception {
-		return  mybatis.selectList("EmailDAO.selectEmailListTotCnt_S", vo);
-		
-	};
 	
 	 /**
 	 * Email을  피이징.

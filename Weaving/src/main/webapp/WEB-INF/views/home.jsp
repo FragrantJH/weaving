@@ -136,9 +136,11 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<h6 class="card-title">
-							사용자님의 결재 대기중인 <br> 문서는 ${count}건 입니다.
-						</h6>
+						<p class="h6 card-title">
+							사용자님의 결재 대기중인 문서는 <br> 
+							<small class="text-muted" style="font-size:x-large;">${count}</small>
+							건 입니다.
+						</p>
 
 					</div>
 				</div>
@@ -156,16 +158,17 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<h6 class="card-title">
-							사용자님의 반려된 문서는 <br> ${returndoc}건 입니다.
-						</h6>
-
+						<p class="h6 card-title">
+							사용자님의 반려된 문서는 <br> 
+							<small class="text-muted" style="font-size:x-large;">${returndoc}</small>
+							건 입니다.
+						</p>
 					</div>
 				</div>
 			</div>
 
 
-			<div class="col-md-3" OnClick="location.href ='reading_mail'"
+			<div class="col-md-3" OnClick="location.href ='email_List'"
 				style="cursor: pointer;">
 				<div class="card">
 					<div class="card-header card-header-icon card-header-danger">
@@ -174,10 +177,10 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<h6 class="card-title">
-							사용자님이 아직 읽지 않은 메일은 <br> ${countMail}건 입니다.
-						</h6>
-
+						<p class="h6 card-title">사용자님이 아직 읽지 않은 메일은 <br>
+						  <small class="text-muted" style="font-size:x-large;">${countMail}</small>
+						  건 입니다.
+						</p>
 					</div>
 				</div>
 			</div>
@@ -292,6 +295,7 @@
 
 						<table class="table" id="todoList">
 							<tbody>
+								<c:forEach items="${todolist}" var="todo">
 								<tr id="item_1">
 									<!-- TODO 리스트 목록 반복 영역 -->
 									<td>
@@ -305,16 +309,16 @@
 										</div>
 									</td>
 
-									<td id="item_content_1">Sign contract for "What are
-										conference organizers afraid of?"</td>
+									<td id="item_content_1">${todo.content}</td>
 
 									<td class="td-actions text-right">
-										<button type="button" class="btn btn-danger btn-link btn-sm">
+										<button type="button" class="btn btn-danger btn-link btn-sm" 
+											onclick="location='${pageContext.request.contextPath}/todoDelete?todoId=${todo.todoId}'">
 											<i class="material-icons">close</i>
 										</button>
 									</td>
 								</tr>
-
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>

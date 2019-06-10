@@ -204,7 +204,7 @@ function approvalSendEvent() {
 								</div>
 								
 								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 								</div>
 							</div>
 						</div>
@@ -228,9 +228,9 @@ function approvalSendEvent() {
 									</div>									
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-primary" id="approvalReject" style="display:none;">Reject</button>
-									<button type="button" class="btn btn-primary" id="approvalSend">Approval</button>
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary" id="approvalReject" style="display:none;">반려</button>
+									<button type="button" class="btn btn-primary" id="approvalSend">승인</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 								</div>
 							</div>
 						</div>

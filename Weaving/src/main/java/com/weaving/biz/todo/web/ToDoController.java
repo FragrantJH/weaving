@@ -43,6 +43,6 @@ public class ToDoController {
 	@RequestMapping(value = "/todoDelete", method = RequestMethod.GET)
 	public String todoDelete(ToDoVO vo, HttpSession session, HttpServletRequest request) {
 		service.deleteTodo(vo);
-		return "";
+		return "redirect:/home";
 	}
 }

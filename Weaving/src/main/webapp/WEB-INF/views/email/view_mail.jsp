@@ -39,7 +39,7 @@ body {
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="Email" items="${reading_mail}">
+				<c:forEach var="Email" items="${EmailList}">
 					<tr>
 						<td>${Email.subject}</td>
 						<td>${Email.fromEmail}</td>

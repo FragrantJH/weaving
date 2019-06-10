@@ -34,6 +34,8 @@ import com.weaving.biz.doc.DocListService;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
 import com.weaving.biz.reserv.ReservService;
+import com.weaving.biz.todo.ToDoService;
+import com.weaving.biz.todo.ToDoVO;
 
 
 /**
@@ -54,6 +56,8 @@ public class HomeController {
 	CalService calservice;
 	@Autowired
 	ReservService reserveService;
+	@Autowired
+	ToDoService todoService;
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -103,6 +107,9 @@ public class HomeController {
 		List<CalVO> callist = calservice.getCalList(calVo);
 		model.addAttribute("usercal", callist);
 
+		//todolist
+		List<ToDoVO> list2 = todoService.getTodoList(vo.getEmpNo());
+		model.addAttribute("todolist", list2);
 		
 		return "home";
 	}

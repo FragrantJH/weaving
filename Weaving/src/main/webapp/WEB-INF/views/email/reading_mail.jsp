@@ -18,33 +18,24 @@
 		<div class="send-button">
 			<input type="submit" value="답장"/>
 				<input type="submit" value="삭제"/>
-							
+						
 		</div>
 		
+
 		
 <div>
 <table class="table">
-<c:forEach var="rEmail" items="${readingMail}" >
-								<thead class=" text-primary">
-									<tr>
-									<td><div class="subject">${rEmail.subject}</div></td>
-									</tr>
-									
-										<tr>
-										<td><div class="fromEmail">${rEmail.fromEmail}</div></td>
-										</tr>
-										
-										<tr>
-											<td>
-												<div class="collreadmail"  >
-													<span class="inboxContents">${rEmail.inboxContents}</span>
-												</div>
-											</td>
-										</tr>
 
-								
-	
-	</c:forEach>
+<thead class=" text-primary">
+
+						<tr><td>emailId : ${rEmail.inboxid}</td></tr>
+						<tr><td>fromEmail : ${rEmail.fromInbox}</td></tr>
+						<tr><td>toEmail : ${rEmail.toInbox}</td></tr>
+						<tr><td>제목 :  ${rEmail.title}</td></tr>
+						<tr><td>보낸시간 : ${rEmail.checkTime}</td></tr>
+						<tr><td>내용 : ${rEmail.inboxContents}</td></tr>
+							
+
 </tbody>
 </table>
 		</div>

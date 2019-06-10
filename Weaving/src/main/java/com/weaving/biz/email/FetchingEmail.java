@@ -8,7 +8,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -88,6 +90,58 @@ public class FetchingEmail {
 		}
 	}
 
+
+	public  List<EmailVO> check(String host, String storeType, String user, String password) {
+		List<EmailVO> list = new ArrayList<EmailVO>();
+		
+		try {
+			// create properties field
+			Properties properties = new Properties();
+			properties.put("mail.pop3.host", host);
+			properties.put("mail.pop3.port", "995");
+			properties.put("mail.pop3.starttls.enable", "true");
+			Session emailSession = Session.getDefaultInstance(properties);
+
+			// create the POP3 store object and connect with the pop server
+			Store store = emailSession.getStore("pop3s");
+
+			store.connect(host, user, password);
+
+			// create the folder object and open it
+			Folder emailFolder = store.getFolder("INBOX");
+			emailFolder.open(Folder.READ_ONLY);
+
+			// retrieve the messages from the folder in an array and print it
+			Message[] messages = emailFolder.getMessages();
+			System.out.println("messages.length---" + messages.length);
+
+			// 리스트 담아서 리턴
+			for (int i = 0, n = messages.length; i < n; i++) {
+				Message message = messages[i];
+
+				EmailVO vo = new EmailVO();
+				contentBody = " ";
+				writePart(message,vo);
+				vo.setInboxContents(contentBody);
+				emailService.insertInbox(vo);	
+				
+				list.add(vo);
+			}
+			// close the store and folder objects
+			emailFolder.close(false);
+			store.close();
+
+		} catch (NoSuchProviderException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
 	/*
 	 *개인메일 본문 읽기 
 	 */
@@ -160,25 +214,10 @@ public class FetchingEmail {
 			while ((bytesRead = test.read(buffer)) != -1) {
 				output.write(buffer, 0, bytesRead);
 			}
-			
 			contentBody += "<img src=\""+fileName+"\">";
-			
-			
-		} /*
-			 * else { Object o = p.getContent(); if (o instanceof String) {
-			 * System.out.println("This is a string");
-			 * System.out.println("---------------------------");
-			 * System.out.println((String) o); } else if (o instanceof InputStream) {
-			 * System.out.println("This is just an input stream");
-			 * System.out.println("---------------------------"); InputStream is =
-			 * (InputStream) o; is = (InputStream) o; int c; while ((c = is.read()) != -1)
-			 * System.out.write(c); } else { System.out.println("This is an unknown type");
-			 * System.out.println("---------------------------");
-			 * System.out.println(o.toString()); } }
-			 */
-
+		}
 	}
-
+	
 	/*
 	 * 개인 메일 투 프롬 데이터 수브젴 읽기 
 	 */
@@ -187,21 +226,21 @@ public class FetchingEmail {
 		System.out.println("---------------------------");
 		Address[] a;
 		
-		
 		// FROM
 		if ((a = m.getFrom()) != null) {
 			for (int j = 0; j < a.length; j++) {
-			String str =  a[j].toString();
-			if (str.contains("<")) {
-				int idx = str.indexOf("<");
-				String ad = str.substring(idx + 1);
-				int idx2 = ad.indexOf(">");
-				String add = ad.substring(0, idx2);
-				System.out.println("보낸 주소: " + add);
-
-				vo.setFromEmail(add);
-			} else
-				vo.setFromEmail(str);
+				String str =  a[j].toString();
+				if (str.contains("<")) {
+					int idx = str.indexOf("<");
+					String ad = str.substring(idx + 1);
+					int idx2 = ad.indexOf(">");
+					String add = ad.substring(0, idx2);
+					System.out.println("보낸 주소: " + add);
+	
+					vo.setFromEmail(add);
+				} else {
+					vo.setFromEmail(str);
+				}
 			}
 		}
 		
@@ -210,19 +249,18 @@ public class FetchingEmail {
 		if ((a = m.getRecipients(Message.RecipientType.TO)) != null) {
 			for (int j = 0; j < a.length; j++) {
 				String str = a[j].toString();
-			if (str.contains("<")) {
-				int idx = str.indexOf("<");
-				String ad = str.substring(idx + 1);
-				int idx2 = ad.indexOf(">");
-				String add = ad.substring(0, idx2);
-
-				System.out.println("받는 주소: " + add);
-				vo.setToEmail(add);
-			} else {
-				System.out.println("받는 주소: " + str);
-				vo.setToEmail(str);
-			
-			}
+				if (str.contains("<")) {
+					int idx = str.indexOf("<");
+					String ad = str.substring(idx + 1);
+					int idx2 = ad.indexOf(">");
+					String add = ad.substring(0, idx2);
+	
+					System.out.println("받는 주소: " + add);
+					vo.setToEmail(add);
+				} else {
+					System.out.println("받는 주소: " + str);
+					vo.setToEmail(str);				
+				}
 		}
 	}
 
@@ -231,7 +269,6 @@ public class FetchingEmail {
 			vo.setSubject(m.getSubject());
 		}
 	}
-	
 	
 	
 
