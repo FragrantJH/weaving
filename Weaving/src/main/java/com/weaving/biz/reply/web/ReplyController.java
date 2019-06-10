@@ -78,6 +78,4 @@ public class ReplyController {
 		// 삭제 처리 http 상태 메시지 리턴
 		return entity;
 	} 
-	
-	
 }
