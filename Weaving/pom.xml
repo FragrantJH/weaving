@@ -259,7 +259,6 @@
 	<build>
 		<plugins>
 			<plugin>
-				<encoding>UTF-8</encoding>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>
 				<configuration>
@@ -271,6 +270,7 @@
 					</additionalBuildcommands>
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
