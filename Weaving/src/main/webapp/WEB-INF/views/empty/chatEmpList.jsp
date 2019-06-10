@@ -18,14 +18,8 @@
 
 <script>
 	
-	var textarea = document.getElementById("messageWindow");
-	var inputMessage = document.getElementById('inputMessage');
-	var toEmpNo;
-
 	$(function() {
-		
 		empList();
-		
 		startChat();
 	});
 	
@@ -54,56 +48,39 @@
 			.append($('<td>').html(item.position))
 			.append($('<td>').html('<button id="chatButton" type="button" class="btn btn-default btn-sm">chat</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_empNo\'>').val(item.empNo))
+			.append($('<input type=\'hidden\' id=\'hidden_empName\'>').val(item.empName))
 			.appendTo('tbody');
 		});
 	}
 	
 	function startChat() {
-		
 		$('body').on('click', '#chatButton', function() {
+			
+			// 상대방 정보
 			toEmpNo = $(this).closest('tr').find('#hidden_empNo').val();
-			$('#chatView').show();
-			$('#empList').hide();
+			toEmpName = $(this).closest('tr').find('#hidden_empName').val();
+			
+			// 사용자 목록을 닫고,
+			// 채팅 창을 띄운다
+			var empNo = ${emp.empNo};
+			var empName = '${emp.empName}';
+			var msg = {
+				cmd : 'start',
+				msg : '새로운 채팅이 시작되었습니다',
+				empNo : empNo,
+				empName : empName,
+				toEmpNo : toEmpNo,
+				toEmpName : toEmpName
+			};
+
+			window.opener.webSocket.send(JSON.stringify(msg));
+			
+			// 채팅 창을 연다
+			location = '${pageContext.request.contextPath}/startChat?toEmpNo=' + toEmpNo + '&toEmpName=' + toEmpName;
+			// 현재 창을 닫고
 		});
 	}
 	
-	function onMessage(event) {
-		textarea.value += /*"상대 : " +*/event.data + "\n";
-		chatAreaScroll();
-	}
-	
-	function onOpen(event) {
-		textarea.value += "연결 성공\n";
-	}
-	
-	function onError(event) {
-		console.log(event);
-		alert(event.data);
-	}
-	
-	function send() {
-		var empNo = ${emp.empNo};
-		var empName = '${emp.empName}';
-		var msg = {
-			cmd : "message",
-			msg : $('#inputMessage').value,
-			empNo : empNo,
-			empName : empName,
-			toEmpNo : toEmpNo
-		};
-		// Send the msg object as a JSON-formatted string.
-		webSocket.send(JSON.stringify(msg));
-		inputMessage.value = "";
-	}
-	
-	function chatAreaScroll() {
-		//using jquery
-		var textArea = $('#messageWindow');
-		textArea.scrollTop(textArea[0].scrollHeight - textArea.height());
-		textArea.scrollTop(textArea[0].scrollHeight);
-	}			
-
-
 </script>
 
 </head>
@@ -123,15 +100,6 @@
 			</thead>
 			<tbody id="empList"></tbody>
 		</table>
-	</div>
-	
-	<div id="chatView" style="display: none;">
-		<fieldset>
-			<textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
-			<br/> 
-			<input id="inputMessage" type="text" /> 
-			<input type="submit" value="send" onclick="send()" />
-		</fieldset>
 	</div>
 </body>
 </html>

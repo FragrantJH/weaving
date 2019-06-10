@@ -242,8 +242,7 @@
             <ul class="navbar-nav">
               
               <li class="nav-item">
-              	<a class="nav-link" href="${pageContext.request.contextPath}/getChatEmpList" 
-              	onclick="window.open(this.href, '_blank', 'width=400,height=600,toolbars=no,scrollbars=no');  return false;" aria-haspopup="true" aria-expanded="false">
+              	<a class="nav-link" onclick="openEmpList()" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">chat</i>
                 </a>
               </li>
@@ -499,6 +498,7 @@
   </script>
   <script>
   	var webSocket = new WebSocket('ws://localhost/weaving/broadcast.do');
+  	var chatWindow_temp;
   	var chatWindow;
   	
   	webSocket.onerror = function(event) {
@@ -515,14 +515,28 @@
 		console.log("onMessage: " + event.data);
 		var data = JSON.parse(event.data);	
 		
-		if(data.cmd == 'start') {
-			chatWindow = window.open('${pageContext.request.contextPath}/startChat', '새로운이름', 'width=400, height=600');
-			$(chatWindow.document).find('#toEmpNo').val(data.empNo);
-			$(chatWindow.document).find('#toEmpName').val(data.empName);
+		if(data.cmd == 'start' ) {
+			// 1:1 채팅 요청 당한 사람..
+			chatWindow = window.open('${pageContext.request.contextPath}/startChat?toEmpNo=' + data.empNo + '&toEmpName=' + data.empName, '새로운이름', 'width=400, height=600');
 		} else {
-			var chatList = $(chatWindow.document).find('#messageWindow');
-			chatList.val(chatList.val() + "\n" + data.empName + ": " + data.msg);
+			var messages;
+			if(chatWindow_temp != null) {
+				messages = chatWindow_temp.document.getElementById("messageWindow");
+			} else if (chatWindow != null) {
+				messages = chatWindow.document.getElementById("messageWindow");
+			}
+			messages.innerHTML += "<div class='meTalk w3-round-xlarge'><p>" + data.msg + "</p><p></p></div>"; 
+			messages.innerHTML += "<div style='float: right;margin-top: 30px;vertical-align: bottom;'> </div>";
 		}
+	}
+	
+	function openEmpList(msg) {
+		chatWindow_temp ="";
+		chatWindow_temp = window.open('${pageContext.request.contextPath}/getChatEmpList', '사용자목록', 'width=400, height=600');
+	}
+	
+	function send(msg) {
+		webSocket.send(JSON.stringify(msg));
 	}
 	
 	function onOpen(event) {

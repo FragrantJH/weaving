@@ -24,7 +24,6 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 
 	public SocketHandler() {
 		super();
-		this.logger.info("create SocketHandler instance!");
 	}
 
 	@Override
@@ -47,29 +46,20 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 
 		Map<String, Object> attrs = session.getAttributes();
 		EmpVO empVo = (EmpVO) attrs.get("empVO");
-		System.out.println("접속한 사용자 정보: " + empVo);
-
 		sessionSet.put(empVo.getEmpNo(), session);
-		this.logger.info("add session!");
 	}
 
 	@Override
 	// onMessage
 	public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
 		super.handleMessage(session, message);
-		this.logger.info("receive message:" + message.toString());
+		System.out.println("receive message:" + message.toString());
 
 		// json string을 vo로 변환
-		ObjectMapper mapper = new ObjectMapper(); // "{cmd: sss, tmsg:'sss', id:'ddd'}"
+		ObjectMapper mapper = new ObjectMapper();
 		MsgVO msgvo = mapper.readValue((String) message.getPayload(), MsgVO.class);
 
-		switch (msgvo.getCmd()) {
-		case "message":
-			sendMessage(msgvo, (String) message.getPayload());
-			break;
-		default:
-			break;
-		}
+		sendMessage(msgvo, (String) message.getPayload());
 	}
 
 	@Override
@@ -84,13 +74,13 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	}
 
 	public void sendMessage(MsgVO msgVo, String message) {
-		WebSocketSession toSession = sessionSet.get(msgVo.getEmpNo());
+		WebSocketSession toSession = sessionSet.get(msgVo.getToEmpNo());
 
 		if (toSession != null && toSession.isOpen()) {
 			try {
 				toSession.sendMessage(new TextMessage(message));
 			} catch (Exception ignored) {
-				this.logger.error("fail to send message!", ignored);
+				System.out.println("fail to send message!");
 			}
 		}
 	}
