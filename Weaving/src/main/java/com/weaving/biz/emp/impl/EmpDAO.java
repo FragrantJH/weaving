@@ -66,5 +66,4 @@ public class EmpDAO {
 	public EmpVO emailcheck(EmpVO vo) {
 		return (EmpVO)mybatis.selectOne("EmpDAO.emailcheck",vo);
 	}
-
 }

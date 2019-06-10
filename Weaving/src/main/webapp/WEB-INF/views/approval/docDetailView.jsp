@@ -5,6 +5,7 @@
 <c:set var="docType" value="${docListType}" scope="session" />
 <c:set var="docBaseInfo" value="${docInfo}"/>
 <c:set var="docDetailInfo" value="${docDetailInfo}"/>
+<c:set var="docComment" value="${docCommentInfo}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,9 +47,16 @@
 <script>
 $(function() {
 	showDocTypeBtn();
+	showRejectBtn();
 	approvalSendEvent();
 });
-//
+
+function showRejectBtn() {
+	if (${empInfo.empNo} != ${docBaseInfo.empNo}) {
+		$("#approvalReject").show();
+	}
+}
+
 function menuMove() {
 	var docType = "";
 	switch('${docType}') {
@@ -74,7 +82,7 @@ function showDocTypeBtn() {
 
 	switch('${docType}') {
 		case 'WAIT':
-			$("#approvalRecordBtn").show();  
+			//$("#approvalRecordBtn").show();  
 			$("#approvalDoneBtn").show();		
 			break;
 		case 'RETURN':
@@ -83,10 +91,10 @@ function showDocTypeBtn() {
 			$("#approvalDoneBtn").show();			
 			break;
 		case 'DONE':
-			$("#approvalRecordBtn").show();
+			//$("#approvalRecordBtn").show();
 			break;
 		case 'ING':
-			$("#approvalRecordBtn").show();
+			//$("#approvalRecordBtn").show();
 			break;
 		default:
 			console.log('${docType}');
@@ -97,7 +105,7 @@ function showDocTypeBtn() {
 
 function approvalSendEvent() {
 	$('.modal-footer').on('click', '#approvalSend', function() {
-		$.ajax({ 
+		$.ajax({
 		    url: "updateDone",
 		    type: 'PUT', 
 		    dataType: 'json', 
@@ -143,13 +151,13 @@ function approvalSendEvent() {
 	});
 	
 	$('.card-body').on('click', '#modifyBtn', function() {
-		
 		location.replace('${pageContext.request.contextPath}/docUpdateView?docId='+${docBaseInfo.docId});
 	});
 	
 }
 </script>
 <body>
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
@@ -161,15 +169,52 @@ function approvalSendEvent() {
 				<div class="card-body">
 					<div style="float:right;">
 						<button type="button" class="btn btn-primary" id="modifyBtn" style="display:none;">수정하기</button>
-						<button type="button" class="btn btn-primary" id="approvalRecordBtn" style="display:none;">결재이력</button>
+						<button type="button" class="btn btn-primary" id="approvalRecordBtn" data-toggle="modal" data-target="#commantModal" style="display:none;">결재이력</button>
 						<button type="button" class="btn btn-primary" id="approvalDoneBtn" data-toggle="modal" data-target="#approvalModal" style="display:none;">결재하기</button>
 					</div>
+					<!-- 결재이력 모달 -->
+					<div class="modal fade" id="commantModal" tabindex="-1" role="dialog" aria-labelledby="commantModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="commantModalLabel">결재이력</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<table class="table">
+									    <thead>
+									        <tr>
+									            <th class="text-center">반려자</th>
+									            <th>부서</th>
+									            <th>직급</th>
+									            <th>사유</th>
+									        </tr>
+									    </thead>
+									    <tbody>
+								    		<tr>
+									    		<td class="text-center">${docComment.empName}</td>
+								    			<td>${docComment.deptName}</td>
+								    			<td>${docComment.position}</td>
+								    			<td>${docComment.approvalComments}</td>								    			
+							    			</tr>								    											    											    			
+									    </tbody>
+									</table>														
+								</div>
+								
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>					
 					<!-- 결재하기 모달 -->
-					<div class="modal fade" id="approvalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal fade" id="approvalModal" tabindex="-1" role="dialog" aria-labelledby="approvalModalLabel" aria-hidden="true">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">결재하기</h5>
+									<h5 class="modal-title" id="approvalModalLabel">결재하기</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -183,13 +228,13 @@ function approvalSendEvent() {
 									</div>									
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-primary" id="approvalReject">Reject</button>
+									<button type="button" class="btn btn-primary" id="approvalReject" style="display:none;">Reject</button>
 									<button type="button" class="btn btn-primary" id="approvalSend">Approval</button>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>
-					</div>							
+					</div>					
 					<h3 id="doc-title" class="text-center">${docBaseInfo.docTitle}</h3>
 					<div style="display:inline-block;">
 						<table class="table">
@@ -262,5 +307,6 @@ function approvalSendEvent() {
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

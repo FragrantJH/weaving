@@ -11,8 +11,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<bean id="jdbcProp"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean id="jdbcProp" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:global.properties" />
 	</bean>
 
@@ -23,6 +22,7 @@
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
+	
 	<bean id="dataSource"
 		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<constructor-arg ref="dataSourceSpied" />
@@ -35,8 +35,7 @@
 	</bean>
 
 	<!-- Transaction Manager 설정 -->
-	<bean id="txManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
@@ -50,10 +49,8 @@
 
 	<!-- Transaction AOP 설정 -->
 	<aop:config>
-		<aop:pointcut expression="execution(public * com..*(..))"
-			id="txPointCut" />
-		<aop:advisor advice-ref="txAdvice"
-			pointcut-ref="txPointCut" />
+		<aop:pointcut expression="execution(public * com..*(..))" id="txPointCut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut" />
 	</aop:config>
 
 </beans>

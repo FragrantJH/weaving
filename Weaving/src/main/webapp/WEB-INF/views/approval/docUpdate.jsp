@@ -367,6 +367,7 @@ function toRightMove() {
 </script>
 </head>
 <body>
+<div class="container-fluid">
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header card-header-text card-header-primary">
@@ -545,5 +546,6 @@ function toRightMove() {
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

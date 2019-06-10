@@ -156,6 +156,10 @@
 			<tiles:insertAttribute name="content" />
 		</div>
 	</div>
+	
+	<div class="text-center" style="margin-bottom: 0; background-color: #d3d3d3;">
+		<p style="color: white;">Copyright ⓒ 2019 WEAVING All Rights Reserved.</p>
+	</div>
 </div>
 <!--   Core JS Files   -->
 <script

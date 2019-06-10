@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +29,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.weaving.biz.common.SessionInfo;
+import com.weaving.biz.common.SessionListener;
 import com.weaving.biz.doc.DocListService;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
@@ -88,7 +91,7 @@ public class EmpController {
 	@RequestMapping(value = "/emplist1", method = RequestMethod.GET)
 	@ResponseBody
 	public List<EmpVO> getUserList(Model model, EmpVO vo) {
-		if(vo.getDeptId() == null || vo.getDeptId() == "")
+		if (vo.getDeptId() == null || vo.getDeptId() == "")
 			vo.setDeptId("7");
 		return service.getEmpList(vo);
 	}
@@ -187,6 +190,8 @@ public class EmpController {
 				session.setAttribute("empNo", emp.getEmpNo());
 				session.setAttribute("empName", emp.getEmpName());
 				session.setAttribute("position", emp.getPosition());
+				
+				SessionListener.checkSession(session);
 
 				return "redirect:home";
 			}
@@ -216,6 +221,18 @@ public class EmpController {
 		if (emp != null)
 			result = 1;
 		return result;
+	}
+
+	@RequestMapping(value = "/checkPw", method = { RequestMethod.POST, RequestMethod.GET })
+	public String checkPw(@ModelAttribute("Emp") EmpVO vo, HttpServletRequest request, HttpSession session,
+			HttpServletResponse response, Model model) {
+		EmpVO emp = service.getEmp(vo);
+
+		if (emp == null) {
+			return "empty/login";
+		} else {
+			return "emp/emp";
+		}
 	}
 
 }

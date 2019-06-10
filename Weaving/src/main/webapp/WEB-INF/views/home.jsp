@@ -11,6 +11,8 @@
 #calendar {
 	max-width: 500px;
 	margin: 0 auto;
+	
+	.card-title{ font-family: impact}
 }
 </style>
 <body>
@@ -22,8 +24,27 @@
 
 		$(function() {
 			calList();
+			//weather();
 		})
-
+		
+		function weather() {
+			$.ajax({	
+				headers: {"X-My-Custom-Header": "some value"},
+				url :"http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?serviceKey=xqHzr37we%2FaF0H%2BNu%2BJLEylN189HdNBwgfQqsZuUQ5F3eSiowxzg7eBr43jBK19B4kuBKcjeRyxKhWsup7C2WA%3D%3D&base_date=20190605&base_time=0500&nx=60&ny=127&numOfRows=10&pageNo=1&_type=json", 
+				data : {serviceKey:"xqHzr37we%2FaF0H%2BNu%2BJLEylN189HdNBwgfQqsZuUQ5F3eSiowxzg7eBr43jBK19B4kuBKcjeRyxKhWsup7C2WA%3D%3D",
+						base_date:"20190605", baseTime:"0500", nx:"60", ny:"127", _type:"json"},
+				dataType : 'json',
+				contentType : 'application/json;charset=utf-8',
+				success : function(data){
+					console.log(data);
+										
+				},
+				error : function(){
+					alert('날씨정보 로드에 실패했습니다.')
+				}
+			})			
+		}
+		
 		//캘린더 목록 조회
 		function calList() {
 			$.ajax({
@@ -45,6 +66,11 @@
 
 			calendar = new FullCalendar.Calendar(calendarEl, {
 				plugins : [ 'dayGrid' ], // 적용할 plugin
+				header : {
+					left : 'prev,next today',
+					center : 'title',
+					right : 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+				},
 				defaultDate : moment().format('YYYY-MM-DD' + 'T' + 'HH:00:00'), // 현재 날짜
 				navLinks : true,
 				selectable : true,
@@ -63,29 +89,37 @@
 				return;
 			}
 			
-			var check_item = '<div class="form-check">';
-			check_item += '<label class="form-check-label">';
-			check_item += '<input id="item_check_2" class="form-check-input" type="checkbox">';
-			check_item += '<span class="form-check-sign"> <span class="check"></span>';
-			check_item += '</span>';
-			check_item += '</label>';
-			check_item += '</div>';
-			
-			
-			$('#todoList').append(
-					$('<tr>').attr('id', 'item_2').append(
-						$('<td>').html(check_item),
-						$('<td>').attr('id', 'item_content_2').append($('#todo_input').val()),
-						$('<td>').addClass('td-actions text-right').append(
-							$('<button>').addClass('btn btn-danger btn-link btn-sm').append(
-								$('<i>').addClass('material-icons').append('close')		
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/todoInsert",
+				data : "content=" + $('#todo_input').val(),
+				success : function() {
+					var check_item = '<div class="form-check">';
+					check_item += '<label class="form-check-label">';
+					check_item += '<input id="item_check_2" class="form-check-input" type="checkbox">';
+					check_item += '<span class="form-check-sign"> <span class="check"></span>';
+					check_item += '</span>';
+					check_item += '</label>';
+					check_item += '</div>';
+					
+					
+					$('#todoList').append(
+							$('<tr>').attr('id', 'item_2').append(
+								$('<td>').html(check_item),
+								$('<td>').attr('id', 'item_content_2').append($('#todo_input').val()),
+								$('<td>').addClass('td-actions text-right').append(
+									$('<button>').addClass('btn btn-danger btn-link btn-sm').append(
+										$('<i>').addClass('material-icons').append('close')		
+									)
+								)
 							)
-						)
-					)
-			);
+					);
+					
+					// reset
+					$('#todo_input').val('');
+				}
+			});
 			
-			// reset
-			$('#todo_input').val('');
 		}
 	</script>
 
@@ -303,10 +337,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="jumbotron text-center"
-		style="margin-bottom: 0; background-color: #d3d3d3;">
-		<p style="color: white;">Copyright ⓒ 2019 WEAVING All Rights
-			Reserved.</p>
-	</div>
+	
 </body>
 </html>

@@ -95,24 +95,23 @@
               <i class="material-icons">email</i>
               <p>메일</p>
             </a>
-          
-		  <div class="collapse navbar-collapse" id="mail">
-		    <ul class="navbar-nav">
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/mailForm">
-					 	<i class="material-icons">contact_mail</i>
-					 	<p>메일보내기</p>
-					</a>
-				 </li> 
-				<li class="nav-item">
-				   	<a class="nav-link" href="${pageContext.request.contextPath}/email_List">
-					 	<i class="material-icons">drafts</i>
-					 	<p>받은메일함</p>
-					</a>
-				 </li>				 
-		    </ul>
-		  </div>
-		  </li>
+            <div class="collapse navbar-collapse" id="mail">
+			    <ul class="navbar-nav">
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/mailForm">
+						 	<i class="material-icons">contact_mail</i>
+						 	<p>메일보내기</p>
+						</a>
+					 </li>
+					<li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/reading_mail">
+						 	<i class="material-icons">drafts</i>
+						 	<p>받은메일함</p>
+						</a>
+					 </li>				 
+			    </ul>
+		  	</div>
+          </li>
 		  
 		  <!-- 결재 -->
 		  <li class="nav-item">

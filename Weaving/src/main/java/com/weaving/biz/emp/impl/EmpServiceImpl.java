@@ -74,7 +74,6 @@ public class EmpServiceImpl implements Empservice {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 
 	@Override

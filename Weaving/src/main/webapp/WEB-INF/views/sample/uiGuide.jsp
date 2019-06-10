@@ -158,7 +158,7 @@
 			</div>
 
 			<div class="form-group form-file-upload form-file-multiple">
-				<input type="file" multiple="" class="inputFileHidden">
+				<input type="file" multiple class="inputFileHidden">
 				<div class="input-group">
 					<input type="text" class="form-control inputFileVisible"
 						placeholder="Single File"> <span class="input-group-btn">
@@ -170,7 +170,7 @@
 			</div>
 
 			<div class="form-group form-file-upload form-file-multiple">
-				<input type="file" multiple="" class="inputFileHidden">
+				<input type="file" multiple class="inputFileHidden">
 				<div class="input-group">
 					<input type="text" class="form-control inputFileVisible"
 						placeholder="Multiple Files" multiple> <span
