@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.weaving.biz.common.SessionInfo;
@@ -52,6 +54,21 @@ public class EmailController {
 		public String success_email() {
 			return "email/success_email";
 		}
+		
+		//삭제
+	@RequestMapping(value ="/meilDelete", method = RequestMethod.GET)
+	public String meilDelete(EmailVO vo, HttpSession session, HttpServletRequest request) {
+		vo.setInboxid(Integer.parseInt(request.getParameter("inboxid")));
+		service.deleteInbox(vo);
+		return "email/email_List" ;
+	}
+	//읽음 처리 
+	@RequestMapping(value="updateRCNR")
+	public void updateRCNR(EmailVO vo, HttpSession session, HttpServletRequest request) {
+		vo.setReadCheck((String)session.getAttribute("ReadCheck"));
+		service.updateRCNR(vo);
+	}
+	
 
 	// 메일발송처리
 	@RequestMapping("mailSend")
@@ -103,6 +120,7 @@ public class EmailController {
 														) throws Exception {
 		  EmpVO empvo =SessionInfo.getInfo(hsession, "emp");
 		  vo.setInboxid(inboxid);
+		  
 	  	model.addAttribute("rEmail", service.getINBOXOne(vo));
 	  return "email/reading_mail" ;
 	  

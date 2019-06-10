@@ -63,7 +63,7 @@ VALUES(
 <!-- 읽은 메일 갯수 체크 -->
 <select id="mailReadCheck" parameterType="int" resultType="int">
 		select count(decode(read_check,'0','1'))
-		from email
+		from inboxemail
 		where emp_no = #{empNo}
 </select>
 
@@ -75,9 +75,9 @@ VALUES(
 	</delete>
 	
 	<delete id="deleteInbox">
-		<![CDATA[
-			DELETE FROM inboxemail WHERE inbox_id = #{inboxid}
-			]]>
+		
+			DELETE FROM inboxemail WHERE inboxid = #{inboxid}
+	
 	</delete>
 	
 
@@ -94,6 +94,23 @@ READ_CHECK=#readCheck#,
 EMPNO=#empNo#
 
 </update>	
+	
+	
+	<update id="updateRCR">
+	UPDATE INBOXEMAIL
+	
+	SET READ_CHECK='1'
+	WHERE READ_CHECK='0'
+	
+	</update>
+	
+		<update id="updateRCNR">
+	UPDATE INBOXEMAIL
+	
+	SET READ_CHECK='0'
+	WHERE READ_CHECK='1'
+	
+	</update>
 	
 	<!-- 단건 조회--> 
 <select id="getEmailOne" parameterType="email"  resultType="email">
