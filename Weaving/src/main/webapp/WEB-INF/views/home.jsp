@@ -14,36 +14,104 @@
 	
 	.card-title{ font-family: impact}
 }
+#weatherInfo {
+
+    margin: auto;
+}
+.wsState img {
+	width:100px;
+}
+/*
+#weatherInfo th {
+	height: 40px;
+	width: 116px;
+	vertical-align: middle;
+	text-align: center;
+}
+*/
 </style>
 <body>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
 	<script>
 		// 캘린더 화면에 출력
 
 		$(function() {
 			calList();
-			//weather();
-		})
+			callWeatherInfo();
+
+		});
 		
-		function weather() {
+		function callWeatherInfo() {
 			$.ajax({	
-				headers: {"X-My-Custom-Header": "some value"},
-				url :"http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?serviceKey=xqHzr37we%2FaF0H%2BNu%2BJLEylN189HdNBwgfQqsZuUQ5F3eSiowxzg7eBr43jBK19B4kuBKcjeRyxKhWsup7C2WA%3D%3D&base_date=20190605&base_time=0500&nx=60&ny=127&numOfRows=10&pageNo=1&_type=json", 
-				data : {serviceKey:"xqHzr37we%2FaF0H%2BNu%2BJLEylN189HdNBwgfQqsZuUQ5F3eSiowxzg7eBr43jBK19B4kuBKcjeRyxKhWsup7C2WA%3D%3D",
-						base_date:"20190605", baseTime:"0500", nx:"60", ny:"127", _type:"json"},
-				dataType : 'json',
-				contentType : 'application/json;charset=utf-8',
-				success : function(data){
+				url :"http://api.openweathermap.org/data/2.5/weather?q=Daegu&appid=2b00ad1536b1cdeeb9975de20f3d350c", 
+		         dataType: "json",
+		         type: "GET",
+		         async: "false",
+		         success: function(data) {
+		        	makeWeatherHtml(data);
+					/*
 					console.log(data);
-										
+		            console.log("현재온도 : "+ (data.main.temp - 273.15) );
+		            console.log("현재습도 : "+ data.main.humidity);
+		            console.log("날씨 : "+ data.weather[0].main );
+		            console.log("상세날씨설명 : "+ data.weather[0].description );
+		            console.log("날씨 이미지 : "+ data.weather[0].icon );
+		            console.log("바람   : "+ data.wind.speed );
+		            console.log("나라   : "+ data.sys.country );
+		            console.log("도시이름  : "+ data.name );
+		            console.log("구름  : "+ (data.clouds.all) +"%" ); 			
+						*/				
 				},
 				error : function(){
 					alert('날씨정보 로드에 실패했습니다.')
 				}
-			})			
+			});
 		}
+		
+		function makeWeatherHtml(data) {
+			var img = $("<img src='http://openweathermap.org/img/w/"+data.weather[0].icon+".png'>");
+			
+			$('.wsState').html(img);
+			$('.todaytemp').text((data.main.temp - 273.15).toFixed(0));
+			var wsDesc = data.weather[0].description;
+			var wsStr = "";
+			switch(wsDesc) {
+				case 'clear sky':
+					wsStr = "맑음";
+					break;
+				case 'few clouds':
+					wsStr = "구름조금";
+					break;
+				case 'scattered clouds':
+					wsStr = "구름많음";
+					break;
+				case 'broken clouds':
+					wsStr = "흐림";
+					break;
+				case 'shower rain':
+					wsStr = "소나기";
+					break;
+				case 'rain':
+					wsStr = "비";
+					break;
+				case 'thunderstorm':
+					wsStr = "천둥번개";
+					break;
+				case 'snow':
+					wsStr = "눈";
+					break;
+				case 'mist':
+					wsStr = "안개";
+					break;
+				default:
+					wsStr = wsDesc;
+					alert("예외 날씨 상태가 발생되었습니다.");
+					break;
+			}
+			$('.cast_txt').text(wsStr +", 현재습도 : " + data.main.humidity + "%");
+		} 		
+
 		
 		//캘린더 목록 조회
 		function calList() {
@@ -123,7 +191,10 @@
 		}
 	</script>
 
+<div>
 	<div class="container-fluid">
+	<h1 class="display-4" style="color: dark">WEAVING 그룹웨어</h1>
+	
 		<!-- 상단1 -->
 		<div class="row">
 			<div class="col-md-3"
@@ -195,19 +266,47 @@
 					</div>
 					<div class="card-body">
 						<h6 class="card-title">D-16</h6>
+ 					-->	
+ 					<!--
+ 					 						<div class="main_info" style="vertical-align: middle;">
+							<span class="wsState"></span>
+							<div class="info_data" style="display:inline-block;">
+								<p class="info_temperature">
+									<span class="todaytemp">0</span>
+									<span class="tempmark"><span class="blind">도씨</span>℃</span>
+								</p>
+								<p class="cast_txt"></p>
+							</div>
+						</div>
+ 					 -->
+	 					<div class="main_info">
+	 						<table id="weatherInfo">
+								<tr>
+									<th rowspan="2" class="wsState"></th>
+									<th>
+										<span class="h2 todaytemp">0</span>
+										<span class="h2 tempmark">℃</span>									
+									</th>
+								</tr>
+								<tr>
+									<th><p class="cast_txt"></p></th>
+								</tr>								
+	 						</table>	 					
+	 					</div>
+						
 					</div>
 				</div>
 			</div>
 
 		</div>
 
+		<!-- 공지사항/게시판 -->
 		<div class="row">
-
 			<div class="col-md-6">
 				<div class="card">
 					<div class="card-header card-header-text card-header-primary">
 						<div class="card-text">
-							<h4 class="card-title">Notice</h4>
+							<h4 class="card-title">공지사항</h4>
 						</div>
 					</div>
 					<div class="card-body">
@@ -245,7 +344,7 @@
 				<div class="card">
 					<div class="card-header card-header-text card-header-warning">
 						<div class="card-text">
-							<h4 class="card-title">Board</h4>
+							<h4 class="card-title">게시판</h4>
 						</div>
 					</div>
 					<div class="card-body">
@@ -280,8 +379,8 @@
 			</div>
 		</div>
 
+		<!-- TODO-LIST/일정 -->
 		<div class="row">
-
 			<!-- todo list -->
 			<div class="col-md-6">
 				<div class="card">
@@ -307,7 +406,6 @@
 							<tbody>
 								<c:forEach items="${todolist}" var="todo">
 								<tr id="item_1">
-									<!-- TODO 리스트 목록 반복 영역 -->
 									<td>
 										<div class="form-check">
 											<label class="form-check-label"> <input
@@ -341,7 +439,7 @@
 				<div class="card">
 					<div class="card-header card-header-text card-header-success">
 						<div class="card-text">
-							<h4 class="card-title">Schedule</h4>
+							<h4 class="card-title">전체 일정</h4>
 						</div>
 					</div>
 					<div class="card-body">
@@ -351,6 +449,6 @@
 			</div>
 		</div>
 	</div>
-	
+</div>
 </body>
 </html>
