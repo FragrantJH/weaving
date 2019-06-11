@@ -26,7 +26,6 @@ public class ChatController {
 
 	@RequestMapping("getChatEmpList")
 	public String getCal() {
-		
 		return "empty/chatEmpList";
 	}
 	

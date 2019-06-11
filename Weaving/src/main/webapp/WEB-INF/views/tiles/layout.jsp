@@ -525,8 +525,30 @@
 			} else if (chatWindow != null) {
 				messages = chatWindow.document.getElementById("messageWindow");
 			}
-			messages.innerHTML += "<div class='meTalk w3-round-xlarge'><p>" + data.msg + "</p><p></p></div>"; 
-			messages.innerHTML += "<div style='float: right;margin-top: 30px;vertical-align: bottom;'> </div>";
+			
+			/* messages.innerHTML += "<div class='meTalk w3-round-xlarge'><p>" + data.msg + "</p><p></p></div>"; 
+			messages.innerHTML += "<div style='float: right;margin-top: 30px;vertical-align: bottom;'> </div>"; */
+			
+			var temp = '';
+			
+			temp += '<div class="incoming_msg">';
+			temp += '<div class="incoming_msg_img">';
+			temp += data.empName;
+			temp += '</div>';
+			
+			
+			temp += '<div class="received_msg">';
+			temp += '<div class="received_withd_msg">';
+			temp += '<p>';
+			temp += data.msg;
+			temp += '</p>';
+			temp += '</div>';
+			temp += '</div>';
+			temp += '</div>';
+			
+			console.log(temp);
+			
+			$(messages).append(temp);
 		}
 	}
 	
