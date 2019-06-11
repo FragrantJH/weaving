@@ -194,7 +194,32 @@
 						</div>
 					</div>
 					<div class="card-body">
+					<!-- 
 						<h6 class="card-title">D-16</h6>
+ 					-->	
+						<div class="main_info">
+							<span class="ico_state ws"></span>
+							<div class="info_data">
+								<p class="info_temperature">
+									<span class="todaytemp">0</span>
+									<span class="tempmark">
+									<span class="blind">도씨</span>℃</span>
+								</p>
+								<ul class="info_list">
+									<li><p class="cast_txt">구름많음, 어제보다 3˚ 높아요</p></li>
+									<li>
+										<span class="merge">
+											<span class="min"><span class="num">14</span>˚</span>
+											<span class="slash">/</span><span class="max"><span class="num">26</span>˚</span></span>
+										<span class="bar"></span> <span class="sensible">체감온도 <em><span class="num">26.5</span>˚</em></span> 
+									</li>
+									<li>
+										<span class="indicator">자외선 <span class=""><span class="num">7</span>높음<span class="ico"></span></span></span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
 					</div>
 				</div>
 			</div>
