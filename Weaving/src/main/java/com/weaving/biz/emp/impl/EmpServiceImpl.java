@@ -43,6 +43,7 @@ public class EmpServiceImpl implements Empservice {
 		// dao.updateEmp(vo);
 
 		String enpassword;
+		if(vo.getPassword().length()<15) {
 		try {
 			enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), vo.getEmail());
 			vo.setPassword(enpassword);
@@ -50,6 +51,8 @@ public class EmpServiceImpl implements Empservice {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}}else {
+			dao.updateEmp(vo);
 		}
 
 	}
@@ -74,6 +77,7 @@ public class EmpServiceImpl implements Empservice {
 			e.printStackTrace();
 			return null;
 		}
+		
 	}
 
 	@Override
