@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.weaving.biz.common.SessionInfo;
@@ -25,7 +26,6 @@ public class ChatController {
 
 	@RequestMapping("getChatEmpList")
 	public String getCal() {
-		
 		return "empty/chatEmpList";
 	}
 	
@@ -53,11 +53,10 @@ public class ChatController {
 		return loginEmpList;
 	}
 	
-	public String startChat() {
-		
-		
+	@RequestMapping("startChat")
+	public String startChat(@RequestParam(required = true, value="toEmpNo")int empNo, @RequestParam(required= true, value="toEmpName") String empName) {
 		// 채팅 화면 처리
-		return "";
+		return "empty/chat";
 	}
 	
 

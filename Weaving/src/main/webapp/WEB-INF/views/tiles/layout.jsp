@@ -242,8 +242,7 @@
             <ul class="navbar-nav">
               
               <li class="nav-item">
-              	<a class="nav-link" href="${pageContext.request.contextPath}/getChatEmpList" 
-              	onclick="window.open(this.href, '_blank', 'width=400,height=600,toolbars=no,scrollbars=no');  return false;" aria-haspopup="true" aria-expanded="false">
+              	<a class="nav-link" onclick="openEmpList()" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">chat</i>
                 </a>
               </li>
@@ -499,6 +498,7 @@
   </script>
   <script>
   	var webSocket = new WebSocket('ws://localhost/weaving/broadcast.do');
+  	var chatWindow_temp;
   	var chatWindow;
   	
   	webSocket.onerror = function(event) {
@@ -512,17 +512,61 @@
 	};
 	
 	function onMessage(event) {
-		chatWindow = window.open(this.href, '_blank', 'width=400,height=600,toolbars=no,scrollbars=no');
-		chatWindow.$('#chatView').show();
-		chatWindow.$('#empList').hide();
+		console.log("onMessage: " + event.data);
+		var data = JSON.parse(event.data);	
+		
+		if(data.cmd == 'start' ) {
+			// 1:1 채팅 요청 당한 사람..
+			chatWindow = window.open('${pageContext.request.contextPath}/startChat?toEmpNo=' + data.empNo + '&toEmpName=' + data.empName, '새로운이름', 'width=400, height=600');
+		} else {
+			var messages;
+			if(chatWindow_temp != null) {
+				messages = chatWindow_temp.document.getElementById("messageWindow");
+			} else if (chatWindow != null) {
+				messages = chatWindow.document.getElementById("messageWindow");
+			}
+			
+			/* messages.innerHTML += "<div class='meTalk w3-round-xlarge'><p>" + data.msg + "</p><p></p></div>"; 
+			messages.innerHTML += "<div style='float: right;margin-top: 30px;vertical-align: bottom;'> </div>"; */
+			
+			var temp = '';
+			
+			temp += '<div class="incoming_msg">';
+			temp += '<div class="incoming_msg_img">';
+			temp += data.empName;
+			temp += '</div>';
+			
+			
+			temp += '<div class="received_msg">';
+			temp += '<div class="received_withd_msg">';
+			temp += '<p>';
+			temp += data.msg;
+			temp += '</p>';
+			temp += '</div>';
+			temp += '</div>';
+			temp += '</div>';
+			
+			console.log(temp);
+			
+			$(messages).append(temp);
+		}
 	}
+	
+	function openEmpList(msg) {
+		chatWindow_temp ="";
+		chatWindow_temp = window.open('${pageContext.request.contextPath}/getChatEmpList', '사용자목록', 'width=400, height=600');
+	}
+	
+	function send(msg) {
+		webSocket.send(JSON.stringify(msg));
+	}
+	
 	function onOpen(event) {
-		// TODO: 채팅 연결 되었을 때 어떻게 할지..
 		console.log("chat is open!!!!");
 	}
+	
 	function onError(event) {
 		console.log(event);
-		alert(event.data);
 	}
   
     $(document).ready(function() {

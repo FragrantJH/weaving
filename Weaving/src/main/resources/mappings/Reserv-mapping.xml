@@ -51,9 +51,83 @@
 			   START_TIME,
 			   END_TIME,
 			   DESCRIPTION
-		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO ORDER BY RESERV_ID
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO ORDER BY START_TIME
 		
 	</select>
+	
+	<select id="beforeReservList" resultType="reserv">
+	<![CDATA[
+		SELECT RESERV_ID,
+		       ROOM_ID,
+			   A.EMP_NO,
+               B.EMP_NAME,
+			   START_TIME,
+			   END_TIME,
+			   DESCRIPTION
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO 
+		  WHERE TO_CHAR(START_TIME, 'YYYY/MM/DD HH24:MI') < TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI')
+		  ORDER BY START_TIME
+	]]>   
+	</select>
+	
+	<select id="todayReservList" resultType="reserv">
+	 <![CDATA[
+		  SELECT RESERV_ID,
+		       ROOM_ID,
+			   A.EMP_NO,
+               B.EMP_NAME,
+			   START_TIME,
+			   END_TIME,
+			   DESCRIPTION
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO 
+		  WHERE start_time >= to_char(sysdate, 'YYYY/MM/DD') AND START_TIME <= to_char(sysdate + 1, 'YYYY/MM/DD')
+		  ORDER BY START_TIME
+	]]>  
+		
+	</select>
+	
+	<select id="roomOneReservList" resultType="reserv">
+		SELECT RESERV_ID,
+		       ROOM_ID,
+			   A.EMP_NO,
+               B.EMP_NAME,
+			   START_TIME,
+			   END_TIME,            
+			   DESCRIPTION
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO 
+		  WHERE room_id = 1
+		  ORDER BY START_TIME
+		
+	</select>
+	
+	<select id="roomTwoReservList" resultType="reserv">
+		SELECT RESERV_ID,
+		       ROOM_ID,
+			   A.EMP_NO,
+               B.EMP_NAME,
+			   START_TIME,
+			   END_TIME,
+			   DESCRIPTION
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO 
+		  WHERE room_id = 2
+		  ORDER BY START_TIME
+		
+	</select>
+	
+	<select id="roomThreeReservList" resultType="reserv">
+		SELECT RESERV_ID,
+		       ROOM_ID,
+			   A.EMP_NO,
+               B.EMP_NAME,
+			   START_TIME,
+			   END_TIME,
+			   DESCRIPTION
+		  FROM RESERVATION A JOIN EMPLOYEES B ON A.EMP_NO = B.EMP_NO 
+		  WHERE room_id = 3
+		  ORDER BY START_TIME
+		
+	</select>
+	
 	
 	<select id="selectReserv" parameterType="reserv" resultType="reserv">
 		SELECT RESERV_ID,

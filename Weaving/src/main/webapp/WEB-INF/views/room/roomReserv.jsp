@@ -14,7 +14,31 @@
 
 <!-- 예약현황 tr 클릭시 값을 받아와서 입력시키는 페이지 -->
 
+<style>
+div.statusbutton {
+	margin: auto;
+	width: 50%;
+}
 
+select {
+	width: 150px;
+	padding: .3em .7em;
+	border: 1px solid #999;
+	font-family: inherit;
+	background:
+		url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg)
+		no-repeat 95% 50%; border-radius : 0px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: 0px;
+}
+
+select::-ms-expand {
+	display: none;
+}
+}
+</style>
 
 <script>		
 
@@ -134,14 +158,14 @@
 </head>
 
 <body>
-	<div class="col-md-6">
+	<div class="col-md-8 col-sm-10">
 		<div class="card">
 			<div class="card-header card-header-text card-header-primary">
 				<div class="card-text">
 					<h4 class="card-title">회의실 예약</h4>
 				</div>
 			</div>
-			<div class="card-body">
+			<div class="card-body" id="roomname">
 				<form name="frm" action="roomInsertReserv" method="POST">
 					<input type="hidden" id="resId"> 회의실 
 					<select id="roomr" name="roomId">
@@ -205,7 +229,7 @@
 						</select>
 					<p>
 						사용용도
-						<textarea name="description" id="des" rows="8" cols="40"></textarea>
+						<textarea name="description" id="des" rows="5" cols="40" ></textarea>
 					<p>
 					<div id="btn_group">
 						<button type="submit" id="reserv" class="btn btn-primary btn-sm">예약</button>
@@ -221,17 +245,35 @@
 		</div>
 
 	</div>
-
-
-	<div class="col-md-6">
+<script>
+	function show(view){
+		
+		//location = "roomReserv?roombutton="+view
+		frm1.roomButton.value=view;		
+		frm1.submit();
+		
+	}
+</script>
+	
+	<div class="col-md-8 col-sm-10">
 		<div class="card">
 			<div class="card-header card-header-text card-header-primary">
 				<div class="card-text">
 					<h4 class="card-title">예약현황</h4>
 				</div>
+				<form action="roomReserv" name="frm1">
+				<input type="hidden" name="roomButton">
+				<div class="statusbutton">
+				<button type="button" id="before" onclick="show('1')">지난예약</button>
+				<button type="button" id="today" onclick="show('2')">금일예약</button>
+				<button type="button" id="roomone" onclick="show('3')">1번룸</button>
+				<button type="button" id="roomtwo" onclick="show('4')">2번룸</button>
+				<button type="button" id="roomthree" onclick="show('5')">3번룸</button>
+				</div>
+				</form>
 			</div>
 			<div class="card-body">
-				<table id="reservation" class="table">
+				<table id="reservation" class="table" style="cursor:pointer">
 					<thead>
 						<tr>
 							<th class="text-center">No</th>

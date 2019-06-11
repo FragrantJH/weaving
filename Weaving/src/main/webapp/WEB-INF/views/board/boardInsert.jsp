@@ -23,12 +23,12 @@ function writeCheck()
   if( !data )
    {
     alert( "내용을 입력해주세요" );
-    //form.boardContents.focus();
     return;
    }
  
   form.submit();
   }
+  
  </script>
 
 <body>

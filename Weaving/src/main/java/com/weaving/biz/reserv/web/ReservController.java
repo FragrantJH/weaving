@@ -24,10 +24,16 @@ public class ReservController {
 
 	// 예약현황
 	@RequestMapping("/roomReserv")
+	
 	public String roomReserv(Model model, @RequestParam(value="check",
-							defaultValue="false", required=false)String check) {
-		model.addAttribute("list", service.getReservList());
+							defaultValue="false", required=false)String check,ReservVO vo) {
+		//model.addAttribute("list", service.getReservList());
 		model.addAttribute("check", check);
+		model.addAttribute("list", service.getReservList(vo.getRoomButton()));
+		
+		System.out.println("dddddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(vo.getRoomButton());
+		System.out.println("dddddddddddddddddddddddddddddddddddddddddddd");
 		return "room/roomReserv";
 	}
 

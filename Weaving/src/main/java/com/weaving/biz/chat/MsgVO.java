@@ -5,6 +5,7 @@ public class MsgVO {
 	private int empNo;
 	private String empName;
 	private int toEmpNo;
+	private String toEmpName;
 	private String msg;
 	private String cmd;
 
@@ -48,4 +49,20 @@ public class MsgVO {
 		this.toEmpNo = toEmpNo;
 	}
 
+	public String getToEmpName() {
+		return toEmpName;
+	}
+
+	public void setToEmpName(String toEmpName) {
+		this.toEmpName = toEmpName;
+	}
+
+	@Override
+	public String toString() {
+		return "MsgVO [empNo=" + empNo + ", empName=" + empName + ", toEmpNo=" + toEmpNo + ", toEmpName=" + toEmpName
+				+ ", msg=" + msg + ", cmd=" + cmd + "]";
+	}
+
+	
+	
 }

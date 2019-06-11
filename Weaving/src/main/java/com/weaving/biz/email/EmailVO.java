@@ -25,7 +25,7 @@ public class EmailVO {
 
 	//공통
 	Timestamp checkTime;			//시간 체크 
-	int readCheck;				// 0안읽음 1 읽음 
+	String readCheck;				// 0안읽음 1 읽음 
 	String contenttype; 	  //타입 설정 
 	
 	String filename;			
@@ -140,11 +140,11 @@ public class EmailVO {
 		this.checkTime = checkTime;
 	}
 
-	public int getReadCheck() {
+	public String getReadCheck() {
 		return readCheck;
 	}
 
-	public void setReadCheck(int readCheck) {
+	public void setReadCheck(String readCheck) {
 		this.readCheck = readCheck;
 	}
 
