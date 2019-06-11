@@ -151,7 +151,29 @@
 	function empUpdate() {
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click',function(){
+			if($("#empName").val() == ""){
+		        alert("아이디를 입력하세요");
+		        $("#empName").focus();
+		        return false;
+		      }
 			
+			if($("#password").val() == ""){
+		        alert("비밀번호를 입력하세요");
+		        $("#password").focus();
+		        return false;
+		      }
+			
+			if($("#email").val() == ""){
+		        alert("이메일을 입력하세요");
+		        $("#email").focus();
+		        return false;
+		      }
+			
+			if($("#gmailAppKey").val() == ""){
+		        alert("gmailAppKey 입력하세요");
+		        $("#gmailAppKey").focus();
+		        return false;
+		      }
 			$.ajax({ 
 			    url: "empUpdate",
 			   // type: 'PUT', 

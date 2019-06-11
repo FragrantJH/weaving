@@ -60,6 +60,12 @@
 		$('#btnInsert').on('click',function(){
 			var deptName = $('input:text[name="deptName"]').val();
 			var upperDeptId = $('[name="upperDeptId"]').val();
+			if($("#deptName").val() == ""){
+		        alert("부서이름를 입력하세요");
+		        $("#deptName").focus();
+		        return false;
+		      }
+		      
 			$.ajax({ 
 			    url: "deptInsert",  
 			    type: 'POST',
@@ -124,6 +130,12 @@
 			var deptId = $('input:text[name="deptId"]').val();
 			var deptName = $('input:text[name="deptName"]').val();
 			var upperDeptId = $('[name="upperDeptId"]').val();
+			
+			if($("#deptName").val() == ""){
+		        alert("부서이름를 입력하세요");
+		        $("#deptName").focus();
+		        return false;
+		      }
 			$.ajax({ 
 			    url: "deptUpdate",
 			    type: 'PUT', 
@@ -225,7 +237,7 @@
 							<form action="insertDept" method="post" id="InsertDeptForm">
 								<br> 
 								<label for="deptId"><b>부서 번호</b></label> 
-								<input type="text" name="deptId" id="deptId">
+								<input type="text" name="deptId" id="deptId" readonly>
 								<br>
 								<br> 
 								<label for="deptName"><b>부서명</b></label> 
