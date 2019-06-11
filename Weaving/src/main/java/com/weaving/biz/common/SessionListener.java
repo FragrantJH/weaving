@@ -43,17 +43,8 @@ public class SessionListener implements HttpSessionListener, ServletContextListe
 	 */
 	public void sessionCreated(HttpSessionEvent se) {
 
-		System.out.println(">>>>>>>>>>>>>>>> 세션 생성");
 		Set<HttpSession> loginSet = (Set<HttpSession>) context.getAttribute(LOGIN_LIST);
-
 		loginSet.add(se.getSession());
-
-		System.out.println("==============[세션 목록]==============");
-		for (HttpSession session : loginSet) {
-			System.out.println("sessionId " + session.getId());
-			System.out.println("emp Info " + session.getAttribute("emp"));
-		}
-
 		context.setAttribute(LOGIN_LIST, loginSet);
 	}
 
@@ -61,7 +52,6 @@ public class SessionListener implements HttpSessionListener, ServletContextListe
 	 * @see HttpSessionListener#sessionDestroyed(HttpSessionEvent)
 	 */
 	public void sessionDestroyed(HttpSessionEvent se) {
-		System.out.println(">>>>>>>>>>>>>>>> 세션 제거");
 
 		Set<HttpSession> loginSet = (Set<HttpSession>) context.getAttribute(LOGIN_LIST);
 		loginSet.remove(se.getSession());

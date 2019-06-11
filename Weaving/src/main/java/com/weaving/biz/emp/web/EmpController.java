@@ -171,6 +171,7 @@ public class EmpController {
 		EmpVO emp = service.getEmp(vo);
 
 		if (emp == null) {
+			
 			// TODO : 잘못된 사용자 정보 처리 안되는 것 해결
 			/*
 			 * PrintWriter out = response.getWriter(); out.print("<script>");

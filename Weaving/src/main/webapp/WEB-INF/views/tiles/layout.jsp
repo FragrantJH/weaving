@@ -42,7 +42,7 @@
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="${pageContext.request.contextPath}/assets/img/sidebar-4.jpg">
       <div class="logo">
         <a href="${pageContext.request.contextPath}/home" class="simple-text logo-normal">
-          WEAVING
+          WEAVING 그룹웨어
         </a>
         <br>
       	<div class="container">
@@ -222,12 +222,11 @@
     </div>
     
     <div class="main-panel">
-      <!-- TODO Navbar 어떻게 할지 정리 필요 -->
-      <!-- Navbar -->
+     <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-           <!--  <a class="navbar-brand" href="#pablo">Dashboard</a> -->
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/home">Weaving</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -238,8 +237,8 @@
           <div class="collapse navbar-collapse justify-content-end">
             
             <ul class="navbar-nav">
-              
-              <li class="nav-item">
+			  
+			  <li class="nav-item" style="cursor: pointer;">
               	<a class="nav-link" onclick="openEmpList()" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">chat</i>
                 </a>
@@ -254,6 +253,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="${pageContext.request.contextPath}/pwcheck">Profile</a>
+                  <a class="dropdown-item" href="${pageContext.request.contextPath}/adminHome">Admin</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Log out</a>
                 </div>
@@ -262,17 +262,28 @@
           </div>
         </div>
       </nav>
-      
       <!-- End Navbar -->
-      <div class="content">
-    		<tiles:insertAttribute name="content" />
-      </div>
-      
-      <div class="text-center" style="margin-bottom: 0; background-color: #d3d3d3;">
-		<p style="color: white;">Copyright ⓒ 2019 WEAVING All Rights Reserved.</p>
-	  </div>
-    </div>
-  </div>
+	
+	<!-- 컨텐츠 들어가는 곳 -->
+	<div class="content">
+		<tiles:insertAttribute name="content" />
+	</div>
+	
+	
+	<!-- footer -->
+	<footer class="footer">
+		<div class="container-fluid">
+          <div class="copyright float-center">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="material-icons">favorite</i> by
+            <a href="${pageContext.request.contextPath}/home" target="_blank">WEAVING</a> All Rights Reserved.
+          </div>
+        </div>
+	</footer>
+	</div>
+</div>
   
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js"></script>
@@ -495,7 +506,7 @@
     });
   </script>
   <script>
-  	var webSocket = new WebSocket('ws://localhost/weaving/broadcast.do');
+  	var webSocket = new WebSocket('ws://192.168.0.35/weaving/broadcast.do');
   	var chatWindow_temp;
   	var chatWindow;
   	
@@ -534,7 +545,6 @@
 			temp += data.empName;
 			temp += '</div>';
 			
-			
 			temp += '<div class="received_msg">';
 			temp += '<div class="received_withd_msg">';
 			temp += '<p>';
@@ -543,8 +553,6 @@
 			temp += '</div>';
 			temp += '</div>';
 			temp += '</div>';
-			
-			console.log(temp);
 			
 			$(messages).append(temp);
 		}

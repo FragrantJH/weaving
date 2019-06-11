@@ -104,8 +104,6 @@
 	</script>
 
 	<div class="container-fluid">
-
-		<h3>이 달의 결재 상황</h3>
 		<!-- 상단1 -->
 		<div class="row">
 			<div class="col-md-3">
@@ -117,7 +115,8 @@
 					</div>
 					<div class="card-body">
 						<h6 class="card-title">
-							전체 진행중인 결재 <br> 문서는 ${totalIngCount}건 입니다.
+							전체 진행중인 결재 <br> 문서는 
+							<small class="text-muted" style="font-size:x-large;">${totalIngCount}</small> 건 입니다.
 						</h6>
 
 					</div>
@@ -135,7 +134,8 @@
 					</div>
 					<div class="card-body">
 						<h6 class="card-title">
-							전체 반려된 결재 문서는 <br> ${totalReturnCount}건 입니다.
+							전체 반려된 결재 문서는 <br>
+							<small class="text-muted" style="font-size:x-large;">${totalReturnCount}</small> 건 입니다.
 						</h6>
 
 					</div>
@@ -151,7 +151,8 @@
 					</div>
 					<div class="card-body">
 						<h6 class="card-title">
-							전체 완료된 결재 문서는 <br> ${totalDoneCount}건 입니다.
+							전체 완료된 결재 문서는 <br> 
+							<small class="text-muted" style="font-size:x-large;">${totalDoneCount}</small> 건 입니다.
 						</h6>
 
 					</div>
@@ -167,7 +168,8 @@
 					</div>
 					<div class="card-body">
 						<h6 class="card-title">
-							전체 임시저장 문서는 <br> ${totalTempCount}건 입니다.
+							전체 임시저장 문서는 <br>
+							<small class="text-muted" style="font-size:x-large;">${totalTempCount}</small> 건 입니다.
 						</h6>
 
 					</div>
