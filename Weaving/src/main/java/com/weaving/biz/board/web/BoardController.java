@@ -101,9 +101,11 @@ public class BoardController {
 
 	// 글 상세 조회
 	@RequestMapping("/boardOne/{boardId}")
-	public String boardOne(@ModelAttribute("board") BoardVO vo, @PathVariable Integer boardId, Model model) {
+	public String boardOne(@ModelAttribute("board") BoardVO vo, @PathVariable Integer boardId, Model model, HttpSession session) {
 		vo.setBoardId(boardId);
-		model.addAttribute("board", service.getBoardOne(vo));
+		vo = service.getBoardOne(vo);
+		model.addAttribute("board", vo);
+		session.setAttribute("boardType", vo.getBoardType());
 		return "board/boardOne";
 	}
 
