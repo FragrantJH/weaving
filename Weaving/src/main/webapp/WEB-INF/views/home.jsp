@@ -265,6 +265,7 @@
 						</div>
 					</div>
 					<div class="card-body">
+					<!-- 
 						<h6 class="card-title">D-16</h6>
  					-->	
  					<!--
