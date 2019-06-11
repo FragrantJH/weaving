@@ -97,19 +97,21 @@ EMPNO=#empNo#
 	
 	
 	<update id="updateRCR">
+	<![CDATA[
 	UPDATE INBOXEMAIL
 	
 	SET READ_CHECK='1'
-	WHERE READ_CHECK='0'
-	
+		WHERE INBOXID = #{inboxid}
+		]]>
 	</update>
 	
 		<update id="updateRCNR">
+	<![CDATA[
 	UPDATE INBOXEMAIL
 	
 	SET READ_CHECK='0'
-	WHERE READ_CHECK='1'
-	
+	WHERE INBOXID = #{inboxid}
+		]]>
 	</update>
 	
 	<!-- 단건 조회--> 

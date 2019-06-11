@@ -53,6 +53,8 @@ public class EmailServiceImpl implements EmailService {
 	@Override
 	public EmailVO getINBOXOne(EmailVO vo) throws Exception {
 	
+		vo.setReadCheck("1");
+		dao.updateRCR(vo);
 		return dao.getINBOXOne(vo);
 	}
 
