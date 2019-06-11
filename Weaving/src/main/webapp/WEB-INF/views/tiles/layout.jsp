@@ -57,18 +57,16 @@
 	        	<br>
 	        	<br>
 	        	<c:if test="${not empty emp }">
-	            	<h5>${emp.empName} 님, 환영합니다</h5>
+	            	<h5><i>${emp.empName}</i> 님, 환영합니다</h5>
 	            </c:if>
 	            <c:if test="${empty emp }">
 	            	<h6>오늘도 WEAVING과 함께 열일 합시다</h6>
 	            </c:if>
 	            <c:if test="${not empty emp}">
-					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/logout'">
-					  <i class="material-icons">face</i> 로그아웃
-					</button>
-					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/pwcheck'">
-					  <i class="material-icons">face</i> 정보수정
-					</button>
+		            <div class="btn-group">
+						<button class="btn btn-primary" onclick="location='${pageContext.request.contextPath}/pwcheck'">정보수정</button>
+						<button class="btn btn-defualt" onclick="location='${pageContext.request.contextPath}/logout'">로그아웃</button>
+					</div>
 				</c:if>
 				<c:if test="${empty emp}">
 					<button class="btn btn-defualt" style="width: 100%" onclick="location='${pageContext.request.contextPath}/login'">

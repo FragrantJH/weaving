@@ -11,7 +11,6 @@
 #calendar {
 	max-width: 500px;
 	margin: 0 auto;
-	
 	.card-title{ font-family: impact}
 }
 #weatherInfo {
@@ -19,16 +18,9 @@
     margin: auto;
 }
 .wsState img {
-	width:100px;
+	width:40px;
 }
-/*
-#weatherInfo th {
-	height: 40px;
-	width: 116px;
-	vertical-align: middle;
-	text-align: center;
-}
-*/
+
 </style>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -50,18 +42,6 @@
 		         async: "false",
 		         success: function(data) {
 		        	makeWeatherHtml(data);
-					/*
-					console.log(data);
-		            console.log("현재온도 : "+ (data.main.temp - 273.15) );
-		            console.log("현재습도 : "+ data.main.humidity);
-		            console.log("날씨 : "+ data.weather[0].main );
-		            console.log("상세날씨설명 : "+ data.weather[0].description );
-		            console.log("날씨 이미지 : "+ data.weather[0].icon );
-		            console.log("바람   : "+ data.wind.speed );
-		            console.log("나라   : "+ data.sys.country );
-		            console.log("도시이름  : "+ data.name );
-		            console.log("구름  : "+ (data.clouds.all) +"%" ); 			
-						*/				
 				},
 				error : function(){
 					alert('날씨정보 로드에 실패했습니다.')
@@ -106,7 +86,6 @@
 					break;
 				default:
 					wsStr = wsDesc;
-					alert("예외 날씨 상태가 발생되었습니다.");
 					break;
 			}
 			$('.cast_txt').text(wsStr +", 현재습도 : " + data.main.humidity + "%");
@@ -121,9 +100,6 @@
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
 				success : calRender,
-				error : function() {
-					alert('일정을 불러오는 데 실패했습니다. 관리자에게 문의해주세요.');
-				}
 			});
 		}
 
@@ -261,40 +237,18 @@
 				<div class="card">
 					<div class="card-header card-header-icon card-header-info">
 						<div class="card-icon">
-							<i class="material-icons">calendar_today</i>
+							<i class="material-icons">wb_sunny</i>
 						</div>
 					</div>
 					<div class="card-body">
-					<!-- 
-						<h6 class="card-title">D-16</h6>
- 					-->	
- 					<!--
- 					 						<div class="main_info" style="vertical-align: middle;">
-							<span class="wsState"></span>
-							<div class="info_data" style="display:inline-block;">
-								<p class="info_temperature">
-									<span class="todaytemp">0</span>
-									<span class="tempmark"><span class="blind">도씨</span>℃</span>
-								</p>
-								<p class="cast_txt"></p>
-							</div>
-						</div>
- 					 -->
 	 					<div class="main_info">
-	 						<table id="weatherInfo">
-								<tr>
-									<th rowspan="2" class="wsState"></th>
-									<th>
-										<span class="h2 todaytemp">0</span>
-										<span class="h2 tempmark">℃</span>									
-									</th>
-								</tr>
-								<tr>
-									<th><p class="cast_txt"></p></th>
-								</tr>								
-	 						</table>	 					
+	 						<div id="weatherInfo">
+	 							<span class="wsState"></span>
+	 							<span class="todaytemp">0</span>
+								<span class="tempmark">℃</span>
+								<span class="cast_txt"></span>
+	 						</div>
 	 					</div>
-						
 					</div>
 				</div>
 			</div>
