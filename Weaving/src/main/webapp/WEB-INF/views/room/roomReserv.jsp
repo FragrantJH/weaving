@@ -18,7 +18,21 @@
 div.statusbutton {
 	margin: auto;
 	width: 50%;
+
 }
+div.timeselect{
+	width:300px;
+	
+}
+
+
+div.form-group{
+	
+	width:420px;
+}
+
+
+
 
 select {
 	width: 150px;
@@ -37,6 +51,67 @@ select {
 select::-ms-expand {
 	display: none;
 }
+
+/* The container must be positioned relative: */
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+ .select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+ .select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+} 
+
 }
 </style>
 
@@ -78,12 +153,12 @@ select::-ms-expand {
 				return false;
 			}
 			
-			if ($('#selectStime option:selected').text() == "선택") {
+			if ($('#selectStime option:selected').text() == "시작시간") {
 				alert("시작시간을 선택하세요");
 				return false;
 			}
 			
-			if ($('#selectEtime option:selected').text() == "선택") {
+			if ($('#selectEtime option:selected').text() == "종료시간") {
 				alert("종료시간을 선택하세요");
 				return false;
 			}
@@ -94,7 +169,7 @@ select::-ms-expand {
 				return false;
 			}
 			
-			if ($('#selectEtime option:selected').text() == "선택") {
+			if ($('#selectEtime option:selected').text() == "종료시간") {
 				alert("종료시간을 선택하세요");
 				return false;
 			}		
@@ -168,7 +243,7 @@ select::-ms-expand {
 			<div class="card-body" id="roomname">
 				<form name="frm" action="roomInsertReserv" method="POST">
 					<input type="hidden" id="resId"> 회의실 
-					<select id="roomr" name="roomId">
+					<select id="roomr" class="custom-select" name="roomId">
 						<option value="">회의실선택</option>
 						<option value="1">1번회의실</option>
 						<option value="2">2번회의실</option>
@@ -176,22 +251,11 @@ select::-ms-expand {
 					</select>
 					<p>
 					<p>
-
-
-
-
-						날짜 <input type="text" autocomplete="off" name="reservDate"
-							id="datepicker" placeholder="예약일을 지정해주세요.">
-						<script>
-							$("#datepicker").datepicker({
-								dateFormat : 'yy-mm-dd'
-								//dateFormat : 'yyyy-mm-dd'
-							});
-						</script>
 					<p>
-
-						예약시간 <select name="startTime" id="selectStime">
-							<option value="">선택</option>
+						<div class="row" id="leftboxs">
+						<div class="col">
+						<select name="startTime" id="selectStime" class="custom-select">
+							<option value="">시작시간</option>
 							<option value="10:00">10:00</option>
 							<option value="10:30">10:30</option>
 							<option value="11:00">11:00</option>
@@ -208,8 +272,8 @@ select::-ms-expand {
 							<option value="16:30">16:30</option>
 							<option value="17:00">17:00</option>
 							<option value="17:30">17:30</option>
-						</select> ~ <select name="endTime" id="selectEtime">
-							<option value="">선택</option>
+						</select></div> ~ <div class="col"><select name="endTime" id="selectEtime" class="custom-select">
+							<option value="">종료시간</option>
 							<option value="10:30">10:30</option>
 							<option value="11:00">11:00</option>
 							<option value="11:30">11:30</option>
@@ -227,10 +291,23 @@ select::-ms-expand {
 							<option value="17:30">17:30</option>
 							<option value="18:00">18:00</option>
 						</select>
+						</div>
+						</div>
+						<p>
+						<div class="datepick" id="rightboxs">			
+						<p>날짜&nbsp;&nbsp; <input type="text" autocomplete="off" name="reservDate"
+							id="datepicker" placeholder="예약일을 지정해주세요.">
+						<script>
+							$("#datepicker").datepicker({
+								dateFormat : 'yy-mm-dd'
+								//dateFormat : 'yyyy-mm-dd'
+							});
+						</script>
+						</div>
 					<p>
 						<!-- 사용용도
 						<textarea name="description" id="des" rows="5" cols="40" ></textarea> -->
-						<div class="form-group">
+						사용용도<div class="form-group">
 								<!-- <label for="title">사용용도</label> -->
 								<textarea class="form-control" id="description" name="description" rows="5" placeholder="사용용도를 적어주세요."></textarea>
 						</div>
@@ -268,11 +345,11 @@ select::-ms-expand {
 				<form action="roomReserv" name="frm1">
 				<input type="hidden" name="roomButton">
 				<div class="statusbutton">
-				<button type="button" id="before" onclick="show('1')">지난예약</button>
-				<button type="button" id="today" onclick="show('2')">금일예약</button>
-				<button type="button" id="roomone" onclick="show('3')">1번룸</button>
-				<button type="button" id="roomtwo" onclick="show('4')">2번룸</button>
-				<button type="button" id="roomthree" onclick="show('5')">3번룸</button>
+				<button class="btn btn-primary btn-round btn-sm" type="button" id="before" onclick="show('1')">지난예약</button>
+				<button class="btn btn-primary btn-round btn-sm" type="button" id="today" onclick="show('2')">금일예약</button>
+				<button class="btn btn-primary btn-round btn-sm" type="button" id="roomone" onclick="show('3')">1번룸</button>
+				<button class="btn btn-primary btn-round btn-sm" type="button" id="roomtwo" onclick="show('4')">2번룸</button>
+				<button class="btn btn-primary btn-round btn-sm" type="button" id="roomthree" onclick="show('5')">3번룸</button>
 				</div>
 				</form>
 			</div>
