@@ -47,9 +47,7 @@ function checkform() {
 					</div>
 				<form action="mailSend" method="post" name="frm">
 					<div class="bigpage">
-						<div class="send-button">
-							<input type="button" class="btn btn-primary btn-sm" value="보내기" id="send-button" onclick="checkform()"/>
-						</div>
+						
 			
 						<div class="card-body">
 							<div class="table-responsive">
@@ -84,7 +82,7 @@ function checkform() {
 						nhn.husky.EZCreator.createInIFrame({
 						 oAppRef: oEditors,
 						 elPlaceHolder: "emailContents",
-						 sSkinURI:"./resources/workspace/SmartEditor2Skin.html" ,
+						 sSkinURI: "./resources/workspace/SmartEditor2Skin.html",
 						 fCreator: "createSEditor2"
 						});
 						</script>
@@ -93,6 +91,9 @@ function checkform() {
 					</div>
 				</div>
 			</form>
+			<div  class="send-button" style="float:right;">
+							<input type="button" class="btn btn-primary btn-sm" value="보내기" id="send-button" onclick="checkform()"/>
+						</div>
 			</div>
 		</div>
 	</div>
