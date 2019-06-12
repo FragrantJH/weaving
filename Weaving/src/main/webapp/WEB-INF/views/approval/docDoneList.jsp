@@ -12,7 +12,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header card-header-text card-header-primary">
+				<div class="card-header card-header-primary">
 					<h4 class="card-title ">결재 완료 문서</h4>
 					<p class="card-category">결재가 완료된 문서를 조회할 수 있습니다</p>
 				</div>
