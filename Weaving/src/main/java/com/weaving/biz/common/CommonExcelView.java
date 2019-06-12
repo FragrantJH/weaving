@@ -27,7 +27,7 @@ public class CommonExcelView extends AbstractXlsxView {
 		Row row;
 		Cell cell;
 		int rowNum = 0;
-		String file_name = (String) model.get("filename") + System.currentTimeMillis() + ".xlsx";
+		String file_name = (String) model.get("filename") + "_" + System.currentTimeMillis() + ".xlsx";
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + file_name + "\"");
 		// header 출력
 		String[] headers = (String[]) model.get("headers");

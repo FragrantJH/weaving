@@ -34,22 +34,22 @@ function goList(p){
 							</h4>
 						</div>
 					</div>
-					<!-- 게시판 검색 창 -->
-					<form name="searchForm">
-						<div style="float:right;">
-						<select name="searchCondition">
-							<option value="">선택
-							<option value="TITLE">제목
-							<option value="BOARD_CONTENTS">내용
-							<option value="EMP_NAME"> 작성자
-						</select>
-						<script>
-							searchForm.searchCondition.value = '${boardVO.searchCondition}';
-						</script>
-						<input name="searchKeyword" value="${boardVO.searchKeyword}" />
-						<button type="submit" class="btn btn-primary btn-sm">검색</button>
-					</div>
-					</form>
+						<!-- 게시판 검색 창 -->
+						<form name="searchForm">
+							<div style="float:right; margin-right: 20px;">
+							<select name="searchCondition">
+								<option value="">선택
+								<option value="TITLE">제목
+								<option value="BOARD_CONTENTS">내용
+								<option value="EMP_NAME"> 작성자
+							</select>
+							<script>
+								searchForm.searchCondition.value = '${boardVO.searchCondition}';
+							</script>
+							<input name="searchKeyword" value="${boardVO.searchKeyword}" />
+							<button type="submit" class="btn btn-primary btn-sm">검색</button>
+						</div>
+						</form>
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table">
@@ -84,8 +84,10 @@ function goList(p){
 						<div style="float:right;">
 						<button type="button" class="btn btn-primary btn-sm"
 							onclick="location.href='boardList?boardType=${boardType}'">목록</button>
+						<c:if test="${boardType == '0' && emp.adminYn}">
 						<button type="button" class="btn btn-primary btn-sm"
 							onclick="location.href='boardInsertForm'">글쓰기</button>
+						</c:if>
 						</div>
 					</div>
 				</div>

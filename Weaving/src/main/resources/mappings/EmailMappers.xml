@@ -4,9 +4,9 @@
 
 
 <insert id="insertEmail" parameterType="email" >
-<selectKey  keyProperty="emailId" resultType="int"  order="BEFORE">
-	select nvl(max(EMAIL_ID),0)+1 from email
-</selectKey>
+		<selectKey  keyProperty="emailId" resultType="int"  order="BEFORE">
+			select nvl(max(EMAIL_ID),0)+1 from email
+		</selectKey>
 INSERT INTO EMAIL(
 				EMAIL_ID,
 				FROM_EMAIL,
@@ -24,7 +24,7 @@ VALUES(
 				#{subject},
 				#{emailContents},
 				sysdate,
-				#{readCheck},
+				0,
 				#{empNo}
 
 )
@@ -32,9 +32,9 @@ VALUES(
 </insert>
 
 <insert id="insertInbox" parameterType="email" >
-<selectKey  keyProperty="inboxid" resultType="int"  order="BEFORE">
-	select nvl(max(INBOXID),0)+1 from INBOXEMAIL
-</selectKey>
+		<selectKey  keyProperty="inboxid" resultType="int"  order="BEFORE">
+			select nvl(max(INBOXID),0)+1 from INBOXEMAIL
+		</selectKey>
 
 INSERT INTO INBOXEMAIL(
 							INBOXID,
@@ -53,7 +53,7 @@ VALUES(
 							#{subject},
 							#{inboxContents},
 							sysdate,
-							#{readCheck},
+							0,
 							#{empNo}
 
 )
@@ -164,7 +164,7 @@ WHERE INBOXID = #{inboxid}
 					EMP_NO		
 					
 	FROM 	INBOXEMAIL
-	WHERE EMP_NO=#{empNo} 
+	WHERE EMP_NO=${empNo} 
 	ORDER	BY INBOXID DESC
 
 	</select>

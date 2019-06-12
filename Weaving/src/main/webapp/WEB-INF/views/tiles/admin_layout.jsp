@@ -55,14 +55,10 @@
 					</c:if>
 					<br>
 					<c:if test="${not empty emp && emp.adminYn}">
-						<button class="btn btn-defualt" style="width: 100%"
-							onclick="location='${pageContext.request.contextPath}/logout'">
-							<i class="material-icons">face</i> 로그아웃
-						</button>
-						<button class="btn btn-defualt" style="width: 100%"
-							onclick="location='${pageContext.request.contextPath}/home'">
-							<i class="material-icons">face</i> WEAVING으로 이동
-						</button>
+						<div class="btn-group">
+							<button class="btn btn-primary" onclick="location='${pageContext.request.contextPath}/logout'">로그아웃</button>
+							<button class="btn btn-defualt" onclick="location='${pageContext.request.contextPath}/home'">WEAVING</button>
+						</div>
 					</c:if>
 					<c:if test="${empty emp}">
 						<button class="btn btn-defualt" style="width: 100%"
@@ -152,13 +148,55 @@
 	</div>
 	<!-- 메인 패널 -->
 	<div class="main-panel">
-		<div class="content">
-			<tiles:insertAttribute name="content" />
-		</div>
+	<!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/adminHome">Weaving Admin Page</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            
+            <ul class="navbar-nav">
+			  
+			  <li class="nav-item">
+              	<a class="nav-link" href="${pageContext.request.contextPath}/home" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">home</i>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+              	<a class="nav-link" href="${pageContext.request.contextPath}/logout" aria-haspopup="true" aria-expanded="false">
+                  logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+     
+	<div class="content">
+		<tiles:insertAttribute name="content" />
 	</div>
 	
-	<div class="text-center" style="margin-bottom: 0; background-color: #d3d3d3;">
-		<p style="color: white;">Copyright ⓒ 2019 WEAVING All Rights Reserved.</p>
+	<!-- footer -->
+	<footer class="footer">
+		<div class="container-fluid">
+          <div class="copyright float-center">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="material-icons">favorite</i> by
+            <a href="${pageContext.request.contextPath}/home" target="_blank">WEAVING</a> All Rights Reserved.
+          </div>
+        </div>
+	</footer>
 	</div>
 </div>
 <!--   Core JS Files   -->

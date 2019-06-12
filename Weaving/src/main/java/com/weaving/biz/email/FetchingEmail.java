@@ -26,10 +26,13 @@ import javax.mail.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.weaving.biz.emp.EmpVO;
 @Service
 @SessionAttributes(types = EmailVO.class)
 public class FetchingEmail {
 
+	
 	@Autowired
 	private EmailService emailService;
 	
@@ -91,15 +94,17 @@ public class FetchingEmail {
 	}
 
 
-	public  List<EmailVO> check(String host, String storeType, String user, String password) {
-		List<EmailVO> list = new ArrayList<EmailVO>();
+	public  List<EmailVO> check(String host, String storeType, String user, String password, int empNo) {
 		
+		List<EmailVO> list = new ArrayList<EmailVO>();
 		try {
 			// create properties field
 			Properties properties = new Properties();
+			//properties.put("mail.store.protocol", "pop3");
 			properties.put("mail.pop3.host", host);
 			properties.put("mail.pop3.port", "995");
 			properties.put("mail.pop3.starttls.enable", "true");
+
 			Session emailSession = Session.getDefaultInstance(properties);
 
 			// create the POP3 store object and connect with the pop server
@@ -120,9 +125,13 @@ public class FetchingEmail {
 				Message message = messages[i];
 
 				EmailVO vo = new EmailVO();
-				contentBody = " ";
+			//	vo.setEmpNo();
+				contentBody = "";
 				writePart(message,vo);
+				
 				vo.setInboxContents(contentBody);
+				vo.setEmpNo(empNo);
+				
 				emailService.insertInbox(vo);	
 				
 				list.add(vo);

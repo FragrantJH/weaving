@@ -66,7 +66,9 @@ body, html {
 							<label for="pwd">Password</label> 
 							<input type="password" class="form-control" id="pwd" name="password" value="${EmpVO.password}">
 						</div>
-						<button type="submit" class="btn btn-primary btn-lg">로그인</button>
+						<div style="text-align: center">
+						<button type="submit" class="btn btn-primary">로그인</button>
+						</div>
 					</form>
 			  </div>
 			  <div class="col-sm-4"></div>

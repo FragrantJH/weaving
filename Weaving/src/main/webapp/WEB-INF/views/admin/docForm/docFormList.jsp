@@ -23,13 +23,17 @@ function goList(p){
 <form action="docFormList" name="form2">
 	<input type="hidden" name="page" value="1"></input>
 </form>
+	<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header card-header-primary">
-					<h4 class="card-title ">결재폼 목록</h4>
-					<p class="card-category">관리자가 등록한 결재폼 목록입니다</p>
-				</div>
+				<div class="card-header card-header-text card-header-primary">
+						<div class="card-text">
+							<h4 class="card-title">
+							결재폼 목록
+							</h4>
+						</div>
+					</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table">
@@ -52,14 +56,18 @@ function goList(p){
 						</table>
 						
 						<!-- paging -->
-						<div>
+						<div style="text-align: center">
 							<my:paging paging="${paging}" jsFunc="goList" />
+						</div>
+						<div style="float: right">
+							<button class="btn btn-primary btn-sm" onclick="location='${pageContext.request.contextPath}/docFormInsertForm'">등록</button>
 						</div>
 					</div>
 				</div>
-				<button class="btn btn-default btn btn-primary" onclick="location='${pageContext.request.contextPath}/docFormInsertForm'"> 결재폼 등록 </button>
+				
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

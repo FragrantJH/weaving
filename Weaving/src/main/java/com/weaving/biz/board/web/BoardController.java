@@ -43,7 +43,7 @@ public class BoardController {
 		return "redirect:boardList?boardType=" + vo.getBoardType();
 	}
 
-	// 글 목록 조회
+	// Admin 글 목록 조회
 	@RequestMapping("/boardListAdmin")
 	public ModelAndView getBoardListAdmin(ModelAndView mav, Paging paging, BoardVO vo, HttpSession session) {
 
@@ -53,6 +53,8 @@ public class BoardController {
 		}
 		// 공지사항
 		vo.setBoardType("0");
+		
+		session.setAttribute("boardType", vo.getBoardType());
 		
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());

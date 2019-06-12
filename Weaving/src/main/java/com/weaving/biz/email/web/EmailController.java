@@ -28,6 +28,7 @@ import com.weaving.biz.email.EmailService;
 import com.weaving.biz.email.EmailVO;
 import com.weaving.biz.email.FetchingEmail;
 import com.weaving.biz.email.MessageVO;
+import com.weaving.biz.email.ReplyToEmail;
 import com.weaving.biz.email.SendEmailService;
 import com.weaving.biz.emp.EmpVO;
 
@@ -43,10 +44,18 @@ public class EmailController {
 	@Autowired
 	SendEmailService emailService;
 
+
 	// 메일보내기폼
 	@RequestMapping("mailForm")
 	public String mailForm() {
 		return "email/mailForm";
+	}
+	
+	//답장폼 
+	@RequestMapping("/replyForm/{fromInbox}")
+	public String replyForm(@PathVariable String fromInbox,Model model) {
+		model.addAttribute("to",fromInbox);
+		return "email/reply_mail";
 	}
 
 	// 메일발송완료폼
@@ -60,7 +69,7 @@ public class EmailController {
 	public String meilDelete(EmailVO vo, HttpSession session, HttpServletRequest request) {
 		vo.setInboxid(Integer.parseInt(request.getParameter("inboxid")));
 		service.deleteInbox(vo);
-		return "email/email_List";
+		return "redirect:/email_List";
 	}
 
 	// 메일발송처리
@@ -83,21 +92,45 @@ public class EmailController {
 		out.println("<script>alert('메일을 전송하였습니다.'); location.href='success_email';</script>");
 
 	}
+	
+	// 답장발송처리
+		@RequestMapping("reply_mail")
+		public void replymailSend(EmailVO vo, HttpServletResponse response, @ModelAttribute("searchVO") MessageVO searchVO,
+				SessionStatus status, HttpSession hsession, Model model) throws Exception {
+
+			response.setContentType("text/html; charset=UTF-8");
+			response.setCharacterEncoding("UTF-8");
+
+			EmpVO empvo = SessionInfo.getInfo(hsession, "emp");
+			vo.setFromInbox(empvo.getEmail());
+			//세션에서 from ,to 받아와야함 
+			vo.setEmpNo(empvo.getEmpNo());
+			//	vo.setToInbox();
+			status.setComplete();
+			ReplyToEmail.replyto(vo, empvo);
+			model.addAttribute("emp", empvo.getEmail());
+
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('메일을 전송하였습니다.'); location.href='success_email';</script>");
+
+		}
 
 	// 받은 메일 보관함
 	@RequestMapping("email_List")
-	public String getMail(EmpVO empvo, EmailVO vo, HttpSession hsession, SessionStatus status, Model model)
+	public String getMail(EmailVO vo, HttpSession hsession, SessionStatus status, Model model)
 			throws Exception {
-
+		EmpVO empvo = SessionInfo.getInfo(hsession, "emp");
+		vo.setEmpNo(empvo.getEmpNo());
+		
 		String host = "pop.gmail.com";// change accordingly
 		String mailStoreType = "pop3";
-		final String username = empvo.getEmail(); // change accordingly
-		final String password = empvo.getGmailAppKey(); // change accordingly
-
-		empvo = SessionInfo.getInfo(hsession, "emp");
-		vo.setEmpNo(empvo.getEmpNo());
-		fetch.check(host, mailStoreType, username, password);
-
+		String username = empvo.getEmail(); // change accordingly
+		String password = empvo.getGmailAppKey(); // change accordingly
+		
+	
+		
+		fetch.check(host, mailStoreType, username, password, empvo.getEmpNo());
+		
 		List<EmailVO> list = service.getEmailList(vo);
 		model.addAttribute("emailList", list);
 
@@ -106,9 +139,10 @@ public class EmailController {
 
 	// 메일 보기 상세 화면
 	@RequestMapping("/reading_mail/{inboxid}")
-	public String reading_mail(Model model, HttpSession hsession, EmailVO vo, @PathVariable Integer inboxid)
+	public String reading_mail(EmpVO empvo,Model model, HttpSession hsession, EmailVO vo, @PathVariable Integer inboxid)
 			throws Exception {
-		EmpVO empvo = SessionInfo.getInfo(hsession, "emp");
+
+		empvo = SessionInfo.getInfo(hsession, "emp");
 		
 		// mail id 로 메일 단건 조회
 		vo.setInboxid(inboxid);

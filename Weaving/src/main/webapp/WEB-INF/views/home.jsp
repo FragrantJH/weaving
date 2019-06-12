@@ -169,8 +169,6 @@
 
 <div>
 	<div class="container-fluid">
-	<h1 class="display-4" style="color: dark">WEAVING 그룹웨어</h1>
-	
 		<!-- 상단1 -->
 		<div class="row">
 			<div class="col-md-3"

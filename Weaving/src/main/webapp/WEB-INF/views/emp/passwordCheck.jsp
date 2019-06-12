@@ -26,7 +26,7 @@
 				</div>
 				<div style="float: right">		
 				<button type ="submit"  class="btn btn-primary btn-sm">수정하기</button>
-				<button type ="button" class="btn btn-default btn-sm" onclick="location='${pageContext.request.contextPath}/home'" class="cancelbtn">돌아가기</button>
+				<button type ="button" class="btn btn-default btn-sm" onclick="location='${pageContext.request.contextPath}/home'">돌아가기</button>
 				</div>
 			</form>
 	      </div>

@@ -74,7 +74,9 @@
 					</script>
 					<br>
 					<br>
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#docPreview">
+					<div style="float: right;">
+					
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#docPreview">
 							미리보기
 						</button>
 
@@ -92,7 +94,8 @@
 						    </div>
 						  </div>
 						</div>
-						<button type="button" class="btn btn-default" onclick="saveDocForm()">저장</button>
+						<button type="button" class="btn btn-primary  btn-sm" onclick="saveDocForm()">저장</button>
+					</div>
 				</form>
 			</div>
 		</div>

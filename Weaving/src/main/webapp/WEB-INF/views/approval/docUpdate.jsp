@@ -550,8 +550,10 @@ function toRightMove() {
 						<input name="secureLevel" type="hidden" value="">
 						<input name="approvalList" type="hidden" value="">
 					</div>
-					<button type="button" class="btn btn-primary tempSave">임시저장</button>
-					<button type="button" class="btn btn-primary">결재</button>
+					<div style="float:right;">
+						<button type="button" class="btn btn-primary tempSave" >임시저장</button>
+						<button type="button" class="btn btn-primary" >결재</button>
+					</div>
 				</form>
 			</div>
 		</div>

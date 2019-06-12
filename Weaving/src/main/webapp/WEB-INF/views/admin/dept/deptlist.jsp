@@ -178,8 +178,8 @@
 			.append($('<td>').html(item.deptId))
 			.append($('<td>').html(item.deptName))
 			.append($('<td>').html(item.upperDeptId))
-			.append($('<td>').html('<button id=\'btnSelect\' data-toggle=\'modal\' data-target=\'#searchModal\'>상세보기</button>'))
-			.append($('<td>').html('<button class= \'btnSelEmp\' type="button" >조회</button>'))
+			.append($('<td>').html('<button class="btn btn-defualt btn-sm" id=\'btnSelect\' data-toggle=\'modal\' data-target=\'#searchModal\'>상세보기</button>'))
+			.append($('<td>').html('<button class="btn btn-defualt btnSelEmp btn-sm" type="button" >조회</button>'))
 			.append($('<input type="hidden" deptId="hidden_deptId">').val(item.deptId))
 			.appendTo('#dept');
 		});//each
@@ -212,6 +212,8 @@
 						<th class="text-center">부서번호</th>
 						<th class="text-center">부서명</th>
 						<th class="text-center">상위부서</th>
+						<th class="text-center">상세보기</th>
+						<th class="text-center">조회</th>
 					</tr>
 				</thead>
 				<tbody id="dept"></tbody>

@@ -49,14 +49,15 @@ function writeCheck()
 									class="form-control" id="title" name="title">
 							</div>
 							<br>
-							<textarea name="boardContents" id="editor" rows="100" cols="80">
-        			</textarea>
+							<textarea name="boardContents" id="editor" rows="100" cols="80"></textarea>
 							<script>
 								CKEDITOR.replace('editor');
 							</script>
-							<br> <br>
+							<br>
+							<div style="float: right">
 							<button type="button" class="btn btn-primary btn-sm"
 								onclick="writeCheck();">등록</button>
+							</div>
 						</form>
 					</div>
 				</div>

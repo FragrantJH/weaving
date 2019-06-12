@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.weaving.biz.email.EmailService;
 import com.weaving.biz.email.EmailVO;
 import com.weaving.biz.email.MessageVO;
+import com.weaving.biz.emp.EmpVO;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -27,6 +28,7 @@ public class EmailServiceImpl implements EmailService {
 	
 	@Override
 	public String insertInbox(EmailVO vo) throws Exception {
+		
 		dao.insertInbox(vo);
 		return null;
 	}
@@ -45,7 +47,7 @@ public class EmailServiceImpl implements EmailService {
 
 
 	public List<EmailVO> getEmailList(EmailVO vo) throws Exception {
-	
+		
 		return (List<EmailVO>) dao.getEmailList(vo);
 	}
 
