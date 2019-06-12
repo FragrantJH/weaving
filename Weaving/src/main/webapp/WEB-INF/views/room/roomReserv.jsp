@@ -307,7 +307,7 @@ select::-ms-expand {
 					<p>
 						<!-- 사용용도
 						<textarea name="description" id="des" rows="5" cols="40" ></textarea> -->
-						사용용도<div class="form-group">
+						<div class="form-group">
 								<!-- <label for="title">사용용도</label> -->
 								<textarea class="form-control" id="description" name="description" rows="5" placeholder="사용용도를 적어주세요."></textarea>
 						</div>
