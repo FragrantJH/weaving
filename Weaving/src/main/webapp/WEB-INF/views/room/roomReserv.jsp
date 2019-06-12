@@ -313,12 +313,12 @@ select::-ms-expand {
 						</div>
 					<p>
 					<div id="btn_group">
-						<button type="submit" id="reserv" class="btn btn-primary btn-sm">예약</button>
+						<button type="submit" id="reserv" class="btn btn-danger btn-sm">예약</button>
 						<button type="button" id="reservModify"
-							class="btn btn-primary btn-sm" onclick="modifyReserv()">수정</button>
+							class="btn btn-primary	 btn-sm" onclick="modifyReserv()">수정</button>
 						<button type="reset" id="reservReset"
 							class="btn btn-primary btn-sm">초기화</button>
-						<button type="button" class="btn btn-primary btn-sm"
+						<button type="button" class="btn btn-default btn-sm"
 							onclick="location.href='roomlist'">취소</button>
 					</div>
 				</form>
@@ -346,11 +346,11 @@ select::-ms-expand {
 				<form action="roomReserv" name="frm1">
 				<input type="hidden" name="roomButton">
 				<div class="statusbutton">
-				<button class="btn btn-primary btn-round btn-sm" type="button" id="before" onclick="show('1')">지난예약</button>
-				<button class="btn btn-primary btn-round btn-sm" type="button" id="today" onclick="show('2')">금일예약</button>
-				<button class="btn btn-primary btn-round btn-sm" type="button" id="roomone" onclick="show('3')">1번룸</button>
-				<button class="btn btn-primary btn-round btn-sm" type="button" id="roomtwo" onclick="show('4')">2번룸</button>
-				<button class="btn btn-primary btn-round btn-sm" type="button" id="roomthree" onclick="show('5')">3번룸</button>
+				<button class="btn btn-dark btn-sm" type="button" id="before" onclick="show('1')">지난예약</button>
+				<button class="btn btn-dark btn-sm" type="button" id="today" onclick="show('2')">금일예약</button>
+				<button class="btn btn-dark btn-sm" type="button" id="roomone" onclick="show('3')">1번룸</button>
+				<button class="btn btn-dark btn-sm" type="button" id="roomtwo" onclick="show('4')">2번룸</button>
+				<button class="btn btn-dark btn-sm" type="button" id="roomthree" onclick="show('5')">3번룸</button>
 				</div>
 				</form>
 			</div>
