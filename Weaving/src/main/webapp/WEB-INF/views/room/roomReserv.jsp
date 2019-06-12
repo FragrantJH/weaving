@@ -294,24 +294,27 @@ select::-ms-expand {
 						</div>
 						</div>
 						<p>
-						<div class="datepick" id="rightboxs">			
-						<p>날짜&nbsp;&nbsp; <input type="text" autocomplete="off" name="reservDate"
-							id="datepicker" placeholder="예약일을 지정해주세요.">
-						<script>
-							$("#datepicker").datepicker({
-								dateFormat : 'yy-mm-dd'
-								//dateFormat : 'yyyy-mm-dd'
-							});
-						</script>
-						</div>
-					<p>
-						<!-- 사용용도
-						<textarea name="description" id="des" rows="5" cols="40" ></textarea> -->
-						<div class="form-group">
+						
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
 								<!-- <label for="title">사용용도</label> -->
-								<textarea class="form-control" id="description" name="description" rows="5" placeholder="사용용도를 적어주세요."></textarea>
+								<textarea class="form-control" id="description"
+									name="description" rows="5" placeholder="사용용도를 적어주세요."></textarea>
+							</div>
 						</div>
-					<p>
+						<div class="col">
+							<input type="text" class="form-control"  autocomplete="off"
+								name="reservDate" id="datepicker" placeholder="예약일을 지정해주세요.">
+							<script>
+								$("#datepicker").datepicker({
+									dateFormat : 'yy-mm-dd'
+								//dateFormat : 'yyyy-mm-dd'
+								});
+							</script>
+						</div>
+					</div>
+
 					<div id="btn_group">
 						<button type="submit" id="reserv" class="btn btn-danger btn-sm">예약</button>
 						<button type="button" id="reservModify"
