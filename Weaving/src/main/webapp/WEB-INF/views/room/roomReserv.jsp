@@ -342,6 +342,7 @@ select::-ms-expand {
 				<div class="card-text">
 					<h4 class="card-title">예약현황</h4>
 				</div>
+				<p>
 				<form action="roomReserv" name="frm1">
 				<input type="hidden" name="roomButton">
 				<div class="statusbutton">
