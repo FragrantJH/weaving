@@ -50,13 +50,7 @@
 		<div class="card-body">
 			<div class="table-responsive">
 		<div class="bigpage">
-			<div class="send-button">
-				<input type="submit" value="답장"/>
-					<c:if test="${rEmail.empNo == emp.empNo}">
-						<button type="button" class="btn btn-primary btn-sm"
-								onclick="location='${pageContext.request.contextPath}/email_List'">삭제</button>
-						</c:if>
-			</div>	  
+			
 			<div>
 				<div>
 				<div class="align_cover">
@@ -79,6 +73,15 @@
 				</div>
 				</div>
 		</form>
+		<div class="send-button" style="float:right;">
+		
+						<button type="button" class="btn btn-primary btn-sm"
+								onclick="location='${pageContext.request.contextPath}/meilDelete?inboxid=${rEmail.inboxid}'">삭제</button>
+						
+						<button type="button" class="btn btn-primary btn-sm"
+									onclick="location='${pageContext.request.contextPath}/replyForm/${rEmail.fromInbox}'">답장</button>
+						
+			</div>	  
 		</div>
 	</div>
 	</div>
