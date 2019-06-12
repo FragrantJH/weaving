@@ -462,7 +462,7 @@ function toRightMove() {
 							name="secureLevel" type="hidden" value=""> <input
 							name="approvalList" type="hidden" value="">
 					</div>
-					<button type="button" class="btn btn-primary">결재</button>
+					<button type="button" class="btn btn-primary" style="float:right;">결재</button>
 				</form>
 			</div>
 		</div>
