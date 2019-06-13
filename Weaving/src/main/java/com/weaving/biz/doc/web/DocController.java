@@ -56,6 +56,7 @@ public class DocController {
 
 	@Autowired
 	Empservice empService;
+	
 
 	@RequestMapping("/docInsertView")
 	public String docInsertView(Model model) {

@@ -101,6 +101,12 @@
 						 	<p>메일보내기</p>
 						</a>
 					 </li>
+					 <li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/email_ListRe">
+						 	<i class="material-icons">drafts</i>
+						 	<p>보낸메일함</p>
+						 	</a>
+					 </li>
 					<li class="nav-item">
 					   	<a class="nav-link" href="${pageContext.request.contextPath}/email_List">
 						 	<i class="material-icons">drafts</i>
@@ -237,10 +243,10 @@
           <div class="collapse navbar-collapse justify-content-end">
             
             <ul class="navbar-nav">
-			  
+			  			   
 			  <li class="nav-item" style="cursor: pointer;">
               	<a class="nav-link" onclick="openEmpList()" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">chat</i>
+                  <i class="material-icons">people</i>
                 </a>
               </li>
               
@@ -267,6 +273,21 @@
 	<!-- 컨텐츠 들어가는 곳 -->
 	<div class="content">
 		<tiles:insertAttribute name="content" />
+		
+		<!-- 알람 모달 Modal -->
+		<div class="modal" id="chatAlramModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		      	<i class="material-icons">notifications</i>
+		        <h5 class="modal-title" id="modalLabel"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 	</div>
 	
 	
@@ -335,7 +356,6 @@
   <script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/bootstrap/main.js'></script>
   
   <script>
-    
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');
@@ -525,7 +545,15 @@
 		var data = JSON.parse(event.data);	
 		
 		if(data.cmd == 'start' ) {
+	  	
+			$('#modalLabel').html('  ' + data.empName + ' 님으로 부터 채팅 요청이 왔습니다');
+	    	$('#chatAlramModal').show(2000);
+	    	
+	    	$('#chatAlramModal').hide( 5000, function() {
+	    	    $( '#chatAlramModal' ).modal("hide");
+	    	  });
 			chatWindow = window.open('${pageContext.request.contextPath}/startChat?toEmpNo=' + data.empNo + '&toEmpName=' + data.empName, 'Chat', 'width=450, height=650');
+		
 		} else {
 			var messages;
 			if(chatWindow_temp != null) {

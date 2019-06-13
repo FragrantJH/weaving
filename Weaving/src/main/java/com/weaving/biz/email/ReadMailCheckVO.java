@@ -1,11 +1,8 @@
-package com.weaving.biz;
+package com.weaving.biz.email;
 
 public class ReadMailCheckVO {
 	private int readCheck;
 
-	
-	
-	
 	public int getReadCheck() {
 		return readCheck;
 	}
@@ -14,13 +11,9 @@ public class ReadMailCheckVO {
 		this.readCheck = readCheck;
 	}
 
-	
-	
-	
 	@Override
 	public String toString() {
 		return "ReadMailCheckVO [readCheck=" + readCheck + "]";
 	}
-	
-	
+
 }

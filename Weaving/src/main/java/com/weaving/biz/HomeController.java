@@ -31,6 +31,7 @@ import com.weaving.biz.cal.CalVO;
 import com.weaving.biz.common.Paging;
 import com.weaving.biz.common.SessionInfo;
 import com.weaving.biz.doc.DocListService;
+import com.weaving.biz.email.ReadMailCheckService;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
 import com.weaving.biz.reserv.ReservService;
@@ -158,8 +159,4 @@ public class HomeController {
 		return new ModelAndView("commonExcelView", map);
 	}
 
-	@RequestMapping("ui")
-	public String ui() {
-		return "sample/uiGuide";
-	}
 }

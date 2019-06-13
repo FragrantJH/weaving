@@ -1,4 +1,4 @@
-package com.weaving.biz;
+package com.weaving.biz.email.impl;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,8 @@ public class ReadMailCheckDAO {
 
 	@Autowired
 	SqlSessionTemplate mybatis;
-	
-	public int getUnReadMailCount (int empNo) {
-		return mybatis.selectOne("EmailDAO.mailReadCheck",empNo);
+
+	public int getUnReadMailCount(int empNo) {
+		return mybatis.selectOne("EmailDAO.mailReadCheck", empNo);
 	}
 }

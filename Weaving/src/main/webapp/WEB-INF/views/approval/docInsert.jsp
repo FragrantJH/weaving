@@ -432,14 +432,14 @@ function toRightMove() {
 				<h3>
 					<small class="text-muted">상세 입력</small>
 				</h3>
-				<form action="${pageContext.request.contextPath}/docInsert"
+				<form id="insertForm" action="${pageContext.request.contextPath}/docInsert"
 					method="post">
 					<div class="input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <label>제목</label>
 							</span>
 						</div>
-						<input type="text" name="docTitle" class="form-control"
+						<input type="text" id="docTitle" name="docTitle" class="form-control"
 							placeholder="제목을 입력하세요" style="margin-bottom: 8px;">
 					</div>
 
@@ -456,11 +456,12 @@ function toRightMove() {
 							name="secureLevel" type="hidden" value=""> <input
 							name="approvalList" type="hidden" value="">
 					</div>
-					<button type="button" class="btn btn-primary" style="float:right;">결재</button>
+					<button type="button" class="btn btn-primary" style="float:right;" onclick="docInsert()">결재</button>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
+
 </body>
 </html>
