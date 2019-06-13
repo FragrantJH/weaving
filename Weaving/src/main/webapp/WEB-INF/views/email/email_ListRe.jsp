@@ -36,8 +36,8 @@
 						</script>
 						<input name="searchKeyword" value="${boardVO.searchKeyword}" />
 						<button type="submit" class="btn btn-primary btn-sm">검색</button>
-					</div> --%>
-					</form>
+					</div> 
+					</form>--%>
 						
 					<div class="card-body">
 						<div class="table-responsive">
@@ -55,7 +55,7 @@
 							<tr>
 								<td>${ListRe.emailId}</td>
 								<td>${ListRe.fromEmail}</td>
-								<td><a  href="${pageContext.request.contextPath}/reading_mail/${ListRe.emailId}">${ListRe.subject}</a></td>
+								<td><a  href="${pageContext.request.contextPath}/reading_mailRe/${ListRe.emailId}">${ListRe.subject}</a></td>
 								<td>${ListRe.checkTime}</td>
 								</tr>
 				</c:forEach>

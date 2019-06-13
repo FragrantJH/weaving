@@ -22,6 +22,7 @@ public interface EmailService{
 
 	// 메일 상세 조회
 	EmailVO getINBOXOne(EmailVO vo) throws Exception;
+	EmailVO getEmailOne(EmailVO vo) throws Exception;
 	
 	List<EmailVO> getEmailList(EmailVO vo) throws Exception ;
 	List<EmailVO> getEmailListRe(EmailVO vo) throws Exception ;

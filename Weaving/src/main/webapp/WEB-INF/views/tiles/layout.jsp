@@ -111,6 +111,7 @@
 					   	<a class="nav-link" href="${pageContext.request.contextPath}/email_List">
 						 	<i class="material-icons">drafts</i>
 						 	<p>받은메일함</p>
+						 	
 						</a>
 					 </li>				 
 			    </ul>

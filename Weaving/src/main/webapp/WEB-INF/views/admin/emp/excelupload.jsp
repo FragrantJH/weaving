@@ -80,7 +80,12 @@
 							<div class="row" id="regGoodsImgArea">
 								<div class ="card-body">
 								<br>
-									<p>확장자명 : xlsx,joindata 입력시 날짜 앞에 `넣어서 텍스트 형식으로 입력해야함 엑셀업로드 (업로드하고 디비에 INSERT)</p>
+									<p>확장자명 : xlsx,joindata 입력시 날짜 앞에 `넣어서 텍스트 형식으로 입력해야함. <br>
+									숫자입력시 숫자를 텍스트로 저장해야함.
+									empNo,password,gmailAppKey 필수 입력
+									
+									<br>
+									엑셀업로드 (업로드하고 디비에 INSERT)</p>
 									<input id="excel" name="excel" class="file" type="file" multiple data-show-upload="false" data-show-caption="true">
 								</div>
 							</div>

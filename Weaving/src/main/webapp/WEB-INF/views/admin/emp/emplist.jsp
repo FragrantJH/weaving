@@ -134,11 +134,15 @@
 			$.ajax({ 
 			    url: "empDelUpdate",
 			   // type: 'PUT', 
-			    dataType: 'json', 
+			    dataType: 'text', 
 			    data: $('#insertForm').serialize(),
 			    success: function(data) { 
+			    	if(data=="fail"){
+			    		alert("결제중인 문서가 남아있습니다. 확인바랍니다.");
+			    	}else{
 			    	$('#searchModel').modal("hide");
 					empList();
+			    }
 			    },
 			    error:function(xhr, status, message) { 
 			        alert(" status: "+status+" er:"+message);
@@ -368,7 +372,7 @@ select {
 						
 						<div class="modal-body">
 							<form action="insertEmp" method="post" id="insertForm">
-								<br> 
+								
 								<label for="empNo"><b>사번</b></label><br>
 								<input type="text" name="empNo" id="empNo" readonly>
 								
@@ -425,9 +429,6 @@ select {
 								<br> 
 								<label for="gmailAppKey"><b>GMAILAPPKEY</b></label><br> 
 								<input type="text" size="20" id="gmailAppKey" name="gmailAppKey"> 
-								
-								<br>
-								<hr>
 							</form>
 						</div>
 						<div class="modal-footer" style="float: right;">
