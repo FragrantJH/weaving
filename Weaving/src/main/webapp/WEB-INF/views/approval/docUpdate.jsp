@@ -307,8 +307,6 @@ function loadApprovalListTable() {
 	$('.approval-line-title').on('click', '#loadApprovalList', function() {
 		$('.approval-line').empty();
 		
-		console.log('${docDetailInfo}');
-
 		var tb = "<table class='approval-table' border='1' bordercolor='#cdcdcd'>"+
 		"<tr>" +
 			"<th rowspan='2' scope='col'>"+
@@ -431,7 +429,7 @@ function toRightMove() {
 												</button>
 											</div>
 											<div class="modal-body">
-												<h3 id="doc-title"></h3>
+												<h3 id="doc-title" style="text-align:center; margin-bottom: 20px;"></h3>
 												<div id="doc-info" style="display:inline-block;"></div>
 												<div id="approval-list-tb" style="display:inline-block; float:right;"></div>
 												<h3>상세 입력</h3>

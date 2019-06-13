@@ -39,7 +39,6 @@
 				url :"http://api.openweathermap.org/data/2.5/weather?q=Daegu&appid=2b00ad1536b1cdeeb9975de20f3d350c", 
 		         dataType: "json",
 		         type: "GET",
-		         async: "false",
 		         success: function(data) {
 		        	makeWeatherHtml(data);
 				},
@@ -89,7 +88,7 @@
 					break;
 			}
 			$('.cast_txt').text(wsStr +", 현재습도 : " + data.main.humidity + "%");
-		} 		
+		}
 
 		
 		//캘린더 목록 조회
