@@ -372,7 +372,7 @@ select {
 						
 						<div class="modal-body">
 							<form action="insertEmp" method="post" id="insertForm">
-								<br> 
+								
 								<label for="empNo"><b>사번</b></label><br>
 								<input type="text" name="empNo" id="empNo" readonly>
 								
@@ -429,9 +429,6 @@ select {
 								<br> 
 								<label for="gmailAppKey"><b>GMAILAPPKEY</b></label><br> 
 								<input type="text" size="20" id="gmailAppKey" name="gmailAppKey"> 
-								
-								<br>
-								<hr>
 							</form>
 						</div>
 						<div class="modal-footer" style="float: right;">
