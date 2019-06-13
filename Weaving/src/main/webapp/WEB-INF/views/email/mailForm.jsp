@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
 <script type="text/javascript"
 	src="./resources/workspace/js/service/HuskyEZCreator.js"
 	charset="utf-8"></script>
@@ -41,41 +42,30 @@ function checkform() {
 			<div class="card">
 					<div class="card-header card-header-text card-header-primary">
 						<div class="card-text">
-							<h4 class="card-title">받은 메일
+							<h4 class="card-title">메일쓰기
 								</h4>
 						</div>
 					</div>
 				<form action="mailSend" method="post" name="frm">
 					<div class="bigpage">
-						
-			
+
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table">
-									<thead class=" text-primary">
-									<tbody>
-										<tr class="Recipient">
-											<th>보내는사람
-											</th>
-											<td>
-												<input type="text" name="fromEmail" placeholder="${emp.email}"><br>
-											</td>
-									</tr>
-									<tr>
-										<th>받는사람 
-										</th>
-											<td><input type="text" name="toEmail"><br>
-											</td>
-									</tr>
-									<tr class=title>
-										<th>제목</th>
-									<td><input type="text" name="subject"><br></td>
-									</tr>
-								</tbody>
-						</table>
-					</div>
+									<div>
+									<label for="usr">보내는사람</label>
+									<input type="text"  class="form-control" id="title"name="fromEmail" value="${emp.email}"><br>
+									</div>
+									<div>
+										<label for="usr">받는사람 </label>
+										<input type="text"  class="form-control" id="title"name="toEmail"><br>
+								</div>
+								<div>
+										<label for="usr">제목</label>
+										<input type="text" class="form-control" id="title" name="subject"><br>
+									</div><br>
+					</div><br>
 					<div class="editer-textarea">
-					<textarea name=emailContents id="emailContents" rows="10" cols="100"></textarea>
+					<textarea name=emailContents id="emailContents" rows="100" cols="80" style=" width: auto; height: 300px;"></textarea>
 
 								<script>
 						var oEditors = [];
@@ -89,11 +79,12 @@ function checkform() {
 
 					</div>
 					</div>
-				</div>
-			</form>
-			<div  class="send-button" style="float:right;">
+					<div  class="send-button" style="float:right;">
 							<input type="button" class="btn btn-primary btn-sm" value="보내기" id="send-button" onclick="checkform()"/>
 						</div>
+				</div>
+			</form>
+			
 			</div>
 		</div>
 	</div>

@@ -67,8 +67,6 @@ public class SendEmailService {
 			
 			System.out.println("Sent message successfully....");
 			
-			
-			
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}

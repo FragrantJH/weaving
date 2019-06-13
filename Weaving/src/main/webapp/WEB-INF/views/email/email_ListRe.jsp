@@ -51,12 +51,12 @@
 									</tr>
 								</thead>
 								<tbody>
-					<c:forEach var="List" items="${emailList}">
+					<c:forEach var="ListRe" items="${emailListRe}">
 							<tr>
-								<td>${List.inboxid}</td>
-								<td>${List.fromInbox}</td>
-								<td><a  href="${pageContext.request.contextPath}/reading_mail/${List.inboxid}">${List.title}</a></td>
-								<td>${List.checkTime}</td>
+								<td>${ListRe.emailId}</td>
+								<td>${ListRe.fromEmail}</td>
+								<td><a  href="${pageContext.request.contextPath}/reading_mail/${ListRe.emailId}">${ListRe.subject}</a></td>
+								<td>${ListRe.checkTime}</td>
 								</tr>
 				</c:forEach>
 							</tbody>

@@ -246,9 +246,9 @@ public class FetchingEmail {
 					String add = ad.substring(0, idx2);
 					System.out.println("보낸 주소: " + add);
 	
-					vo.setFromEmail(add);
+					vo.setFromInbox(add);
 				} else {
-					vo.setFromEmail(str);
+					vo.setFromInbox(str);
 				}
 			}
 		}
@@ -265,17 +265,17 @@ public class FetchingEmail {
 					String add = ad.substring(0, idx2);
 	
 					System.out.println("받는 주소: " + add);
-					vo.setToEmail(add);
+					vo.setToInbox(add);
 				} else {
 					System.out.println("받는 주소: " + str);
-					vo.setToEmail(str);				
+					vo.setToInbox(str);				
 				}
 		}
 	}
 
 		// SUBJECT
 		if (m.getSubject() != null) {
-			vo.setSubject(m.getSubject());
+			vo.setTitle(m.getSubject());
 		}
 	}
 	

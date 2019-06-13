@@ -13,79 +13,61 @@
 <style type="text/css">
 
 .align_cover{
-
-    vertical-align: middle;
-    text-align: right;
-    position: absolute;
+    text-align: left;
     right: 20px;
-
 }
-.h4{
-    display: block;
-    margin-block-start: 1.33em;
-    margin-block-end: 1.33em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-}
-
 </style>
-
-
 
 </head>
 <!-- 	메일보기  -->
 	<body>
-<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-			<div class="card">
-					<div class="card-header card-header-text card-header-primary">
-						<div class="card-text">
-							<h4 class="card-title">받은 메일
-								</h4>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header card-header-text card-header-primary">
+				<div class="card-text">
+					<h4 class="card-title">받은 메일
+					</h4>
+				</div>
+			</div>
+			<div class="form-group">
+						<div class="align_cover" style="float:right" >
+								<label for="usr">보낸시간</label>
+								<input type="text" class="form-control" name="checkTime" readonly
+							value=" ${rEmail.checkTime}">
 						</div>
 					</div>
-	<form action="mailSend" method="get" >
-		<div class="card-body">
-			<div class="table-responsive">
-		<div class="bigpage">
-			
-			<div>
-				<div>
-				<div class="align_cover">
-							보낸시간 : ${rEmail.checkTime}
+			<div class="card-body">
+				<form action="mailSend" method="post" >
+					
+					<div class="form-group">
+						<label for="usr">제목 </label>
+						<input type="text" class="form-control" name="title" readonly
+							value="${rEmail.title}"><br>
 					</div>
-					<h4>제목 :  ${rEmail.title}</h4>
-							<dl>
-								<dt>보낸사람 </dt>
-								<dd>${rEmail.fromInbox}</dd>
-								
-								<dt>받는사람</dt>
-								<dd>${rEmail.toInbox}</dd>
-							</dl>
-						<div>
-									내용 : ${rEmail.inboxContents}
-						</div>	
+					<div class="form-group">
+						<label for="usr">보낸사람</label>
+						<input type="text" class="form-control" name="fromInbox" readonly
+							value="${rEmail.fromInbox}">
 					</div>
+					<br>
+					<div class="form-group">
+							${rEmail.inboxContents}
 					</div>
-				</div>
-				</div>
-				</div>
-		</form>
-		<div class="send-button" style="float:right;">
+					<br> <br> <br> <br> <br> <br> <br> <br> <br>
+				
+				<div class="send-button" style="float:right;">
 		
 						<button type="button" class="btn btn-primary btn-sm"
 								onclick="location='${pageContext.request.contextPath}/meilDelete?inboxid=${rEmail.inboxid}'">삭제</button>
 						
 						<button type="button" class="btn btn-primary btn-sm"
 									onclick="location='${pageContext.request.contextPath}/replyForm/${rEmail.fromInbox}'">답장</button>
-						
-			</div>	  
+					</div>	
+			</form>
 		</div>
 	</div>
 	</div>
-</div>
+
 
 </body>
 </html>

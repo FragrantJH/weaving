@@ -29,10 +29,11 @@ public class EmailDAO {
 	 * */
 	public void insertInbox(EmailVO vo) throws Exception{
 		mybatis.insert("EmailDAO.insertInbox", vo);
-		vo.setEmailId(1);
-		
 	}
 	
+	public void insertInboxEmail(EmailVO vo) throws Exception{
+		mybatis.insert("EmailDAO.insertInboxEmail", vo);
+	}
 	/**
 	 * Email을 수정한다.
 	 * @param vo - 등록할 정보가 담긴 EmailVO
@@ -67,6 +68,9 @@ public class EmailDAO {
 	 * */
     public List<EmailVO> getEmailList(EmailVO vo) throws Exception{
     	return mybatis.selectList("EmailDAO.getEmailList", vo);
+    }
+    public List<EmailVO> getEmailListRe(EmailVO vo) throws Exception{
+    	return mybatis.selectList("EmailDAO.getEmailListRe", vo);
     }
 	
 	 /**

@@ -7,9 +7,9 @@ public interface EmailService{
 	public void getWaitEmailList(EmailVO vo);
 
 	void insertEmail(EmailVO vo) throws Exception;
+	void insertInbox(EmailVO vo) throws Exception;
+	void insertInboxEmail(EmailVO vo)throws Exception;
 	
-	String insertInbox(EmailVO vo) throws Exception;
-
 	// 메일 수정
 	void updateEmail(EmailVO vo);
 	void updateRCR(EmailVO vo); 	 //읽음 처리 
@@ -24,6 +24,7 @@ public interface EmailService{
 	EmailVO getINBOXOne(EmailVO vo) throws Exception;
 	
 	List<EmailVO> getEmailList(EmailVO vo) throws Exception ;
+	List<EmailVO> getEmailListRe(EmailVO vo) throws Exception ;
 	
 	 List<EmailVO> getEmailListtPaging(EmailVO vo);
 	

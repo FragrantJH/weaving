@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="EmailDAO">
 
-
+<!-- 보낸메일 -->
 <insert id="insertEmail" parameterType="email" >
 		<selectKey  keyProperty="emailId" resultType="int"  order="BEFORE">
 			select nvl(max(EMAIL_ID),0)+1 from email
@@ -31,30 +31,61 @@ VALUES(
 
 </insert>
 
+<!-- 답장 -->
+<insert id="insertInboxEmail" parameterType="email" >
+		<selectKey  keyProperty="emailId" resultType="int"  order="BEFORE">
+			select nvl(max(EMAIL_ID),0)+1 from email
+		</selectKey>
+INSERT INTO EMAIL(
+				EMAIL_ID,
+				FROM_EMAIL,
+				TO_EMAIL,
+				SUBJECT,
+				EMAIL_CONTENTS,
+				CHECK_TIME,
+				READ_CHECK,
+				EMP_NO
+)
+VALUES(
+				#{emailId} ,
+				#{fromEmail},
+				#{toEmail},
+				#{subject},
+				#{emailContents},
+				sysdate,
+				0,
+				#{empNo}
+
+
+)
+
+</insert>
+
+<!-- 받은메일 -->
 <insert id="insertInbox" parameterType="email" >
 		<selectKey  keyProperty="inboxid" resultType="int"  order="BEFORE">
 			select nvl(max(INBOXID),0)+1 from INBOXEMAIL
 		</selectKey>
 
 INSERT INTO INBOXEMAIL(
-							INBOXID,
-							FROM_INBOX,
-							TO_INBOX,
-							TITLE,
-							INBOX_CONTENTS,
-							CHECK_TIME,
-							READ_CHECK,
-							EMP_NO
-							)
+										INBOXID,
+										FROM_INBOX,
+										TO_INBOX,
+										TITLE,
+										INBOX_CONTENTS,
+										CHECK_TIME,
+										READ_CHECK,
+										EMP_NO
+										)
 VALUES(
-							#{inboxid} ,
-							#{fromEmail},
-							#{toEmail},
-							#{subject},
-							#{inboxContents},
-							sysdate,
-							0,
-							#{empNo}
+										#{inboxid},
+										#{fromInbox},
+										#{toInbox},
+										#{title},
+										#{inboxContents},
+										sysdate,
+										0,
+										#{empNo}
 
 )
 
@@ -166,6 +197,24 @@ WHERE INBOXID = #{inboxid}
 	FROM 	INBOXEMAIL
 	WHERE EMP_NO=${empNo} 
 	ORDER	BY INBOXID DESC
+
+	</select>
+	
+	<select id="getEmailListRe" parameterType="email" resultType="email">
+
+	SELECT						 
+				EMAIL_ID,
+				FROM_EMAIL,
+				TO_EMAIL,
+				SUBJECT,
+				EMAIL_CONTENTS,
+				CHECK_TIME,
+				READ_CHECK,
+				EMP_NO
+					
+	FROM 	EMAIL
+	WHERE EMP_NO=${empNo} 
+	ORDER	BY EMAIL_ID DESC
 
 	</select>
 		

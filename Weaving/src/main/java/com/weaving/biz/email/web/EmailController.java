@@ -44,7 +44,8 @@ public class EmailController {
 	@Autowired
 	SendEmailService emailService;
 
-
+	@Autowired
+	ReplyToEmail replyto;
 	// 메일보내기폼
 	@RequestMapping("mailForm")
 	public String mailForm() {
@@ -52,7 +53,7 @@ public class EmailController {
 	}
 	
 	//답장폼 
-	@RequestMapping("/replyForm/{fromInbox}")
+	@RequestMapping("/replyForm/{fromInbox:.+}")
 	public String replyForm(@PathVariable String fromInbox,Model model) {
 		model.addAttribute("to",fromInbox);
 		return "email/reply_mail";
@@ -94,25 +95,22 @@ public class EmailController {
 	}
 	
 	// 답장발송처리
-		@RequestMapping("reply_mail")
-		public void replymailSend(EmailVO vo, HttpServletResponse response, @ModelAttribute("searchVO") MessageVO searchVO,
+		@RequestMapping("/reply_mail")
+		public void replymailSend(EmailVO vo, HttpServletResponse response,
 				SessionStatus status, HttpSession hsession, Model model) throws Exception {
 
 			response.setContentType("text/html; charset=UTF-8");
 			response.setCharacterEncoding("UTF-8");
-
+			
 			EmpVO empvo = SessionInfo.getInfo(hsession, "emp");
-			vo.setFromInbox(empvo.getEmail());
-			//세션에서 from ,to 받아와야함 
 			vo.setEmpNo(empvo.getEmpNo());
-			//	vo.setToInbox();
+			
 			status.setComplete();
-			ReplyToEmail.replyto(vo, empvo);
+			replyto.send(vo, empvo,  empvo.getEmpNo());
 			model.addAttribute("emp", empvo.getEmail());
 
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('메일을 전송하였습니다.'); location.href='success_email';</script>");
-
+			out.println("<script>alert('메일을 전송하였습니다.'); location.href='email_ListRe';</script>");
 		}
 
 	// 받은 메일 보관함
@@ -127,8 +125,6 @@ public class EmailController {
 		String username = empvo.getEmail(); // change accordingly
 		String password = empvo.getGmailAppKey(); // change accordingly
 		
-	
-		
 		fetch.check(host, mailStoreType, username, password, empvo.getEmpNo());
 		
 		List<EmailVO> list = service.getEmailList(vo);
@@ -136,7 +132,19 @@ public class EmailController {
 
 		return "email/email_List";
 	}
+	
+	// 보낸 메일 보관함
+		@RequestMapping("email_ListRe")
+		public String getMailRe(EmailVO vo, HttpSession hsession, SessionStatus status, Model model)
+				throws Exception {
+			EmpVO empvo = SessionInfo.getInfo(hsession, "emp");
+			vo.setEmpNo(empvo.getEmpNo());
+			
+			List<EmailVO> list = service.getEmailListRe(vo);
+			model.addAttribute("emailListRe", list);
 
+			return "email/email_ListRe";
+		}
 	// 메일 보기 상세 화면
 	@RequestMapping("/reading_mail/{inboxid}")
 	public String reading_mail(EmpVO empvo,Model model, HttpSession hsession, EmailVO vo, @PathVariable Integer inboxid)

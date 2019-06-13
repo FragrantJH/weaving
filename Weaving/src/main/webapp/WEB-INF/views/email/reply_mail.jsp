@@ -4,14 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
+<script type="text/javascript"
+	src="../resources/workspace/js/service/HuskyEZCreator.js"
+	charset="utf-8"></script>
+	
 <!-- 메일보내기 -->
 <script type="text/javascript">
 
 function checkform() {
 	
-	oEditors.getById["emailContents"].exec("UPDATE_CONTENTS_FIELD", []);
-	if(frm.subject.value==""){
+	oEditors.getById["inboxContents"].exec("UPDATE_CONTENTS_FIELD", []);
+	if(frm.title.value==""){
 		alert("제목을 입력");
 		return ;
 	}
@@ -22,23 +26,6 @@ function checkform() {
 
 
 <style type="text/css">
-
-.align_cover{
-
-    vertical-align: middle;
-    text-align: right;
-    position: absolute;
-    right: 20px;
-
-}
-.h4{
-    display: block;
-    margin-block-start: 1.33em;
-    margin-block-end: 1.33em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-}
 
 
 
@@ -57,55 +44,43 @@ function checkform() {
 								</h4>
 						</div>
 					</div>
-				<form action="mailSend" method="post" name="frm">
+				<form action="${pageContext.request.contextPath}/reply_mail" method="post" name="frm">
 					<div class="bigpage">
-						
-			
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table">
-									<thead class=" text-primary">
-									<tbody>
-										<tr class="Recipient">
-											<th>보내는사람
-											</th>
-											<td>
-												<input type="text" name="fromEmail" placeholder="${emp.email}"><br>
-											</td>
-									</tr>
-									<tr>
-										<th>받는사람 
-										</th>
-											<td><input type="text" name="toEmail" placeholder="${to}"><br>
-											</td>
-									</tr>
-									<tr class=title>
-										<th>제목</th>
-									<td><input type="text" name="subject"><br></td>
-									</tr>
-								</tbody>
-						</table>
-					</div>
+								<div>
+									<label for="usr">보내는사람</label>
+									<input type="text"   class="form-control" name="toEmail" value="${emp.email}"><br>
+									</div>
+									<div>
+										<label for="usr">받는사람 </label>
+										<input type="text"  class="form-control" name=fromEmail value="${to}"><br>
+								</div>
+								<div>
+										<label for="usr">제목</label>
+										<input type="text"  class="form-control" name="subject">
+									</div><br>
+									
+					</div><br>
 					<div class="editer-textarea">
-					<textarea name=emailContents id="emailContents" rows="10" cols="100"></textarea>
+					<textarea name=emailContents id="inboxContents" rows="10" cols="100" style= "width: auto; height: 300px;"></textarea>
 
 								<script>
 						var oEditors = [];
 						nhn.husky.EZCreator.createInIFrame({
 						 oAppRef: oEditors,
-						 elPlaceHolder: "emailContents",
-						 sSkinURI:"./resources/workspace/SmartEditor2Skin.html" ,
+						 elPlaceHolder: "inboxContents",
+						 sSkinURI:"../resources/workspace/SmartEditor2Skin.html" ,
 						 fCreator: "createSEditor2"
 						});
 						</script>
-
 					</div>
 					</div>
+						<div class="send-button" style="float:right;" >
+							<input type="button" class="btn btn-primary btn-sm" value="보내기" id="send-button" onclick="checkform()"/>
+						</div>
 				</div>
 			</form>
-			<div class="send-button" style="float:right;">
-							<input type="submit" class="btn btn-primary btn-sm" value="보내기" id="send-button" onclick="checkform()"/>
-						</div>
 			</div>
 		</div>
 	</div>

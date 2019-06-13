@@ -27,10 +27,9 @@ public class EmailServiceImpl implements EmailService {
 	}
 	
 	@Override
-	public String insertInbox(EmailVO vo) throws Exception {
+	public void insertInbox(EmailVO vo) throws Exception {
 		
 		dao.insertInbox(vo);
-		return null;
 	}
 
 	@Override
@@ -81,6 +80,19 @@ public class EmailServiceImpl implements EmailService {
 	public void updateRCNR(EmailVO vo) {
 		dao.updateRCNR(vo);
 		
+	}
+
+	@Override
+	public void insertInboxEmail(EmailVO vo) throws Exception {
+		dao.insertInboxEmail(vo);
+		
+	}
+
+	@Override
+	public List<EmailVO> getEmailListRe(EmailVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return (List<EmailVO>) dao.getEmailListRe(vo);
+
 	}
 	}
 
