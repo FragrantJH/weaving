@@ -134,11 +134,15 @@
 			$.ajax({ 
 			    url: "empDelUpdate",
 			   // type: 'PUT', 
-			    dataType: 'json', 
+			    dataType: 'text', 
 			    data: $('#insertForm').serialize(),
 			    success: function(data) { 
+			    	if(data=="fail"){
+			    		alert("결제중인 문서가 남아있습니다. 확인바랍니다.");
+			    	}else{
 			    	$('#searchModel').modal("hide");
 					empList();
+			    }
 			    },
 			    error:function(xhr, status, message) { 
 			        alert(" status: "+status+" er:"+message);

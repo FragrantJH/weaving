@@ -41,6 +41,9 @@ public class EmpController {
 
 	@Autowired
 	Empservice service;
+	
+	@Autowired
+	DocListService docListService;
 
 	@Inject
 	AdminAccountsMngService AdminAccountsMngService;
@@ -127,10 +130,15 @@ public class EmpController {
 	// 퇴사수정
 	@RequestMapping(value = "/empDelUpdate")
 	@ResponseBody
-	public EmpVO updateDelEmp(EmpVO vo, Model model) {
+	public String updateDelEmp(EmpVO vo, Model model,HttpServletResponse response,HttpServletRequest request, HttpSession session) throws IOException {
+		if(docListService.getIngDocList(vo.getEmpNo()).toArray().length > 0) {
+			System.out.println(docListService.getIngDocList(vo.getEmpNo()).toArray().length);
+			return "fail";
+		}else {
 		System.out.println("===========================" + vo);
 		service.updateDelEmp(vo);
-		return vo;
+		return "success";
+		}
 	}
 
 	// 수정
