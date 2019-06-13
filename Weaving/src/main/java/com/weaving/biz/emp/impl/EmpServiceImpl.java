@@ -115,8 +115,12 @@ public class EmpServiceImpl implements Empservice {
 		
 		try {
 			for (int i = 0; i < list.size(); i++) {
+				System.out.println(list.get(i).getPassword());
 				String enpassword = EgovFileScrty.encryptPassword(list.get(i).getPassword(), list.get(i).getEmail());
 				list.get(i).setPassword(enpassword);
+				
+				System.out.println(list.get(i).getEmail());
+				System.out.println(enpassword);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -335,6 +335,7 @@
   <script src='${pageContext.request.contextPath}/resources/fullcalendar/packages/bootstrap/main.js'></script>
   
   <script>
+    
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');
@@ -521,12 +522,10 @@
 	};
 	
 	function onMessage(event) {
-		console.log("onMessage: " + event.data);
 		var data = JSON.parse(event.data);	
 		
 		if(data.cmd == 'start' ) {
-			// 1:1 채팅 요청 당한 사람..
-			chatWindow = window.open('${pageContext.request.contextPath}/startChat?toEmpNo=' + data.empNo + '&toEmpName=' + data.empName, '새로운이름', 'width=400, height=600');
+			chatWindow = window.open('${pageContext.request.contextPath}/startChat?toEmpNo=' + data.empNo + '&toEmpName=' + data.empName, 'Chat', 'width=450, height=650');
 		} else {
 			var messages;
 			if(chatWindow_temp != null) {
@@ -534,33 +533,28 @@
 			} else if (chatWindow != null) {
 				messages = chatWindow.document.getElementById("messageWindow");
 			}
+			var newMsg = '';
 			
-			/* messages.innerHTML += "<div class='meTalk w3-round-xlarge'><p>" + data.msg + "</p><p></p></div>"; 
-			messages.innerHTML += "<div style='float: right;margin-top: 30px;vertical-align: bottom;'> </div>"; */
+			newMsg += '<div class="incoming_msg">';
+			newMsg += '<div class="incoming_msg_img">';
+			newMsg += data.empName;
+			newMsg += '</div>';
+			newMsg += '<div class="received_msg">';
+			newMsg += '<div class="received_withd_msg">';
+			newMsg += '<p>';
+			newMsg += data.msg;
+			newMsg += '</p>';
+			newMsg += '</div>';
+			newMsg += '</div>';
+			newMsg += '</div>';
 			
-			var temp = '';
-			
-			temp += '<div class="incoming_msg">';
-			temp += '<div class="incoming_msg_img">';
-			temp += data.empName;
-			temp += '</div>';
-			
-			temp += '<div class="received_msg">';
-			temp += '<div class="received_withd_msg">';
-			temp += '<p>';
-			temp += data.msg;
-			temp += '</p>';
-			temp += '</div>';
-			temp += '</div>';
-			temp += '</div>';
-			
-			$(messages).append(temp);
+			$(messages).append(newMsg);
 		}
 	}
 	
 	function openEmpList(msg) {
 		chatWindow_temp ="";
-		chatWindow_temp = window.open('${pageContext.request.contextPath}/getChatEmpList', '사용자목록', 'width=400, height=600');
+		chatWindow_temp = window.open('${pageContext.request.contextPath}/getChatEmpList', '사용자목록', 'width=450, height=650');
 	}
 	
 	function send(msg) {
@@ -575,12 +569,6 @@
 		console.log(event);
 	}
   
-    $(document).ready(function() {
-      
-    	// TODO : 이거 demo에서만 처리되는거면 제거
-    	//md.initDashboardPageCharts();
-
-    });
   </script>
 </body>
 

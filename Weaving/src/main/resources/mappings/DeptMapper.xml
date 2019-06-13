@@ -4,7 +4,8 @@
 
 	<!-- 부서 리스트 조회 -->
 	<select id="getDeptList" resultType="dept" parameterType="dept">
-		SELECT LPAD('-', 6*(LEVEL-1)) || DEPT_NAME DEPT_NAME, DEPT_ID
+	<![CDATA[
+		SELECT replace(LPAD('-', 12*(LEVEL-1)), ' ', '&nbsp;') || DEPT_NAME DEPT_NAME, DEPT_ID
 		,CASE WHEN UPPER_DEPT_ID = '1' THEN '경영지원팀'
 		WHEN UPPER_DEPT_ID = '2' THEN '회계'
 		WHEN UPPER_DEPT_ID = '3' THEN '인사'
@@ -16,6 +17,7 @@
 		FROM DEPARTMENT
 		START WITH DEPT_NAME='회사'
 		CONNECT BY PRIOR DEPT_ID=UPPER_DEPT_ID
+	]]>
 	</select>
 	
 	<!-- 부서 조회 -->

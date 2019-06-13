@@ -46,6 +46,10 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 
 		Map<String, Object> attrs = session.getAttributes();
 		EmpVO empVo = (EmpVO) attrs.get("empVO");
+		
+		if(sessionSet.containsKey(empVo.getEmpNo())) {
+			sessionSet.remove(empVo.getEmpNo());
+		}
 		sessionSet.put(empVo.getEmpNo(), session);
 	}
 

@@ -33,7 +33,6 @@ public class SessionListener implements HttpSessionListener, ServletContextListe
 				return;
 			}
 		}
-
 		loginSet.add(newSession);
 		context.setAttribute(LOGIN_LIST, loginSet);
 	}
@@ -44,6 +43,7 @@ public class SessionListener implements HttpSessionListener, ServletContextListe
 	public void sessionCreated(HttpSessionEvent se) {
 
 		Set<HttpSession> loginSet = (Set<HttpSession>) context.getAttribute(LOGIN_LIST);
+		
 		loginSet.add(se.getSession());
 		context.setAttribute(LOGIN_LIST, loginSet);
 	}
@@ -63,8 +63,6 @@ public class SessionListener implements HttpSessionListener, ServletContextListe
 	 */
 	public void contextDestroyed(ServletContextEvent sce) {
 		context = null;
-
-		// TODO : application 종료 될 때 Atrribute값 삭제해줘야 하나? 자동 삭제 ?
 	}
 
 	/**

@@ -85,8 +85,9 @@ function loadDocInfo() {
 	}
 	</c:forEach>
 
-	var $docFormTag = $('.docForm'+tagClassNo).clone();
-	$('#write-select').text(strArr[0]);	
+	var $docFormTag = $('.curDocForm').clone();
+	$('#write-select').text(strArr[0]);
+	
 	CKEDITOR.instances.docContents.setData($docFormTag.html());
 	$('input[name=docType]').val(strArr[0]);
 	$docFormTag.show();
@@ -306,8 +307,6 @@ function loadApprovalListTable() {
 	$('.approval-line-title').on('click', '#loadApprovalList', function() {
 		$('.approval-line').empty();
 		
-		console.log('${docDetailInfo}');
-
 		var tb = "<table class='approval-table' border='1' bordercolor='#cdcdcd'>"+
 		"<tr>" +
 			"<th rowspan='2' scope='col'>"+
@@ -405,7 +404,6 @@ function toRightMove() {
 									<button class="btn btn-secondary dropdown-toggle" type="button"
 										id="write-select" data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false">선택</button>
-
 									<div class="dropdown-menu" aria-labelledby="write-select">
 										<c:forEach items="${list}" var="formList">
 											<button class="dropdown-item" id="docForm${formList.formId}"
@@ -431,7 +429,7 @@ function toRightMove() {
 												</button>
 											</div>
 											<div class="modal-body">
-												<h3 id="doc-title"></h3>
+												<h3 id="doc-title" style="text-align:center; margin-bottom: 20px;"></h3>
 												<div id="doc-info" style="display:inline-block;"></div>
 												<div id="approval-list-tb" style="display:inline-block; float:right;"></div>
 												<h3>상세 입력</h3>
@@ -550,9 +548,14 @@ function toRightMove() {
 						<input name="secureLevel" type="hidden" value="">
 						<input name="approvalList" type="hidden" value="">
 					</div>
-					<button type="button" class="btn btn-primary tempSave">임시저장</button>
-					<button type="button" class="btn btn-primary">결재</button>
+					<div style="float:right;">
+						<button type="button" class="btn btn-primary tempSave" >임시저장</button>
+						<button type="button" class="btn btn-primary" >결재</button>
+					</div>
 				</form>
+				<div class="docForm${formList.formId}" style="display: none;">
+												${formList.formContents}</div>				
+				<div class="curDocForm" style="display: none;">${docBaseInfo.docContents}</div>
 			</div>
 		</div>
 	</div>

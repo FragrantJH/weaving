@@ -173,11 +173,9 @@ public class EmpController {
 		if (emp == null) {
 			
 			// TODO : 잘못된 사용자 정보 처리 안되는 것 해결
-			/*
-			 * PrintWriter out = response.getWriter(); out.print("<script>");
-			 * out.print("alert('등록된 사용자 정보가 없습니다');"); out.print("history.go(-1);");
-			 * out.print("</script>");
-			 */
+			  PrintWriter out = response.getWriter(); 
+			  out.println("<script>alert('Please check your id and password.'); history.go(-1);</script>");
+			  out.flush();
 			return "empty/login";
 		} else {
 
