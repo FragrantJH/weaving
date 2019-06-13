@@ -85,8 +85,9 @@ function loadDocInfo() {
 	}
 	</c:forEach>
 
-	var $docFormTag = $('.docForm'+tagClassNo).clone();
-	$('#write-select').text(strArr[0]);	
+	var $docFormTag = $('.curDocForm').clone();
+	$('#write-select').text(strArr[0]);
+	
 	CKEDITOR.instances.docContents.setData($docFormTag.html());
 	$('input[name=docType]').val(strArr[0]);
 	$docFormTag.show();
@@ -405,7 +406,6 @@ function toRightMove() {
 									<button class="btn btn-secondary dropdown-toggle" type="button"
 										id="write-select" data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false">선택</button>
-
 									<div class="dropdown-menu" aria-labelledby="write-select">
 										<c:forEach items="${list}" var="formList">
 											<button class="dropdown-item" id="docForm${formList.formId}"
@@ -555,6 +555,9 @@ function toRightMove() {
 						<button type="button" class="btn btn-primary" >결재</button>
 					</div>
 				</form>
+				<div class="docForm${formList.formId}" style="display: none;">
+												${formList.formContents}</div>				
+				<div class="curDocForm" style="display: none;">${docBaseInfo.docContents}</div>
 			</div>
 		</div>
 	</div>

@@ -120,11 +120,7 @@ function checkSum() {
 
 function loadDocPreview() {
 	$('#docPreview').on('show.bs.modal', function (e) {
-		/*
-		if (!$('input[name=docType]').val()) {
-			alert("문서 종류를 선택하세요.");
-		}
-		*/
+
 		var date = new Date(); 
 		var year = date.getFullYear(); 
 		var month = new String(date.getMonth()+1); 
@@ -299,8 +295,6 @@ function toRightMove() {
 					<h4 class="card-title">문서 작성하기</h4>
 				</div>
 			</div>
-
-
 			<div class="card-body">
 				<h3>
 					<small class="text-muted">기본 설정</small>
@@ -345,7 +339,7 @@ function toRightMove() {
 												</button>
 											</div>
 											<div class="modal-body">
-												<h3 id="doc-title"></h3>
+												<h3 id="doc-title" style="text-align:center; margin-bottom: 20px;"></h3>
 												<div id="doc-info" style="display:inline-block;"></div>
 												<div id="approval-list-tb" style="display:inline-block; float:right;"></div>
 												<h3>상세 입력</h3>
