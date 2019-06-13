@@ -9,22 +9,31 @@
 <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
 
 <style>
-body {
+/* body {
 	margin: 40px 10px;
 	padding: 0;
 	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
 	font-size: 14px;
-}
+} */
 
 #calendar {
-	max-width: 900px;
+	max-width: 800px;
 	margin: 0 auto;
 }
 </style>
 </head>
 
 <body>
-	<div>
+	<div class="container-fluid">
+		<c:if test="${calType == 'ALL'}">
+			<h3 style="text-align: center;">전체 일정</h3>
+			<br>
+		</c:if>
+		<c:if test="${calType == 'USER'}">
+			<h3 style="text-align: center;">개인 일정</h3>
+			<br>
+		</c:if>
+		
 		<div id='calendar'></div>
 		
 		<!-- Modal 시작 -->
@@ -111,7 +120,6 @@ body {
 			
 			// 전체 일정에 일반 사용자 접속 시 처리
 			if(${isNoAdmin}) {
-				
 				$('#calModal input').attr('readonly', 'readonly');
 				$('#calModal input:checkbox').attr('disabled', 'disabled');
 				$('#calModal textarea').attr('readonly', 'readonly');

@@ -309,7 +309,7 @@
 </head>
 
 <body>
-	<div id="empList">
+	<div class="container" id="empList">
 		<div class="headind_srch">
 				<div class="recent_heading">
 					<h4>접속 중인 직원</h4>

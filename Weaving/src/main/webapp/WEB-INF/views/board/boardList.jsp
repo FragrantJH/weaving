@@ -84,7 +84,7 @@ function goList(p){
 						<div style="float:right;">
 						<button type="button" class="btn btn-primary btn-sm"
 							onclick="location.href='boardList?boardType=${boardType}'">목록</button>
-						<c:if test="${boardType == '0' && emp.adminYn}">
+						<c:if test="${boardType == '1' || (boardType == '0' && emp.adminYn)}">
 						<button type="button" class="btn btn-primary btn-sm"
 							onclick="location.href='boardInsertForm'">글쓰기</button>
 						</c:if>
