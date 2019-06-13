@@ -10,9 +10,9 @@
 		<right_margin>30</right_margin>
 	</page_setting>
 	<category_index>0</category_index>
-	<zoom>1.0</zoom>
-	<x>22</x>
-	<y>40</y>
+	<zoom>0.75</zoom>
+	<x>0</x>
+	<y>0</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -73,10 +73,10 @@
 			</export_ddl_setting>
 			<export_excel_setting>
 				<category_id>null</category_id>
-				<output_path></output_path>
+				<output_path>docs\weavingFromDB.xls</output_path>
 				<template></template>
 				<template_path></template_path>
-				<used_default_template_lang></used_default_template_lang>
+				<used_default_template_lang>en</used_default_template_lang>
 				<image_output></image_output>
 				<is_open_after_saved>true</is_open_after_saved>
 				<is_put_diagram>true</is_put_diagram>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2019-06-05 14:08:21</creation_date>
-			<updated_date>2019-06-11 15:02:38</updated_date>
+			<updated_date>2019-06-12 15:01:28</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -4603,12 +4603,12 @@
 		</table>
 		<table>
 			<id>11</id>
-			<height>-1</height>
-			<width>-1</width>
+			<height>149</height>
+			<width>272</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>1711</x>
-			<y>45</y>
+			<x>96</x>
+			<y>529</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
