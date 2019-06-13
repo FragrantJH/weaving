@@ -58,6 +58,14 @@ public class EmailServiceImpl implements EmailService {
 		dao.updateRCR(vo);
 		return dao.getINBOXOne(vo);
 	}
+	@Override
+	public EmailVO getEmailOne(EmailVO vo) throws Exception {
+	
+		vo.setReadCheck("1");
+		dao.updateRCR(vo);
+		return dao.getEmailOne(vo);
+	}
+	
 
 	@Override
 	public List<EmailVO> getEmailListtPaging(EmailVO vo) {

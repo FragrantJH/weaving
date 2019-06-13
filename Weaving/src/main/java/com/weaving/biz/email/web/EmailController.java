@@ -72,6 +72,14 @@ public class EmailController {
 		service.deleteInbox(vo);
 		return "redirect:/email_List";
 	}
+	
+	// 삭제 보낸 이메일 
+		@RequestMapping(value = "/meilDeleteRe", method = RequestMethod.GET)
+		public String meilDeleteRe(EmailVO vo, HttpSession session, HttpServletRequest request) {
+			vo.setEmailId(Integer.parseInt(request.getParameter("emailId")));
+			service.deleteEmail(vo);
+			return "redirect:/email_ListRe";
+		}
 
 	// 메일발송처리
 	@RequestMapping("mailSend")
@@ -90,7 +98,7 @@ public class EmailController {
 		model.addAttribute("emp", empvo.getEmail());
 
 		PrintWriter out = response.getWriter();
-		out.println("<script>alert('메일을 전송하였습니다.'); location.href='success_email';</script>");
+		out.println("<script>alert('메일을 전송하였습니다.'); location.href='email_ListRe';</script>");
 
 	}
 	
@@ -160,5 +168,20 @@ public class EmailController {
 		return "email/reading_mail";
 
 	}
+	// 보낸 메일 보기 상세 화면
+		@RequestMapping("/reading_mailRe/{emailId}")
+		public String reading_mailRe(EmpVO empvo,Model model, HttpSession hsession, EmailVO vo, @PathVariable Integer emailId)
+				throws Exception {
+
+			empvo = SessionInfo.getInfo(hsession, "emp");
+			
+			// mail id 로 메일 단건 조회
+			vo.setEmailId(emailId);
+			
+			model.addAttribute("rEmailRe", service.getEmailOne(vo));
+			
+			return "email/reading_mailRe";
+
+		}
 
 }

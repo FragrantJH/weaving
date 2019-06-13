@@ -101,10 +101,17 @@
 						 	<p>메일보내기</p>
 						</a>
 					 </li>
+					 <li class="nav-item">
+					   	<a class="nav-link" href="${pageContext.request.contextPath}/email_ListRe">
+						 	<i class="material-icons">drafts</i>
+						 	<p>보낸메일함</p>
+						 	</a>
+					 </li>
 					<li class="nav-item">
 					   	<a class="nav-link" href="${pageContext.request.contextPath}/email_List">
 						 	<i class="material-icons">drafts</i>
 						 	<p>받은메일함</p>
+						 	
 						</a>
 					 </li>				 
 			    </ul>

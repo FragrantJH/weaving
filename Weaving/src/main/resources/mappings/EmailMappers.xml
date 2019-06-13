@@ -81,7 +81,7 @@ VALUES(
 										#{inboxid},
 										#{fromInbox},
 										#{toInbox},
-										#{title},
+										#{subject},
 										#{inboxContents},
 										sysdate,
 										0,
@@ -101,7 +101,7 @@ VALUES(
 
 <delete id="deleteEmail">
 		<![CDATA[
-			DELETE FROM Email WHERE email_id = #{email_id}
+			DELETE FROM Email WHERE email_id = #{emailId}
 			]]>
 	</delete>
 	
@@ -122,7 +122,7 @@ SUBJECT=#subject#,
 EMAIL_CONTENTS=#emailContents#,
 CHECK_TIME=#checkTime#,
 READ_CHECK=#readCheck#,
-EMPNO=#empNo#
+EMP_NO=#empNo#
 
 </update>	
 	
@@ -158,9 +158,10 @@ SELECT
 				EMAIL_CONTENTS,
 				CHECK_TIME,
 				READ_CHECK,
-				EMPNO
+				EMP_NO
+				
 				FROM EMAIL
-				WHERE EMAIL_ID = #{EMAILID}
+				WHERE EMAIL_ID = #{emailId}
 	]]>
 </select>
 
@@ -215,7 +216,6 @@ WHERE INBOXID = #{inboxid}
 	FROM 	EMAIL
 	WHERE EMP_NO=${empNo} 
 	ORDER	BY EMAIL_ID DESC
-
 	</select>
 		
 	

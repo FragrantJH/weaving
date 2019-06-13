@@ -62,6 +62,13 @@ public class EmailDAO {
 	public EmailVO getINBOXOne(EmailVO vo)throws Exception {
 		return (EmailVO) mybatis.selectOne("EmailDAO.getINBOXOne", vo);
 	}
+	/**
+	 * Email을 목록 하나 조회한다.
+	 * @param vo - 등록할 정보가 담긴 EmailVO 
+	 * */
+	public EmailVO getEmailOne(EmailVO vo)throws Exception {
+		return (EmailVO) mybatis.selectOne("EmailDAO.getEmailOne", vo);
+	}
 	
 	/**
 	 * Email을  목록 여럿 조회한다.

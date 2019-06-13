@@ -275,7 +275,7 @@ public class FetchingEmail {
 
 		// SUBJECT
 		if (m.getSubject() != null) {
-			vo.setTitle(m.getSubject());
+			vo.setSubject(m.getSubject());
 		}
 	}
 	
