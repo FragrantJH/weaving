@@ -74,13 +74,12 @@ public class DeptController {
 		return service.getDept(vo);
 	}
 	//삭제
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/deleteDept/{deptId}", method= {RequestMethod.DELETE,RequestMethod.GET})
 	@ResponseBody
-	public Map deleteDept( @PathVariable String deptId, DeptVO vo, Model model) {
+	public Map<String, Object> deleteDept( @PathVariable String deptId, DeptVO vo, Model model) {
 		vo.setDeptId(deptId);
 		service.deleteDept(vo);
-		Map result = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("result", Boolean.TRUE);
 		return result;
 	} 

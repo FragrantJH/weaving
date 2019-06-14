@@ -34,7 +34,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 		if (emp != null) {
 			sessionSet.remove(emp.getEmpNo());
 		}
-		this.logger.info("remove session!");
+		SocketHandler.logger.info("remove session!");
 	}
 
 	@Override
@@ -66,12 +66,12 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 
 	@Override
 	public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-		this.logger.error("web socket error!", exception);
+		SocketHandler.logger.error("web socket error!", exception);
 	}
 
 	@Override
 	public boolean supportsPartialMessages() {
-		this.logger.info("call method!");
+		SocketHandler.logger.info("call method!");
 		return super.supportsPartialMessages();
 	}
 
@@ -87,6 +87,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 		}
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		Thread thread = new Thread() {

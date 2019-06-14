@@ -2,49 +2,34 @@ package com.weaving.biz.doc.web;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.weaving.biz.cal.CalTypeEnum;
-import com.weaving.biz.common.Paging;
 import com.weaving.biz.common.SessionInfo;
-import com.weaving.biz.dept.DeptVO;
 import com.weaving.biz.doc.DocApprovalVO;
-import com.weaving.biz.doc.DocBaseVO;
 import com.weaving.biz.doc.DocDeleteVO;
 import com.weaving.biz.doc.DocDetailVO;
 import com.weaving.biz.doc.DocHistoryVO;
 import com.weaving.biz.doc.DocService;
 import com.weaving.biz.doc.DocUpdateVO;
 import com.weaving.biz.doc.DocInsertVO;
-import com.weaving.biz.doc.DocListType;
 import com.weaving.biz.docForm.DocFormService;
-import com.weaving.biz.docForm.DocFormVO;
 import com.weaving.biz.emp.EmpVO;
 import com.weaving.biz.emp.Empservice;
-import com.weaving.biz.reserv.ReservVO;
-
-import aj.org.objectweb.asm.TypeReference;
 
 @Controller
 public class DocController {

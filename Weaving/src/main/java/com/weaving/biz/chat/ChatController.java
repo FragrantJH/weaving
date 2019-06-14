@@ -35,6 +35,7 @@ public class ChatController {
 
 		List<EmpVO> loginEmpList = new ArrayList<EmpVO>();
 
+		@SuppressWarnings("unchecked")
 		Set<HttpSession> loginEmp = (Set<HttpSession>) session.getServletContext().getAttribute(SessionListener.LOGIN_LIST);
 
 		EmpVO curEmp = SessionInfo.getInfo(session, "emp");

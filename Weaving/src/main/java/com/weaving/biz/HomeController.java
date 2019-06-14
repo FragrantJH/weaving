@@ -57,8 +57,6 @@ public class HomeController {
 	@Autowired
 	ToDoService todoService;
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -144,6 +142,7 @@ public class HomeController {
 		ObjectMapper oMapper = new ObjectMapper();
 
 		for (EmpVO data : list) {
+			@SuppressWarnings("unchecked")
 			Map<String, Object> map = oMapper.convertValue(data, Map.class);
 			temp.add(map);
 		}

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.weaving.biz.board.BoardVO;
 import com.weaving.biz.room.RoomService;
 import com.weaving.biz.room.RoomVO;
 
