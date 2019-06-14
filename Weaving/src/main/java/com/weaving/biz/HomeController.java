@@ -107,7 +107,7 @@ public class HomeController {
 		// todolist
 		List<ToDoVO> todoList = todoService.getTodoList(vo.getEmpNo());
 		model.addAttribute("todolist", todoList);
-
+		
 		return "home";
 	}
 

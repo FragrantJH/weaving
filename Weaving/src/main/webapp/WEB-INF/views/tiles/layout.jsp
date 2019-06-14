@@ -528,7 +528,7 @@
     });
   </script>
   <script>
-  	var webSocket = new WebSocket('ws://192.168.0.35/weaving/broadcast.do');
+  	var webSocket = new WebSocket('ws://www.weaving.com/weaving/broadcast.do');
   	var chatWindow_temp;
   	var chatWindow;
   	
