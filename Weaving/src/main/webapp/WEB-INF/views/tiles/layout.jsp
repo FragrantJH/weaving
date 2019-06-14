@@ -553,6 +553,7 @@
 	    	$('#chatAlramModal').hide( 5000, function() {
 	    	    $( '#chatAlramModal' ).modal("hide");
 	    	  });
+	    	
 			chatWindow = window.open('${pageContext.request.contextPath}/startChat?toEmpNo=' + data.empNo + '&toEmpName=' + data.empName, 'Chat', 'width=450, height=650');
 		
 		} else {
