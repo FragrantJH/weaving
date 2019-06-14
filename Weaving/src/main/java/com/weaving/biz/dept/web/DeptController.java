@@ -74,6 +74,7 @@ public class DeptController {
 		return service.getDept(vo);
 	}
 	//삭제
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/deleteDept/{deptId}", method= {RequestMethod.DELETE,RequestMethod.GET})
 	@ResponseBody
 	public Map deleteDept( @PathVariable String deptId, DeptVO vo, Model model) {
