@@ -50,11 +50,11 @@ function checkform() {
 							<div class="table-responsive">
 								<div>
 									<label for="usr">보내는사람</label>
-									<input type="text"   class="form-control" name="toEmail" value="${emp.email}"><br>
+									<input type="text"   class="form-control" name="toEmail" readonly  value="${emp.email}"><br>
 									</div>
 									<div>
 										<label for="usr">받는사람 </label>
-										<input type="text"  class="form-control" name=fromEmail value="${to}"><br>
+										<input type="text"  class="form-control" name=fromEmail readonly  value="${to}"><br>
 								</div>
 								<div>
 										<label for="usr">제목</label>

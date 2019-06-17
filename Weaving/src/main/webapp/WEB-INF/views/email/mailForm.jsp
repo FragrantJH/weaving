@@ -53,7 +53,7 @@ function checkform() {
 							<div class="table-responsive">
 									<div>
 									<label for="usr">보내는사람</label>
-									<input type="text"  class="form-control" id="title"name="fromEmail" value="${emp.email}"><br>
+									<input type="text"  class="form-control" id="title"name="fromEmail" readonly value="${emp.email}"><br>
 									</div>
 									<div>
 										<label for="usr">받는사람 </label>
