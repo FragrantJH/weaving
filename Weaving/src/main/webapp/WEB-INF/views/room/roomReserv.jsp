@@ -117,21 +117,15 @@ select::-ms-expand {
 	if ("${check}" == 'true') {
 		alert("중복된 시간입니다");
 	}
-
+	<!-- 예약현황 tr 클릭시 값을 받아와서 입력시키는 페이지 --!>
 	$(function() {
+		console.log("adfddddddddddddddddddddddddddddddddd");
 		$("#reservation tr").on('click', function() {
 			var str = ""
 			var td = $(this).children();
-
-			console.log(td);
-
-			//console.log($(this).children().eq(3).html());
-			var startTime = td.eq(3).html().substring(11, 16);
-			//console.log(startTime);			
+			var startTime = td.eq(3).html().substring(11, 16);					
 			var changeDateFormat = td.eq(3).html().substring(0, 10);
-			//changeDateFormat = dateToMMDDYYYY(changeDateFormat);
-
-			//$("[name =reservId]").val(td.eq(0).html());
+			
 			$("#resId").val(td.eq(0).html());
 			$("[name =roomId]").val(td.eq(1).html());
 			$("[name =description]").val(td.eq(5).html());
@@ -139,10 +133,9 @@ select::-ms-expand {
 			$("[name =endTime]").val(td.eq(4).html().substring(11, 16));
 			$("[name =reservDate]").val(changeDateFormat);
 			console.log(changeDateFormat);
-
 		});
 
-		//입력값 체크
+		//입력값 중복 체크
 		$('#reserv').on('click', function() {
 
 			if ($('#roomr option:selected').text() == "회의실선택") {
@@ -188,14 +181,6 @@ select::-ms-expand {
 		var startTime = $('[name="startTime"]').val();
 		var endTime = $('[name="endTime"]').val();
 		var description = $('[name="description"]').val();
-
-		/* console.log("================");
-		console.log($('[name="reservDate"]').val());
-		console.log("================");
-		console.log(reservId);
-		console.log(startTime + ' -- ' + endTime);
-		console.log(JSON.stringify({reservId:reservId,roomId:roomId,empNo:empNo,reservDate:reservDate,startTime:startTime,endTime:endTime,description:description})); */
-
 		$.ajax({
 			url : "./updateReserv",
 			type : "POST",
@@ -309,7 +294,6 @@ select::-ms-expand {
 							<script>
 								$("#datepicker").datepicker({
 									dateFormat : 'yy-mm-dd'
-								//dateFormat : 'yyyy-mm-dd'
 								});
 							</script>
 						</div>
@@ -338,6 +322,8 @@ select::-ms-expand {
 
 		}
 	</script>
+	<br>
+	<br>
 
 	<div class="col-md-8 col-sm-10">
 		<div class="card">

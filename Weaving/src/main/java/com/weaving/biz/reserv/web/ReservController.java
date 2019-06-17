@@ -27,36 +27,17 @@ public class ReservController {
 	
 	public String roomReserv(Model model, @RequestParam(value="check",
 							defaultValue="false", required=false)String check,ReservVO vo) {
-		//model.addAttribute("list", service.getReservList());
 		model.addAttribute("check", check);
 		model.addAttribute("list", service.getReservList(vo.getRoomButton()));
-		
-		System.out.println("dddddddddddddddddddddddddddddddddddddddddddd");
-		System.out.println(vo.getRoomButton());
-		System.out.println("dddddddddddddddddddddddddddddddddddddddddddd");
 		return "room/roomReserv";
 	}
-
+	//회의실 예약
 	@RequestMapping(value = "/roomInsertReserv", method = RequestMethod.POST)
-	public String roomInsertReserv(Model model, ReservVO vo, HttpSession session) {
-		System.out.println(vo.getReservDate());
+	public String roomInsertReserv(Model model, ReservVO vo, HttpSession session) {		
 		vo.setReservId(0);
-		
-		/*
-		 * SimpleDateFormat fromFormat = new SimpleDateFormat("MM-dd-yyyy");
-		 * SimpleDateFormat toFormat = new SimpleDateFormat("yyyy-MM-dd");
-		 * 
-		 * String reservDate = CommonDateParser.parseFormat(vo.getReservDate(),
-		 * fromFormat, toFormat);
-		 */
-		
 		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
-		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
-		
-		System.out.println("rrrtest: " + vo);
-		
-		// 현재 접속한 사용자 정보
-		
+		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());	
+		// 현재 접속한 사용자 정보		
 		Object emp = session.getAttribute("emp");
 		if (emp != null) {
 			vo.setEmpNo(((EmpVO) emp).getEmpNo());
@@ -81,9 +62,6 @@ public class ReservController {
 
 		vo.setStartDate(vo.getReservDate() + " " + vo.getStartTime());
 		vo.setEndDate(vo.getReservDate() + " " + vo.getEndTime());
-		System.out.println("********************************************************");
-		System.out.println(vo);
-		System.out.println("********************************************************");
 		
 		// 현재 접속한 사용자 정보
 		EmpVO emp = SessionInfo.getInfo(session, "emp");
