@@ -94,7 +94,7 @@
 		//캘린더 목록 조회
 		function calList() {
 			$.ajax({
-				url : '${pageContext.request.contextPath}/calendar',
+				url : '${pageContext.request.contextPath}/calendarMain',
 				type : 'GET',
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
