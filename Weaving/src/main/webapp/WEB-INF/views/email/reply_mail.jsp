@@ -58,7 +58,7 @@ function checkform() {
 								</div>
 								<div>
 										<label for="usr">제목</label>
-										<input type="text"  class="form-control" name="subject">
+										<input type="text" class="form-control" name="subject">
 									</div><br>
 									
 					</div><br>

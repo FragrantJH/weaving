@@ -123,7 +123,7 @@ public class FetchingEmail {
 			// 리스트 담아서 리턴
 			for (int i = 0, n = messages.length; i < n; i++) {
 				Message message = messages[i];
-
+				
 				EmailVO vo = new EmailVO();
 			//	vo.setEmpNo();
 				contentBody = "";
@@ -131,6 +131,7 @@ public class FetchingEmail {
 				
 				vo.setInboxContents(contentBody);
 				vo.setEmpNo(empNo);
+				
 				
 				emailService.insertInbox(vo);	
 				
@@ -276,6 +277,9 @@ public class FetchingEmail {
 		// SUBJECT
 		if (m.getSubject() != null) {
 			vo.setSubject(m.getSubject());
+		} else {
+			System.out.println("subject is null");
+			vo.setSubject("empty");
 		}
 	}
 	
