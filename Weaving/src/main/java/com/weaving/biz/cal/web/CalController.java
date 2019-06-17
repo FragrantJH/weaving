@@ -26,33 +26,43 @@ public class CalController {
 
 	@RequestMapping("getCal.do")
 	public String getCal(@ModelAttribute("cal") CalVO vo, HttpSession session) {
-		
+
 		session.setAttribute("calType", vo.getCalType());
 		return "cal/calendar";
 	}
-	
+
 	@RequestMapping("getCalAdmin.do")
 	public String getCalAdmin(@ModelAttribute("cal") CalVO vo, HttpSession session) {
-		
+
 		session.setAttribute("calType", vo.getCalType());
 		return "admin/cal/calendar";
 	}
 
-	@RequestMapping(value="calendar", method= RequestMethod.GET)
+	@RequestMapping(value = "calendarMain")
+	@ResponseBody
+	public List<CalVO> getCalData() {
+		// 전체 일정
+		CalVO calVo = new CalVO();
+		calVo.setCalType(CalTypeEnum.ALL);
+		List<CalVO> calList = service.getCalList(calVo);
+		return calList;
+	}
+
+	@RequestMapping(value = "calendar", method = RequestMethod.GET)
 	@ResponseBody
 	public List<CalVO> getCalData(CalVO vo, HttpSession session) {
-		
+
 		CalTypeEnum calType = SessionInfo.getInfo(session, "calType");
-		
-		if(calType != null && calType == CalTypeEnum.USER) {
+
+		if (calType != null && calType == CalTypeEnum.USER) {
 			Integer empNo = SessionInfo.getInfo(session, "empNo");
-			if(empNo != null) {
+			if (empNo != null) {
 				vo.setEmpNo(empNo);
 			}
 		} else {
 			vo.setEmpNo(null);
 		}
-		
+
 		return service.getCalList(vo);
 	}
 
@@ -63,38 +73,38 @@ public class CalController {
 		// 날짜 형식 변환
 		vo.setStart(CommonDateParser.parseToJavaFormat(vo.getStart()));
 		vo.setEnd(CommonDateParser.parseToJavaFormat(vo.getEnd()));
-		
+
 		// 캘린더 타입에 따라서 EmpNo 값 vo에 입력
 		Object calType = session.getAttribute("calType");
-		
-		if(calType != null && (CalTypeEnum)calType == CalTypeEnum.USER) {
+
+		if (calType != null && (CalTypeEnum) calType == CalTypeEnum.USER) {
 			Object empNo = session.getAttribute("empNo");
-			if(empNo != null) {
-				vo.setEmpNo((Integer)empNo);
+			if (empNo != null) {
+				vo.setEmpNo((Integer) empNo);
 			}
 		} else {
 			vo.setEmpNo(null);
 		}
-		
+
 		service.insertCal(vo);
-		
+
 		System.out.println("inserted id : " + vo.getId());
-		
+
 		return vo;
 	}
-	
+
 	@RequestMapping(value = "calendar", method = RequestMethod.PUT, headers = { "Content-type=application/json" })
 	@ResponseBody
 	public CalVO updateCal(@RequestBody CalVO vo) {
 
 		System.out.println("updateCal: " + vo);
-		
+
 		vo.setStart(CommonDateParser.parseToJavaFormat(vo.getStart()));
 		vo.setEnd(CommonDateParser.parseToJavaFormat(vo.getEnd()));
 		service.updateCal(vo);
 		return service.getCal(vo);
 	}
-	
+
 	@RequestMapping(value = "calendar", method = RequestMethod.DELETE, headers = { "Content-type=application/json" })
 	@ResponseBody
 	public CalVO deleteCal(@RequestBody CalVO vo) {

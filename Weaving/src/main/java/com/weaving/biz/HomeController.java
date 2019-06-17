@@ -94,12 +94,6 @@ public class HomeController {
 		List<BoardVO> list1 = boardService.getBoardListPaging(boardVo);
 		model.addAttribute("boardList1", list1);
 
-		// 전체 일정
-		CalVO calVo = new CalVO();
-		calVo.setCalType(CalTypeEnum.ALL);
-		List<CalVO> callist = calservice.getCalList(calVo);
-		model.addAttribute("usercal", callist);
-
 		// todolist
 		List<ToDoVO> todoList = todoService.getTodoList(vo.getEmpNo());
 		model.addAttribute("todolist", todoList);
