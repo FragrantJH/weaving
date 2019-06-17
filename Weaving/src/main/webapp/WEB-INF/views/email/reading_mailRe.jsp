@@ -25,7 +25,7 @@
 		<div class="card">
 			<div class="card-header card-header-text card-header-primary">
 				<div class="card-text">
-					<h4 class="card-title">받은 메일
+					<h4 class="card-title">보낸 메일
 					</h4>
 				</div>
 			</div>
