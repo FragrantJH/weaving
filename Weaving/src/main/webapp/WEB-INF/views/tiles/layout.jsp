@@ -49,7 +49,12 @@
 			<!-- 로그인 했을 때 -->
         	<div align="center">
         		<c:if test="${not empty emp}">
-	        		<img src="${pageContext.request.contextPath}/assets/img/faces/avatar.jpg" alt="Avatar" class="avatar">
+        			<c:if test="${emp.empNo == 1 || emp.empNo == 44 || emp.empNo == 45}">
+	        			<img src="${pageContext.request.contextPath}/images/${emp.empNo}.jpg" alt="Avatar" class="avatar">
+	        		</c:if>
+	        		<c:if test="${emp.empNo != 1 && emp.empNo != 44 && emp.empNo != 45}">
+	        			<img src="${pageContext.request.contextPath}/images/no.jpg" alt="Avatar" class="avatar">
+	        		</c:if>
 	        	</c:if>
 	        	<c:if test="${empty emp }">
 	        		<img src="${pageContext.request.contextPath}/images/no_login_avatar.png" alt="Avatar" class="avatar">
